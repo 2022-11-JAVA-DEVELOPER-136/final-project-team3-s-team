@@ -1,0 +1,5 @@
+package com.itwill.steam.news;
+
+public interface NewsDao {
+
+}

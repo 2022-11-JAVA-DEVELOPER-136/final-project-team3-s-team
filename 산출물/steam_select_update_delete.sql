@@ -1,0 +1,56 @@
+/*
+select, update, delete
+*/
+
+--userinfo
+update userinfo set u_id='update', u_password='update', u_name='update', u_email='update', u_phone='update', u_nickname='update', u_addr='update' where u_no=1;
+
+delete from userinfo where u_no=1;
+
+select * from userinfo;
+select * from userinfo where u_no=1;
+select count(*) from userinfo where u_no=1;
+
+
+--game, category, language, news, resources
+select * from game;
+select * from game g join category c on g.ct_no=c.ct_no;
+select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no;
+select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no;
+
+select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.g_no=1;
+select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.ct_no=1;
+
+
+--cart
+delete from cart where u_no=1;
+delete from cart where c_no=1;
+
+select * from cart where u_no=1;
+select * from cart where c_no=1;
+select count(*) from cart where u_no=1 and g_no=1;
+
+
+--orders, order_item
+delete from orders where u_no=1;
+delete from orders where o_no=1;
+
+select * from orders where u_no=1;
+select * from orders where o_no=1;
+select * from order_item where o_no=1;
+
+select * from orders o join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u_no=1;
+select * from orders o join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u_no=1 and o.o_no=1;
+select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u.u_no=1;
+select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u.u_no=1 and o.o_no=1;
+
+
+--review
+update review set review_date=sysdate, review_comment='update', review_recommend=1 where review_no=1;
+
+delete from review where review_no=1;
+
+select * from review;
+select * from review where review_no=1;
+select * from review where u_no=1;
+select * from review where g_no=1;
