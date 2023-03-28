@@ -1,3 +1,6 @@
+DROP TABLE chat CASCADE CONSTRAINTS;
+DROP TABLE user_chatroom CASCADE CONSTRAINTS;
+DROP TABLE friend CASCADE CONSTRAINTS;
 DROP TABLE resources CASCADE CONSTRAINTS;
 DROP TABLE tag_game CASCADE CONSTRAINTS;
 DROP TABLE card CASCADE CONSTRAINTS;
@@ -5,7 +8,6 @@ DROP TABLE language CASCADE CONSTRAINTS;
 DROP TABLE tag CASCADE CONSTRAINTS;
 DROP TABLE workshop CASCADE CONSTRAINTS;
 DROP TABLE news CASCADE CONSTRAINTS;
-DROP TABLE chat_content CASCADE CONSTRAINTS;
 DROP TABLE chat_room CASCADE CONSTRAINTS;
 DROP TABLE owned_game CASCADE CONSTRAINTS;
 DROP TABLE review CASCADE CONSTRAINTS;
@@ -59,7 +61,8 @@ CREATE TABLE game(
 		g_distributor                 		VARCHAR2(100)		 NULL ,
 		g_price                       		NUMBER(10)		 NULL ,
 		g_discount_rate               		NUMBER(10)		 NULL ,
-		g_discount_period             		NUMBER(10)		 NULL ,
+		g_discount_start              		DATE		 NULL ,
+		g_discount_end                		DATE		 NULL ,
 		g_os                          		VARCHAR2(1000)		 NULL ,
 		g_prosessor                   		VARCHAR2(1000)		 NULL ,
 		g_memory                      		VARCHAR2(1000)		 NULL ,
@@ -161,27 +164,13 @@ CREATE SEQUENCE owned_game_og_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 CREATE TABLE chat_room(
-		c_room_no                     		NUMBER(10)		 NULL 
+		cr_no                         		NUMBER(10)		 NULL ,
+		cr_name                       		VARCHAR2(100)		 NULL 
 );
 
-DROP SEQUENCE chat_room_c_room_no_SEQ;
+DROP SEQUENCE chat_room_cr_no_SEQ;
 
-CREATE SEQUENCE chat_room_c_room_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
-
-
-
-CREATE TABLE chat_content(
-		c_content_no                  		NUMBER(10)		 NULL ,
-		c_content_body                		VARCHAR2(4000)		 NULL ,
-		c_content_time                		DATE		 NULL ,
-		u_no                          		NUMBER(10)		 NULL ,
-		c_room_no                     		NUMBER(10)		 NULL 
-);
-
-DROP SEQUENCE chat_content_c_content_no_SEQ;
-
-CREATE SEQUENCE chat_content_c_content_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+CREATE SEQUENCE chat_room_cr_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
@@ -284,6 +273,40 @@ CREATE SEQUENCE resources_res_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
+CREATE TABLE friend(
+		f_no                          		NUMBER(10)		 NULL ,
+		f_state                       		NUMBER(10)		 NULL ,
+		u_no                          		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE friend_f_no_SEQ;
+
+CREATE SEQUENCE friend_f_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
+CREATE TABLE user_chatroom(
+		u_no                          		NUMBER(10)		 NULL ,
+		cr_no                         		NUMBER(10)		 NULL 
+);
+
+
+CREATE TABLE chat(
+		chat_no                       		NUMBER(10)		 NULL ,
+		chat_content                  		VARCHAR2(4000)		 NULL ,
+		chat_created_at               		DATE		 DEFAULT sysdate		 NULL ,
+		u_no                          		NUMBER(10)		 NULL ,
+		cr_no                         		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE chat_chat_no_SEQ;
+
+CREATE SEQUENCE chat_chat_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
 
 ALTER TABLE userInfo ADD CONSTRAINT IDX_userInfo_PK PRIMARY KEY (u_no);
 
@@ -315,11 +338,7 @@ ALTER TABLE owned_game ADD CONSTRAINT IDX_owned_game_PK PRIMARY KEY (og_no);
 ALTER TABLE owned_game ADD CONSTRAINT IDX_owned_game_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
 ALTER TABLE owned_game ADD CONSTRAINT IDX_owned_game_FK1 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
 
-ALTER TABLE chat_room ADD CONSTRAINT IDX_chat_room_PK PRIMARY KEY (c_room_no);
-
-ALTER TABLE chat_content ADD CONSTRAINT IDX_chat_content_PK PRIMARY KEY (c_content_no);
-ALTER TABLE chat_content ADD CONSTRAINT IDX_chat_content_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
-ALTER TABLE chat_content ADD CONSTRAINT IDX_chat_content_FK1 FOREIGN KEY (c_room_no) REFERENCES chat_room (c_room_no) on delete cascade;
+ALTER TABLE chat_room ADD CONSTRAINT IDX_chat_room_PK PRIMARY KEY (cr_no);
 
 ALTER TABLE news ADD CONSTRAINT IDX_news_PK PRIMARY KEY (news_no);
 ALTER TABLE news ADD CONSTRAINT IDX_news_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
@@ -342,4 +361,14 @@ ALTER TABLE tag_game ADD CONSTRAINT IDX_tag_game_FK1 FOREIGN KEY (g_no) REFERENC
 
 ALTER TABLE resources ADD CONSTRAINT IDX_resources_PK PRIMARY KEY (res_no);
 ALTER TABLE resources ADD CONSTRAINT IDX_resources_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
+
+ALTER TABLE friend ADD CONSTRAINT IDX_friend_PK PRIMARY KEY (f_no);
+ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
+
+ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_PK PRIMARY KEY (u_no, cr_no);
+ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
+ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_FK1 FOREIGN KEY (cr_no) REFERENCES chat_room (cr_no) on delete cascade;
+
+ALTER TABLE chat ADD CONSTRAINT IDX_chat_PK PRIMARY KEY (chat_no);
+ALTER TABLE chat ADD CONSTRAINT IDX_chat_FK0 FOREIGN KEY (u_no,cr_no) REFERENCES user_chatroom (u_no,cr_no) on delete cascade;
 

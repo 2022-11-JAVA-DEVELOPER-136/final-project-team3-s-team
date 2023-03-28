@@ -8,6 +8,12 @@ insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nicknam
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_addr) values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', '서울시 서초구');
 
 
+--friend
+--f_state는 상태를 표시. (0: 로그아웃, 1:로그인, 2~: 미정)
+insert into friend(f_no, f_state, u_no) values(FRIEND_F_NO_SEQ.nextval, 0, 2);
+insert into friend(f_no, f_state, u_no) values(FRIEND_F_NO_SEQ.nextval, 0, 3);
+
+
 --card
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy0_카드_1', '1111-1111-1111-1111', '02/24', 111, 1);
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy0_카드_2', '2222-2222-2222-2222', '05/25', 222, 1);
@@ -21,19 +27,18 @@ insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, 
 
 
 --game
---g_discount_period는 할인기간을 의미. 숫자 1은 1일을 의미. (ex. 30 -> 30일)
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 11, 1);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '액션게임2', '액션게임2_짧은설명', '액션게임2_긴설명', 8, to_date('2021/06/06'), '개발사2', '배급사2', 60000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 33, 1);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '롤플레잉게임1', '롤플레잉게임1_짧은설명', '롤플레잉게임1_긴설명', 9, to_date('2022/07/07'), '개발사3', '배급사3', 70000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 22, 2);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '롤플레잉게임2', '롤플레잉게임2_짧은설명', '롤플레잉게임2_긴설명', 8, to_date('2019/02/02'), '개발사4', '배급사4', 30000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 66, 2);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '전략게임1', '전략게임1_짧은설명', '전략게임1_긴설명', 9, to_date('2020/11/11'), '개발사5', '배급사5', 40000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 44, 3);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_period, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '전략게임2', '전략게임2_짧은설명', '전략게임2_긴설명', 8, to_date('2018/03/03'), '개발사6', '배급사6', 50000, 50, 30, 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 55, 3);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 11, 1);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '액션게임2', '액션게임2_짧은설명', '액션게임2_긴설명', 8, to_date('2021/06/06'), '개발사2', '배급사2', 60000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 33, 1);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '롤플레잉게임1', '롤플레잉게임1_짧은설명', '롤플레잉게임1_긴설명', 9, to_date('2022/07/07'), '개발사3', '배급사3', 70000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 22, 2);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '롤플레잉게임2', '롤플레잉게임2_짧은설명', '롤플레잉게임2_긴설명', 8, to_date('2019/02/02'), '개발사4', '배급사4', 30000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 66, 2);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '전략게임1', '전략게임1_짧은설명', '전략게임1_긴설명', 9, to_date('2020/11/11'), '개발사5', '배급사5', 40000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 44, 3);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '전략게임2', '전략게임2_짧은설명', '전략게임2_긴설명', 8, to_date('2018/03/03'), '개발사6', '배급사6', 50000, 50, to_date('2023/03/01'), to_date('2023/03/31'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 55, 3);
 
 
 --resources
@@ -189,11 +194,26 @@ insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 17,
 
 
 --chat_room
---테이블 미완성
+insert into chat_room(cr_no, cr_name) values(CHAT_ROOM_CR_NO_SEQ.nextval, '채팅방1');
+insert into chat_room(cr_no, cr_name) values(CHAT_ROOM_CR_NO_SEQ.nextval, '채팅방2');
 
 
---chat_content
---테이블 미완성
+--user_chatroom
+--1번방에 1,2,3번유저가 참여
+insert into user_chatroom(u_no, cr_no) values(1, 1);
+insert into user_chatroom(u_no, cr_no) values(2, 1);
+insert into user_chatroom(u_no, cr_no) values(3, 1);
+--2번방에 1,2번유저가 참여
+insert into user_chatroom(u_no, cr_no) values(1, 2);
+insert into user_chatroom(u_no, cr_no) values(2, 2);
+
+
+--chat
+insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 1번유저가 말한 채팅1', sysdate, 1, 1);
+insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 2번유저가 말한 채팅1', sysdate, 2, 1);
+insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 3번유저가 말한 채팅1', sysdate, 3, 1);
+insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 1번유저가 말한 채팅1', sysdate, 1, 2);
+insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 2번유저가 말한 채팅1', sysdate, 2, 2);
 
 
 commit;
