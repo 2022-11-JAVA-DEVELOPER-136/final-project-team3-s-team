@@ -25,7 +25,7 @@ update game set g_sell_count=g_sell_count+1 where g_no=1;
 --인기있는 게임 (판매량 내림차순)
 select * from game g join resources res on g.g_no=res.g_no join tag_game tg on g.g_no=tg.g_no join tag t on t.tag_no=tg.tag_no order by g.g_sell_count desc;
 --할인중인 게임
---할인 테이블 미정
+select * from game g join resources res on g.g_no=res.g_no join tag_game tg on g.g_no=tg.g_no join tag t on t.tag_no=tg.tag_no where g.g_discount_start <= sysdate and sysdate <= g.g_discount_end;
 
 --상품상세보기
 select * from game g 
