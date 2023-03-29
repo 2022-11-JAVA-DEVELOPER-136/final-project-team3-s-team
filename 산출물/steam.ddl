@@ -276,7 +276,8 @@ CREATE SEQUENCE resources_res_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 CREATE TABLE friend(
 		f_no                          		NUMBER(10)		 NULL ,
 		f_state                       		NUMBER(10)		 NULL ,
-		u_no                          		NUMBER(10)		 NULL 
+		u_to                          		NUMBER(10)		 NULL ,
+		u_from                        		NUMBER(10)		 NULL 
 );
 
 DROP SEQUENCE friend_f_no_SEQ;
@@ -363,7 +364,8 @@ ALTER TABLE resources ADD CONSTRAINT IDX_resources_PK PRIMARY KEY (res_no);
 ALTER TABLE resources ADD CONSTRAINT IDX_resources_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
 
 ALTER TABLE friend ADD CONSTRAINT IDX_friend_PK PRIMARY KEY (f_no);
-ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
+ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK0 FOREIGN KEY (u_from) REFERENCES userInfo (u_no) on delete cascade;
+ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK1 FOREIGN KEY (u_to) REFERENCES userInfo (u_no) on delete cascade;
 
 ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_PK PRIMARY KEY (u_no, cr_no);
 ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;

@@ -9,9 +9,15 @@ insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nicknam
 
 
 --friend
---f_state는 상태를 표시. (0: 로그아웃, 1:로그인, 2~: 미정)
-insert into friend(f_no, f_state, u_no) values(FRIEND_F_NO_SEQ.nextval, 0, 2);
-insert into friend(f_no, f_state, u_no) values(FRIEND_F_NO_SEQ.nextval, 0, 3);
+/*
+f_state는 상태를 표시. (0: 로그아웃, 1:로그인, 2~: 미정)
+u_to는 친구요청을 보내는 user의 u_no
+u_from은 친구요청을 받아서 수락한 user의 u_no
+friend테이블에서 u_to와 u_from의 조합은 유일해야 한다. (UNIQUE)
+*/
+insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 1, 2);
+insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 1, 3);
+insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 2, 3);
 
 
 --card
