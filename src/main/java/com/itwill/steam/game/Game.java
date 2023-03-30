@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.itwill.steam.category.Category;
+import com.itwill.steam.gameLanguage.GameLanguage;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.news.News;
 import com.itwill.steam.resources.Resources;
@@ -42,9 +43,9 @@ public class Game {
 	
 	private Category category;
 	private List<Resources> resourcesList;
-	//language - 회의하고 나서 관계 확정하고 기술
+	private List<GameLanguage> gameLanguageList;
 	private List<News> newsList;
-	private List<GameTag> tagGameList;//tagGame?? 이름이 마음에 안든다..
+	private List<GameTag> gameTagList;
 	private List<Review> reviewList;
 	private List<Workshop> workshopList;
 }
