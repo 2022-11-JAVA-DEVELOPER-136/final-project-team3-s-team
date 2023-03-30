@@ -21,7 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class Game {
+public class Game_j {
 	private int gNo;
 	private String gName;
 	private String gShortDesc;

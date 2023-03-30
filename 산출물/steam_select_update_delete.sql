@@ -15,11 +15,11 @@ select count(*) from userinfo where u_no=1;
 --game, category, language, news, resources
 select * from game;
 select * from game g join category c on g.ct_no=c.ct_no;
-select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no;
-select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no;
+select * from game g join category c on g.ct_no=c.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no;
+select * from game g join category c on g.ct_no=c.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no;
 
-select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.g_no=1;
-select * from game g join category c on g.ct_no=c.ct_no join language l on g.g_no=l.g_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.ct_no=1;
+select * from game g join category c on g.ct_no=c.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.g_no=1;
+select * from game g join category c on g.ct_no=c.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no join news n on g.g_no=n.g_no join resources r on g.g_no=r.g_no where g.ct_no=1;
 
 
 --cart
@@ -46,7 +46,7 @@ select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.
 
 
 --review
-update review set review_date=sysdate, review_comment='update', review_recommend=1 where review_no=1;
+update review set review_updated_at=sysdate, review_comment='update', review_recommend=1 where review_no=1;
 
 delete from review where review_no=1;
 

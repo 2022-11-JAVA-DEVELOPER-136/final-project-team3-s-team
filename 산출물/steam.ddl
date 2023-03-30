@@ -1,8 +1,8 @@
+DROP TABLE game_language CASCADE CONSTRAINTS;
 DROP TABLE chat CASCADE CONSTRAINTS;
-DROP TABLE user_chatroom CASCADE CONSTRAINTS;
 DROP TABLE friend CASCADE CONSTRAINTS;
 DROP TABLE resources CASCADE CONSTRAINTS;
-DROP TABLE tag_game CASCADE CONSTRAINTS;
+DROP TABLE game_tag CASCADE CONSTRAINTS;
 DROP TABLE card CASCADE CONSTRAINTS;
 DROP TABLE language CASCADE CONSTRAINTS;
 DROP TABLE tag CASCADE CONSTRAINTS;
@@ -134,7 +134,8 @@ CREATE SEQUENCE order_item_oi_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 CREATE TABLE review(
 		review_no                     		NUMBER(10)		 NULL ,
-		review_date                   		DATE		 NULL ,
+		review_created_at             		DATE		 DEFAULT sysdate		 NULL ,
+		review_updated_at             		DATE		 NULL ,
 		review_comment                		VARCHAR2(2000)		 NULL ,
 		review_recommend              		NUMBER(10)		 NULL ,
 		u_no                          		NUMBER(10)		 NULL ,
@@ -220,8 +221,7 @@ CREATE SEQUENCE tag_tag_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 CREATE TABLE language(
 		lang_no                       		NUMBER(10)		 NULL ,
-		lang_name                     		VARCHAR2(100)		 NULL ,
-		g_no                          		NUMBER(10)		 NULL 
+		lang_name                     		VARCHAR2(100)		 NULL 
 );
 
 DROP SEQUENCE language_lang_no_SEQ;
@@ -247,15 +247,15 @@ CREATE SEQUENCE card_card_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
-CREATE TABLE tag_game(
-		tg_no                         		NUMBER(10)		 NULL ,
+CREATE TABLE game_tag(
+		gt_no                         		NUMBER(10)		 NULL ,
 		tag_no                        		NUMBER(10)		 NULL ,
 		g_no                          		NUMBER(10)		 NULL 
 );
 
-DROP SEQUENCE tag_game_tg_no_SEQ;
+DROP SEQUENCE game_tag_gt_no_SEQ;
 
-CREATE SEQUENCE tag_game_tg_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+CREATE SEQUENCE game_tag_gt_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
@@ -287,12 +287,6 @@ CREATE SEQUENCE friend_f_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
-CREATE TABLE user_chatroom(
-		u_no                          		NUMBER(10)		 NULL ,
-		cr_no                         		NUMBER(10)		 NULL 
-);
-
-
 CREATE TABLE chat(
 		chat_no                       		NUMBER(10)		 NULL ,
 		chat_content                  		VARCHAR2(4000)		 NULL ,
@@ -304,6 +298,19 @@ CREATE TABLE chat(
 DROP SEQUENCE chat_chat_no_SEQ;
 
 CREATE SEQUENCE chat_chat_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
+CREATE TABLE game_language(
+		gl_no                         		NUMBER(10)		 NULL ,
+		g_no                          		NUMBER(10)		 NULL ,
+		lang_no                       		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE game_language_gl_no_SEQ;
+
+CREATE SEQUENCE game_language_gl_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
@@ -351,14 +358,13 @@ ALTER TABLE workshop ADD CONSTRAINT IDX_workshop_FK1 FOREIGN KEY (g_no) REFERENC
 ALTER TABLE tag ADD CONSTRAINT IDX_tag_PK PRIMARY KEY (tag_no);
 
 ALTER TABLE language ADD CONSTRAINT IDX_language_PK PRIMARY KEY (lang_no);
-ALTER TABLE language ADD CONSTRAINT IDX_language_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
 
 ALTER TABLE card ADD CONSTRAINT IDX_card_PK PRIMARY KEY (card_seq);
 ALTER TABLE card ADD CONSTRAINT IDX_card_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
 
-ALTER TABLE tag_game ADD CONSTRAINT IDX_tag_game_PK PRIMARY KEY (tg_no);
-ALTER TABLE tag_game ADD CONSTRAINT IDX_tag_game_FK0 FOREIGN KEY (tag_no) REFERENCES tag (tag_no) on delete cascade;
-ALTER TABLE tag_game ADD CONSTRAINT IDX_tag_game_FK1 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
+ALTER TABLE game_tag ADD CONSTRAINT IDX_game_tag_PK PRIMARY KEY (gt_no);
+ALTER TABLE game_tag ADD CONSTRAINT IDX_game_tag_FK0 FOREIGN KEY (tag_no) REFERENCES tag (tag_no) on delete cascade;
+ALTER TABLE game_tag ADD CONSTRAINT IDX_game_tag_FK1 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
 
 ALTER TABLE resources ADD CONSTRAINT IDX_resources_PK PRIMARY KEY (res_no);
 ALTER TABLE resources ADD CONSTRAINT IDX_resources_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
@@ -367,10 +373,11 @@ ALTER TABLE friend ADD CONSTRAINT IDX_friend_PK PRIMARY KEY (f_no);
 ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK0 FOREIGN KEY (u_from) REFERENCES userInfo (u_no) on delete cascade;
 ALTER TABLE friend ADD CONSTRAINT IDX_friend_FK1 FOREIGN KEY (u_to) REFERENCES userInfo (u_no) on delete cascade;
 
-ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_PK PRIMARY KEY (u_no, cr_no);
-ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
-ALTER TABLE user_chatroom ADD CONSTRAINT IDX_user_chatroom_FK1 FOREIGN KEY (cr_no) REFERENCES chat_room (cr_no) on delete cascade;
-
 ALTER TABLE chat ADD CONSTRAINT IDX_chat_PK PRIMARY KEY (chat_no);
-ALTER TABLE chat ADD CONSTRAINT IDX_chat_FK0 FOREIGN KEY (u_no,cr_no) REFERENCES user_chatroom (u_no,cr_no) on delete cascade;
+ALTER TABLE chat ADD CONSTRAINT IDX_chat_FK0 FOREIGN KEY (u_no) REFERENCES userInfo (u_no) on delete cascade;
+ALTER TABLE chat ADD CONSTRAINT IDX_chat_FK1 FOREIGN KEY (cr_no) REFERENCES chat_room (cr_no) on delete cascade;
+
+ALTER TABLE game_language ADD CONSTRAINT IDX_game_language_PK PRIMARY KEY (gl_no);
+ALTER TABLE game_language ADD CONSTRAINT IDX_game_language_FK0 FOREIGN KEY (g_no) REFERENCES game (g_no) on delete cascade;
+ALTER TABLE game_language ADD CONSTRAINT IDX_game_language_FK1 FOREIGN KEY (lang_no) REFERENCES language (lang_no) on delete cascade;
 

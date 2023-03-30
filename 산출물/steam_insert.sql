@@ -47,6 +47,33 @@ insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_dat
 values(GAME_G_NO_SEQ.nextval, '전략게임2', '전략게임2_짧은설명', '전략게임2_긴설명', 8, to_date('2018/03/03'), '개발사6', '배급사6', 50000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 55, 3);
 
 
+--language
+insert into language(lang_no, lang_name) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어');
+insert into language(lang_no, lang_name) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어');
+insert into language(lang_no, lang_name) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어');
+
+
+--game_language
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 2, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 2, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 2, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 3, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 3, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 3, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 4, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 4, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 4, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 5, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 5, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 5, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 6, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 6, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 6, 3);
+
+
 --resources
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1.jpg', 1);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action2.jpg', 2);
@@ -54,27 +81,6 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying2.jpg', 4);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy1.jpg', 5);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy2.jpg', 6);
-
-
---language
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 1);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 1);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 1);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 2);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 2);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 2);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 3);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 3);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 3);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 4);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 4);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 4);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 5);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 5);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 5);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '한국어', 6);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '영어', 6);
-insert into language(lang_no, lang_name, g_no) values(LANGUAGE_LANG_NO_SEQ.nextval, '스페인어', 6);
 
 
 --news
@@ -127,18 +133,18 @@ insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, O
 
 --review
 --review_recommend는 추천/비추천을 의미. (0: 비추천, 1: 추천)
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰1', 0, 1, 1);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰2', 0, 1, 2);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰3', 0, 1, 3);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰4', 0, 1, 4);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰5', 0, 1, 5);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰6', 0, 1, 6);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰7', 1, 2, 1);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰8', 1, 2, 2);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰9', 1, 2, 3);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰10', 1, 2, 4);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰11', 1, 2, 5);
-insert into review(review_no, review_date, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, '리뷰12', 1, 2, 6);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰1', 0, 1, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰2', 0, 1, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰3', 0, 1, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰4', 0, 1, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰5', 0, 1, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰6', 0, 1, 6);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰7', 1, 2, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰8', 1, 2, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰9', 1, 2, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰10', 1, 2, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰11', 1, 2, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰12', 1, 2, 6);
 
 
 --owned_game
@@ -184,34 +190,24 @@ insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '리듬');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '고난이도');
 
 
---tag_game
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 5, 1);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 1);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 2);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 7, 2);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 1, 3);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 3);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 4);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 3, 4);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 5);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 16, 5);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 6);
-insert into tag_game(tg_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 17, 6);
+--game_tag
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 5, 1);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 1);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 2);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 7, 2);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 1, 3);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 3);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 4);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 3, 4);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 5);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 16, 5);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 6);
+insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 17, 6);
 
 
 --chat_room
 insert into chat_room(cr_no, cr_name) values(CHAT_ROOM_CR_NO_SEQ.nextval, '채팅방1');
 insert into chat_room(cr_no, cr_name) values(CHAT_ROOM_CR_NO_SEQ.nextval, '채팅방2');
-
-
---user_chatroom
---1번방에 1,2,3번유저가 참여
-insert into user_chatroom(u_no, cr_no) values(1, 1);
-insert into user_chatroom(u_no, cr_no) values(2, 1);
-insert into user_chatroom(u_no, cr_no) values(3, 1);
---2번방에 1,2번유저가 참여
-insert into user_chatroom(u_no, cr_no) values(1, 2);
-insert into user_chatroom(u_no, cr_no) values(2, 2);
 
 
 --chat
