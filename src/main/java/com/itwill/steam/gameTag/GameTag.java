@@ -1,5 +1,8 @@
 package com.itwill.steam.gameTag;
 
+import com.itwill.steam.game.Game;
+import com.itwill.steam.tag.Tag;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +17,6 @@ import lombok.ToString;
 public class GameTag {
 	private int gtNo;
 	
-	//tag_no
-	//g_no
+	private Tag tag;
+	private Game game;
 }

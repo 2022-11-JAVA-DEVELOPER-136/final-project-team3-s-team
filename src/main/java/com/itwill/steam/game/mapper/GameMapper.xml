@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.game.mapper.GameMapper">
-
+	<resultMap id="findAllGamesResultMap" type="com.itwill.steam.game.Game" autoMapping="true">
+		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+		</collection>
+		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
+			</association>
+		</collection>
+	</resultMap>
+	<select id="findAllGames" resultMap="findAllGamesResultMap">
+		select g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+		g_os, g_prosessor, g_memory, g_graphic, g_sell_count, res_name, tag_name
+		from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no
+	</select>
 </mapper>

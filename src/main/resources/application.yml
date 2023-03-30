@@ -18,3 +18,5 @@ server:  port: 80
     register-default-servlet: true
 ###################### mybatis설정 ######################
 mybatis:  type-aliases-package: com.itwill.steam
+  configuration:
+    map-underscore-to-camel-case: true
