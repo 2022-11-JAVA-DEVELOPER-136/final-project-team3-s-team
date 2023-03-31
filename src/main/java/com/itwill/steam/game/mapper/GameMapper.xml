@@ -23,6 +23,24 @@
 			</association>
 		</collection>
 	</resultMap>
+	<resultMap type="com.itwill.steam.game.Game" id="gameWithCategoryAndResourcesAndGameTagAndTagAndGameLanguageAndLanguageAndNewsAndReviewResultMap" autoMapping="true">
+		<association property="category" javaType="com.itwill.steam.category.Category" autoMapping="true">
+		</association>
+		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+		</collection>
+		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
+			</association>
+		</collection>
+		<collection property="gameLanguageList" ofType="com.itwill.steam.gameLanguage.GameLanguage" autoMapping="true">
+			<association property="language" javaType="com.itwill.steam.language.Language" autoMapping="true">
+			</association>
+		</collection>
+		<collection property="newsList" ofType="com.itwill.steam.news.News" autoMapping="true">
+		</collection>
+		<collection property="reviewList" ofType="com.itwill.steam.review.Review" autoMapping="true">
+		</collection>
+	</resultMap>
 	<select id="findAllGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no
 	</select>
@@ -44,4 +62,31 @@
 		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
 		where l.lang_name=#{langName}
 	</select>
+	<select id="findPopularGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
+		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		order by g.g_sell_count desc
+	</select>
+	<select id="findDiscountGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
+		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		where g.g_discount_start <![CDATA[<=]]> sysdate and sysdate <![CDATA[<=]]> g.g_discount_end
+	</select>
+	<select id="findGameByNo" resultMap="gameWithCategoryAndResourcesAndGameTagAndTagAndGameLanguageAndLanguageAndNewsAndReviewResultMap" parameterType="java.lang.Integer">
+		select * from game g 
+		join category ct on g.ct_no=ct.ct_no 
+		join resources res on g.g_no=res.g_no 
+		<!--
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on gt.tag_no=t.tag_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no 
+		-->
+		join news n on g.g_no=n.g_no 
+		<!--
+		join review rev on g.g_no=rev.g_no
+		-->
+		where g.g_no=#{gNo}
+	</select>
+	<update id="increaseSellCountByNo" parameterType="java.lang.Integer">
+		update game set g_sell_count=g_sell_count+1 where g_no=#{gNo}
+	</update>
 </mapper>

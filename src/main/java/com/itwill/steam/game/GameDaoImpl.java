@@ -42,4 +42,28 @@ public class GameDaoImpl implements GameDao {
 	public List<Game> findGamesByLanguage(String langName) {
 		return gameMapper.findGamesByLanguage(langName);
 	}
+	
+	//인기있는 게임 모아보기 (판매량 내림차순 정렬)
+	@Override
+	public List<Game> findPopularGames() {
+		return gameMapper.findPopularGames();
+	}
+
+	//할인중인 게임 모아보기
+	@Override
+	public List<Game> findDiscountGames() {
+		return gameMapper.findDiscountGames();
+	}
+
+	//상품상세보기
+	@Override
+	public Game findGameByNo(int gNo) {
+		return gameMapper.findGameByNo(gNo);
+	}
+
+	//상품의 판매량 1 증가
+	@Override
+	public int increaseSellCountByNo(int gNo) {
+		return gameMapper.increaseSellCountByNo(gNo);
+	}
 }

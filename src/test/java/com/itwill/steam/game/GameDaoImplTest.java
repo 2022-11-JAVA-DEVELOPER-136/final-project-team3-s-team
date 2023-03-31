@@ -22,6 +22,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
 	}
 	
 	//@Test
@@ -30,6 +31,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
 	}
 	
 	//@Test
@@ -38,6 +40,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
 	}
 	
 	//@Test
@@ -46,13 +49,48 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
 	}
 	
-	@Test
+	//@Test
 	void testFindGamesByLanguage() {
 		List<Game> gameList = gameDao.findGamesByLanguage("한국어");
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
+	}
+	
+	//@Test
+	void testFindPopularGames() {
+		List<Game> gameList = gameDao.findPopularGames();
+		assertNotNull(gameList);
+		assertNotEquals(gameList.size(), 0);
+		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
+	}
+	
+	@Test
+	void testFindDiscountGames() {
+		List<Game> gameList = gameDao.findDiscountGames();
+		assertNotNull(gameList);
+		assertNotEquals(gameList.size(), 0);
+		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
+	}
+	
+	//@Test
+	void testFindGameByNo() {
+		Game game = gameDao.findGameByNo(1);
+		assertNotNull(game);
+		System.out.println(">>>>> "+game);
+	}
+	
+	//@Test
+	void testIncreaseSellCountByNo() {
+		gameDao.increaseSellCountByNo(1);
+		Game game = gameDao.findGameByNo(1);
+		assertEquals(game.getGSellCount(), 12);
+		System.out.println(">>>>> "+game.getGSellCount());
 	}
 }
