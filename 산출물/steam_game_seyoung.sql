@@ -1,7 +1,7 @@
 /*
 game
 */
---상품리스트 보여주기
+--상품리스트 전체검색
 select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no;
 
 --상품리스트에서 게임제목으로 검색
