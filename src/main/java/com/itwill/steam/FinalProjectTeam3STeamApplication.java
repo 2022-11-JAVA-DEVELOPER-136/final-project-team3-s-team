@@ -12,7 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 							"com.itwill.steam.user.mapper",
 							"com.itwill.steam.game.mapper",
 							"com.itwill.steam.order.mapper",
-							"com.itwill.steam.review.mapper"})
+							"com.itwill.steam.review.mapper",
+							"com.itwill.steam.friend.mapper"})
 public class FinalProjectTeam3STeamApplication {
 
 	public static void main(String[] args) {

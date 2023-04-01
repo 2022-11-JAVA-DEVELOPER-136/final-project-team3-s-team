@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.card.mapper.CardMapper">
+	<!-- 카드 등록 -->
+	<insert id="createCard"
+		parameterType="com.itwill.steam.card.Card">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="cardSeq">
+			select card_card_seq_seq.nextval from dual
+		</selectKey>
+		insert into card(
+		card_seq,
+		card_name,
+		card_number,
+		card_ex_Date,
+		card_cvc,
+		u_no
+		)values(
+		#{cardSeq},
+		#{cardName},
+		#{cardNumber},
+		#{cardExDate},
+		#{cardCvc},
+		#{uNo}
+		)
+	</insert>
+	<!-- 카드 삭제 -->
+	<delete id="removeCard" parameterType="int">
+		delete from Card
+		where card_seq = #{cardSeq}
+	</delete>
 
+	<!-- 카드 이름변경 -->
+	<update id="updateCardName" parameterType="java.util.Map">
+		update Card set
+
+		card_name=#{cardName}
+
+		where card_seq = #{cardSeq}
+	</update>
+	<!-- 특정회원 카드 정보 불러오기 -->
+	<select id="findCardByNo" parameterType="java.lang.Integer"
+		resultType="com.itwill.steam.card.Card">
+		select
+		card_seq,
+		card_name,
+		card_number,
+		card_ex_Date,
+		card_cvc,
+		u_no
+		from Card where u_no= #{uNO}
+	</select>
 </mapper>

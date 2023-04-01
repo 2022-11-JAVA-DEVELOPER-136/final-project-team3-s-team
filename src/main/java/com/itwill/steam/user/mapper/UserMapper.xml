@@ -1,5 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.user.mapper.UserMapper">
-
+	<!-- 회원 Insert -->
+	<insert id="createUser" parameterType="com.itwill.steam.user.User">
+		<selectKey order="BEFORE" resultType="int" keyProperty="uNo">
+			select userinfo_u_no_seq.nextval from dual
+		</selectKey>
+			insert into userInfo(
+				u_no,
+				u_id,
+				u_password,
+				u_name,
+				u_email,
+				u_phone,
+				u_nickname,
+				u_addr
+			)values(
+				#{uNo},
+				#{uId},
+				#{uPassword},
+				#{uName},
+				#{uEmail},
+				#{uPhone},
+				#{uNickname},
+				#{uAddr}
+			)
+	</insert>
+	
+	<!-- 회원 update -->
+	<update id="updateUser" parameterType="com.itwill.steam.user.User">
+		update userInfo set
+			u_password= #{uPassword},
+			u_name=#{uName},
+			u_email=#{uEmail},
+			u_phone=#{uPhone},
+			u_nickname=#{uNickname},
+			u_addr=#{uAddr}
+		where u_no =#{uNo}
+	</update>
+	
+	<!-- 회원삭제 -->
+	<delete id="removeUser" parameterType="int" >
+		delete from userInfo where u_no = #{uNo}
+	</delete>
+	
+	<!-- 회원아이디 중복확인 -->
+	<select id="existedUser" parameterType="String" resultType="int">
+		select count(*) cnt from userInfo where u_id = #{uId}
+	</select>
+	
+	<!-- 아이디와 비밀번호 일치여부 -->
+	<select id="idPwMatch" parameterType="java.util.Map" resultType="int">
+		select count(*) cnt from userInfo where u_id = #{uId} and u_password = #{uPassword}
+	</select>
+	
+	<!-- 특정회원정보 아이디로 가져오기 -->
+	<select id="findUserById" parameterType="String" resultType="com.itwill.steam.user.User">
+		select 
+				u_no,
+				u_id,
+				u_password,
+				u_name,
+				u_email,
+				u_phone,
+				u_nickname,
+				u_addr
+		from userInfo where u_id = #{uId}
+	</select>
+	<!-- 특정회원정보 번호로 가져오기 -->
+	<select id="findUserByNo" parameterType="int" resultType="com.itwill.steam.user.User">
+		select 
+				u_no,
+				u_id,
+				u_password,
+				u_name,
+				u_email,
+				u_phone,
+				u_nickname,
+				u_addr
+		from userInfo where u_no = #{uNo}
+	</select>
+	
+	<!-- 모든회원 정보가져오기 -->
+	<select id="findAllUser" resultType="com.itwill.steam.user.User">
+		select 
+				u_no,
+				u_id,
+				u_password,
+				u_name,
+				u_email,
+				u_phone,
+				u_nickname,
+				u_addr
+		from userInfo
+	</select>
+	
 </mapper>
