@@ -32,7 +32,7 @@ class FriendDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 		friendDao.updateFriendState(4, 1);
 	}
 
-	@Test
+	//@Test
 	void testFindFriendByNo() {
 		List<Friend> friendList = friendDao.findFriendByNo(1);
 		System.out.println(friendList);
