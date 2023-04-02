@@ -1,5 +1,28 @@
 package com.itwill.steam.review.mapper;
 
-public interface ReviewMapper {
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.itwill.steam.review.Review;
+
+@Mapper
+public interface ReviewMapper {
+	
+	//게임 리뷰 작성
+	public int insertGameReview(Review review);
+	
+	//게임 리뷰 삭제
+	public int deleteGameReview(int reviewNo);
+	
+	//게임 리뷰 수정
+	public int updateGameReview(Review review);
+	
+	//회원번호로 리뷰 전체보기
+	public List<Review> selectByUserNo(int uNo);
+	
+	//게임번호로 리뷰 전체보기
+	public List<Review> selectByGameNo(int gNo);
+	
+	
 }
