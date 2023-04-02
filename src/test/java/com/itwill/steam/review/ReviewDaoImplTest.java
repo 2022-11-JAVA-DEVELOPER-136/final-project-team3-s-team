@@ -36,7 +36,7 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	/*
 	//@Test
 	void updateGameReview(){
-		int rowCount = reviewDao.updateGameReview(new Review(11,null,null,"수정테스트!!바뀌어라~",1,0,null));
+		int rowCount = reviewDao.updateGameReview(new Review(11,null,null,"수정테스트!!바뀌어라~",1,0,1));
 	}
 	*/
 	//@Test
