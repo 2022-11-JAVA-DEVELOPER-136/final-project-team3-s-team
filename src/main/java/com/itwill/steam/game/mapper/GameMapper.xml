@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.game.mapper.GameMapper">
-	<resultMap type="com.itwill.steam.game.Game" id="gameWithResourcesAndGameTagAndTagResultMap" autoMapping="true">
+	<resultMap type="com.itwill.steam.game.Game" id="gameWithResourcesGameTag" autoMapping="true">
+		<id column="g_no" property="gNo"/>
 		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
 		</collection>
-		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" javaType="ArrayList" autoMapping="true">
+			<id column="gt_no" property="gtNo"/>
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
 		</collection>
 	</resultMap>
-	<resultMap type="com.itwill.steam.game.Game" id="gameWithResourcesAndGameTagAndTagAndCategoryAndGameLanguageAndLanguageResultMap" autoMapping="true">
+	<resultMap type="com.itwill.steam.game.Game" id="gameWithCategoryResourcesGameTagGameLanguage" autoMapping="true">
+		<id column="g_no" property="gNo"/>
 		<association property="category" javaType="com.itwill.steam.category.Category" autoMapping="true">
 		</association>
 		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
 		</collection>
 		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+			<id column="gt_no" property="gtNo"/>
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
 		</collection>
 		<collection property="gameLanguageList" ofType="com.itwill.steam.gameLanguage.GameLanguage" autoMapping="true">
+			<id column="gl_no" property="glNo"/>
 			<association property="language" javaType="com.itwill.steam.language.Language" autoMapping="true">
 			</association>
 		</collection>
 	</resultMap>
-	<resultMap type="com.itwill.steam.game.Game" id="gameWithCategoryAndResourcesAndGameTagAndTagAndGameLanguageAndLanguageAndNewsAndReviewResultMap" autoMapping="true">
+	<resultMap type="com.itwill.steam.game.Game" id="gameWithCategoryResourcesGameTagGameLanguageNewsReview" autoMapping="true">
+		<id column="g_no" property="gNo"/>
 		<association property="category" javaType="com.itwill.steam.category.Category" autoMapping="true">
 		</association>
 		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
 		</collection>
 		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+			<id column="gt_no" property="gtNo"/>
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
 		</collection>
 		<collection property="gameLanguageList" ofType="com.itwill.steam.gameLanguage.GameLanguage" autoMapping="true">
+			<id column="gl_no" property="glNo"/>
 			<association property="language" javaType="com.itwill.steam.language.Language" autoMapping="true">
 			</association>
 		</collection>
@@ -41,49 +49,50 @@
 		<collection property="reviewList" ofType="com.itwill.steam.review.Review" autoMapping="true">
 		</collection>
 	</resultMap>
-	<select id="findAllGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no
+	<select id="findAllGames" resultMap="gameWithResourcesGameTag">
+		select * 
+		from game g 
+		left outer join resources res on g.g_no=res.g_no 
+		left outer join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no
 	</select>
-	<select id="findGamesByName" resultMap="gameWithResourcesAndGameTagAndTagResultMap" parameterType="java.lang.String">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no where g.g_name like '%'||#{gName}||'%'
+	<select id="findGamesByName" resultMap="gameWithResourcesGameTag" parameterType="java.lang.String">
+		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		where g.g_name like '%'||#{gName}||'%'
 	</select>
-	<select id="findGamesByCategory" resultMap="gameWithResourcesAndGameTagAndTagAndCategoryAndGameLanguageAndLanguageResultMap" parameterType="java.lang.String">
+	<select id="findGamesByCategory" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
 		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
 		where ct.ct_name=#{ctName}
 	</select>
-	<select id="findGamesByTag" resultMap="gameWithResourcesAndGameTagAndTagAndCategoryAndGameLanguageAndLanguageResultMap" parameterType="java.lang.String">
+	<select id="findGamesByTag" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
 		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
 		where t.tag_name=#{tagName}
 	</select>
-	<select id="findGamesByLanguage" resultMap="gameWithResourcesAndGameTagAndTagAndCategoryAndGameLanguageAndLanguageResultMap" parameterType="java.lang.String">
+	<select id="findGamesByLanguage" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
 		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
 		where l.lang_name=#{langName}
 	</select>
-	<select id="findPopularGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
+	<select id="findPopularGames" resultMap="gameWithResourcesGameTag">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
 		order by g.g_sell_count desc
 	</select>
-	<select id="findDiscountGames" resultMap="gameWithResourcesAndGameTagAndTagResultMap">
+	<select id="findDiscountGames" resultMap="gameWithResourcesGameTag">
 		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
 		where g.g_discount_start <![CDATA[<=]]> sysdate and sysdate <![CDATA[<=]]> g.g_discount_end
 	</select>
-	<select id="findGameByNo" resultMap="gameWithCategoryAndResourcesAndGameTagAndTagAndGameLanguageAndLanguageAndNewsAndReviewResultMap" parameterType="java.lang.Integer">
+	<select id="findGameByNo" resultMap="gameWithCategoryResourcesGameTagGameLanguageNewsReview" parameterType="java.lang.Integer">
 		select * from game g 
 		join category ct on g.ct_no=ct.ct_no 
 		join resources res on g.g_no=res.g_no 
-		<!--
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on gt.tag_no=t.tag_no 
 		join game_language gl on g.g_no=gl.g_no 
 		join language l on gl.lang_no=l.lang_no 
-		-->
 		join news n on g.g_no=n.g_no 
-		<!--
 		join review rev on g.g_no=rev.g_no
-		-->
 		where g.g_no=#{gNo}
 	</select>
 	<update id="increaseSellCountByNo" parameterType="java.lang.Integer">
