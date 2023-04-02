@@ -7,7 +7,7 @@
 		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
-		</collection>
+		</collection>	
 	</resultMap>
 	<resultMap type="com.itwill.steam.game.Game" id="gameWithResourcesAndGameTagAndTagAndCategoryAndGameLanguageAndLanguageResultMap" autoMapping="true">
 		<association property="category" javaType="com.itwill.steam.category.Category" autoMapping="true">
