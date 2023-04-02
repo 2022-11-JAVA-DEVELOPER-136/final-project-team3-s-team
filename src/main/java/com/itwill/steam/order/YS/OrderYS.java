@@ -17,13 +17,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class orderYS {
+public class OrderYS {
 	
 	private int oNo;
 	private Date oDate;
 	private int oTotalPrice;
 	
-	private User user;
+	private int uNo;
 	private List<User> userList;
 	private List<Order> orderList;
 	private List<OrderItem> orderItemList;
