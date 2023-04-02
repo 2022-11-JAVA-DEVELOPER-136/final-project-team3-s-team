@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
 
 @Transactional
-class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
-
-	@Autowired
-	private GameDao gameDao;
+class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
+	@Autowired
+	GameService gameService;
+
 	//@Test
 	void testFindAllGames() {
-		List<Game> gameList = gameDao.findAllGames();
+		List<Game> gameList = gameService.findAllGames();
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -27,7 +27,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindGamesByName() {
-		List<Game> gameList = gameDao.findGamesByName("전략");
+		List<Game> gameList = gameService.findGamesByName("전략");
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -36,7 +36,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindGamesByCategory() {
-		List<Game> gameList = gameDao.findGamesByCategory("액션");
+		List<Game> gameList = gameService.findGamesByCategory("액션");
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -45,7 +45,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindGamesByTag() {
-		List<Game> gameList = gameDao.findGamesByTag("RPG");
+		List<Game> gameList = gameService.findGamesByTag("RPG");
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -54,7 +54,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindGamesByLanguage() {
-		List<Game> gameList = gameDao.findGamesByLanguage("한국어");
+		List<Game> gameList = gameService.findGamesByLanguage("한국어");
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -63,7 +63,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindPopularGames() {
-		List<Game> gameList = gameDao.findPopularGames();
+		List<Game> gameList = gameService.findPopularGames();
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -72,7 +72,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindDiscountGames() {
-		List<Game> gameList = gameDao.findDiscountGames();
+		List<Game> gameList = gameService.findDiscountGames();
 		assertNotNull(gameList);
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
@@ -81,15 +81,15 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testFindGameByNo() {
-		Game game = gameDao.findGameByNo(1);
+		Game game = gameService.findGameByNo(1);
 		assertNotNull(game);
 		System.out.println(">>>>> "+game);
 	}
 	
 	@Test
 	void testIncreaseSellCountByNo() {
-		gameDao.increaseSellCountByNo(1);
-		Game game = gameDao.findGameByNo(1);
+		gameService.increaseSellCountByNo(1);
+		Game game = gameService.findGameByNo(1);
 		assertEquals(game.getGSellCount(), 12);
 		System.out.println(">>>>> "+game.getGSellCount());
 	}
