@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.order.mapper.OrderMapper">
-<insert id="insertOrder" parameterType="com.itwill.steam.order.YS.orderYS">
-<selectKey resultType="java.long.Integer" keyProperty="orderNo" order="BEFORE">
+<insert id="insertOrder" parameterType="com.itwill.steam.order.Order">
+<selectKey resultType="java.lang.Integer" keyProperty="orderNo" order="BEFORE">
 ORDERS_O_NO_SEQ.nextval from dual
 </selectKey>
 insert into orders(o_no, o_date, o_total_price, u_no) values(#{oNo}, sysdate, #{oTotalPrice}, #{uNO});

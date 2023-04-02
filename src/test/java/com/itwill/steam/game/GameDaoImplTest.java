@@ -16,7 +16,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	private GameDao gameDao;
 	
-	//@Test
+	@Test
 	void testFindAllGames() {
 		List<Game> gameList = gameDao.findAllGames();
 		assertNotNull(gameList);
@@ -79,7 +79,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(">>>>> "+gameList.size());
 	}
 	
-	@Test
+	//@Test
 	void testFindGameByNo() {
 		Game game = gameDao.findGameByNo(1);
 		assertNotNull(game);
