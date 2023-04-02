@@ -20,25 +20,21 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
 	private ReviewDao reviewDao;
 	
-	/*
 	@Test
 	void InsertGameReview(){
 		Review review = new Review(115,null,null,"테스트용이지용",0,1,3);
 		reviewDao.insertGameReview(review);
 	}
-	*/
 	
 	//@Test
 	void deleteGameReview(){
 		reviewDao.deleteGameReview(111);		
 	}
 	
-	/*
-	//@Test
+	@Test
 	void updateGameReview(){
 		int rowCount = reviewDao.updateGameReview(new Review(11,null,null,"수정테스트!!바뀌어라~",1,0,1));
 	}
-	*/
 	//@Test
 	void selectByUserNo() {
 		List<Review> reviewByUserNoList = reviewDao.selectByUserNo(1);
