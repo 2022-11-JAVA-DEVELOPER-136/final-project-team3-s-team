@@ -9,7 +9,7 @@
 			<id column="gt_no" property="gtNo"/>
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
-		</collection>
+		</collection>	
 	</resultMap>
 	<resultMap type="com.itwill.steam.game.Game" id="gameWithCategoryResourcesGameTagGameLanguage" autoMapping="true">
 		<id column="g_no" property="gNo"/>
