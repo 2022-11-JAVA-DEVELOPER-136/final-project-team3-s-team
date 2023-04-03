@@ -2,7 +2,11 @@
 game
 */
 --상품리스트 전체검색
-select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no;
+select * 
+from game g 
+left outer join resources res on g.g_no=res.g_no 
+left outer join game_tag gt on g.g_no=gt.g_no 
+join tag t on t.tag_no=gt.tag_no;
 
 --상품리스트에서 게임제목으로 검색
 select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no where g.g_name like '%전략%';
@@ -39,6 +43,8 @@ join news n on g.g_no=n.g_no
 join review rev on g.g_no=rev.g_no
 where g.g_no=1;
 
+
+
 --상품의 리뷰 보기
 select * from game g join review rev on g.g_no=rev.g_no where g.g_no=1;
 
@@ -50,3 +56,12 @@ insert into review(review_no, review_created_at, review_updated_at, review_comme
 
 --상품의 리뷰 삭제하기
 delete from review where u_no=1 and g_no=1;
+
+
+
+--게임의 태그, 언어를 insert 하는 기능을 넣는다면 필요한 기능.
+--게임의 태그 중복 확인 (이름으로)
+select count(*) from game g join game_tag gt on g.g_no=gt.g_no join tag t on gt.tag_no=t.tag_no where g.g_no=1 and t.tag_name='액션';
+
+--게임의 언어 중복 확인 (이름으로)
+select count(*) from game g join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no where g.g_no=1 and l.lang_name='한국어';

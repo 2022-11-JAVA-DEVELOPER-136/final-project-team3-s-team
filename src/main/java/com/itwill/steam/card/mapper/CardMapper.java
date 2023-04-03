@@ -3,9 +3,12 @@ package com.itwill.steam.card.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.itwill.steam.card.Card;
 import com.itwill.steam.user.User;
 
+@Mapper
 public interface CardMapper {
 	
 	// 카드등록
