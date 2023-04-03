@@ -7,7 +7,7 @@ import com.itwill.steam.orderItem.OrderItem;
 
 public interface OrderDaoYS {
 	//주문생성하기
-	public int insertOrder(int oNo);
+	public int insertOrder(Order order);
 	//유저번호로 검색하기
 	public List<Order> findByUserNo(int uNo);
 	//주문번호로 검색하기
