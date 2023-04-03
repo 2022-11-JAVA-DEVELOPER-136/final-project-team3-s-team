@@ -17,33 +17,33 @@ public class OrderDaoImplYS implements OrderDaoYS {
 	
 	
 	@Override
-	public int insertOrder(Order order) {
-		return 0;
+	public int insertOrder(OrderYS orderYS) {
+		return orderMapper.insertOrder(orderYS);
 	}
 
 	@Override
-	public List<Order> findByUserNo(int uNo) {
-		return null;
+	public List<OrderYS> findByUserNo(int uNo) {
+		return orderMapper.findByUserNo(uNo);
 	}
 
 	@Override
-	public List<Order> findByOrderNo(int oNo) {
-		return null;
+	public List<OrderYS> findByOrderNo(int oNo) {
+		return orderMapper.findByOrderNo(oNo);
 	}
 
 	@Override
 	public int deleteByUserNo(int uNo) {
-		return 0;
+		return orderMapper.deleteByUserNo(uNo);
 	}
 
 	@Override
 	public int deleteByOrderNo(int oNO) {
-		return 0;
+		return orderMapper.deleteByOrderNo(oNO);
 	}
 
 	@Override
-	public List<Order> findByUserGame(int uNo) {
-		return null;
+	public List<OrderYS> findByUserGame(int uNo) {
+		return orderMapper.findByUserGame(uNo);
 	}
 
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.steam.order.mapper.OrderMapper;
 
-public class OrderDaoImpl implements OrderDao {
+public class OrderDaoImplJS implements OrderDaoJS {
 	
 	@Autowired
 	private OrderMapper orderMaaper;
@@ -18,7 +18,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Order> findByUserNo(int u_no) {
+	public List<OrderJS> findByUserNo(int u_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -36,13 +36,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Order> findByUserGame(int u_no) {
+	public List<OrderJS> findByUserGame(int u_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Order> findByOrderItem(int u_no) {
+	public List<OrderJS> findByOrderItem(int u_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}

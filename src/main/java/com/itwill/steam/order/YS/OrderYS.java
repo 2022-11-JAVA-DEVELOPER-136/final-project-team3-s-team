@@ -1,4 +1,4 @@
-package com.itwill.steam.order.JS;
+package com.itwill.steam.order.YS;
 
 
 import java.util.Date;
@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Order {
+public class OrderYS {
 
 	/*
 	 * o_no 			NUMBER(10) 	NULL , 
@@ -27,14 +27,14 @@ public class Order {
 	 * u_no 			NUMBER(10)  NULL
 	 */
 	
-	private int o_no;
-	private Date o_date;
-	private int o_total_price;
+	private int oNO;
+	private Date oDate;
+	private int oTotalPrice;
 	
-	private User user;
-	private List<User> userList;
-	private List<User> orderLisdt;
-	private List<OrderItem> orderItemList;
+	private int uNo;
+	//private List<User> userList;
+	//private List<User> orderList;
+	//private List<OrderItem> orderItemList;
 	
 	
 }
