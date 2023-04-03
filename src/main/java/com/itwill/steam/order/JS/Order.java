@@ -21,10 +21,10 @@ import lombok.ToString;
 public class Order {
 
 	/*
-	 * o_no 			NUMBER(10) 	NULL , 
-	 * o_date 			DATE 		NULL , 
-	 * o_total_price 	NUMBER(10)  NULL ,
-	 * u_no 			NUMBER(10)  NULL
+	 * o_no 				NUMBER(10) 	NULL , 
+	 * o_date 				DATE 		NULL , 
+	 * o_total_price 		NUMBER(10)  NULL ,
+	 * u_no 				NUMBER(10)  NULL
 	 */
 	
 	private int o_no;
