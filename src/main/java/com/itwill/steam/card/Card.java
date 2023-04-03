@@ -1,5 +1,7 @@
 package com.itwill.steam.card;
 
+import com.itwill.steam.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +30,7 @@ U_NO                  NUMBER(10)
 	private String cardNumber;
 	private String cardExDate;
 	private int cardCvc;
-	private int uNo;
+	private User user;
 	
 	
 	

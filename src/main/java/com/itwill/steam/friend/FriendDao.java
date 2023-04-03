@@ -4,14 +4,14 @@ import java.util.List;
 
 public interface FriendDao {
 	// 친구추가
-		public int addFriend(Friend friend);
+	public int addFriend(Friend friend);
 
-		// 친구삭제
-		public int removeFriend(int fNo);
+	// 친구삭제
+	public int removeFriend(int fNo);
 
-		// 친구상태업데이트
-		public int updateFriendState(int fNo,int fState);
+	// 친구상태업데이트
+	public int updateFriendState(int fNo,int fState);
 
-		// 특정유저친구불러오기
-		public List<Friend> findFriendByNo(int fNo);
+	// 특정유저친구불러오기
+	public List<Friend> findFriendByNo(int fNo);
 }

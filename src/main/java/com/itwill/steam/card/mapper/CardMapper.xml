@@ -21,7 +21,7 @@
 		#{cardNumber},
 		#{cardExDate},
 		#{cardCvc},
-		#{uNo}
+		#{user.uNo}
 		)
 	</insert>
 	<!-- 카드 삭제 -->
@@ -48,6 +48,6 @@
 		card_ex_Date,
 		card_cvc,
 		u_no
-		from Card where u_no= #{uNO}
+		from Card where u_no= #{uNo}
 	</select>
 </mapper>
