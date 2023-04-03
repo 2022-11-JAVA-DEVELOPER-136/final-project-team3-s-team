@@ -1,4 +1,4 @@
-package com.itwill.steam.order.YS;
+package com.itwill.steam.order;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,40 +9,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
 
-class OrderDaoImplYSTest extends FinalProjectTeam3STeamApplicationTests {
-	
+class OrderServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
-	private OrderDaoYS orderDaoYS;
-	
-	@Test
+	OrderService orderService;
+	//@Test
 	void testInsertOrder() {
-		OrderYS orderYS = new OrderYS(1,new Date(),20000,1);
-		orderDaoYS.insertOrder(orderYS);
+		Order order = new Order(0, new Date(), 999999, 2);
+		orderService.insertOrder(order);
 	}
 
 	//@Test
 	void testFindByUserNo() {
-		fail("Not yet implemented");
+		orderService.findByUserNo(1);
 	}
 
 	//@Test
 	void testFindByOrderNo() {
-		fail("Not yet implemented");
+		orderService.findByOrderNo(2);
 	}
 
-	//@Test
+	@Test
 	void testDeleteByUserNo() {
-		fail("Not yet implemented");
+		orderService.deleteByUserNo(1);
 	}
 
-	//@Test
+	@Test
 	void testDeleteByOrderNo() {
-		fail("Not yet implemented");
+		orderService.deleteByOrderNo(1);
 	}
 
 	//@Test
 	void testFindByUserGame() {
-		fail("Not yet implemented");
+		orderService.findByUserGame(1);
 	}
 
 }
