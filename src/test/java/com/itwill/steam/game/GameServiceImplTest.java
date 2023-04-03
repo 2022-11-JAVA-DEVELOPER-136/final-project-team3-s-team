@@ -79,14 +79,20 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(">>>>> "+gameList.size());
 	}
 	
-	//@Test
+	@Test
 	void testFindGameByNo() {
 		Game game = gameService.findGameByNo(1);
 		assertNotNull(game);
 		System.out.println(">>>>> "+game);
+		System.out.println(">>>>> "+game.getCategory());
+		System.out.println(">>>>> "+game.getResourcesList().size()+game.getResourcesList());
+		System.out.println(">>>>> "+game.getGameTagList().size()+game.getGameTagList());
+		System.out.println(">>>>> "+game.getGameLanguageList().size()+game.getGameLanguageList());
+		System.out.println(">>>>> "+game.getNewsList().size()+game.getNewsList());
+		System.out.println(">>>>> "+game.getReviewList().size()+game.getReviewList());
 	}
 	
-	@Test
+	//@Test
 	void testIncreaseSellCountByNo() {
 		gameService.increaseSellCountByNo(1);
 		Game game = gameService.findGameByNo(1);
