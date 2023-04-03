@@ -57,30 +57,60 @@
 		join tag t on t.tag_no=gt.tag_no
 	</select>
 	<select id="findGamesByName" resultMap="gameWithResourcesGameTag" parameterType="java.lang.String">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
 		where g.g_name like '%'||#{gName}||'%'
 	</select>
 	<select id="findGamesByCategory" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
-		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		join category ct on g.ct_no=ct.ct_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no
 		where ct.ct_name=#{ctName}
 	</select>
 	<select id="findGamesByTag" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
-		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		join category ct on g.ct_no=ct.ct_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no
 		where t.tag_name=#{tagName}
 	</select>
 	<select id="findGamesByLanguage" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
-		join category ct on g.ct_no=ct.ct_no join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		join category ct on g.ct_no=ct.ct_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no
 		where l.lang_name=#{langName}
 	</select>
 	<select id="findPopularGames" resultMap="gameWithResourcesGameTag">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
 		order by g.g_sell_count desc
 	</select>
 	<select id="findDiscountGames" resultMap="gameWithResourcesGameTag">
-		select * from game g join resources res on g.g_no=res.g_no join game_tag gt on g.g_no=gt.g_no join tag t on t.tag_no=gt.tag_no 
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
 		where g.g_discount_start <![CDATA[<=]]> sysdate and sysdate <![CDATA[<=]]> g.g_discount_end
 	</select>
 	<select id="findGameByNo" resultMap="gameWithCategoryResourcesGameTagGameLanguageNewsReview" parameterType="java.lang.Integer">
