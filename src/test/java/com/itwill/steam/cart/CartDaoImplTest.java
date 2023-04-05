@@ -16,7 +16,7 @@ class CartDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	private CartDao cartDao;
 	
-	@Test
+	//@Test
 	void testInsertCart() {
 		Cart cart = new Cart(0, User.builder().uNo(1).build(), Game.builder().gNo(1).build());
 		cartDao.insertCart(cart);
@@ -25,21 +25,21 @@ class CartDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testSelectCart() {
-		
+		System.out.println(">>>>"+cartDao.selectCart(1));
 	}
 	
 	//@Test
-	void testSelectAllCart() {
-		
+	void testSelectAllCarts() {
+		System.out.println(">>>>"+cartDao.selectAllCarts(1));
 	}
 	
 	//@Test
 	void testDeleteCart() {
-		
+		System.out.println(">>>>"+cartDao.deleteCart(1));
 	}
 	
-	//@Test
-	void testDeleteAllCart() {
-		
+	@Test
+	void testDeleteAllCarts() {
+		System.out.println(">>>>"+cartDao.deleteAllCarts(1));
 	}
 }
