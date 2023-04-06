@@ -19,6 +19,12 @@ public class GameController {
 		
 	}
 	
+	//root
+	@GetMapping("/")
+	public String welcome() {
+		return "redirect:steam_main";
+	}
+	
 	//메인화면
 	@RequestMapping("/steam_main")
 	public String steamMain() {
@@ -58,7 +64,7 @@ public class GameController {
 	}
 	
 	//POST방식으로 요청해야 하는 method에 GET방식으로 요청하는 경우, steam_main으로 redirect
-	@GetMapping({})
+	//@GetMapping({})
 	public String gameGet() {
 		return "redirect:steam_main";
 	}
