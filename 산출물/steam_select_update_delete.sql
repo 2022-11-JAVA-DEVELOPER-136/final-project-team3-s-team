@@ -45,11 +45,11 @@ select * from orders where o_no=1;
 --주문목록에서 품목검색
 select * from order_item where o_no=1;
 
---유저가 주문한 목록 검색
+--유저가 주문한 목록 검색/
 select * from orders o join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u_no=1;
---유저가 주문한거 찾기
+--주문번호로 상세보기
 select * from orders o join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u_no=1 and o.o_no=1;
---주문한 게임 상세보기
+--주문한 게임 상세보기/
 select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u.u_no=1;
 --유저가 주문한목록에서?
 select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u.u_no=1 and o.o_no=2;

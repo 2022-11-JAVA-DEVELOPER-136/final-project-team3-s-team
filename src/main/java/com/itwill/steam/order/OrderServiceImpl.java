@@ -27,11 +27,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.deleteByUserNo(uNo);
 	}
 	@Override
-	public int deleteByOrderNo(int oNO) {
-		return orderDao.deleteByOrderNo(oNO);
+	public int deleteByOrderNo(int oNo) {
+		return orderDao.deleteByOrderNo(oNo);
 	}
-	@Override
-	public List<Order> findByUserGame(int uNo) {
-		return orderDao.findByUserGame(uNo);
-	}
+	//@Override
+	//public List<Order> findByUserGame(int uNo) {
+		//return orderDao.findByUserGame(uNo);
+	//}
 }

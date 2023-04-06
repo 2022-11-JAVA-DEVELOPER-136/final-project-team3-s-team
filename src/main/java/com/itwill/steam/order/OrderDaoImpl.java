@@ -36,9 +36,9 @@ public class OrderDaoImpl implements OrderDao {
 		return orderMapper.deleteByOrderNo(oNO);
 	}
 
-	@Override
-	public List<Order>findByUserGame(int uNo) {
-		return orderMapper.findByUserGame(uNo);
-	}
+//	@Override
+//	public List<Order>findByUserGame(int uNo) {
+//		return orderMapper.findByUserGame(uNo);
+//	}
 
 }

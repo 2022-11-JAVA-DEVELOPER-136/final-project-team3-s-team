@@ -39,8 +39,8 @@ class OrderServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	}
 
 	//@Test
-	void testFindByUserGame() {
-		orderService.findByUserGame(1);
-	}
+//	void testFindByUserGame() {
+//		orderService.findByUserGame(1);
+//	}
 
 }

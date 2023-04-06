@@ -41,9 +41,9 @@ class OrderDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(orderDao.deleteByOrderNo(2));
 	}
 
-	@Test
-	void testFindByUserGame() {
-		System.out.println(orderDao.findByUserGame(1));
-	}
+//	@Test
+//	void testFindByUserGame() {
+//		System.out.println(orderDao.findByUserGame(1));
+//	}
 
 }

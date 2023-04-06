@@ -16,5 +16,5 @@ public interface OrderDao {
 		//주문번호로 품목삭제
 		public int deleteByOrderNo(int oNO);
 		//유저가 주문한 목록 검색
-		public List<Order> findByUserGame(int uNo);
+		//public List<Order> findByUserGame(int uNo);
 }

@@ -19,9 +19,10 @@
 	<select id="findByOrderNo" parameterType="int" resultType="int" >
 		select * from orders o join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u_no=#{uNo} and o.o_no=#{oNo}
 	</select>
+	<!--
 	<select id="findByUserGame" parameterType="int" resultType="int" >
 		select * from orders o join userinfo u on o.u_no=u.u_no join order_item oi on o.o_no=oi.o_no join game g on oi.g_no=g.g_no where u.u_no=#{uNo}
-</select>
-
+	</select>
+	-->
 </mapper>
 	
