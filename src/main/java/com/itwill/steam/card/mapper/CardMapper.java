@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.itwill.steam.card.Card;
-import com.itwill.steam.user.User;
 
 @Mapper
 public interface CardMapper {

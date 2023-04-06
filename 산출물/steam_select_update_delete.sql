@@ -28,6 +28,8 @@ delete from cart where c_no=1;
 
 select * from cart where u_no=1;
 select * from cart where c_no=1;
+select * from cart c join game g on c.g_no=g.g_no where c.u_no=1;
+
 select count(*) from cart where u_no=1 and g_no=1;
 
 

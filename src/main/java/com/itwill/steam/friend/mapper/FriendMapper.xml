@@ -41,7 +41,7 @@
 			f_no,
 			f_state,
 			u_to,
-			u_from,
+			u_from
 		from friend
 		where u_to= #{uTo}
 	</select>

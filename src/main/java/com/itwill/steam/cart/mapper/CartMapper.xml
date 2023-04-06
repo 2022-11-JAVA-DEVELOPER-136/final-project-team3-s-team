@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.cart.mapper.CartMapper">
-
+	<resultMap type="com.itwill.steam.cart.Cart" id="CartUserGame" autoMapping="true">
+		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
+		</association>
+		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
+		</association>
+	</resultMap>
+	
+	<insert id="insertCart" parameterType="com.itwill.steam.cart.Cart">
+    	insert into cart(c_no, u_no, g_no)
+		values(cart_c_no_seq.nextval, #{user.uNo}, #{game.gNo})
+	</insert>
+	<select id="selectCart" resultMap="CartUserGame">
+		select g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
+		from cart c join game g on c.g_no=g.g_no where c.u_no=#{user.uNo}
+	</select>
+	<select id="selectAllCart" resultMap="CartUserGame">
+		select g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
+		from game g join cart c on g.g_no=c.c_no
+	</select>
+	<delete id="deleteCart" parameterType="com.itwill.steam.cart.Cart">
+		delete g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
+		from game g join cart c on g.g_no=c.c_no where c.c_no = #{user.uNo}
+	</delete>
+	<delete id="deleteAllCart" parameterType="com.itwill.steam.cart.Cart">
+		delete g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
+		from game g join cart c on g.g_no=c.c_no
+	</delete>
 </mapper>
