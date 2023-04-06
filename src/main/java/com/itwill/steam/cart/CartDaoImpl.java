@@ -12,31 +12,25 @@ public class CartDaoImpl implements CartDao {
 	
 	@Autowired
 	private CartMapper CartMapper;
-	//
+	
 	@Override
 	public int insertCart(Cart cart) {
 		return CartMapper.insertCart(cart);	
 	}
 
 	@Override
-	public int selectCart(int cNo) {
-		return 0;
-	}
-	
-	@Override
-	public List<Cart> selectAllCarts(int cNo) {
-		return CartMapper.selectAllCart(cNo);
-		
+	public List<Cart> selectCart(int uNo) {
+		return CartMapper.selectCart(uNo);	
 	}
 
 	@Override
 	public int deleteCart(int cNo) {
-		return 0;
+		return CartMapper.deleteCart(cNo);
 	}
 	
 	@Override
-	public List<Cart> deleteAllCarts(int cNo) {
-		return CartMapper.deleteAllCart(cNo);
+	public int deleteAllCarts(int uNo) {
+		return CartMapper.deleteAllCarts(uNo);
 	}
 
 }

@@ -11,32 +11,32 @@ import com.itwill.steam.game.Game;
 import com.itwill.steam.user.User;
 
 @Transactional
-class CartDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
-	
+class CartServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
+
 	@Autowired
-	private CartDao cartDao;
+	private CartService cartService;
 	
 	//@Test
 	void testInsertCart() {
 		Cart cart = new Cart(0, User.builder().uNo(1).build(), Game.builder().gNo(1).build());
-		cartDao.insertCart(cart);
+		cartService.insertCart(cart);
 		System.out.println("inserted");
 	}
-	
+
 	//@Test
 	void testSelectCart() {
-		System.out.println(">>>>"+cartDao.selectCart(1));
+		System.out.println(">>>>"+cartService.selectCart(1));
 	}
 	
 	//@Test
 	void testDeleteCart() {
-		System.out.println(">>>>"+cartDao.deleteCart(1));
+		System.out.println(">>>>"+cartService.deleteCart(1));
 	}
 	
 	@Test
 	void testDeleteAllCarts() {
-		cartDao.deleteAllCarts(1);
+		cartService.deleteAllCarts(1);
 		System.out.println("deleted");
-		//System.out.println(">>>>"+cartDao.deleteAllCarts(1));
 	}
+
 }
