@@ -22,7 +22,7 @@ public class GameController {
 	//root
 	@GetMapping("/")
 	public String welcome() {
-		return "redirect:main";
+		return "redirect:steam_main";
 	}
 	
 	//메인화면
