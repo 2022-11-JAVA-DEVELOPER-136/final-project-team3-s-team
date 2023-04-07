@@ -13,7 +13,7 @@
 		values(cart_c_no_seq.nextval, #{user.uNo}, #{game.gNo})
 	</insert>
 	<select id="selectCart" resultMap="CartUserGame">
-		select g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
+		select *
 		from game g 
 		join cart c on c.g_no=g.g_no 
 		where c.u_no=#{user.uNo}
