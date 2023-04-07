@@ -13,19 +13,16 @@
 		values(cart_c_no_seq.nextval, #{user.uNo}, #{game.gNo})
 	</insert>
 	<select id="selectCart" resultMap="CartUserGame">
-		select g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
-		from cart c join game g on c.g_no=g.g_no where c.u_no=#{user.uNo}
-	</select>
-	<select id="selectAllCart" resultMap="CartUserGame">
-		select g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
-		from game g join cart c on g.g_no=c.c_no
+		select *
+		from game g 
+		join cart c on c.g_no=g.g_no 
+		where c.u_no=#{user.uNo}
 	</select>
 	<delete id="deleteCart" parameterType="com.itwill.steam.cart.Cart">
-		delete g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
-		from game g join cart c on g.g_no=c.c_no where c.c_no = #{user.uNo}
+		delete from cart where c_no = #{cNo}
 	</delete>
-	<delete id="deleteAllCart" parameterType="com.itwill.steam.cart.Cart">
-		delete g_name, g_short_desc, g_release_date, g_developer, g_distributor, g_price 
-		from game g join cart c on g.g_no=c.c_no
+	<delete id="deleteAllCarts" parameterType="com.itwill.steam.cart.Cart">
+		delete from cart where u_no=#{uNo}
 	</delete>
 </mapper>
+
