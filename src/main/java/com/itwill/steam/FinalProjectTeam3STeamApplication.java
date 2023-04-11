@@ -27,7 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 							"com.itwill.steam.tag.mapper",
 							"com.itwill.steam.user.mapper",
 							"com.itwill.steam.wishList.mapper",
-							"com.itwill.steam.workshop"})
+							"com.itwill.steam.workshop.mapper"})
 public class FinalProjectTeam3STeamApplication {
 
 	public static void main(String[] args) {
