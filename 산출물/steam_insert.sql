@@ -3,21 +3,26 @@ insert
 */
 
 --userinfo
-insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_addr) values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-0000-0000', 'sy0_닉네임', '서울시 송파구');
-insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_addr) values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', '서울시 강남구');
-insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_addr) values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', '서울시 서초구');
+/*
+u_state는 상태를 표시. (0: 로그아웃, 1:로그인)
+*/
+insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
+values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-0000-0000', 'sy0_닉네임', 'street_0', 'statefull_0', '00000', 1, 'profile.jpg', 'background.jpg', 'sy0의 프로필입니다.');
+insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
+values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', 'street_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
+insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
+values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', 'street_2', 'statefull_2', '22222', 1, 'profile.jpg', 'background.jpg', 'sy2의 프로필입니다.');
 
 
 --friend
 /*
-f_state는 상태를 표시. (0: 로그아웃, 1:로그인, 2~: 미정)
-u_to는 친구요청을 보내는 user의 u_no
-u_from은 친구요청을 받아서 수락한 user의 u_no
+u_no는 친구요청을 보내는 user의 u_no
+u_fno는 친구요청을 받아서 수락한 user의 u_no
 friend테이블에서 u_to와 u_from의 조합은 유일해야 한다. (UNIQUE)
 */
-insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 1, 2);
-insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 1, 3);
-insert into friend(f_no, f_state, u_to, u_from) values(FRIEND_F_NO_SEQ.nextval, 0, 2, 3);
+insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 1, 2);
+insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 1, 3);
+insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 2, 3);
 
 
 --card
@@ -33,18 +38,21 @@ insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, 
 
 
 --game
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 11, 1);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '액션게임2', '액션게임2_짧은설명', '액션게임2_긴설명', 8, to_date('2021/06/06'), '개발사2', '배급사2', 60000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 33, 1);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '롤플레잉게임1', '롤플레잉게임1_짧은설명', '롤플레잉게임1_긴설명', 9, to_date('2022/07/07'), '개발사3', '배급사3', 70000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 22, 2);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '롤플레잉게임2', '롤플레잉게임2_짧은설명', '롤플레잉게임2_긴설명', 8, to_date('2019/02/02'), '개발사4', '배급사4', 30000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 66, 2);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '전략게임1', '전략게임1_짧은설명', '전략게임1_긴설명', 9, to_date('2020/11/11'), '개발사5', '배급사5', 40000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 44, 3);
-insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '전략게임2', '전략게임2_짧은설명', '전략게임2_긴설명', 8, to_date('2018/03/03'), '개발사6', '배급사6', 50000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1660', 55, 3);
+/*
+g_grade : 게임의 평점 (해당 게임의 사용자리뷰의 평균평점)
+*/
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 11, 1);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '액션게임2', '액션게임2_짧은설명', '액션게임2_긴설명', 8, to_date('2021/06/06'), '개발사2', '배급사2', 60000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 33, 1);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '롤플레잉게임1', '롤플레잉게임1_짧은설명', '롤플레잉게임1_긴설명', 9, to_date('2022/07/07'), '개발사3', '배급사3', 70000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 22, 2);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '롤플레잉게임2', '롤플레잉게임2_짧은설명', '롤플레잉게임2_긴설명', 8, to_date('2019/02/02'), '개발사4', '배급사4', 30000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 66, 2);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '전략게임1', '전략게임1_짧은설명', '전략게임1_긴설명', 9, to_date('2020/11/11'), '개발사5', '배급사5', 40000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 44, 3);
+insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values(GAME_G_NO_SEQ.nextval, '전략게임2', '전략게임2_짧은설명', '전략게임2_긴설명', 8, to_date('2018/03/03'), '개발사6', '배급사6', 50000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 55, 3);
 
 
 --language
@@ -84,12 +92,12 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 
 
 --news
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스1_제목', '뉴스1_내용', 'news1.jpg', 1);
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스2_제목', '뉴스2_내용', 'news2.jpg', 2);
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스3_제목', '뉴스3_내용', 'news3.jpg', 3);
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스4_제목', '뉴스4_내용', 'news4.jpg', 4);
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스5_제목', '뉴스5_내용', 'news5.jpg', 5);
-insert into news(news_no, news_title, news_content, news_img, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스6_제목', '뉴스6_내용', 'news6.jpg', 6);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스1_제목', '뉴스1_헤더', '뉴스1_내용', 'news1.jpg', sysdate, sysdate, 1);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스2_제목', '뉴스2_헤더', '뉴스2_내용', 'news2.jpg', sysdate, sysdate, 2);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스3_제목', '뉴스3_헤더', '뉴스3_내용', 'news3.jpg', sysdate, sysdate, 3);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스4_제목', '뉴스4_헤더', '뉴스4_내용', 'news4.jpg', sysdate, sysdate, 4);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스5_제목', '뉴스5_헤더', '뉴스5_내용', 'news5.jpg', sysdate, sysdate, 5);
+insert into news(news_no, news_title, news_header, news_content, news_img, news_created_at, news_updated_at, g_no) values(NEWS_NEWS_NO_SEQ.nextval, '뉴스6_제목', '뉴스6_헤더', '뉴스6_내용', 'news6.jpg', sysdate, sysdate, 6);
 
 
 --cart
@@ -133,18 +141,18 @@ insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, O
 
 --review
 --review_recommend는 추천/비추천을 의미. (0: 비추천, 1: 추천)
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰1', 0, 1, 1);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰2', 0, 1, 2);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰3', 0, 1, 3);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰4', 0, 1, 4);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰5', 0, 1, 5);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰6', 0, 1, 6);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰7', 1, 2, 1);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰8', 1, 2, 2);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰9', 1, 2, 3);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰10', 1, 2, 4);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰11', 1, 2, 5);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰12', 1, 2, 6);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰1', 0, 0, 0, 1, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰2', 0, 0, 0, 1, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰3', 0, 0, 0, 1, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰4', 0, 0, 0, 1, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰5', 0, 0, 0, 1, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰6', 0, 0, 0, 1, 6);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰7', 1, 1, 1, 2, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰8', 1, 1, 1, 2, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰9', 1, 1, 1, 2, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰10', 1, 1, 1, 2, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰11', 1, 1, 1, 2, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰12', 1, 1, 1, 2, 6);
 
 
 --owned_game
@@ -203,6 +211,10 @@ insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 
 insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 16, 5);
 insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 6);
 insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 17, 6);
+
+
+--news_tag
+--insert into news_tag(nt_no, tag_no, news_no) values();
 
 
 --chat_room
