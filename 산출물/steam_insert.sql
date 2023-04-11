@@ -7,11 +7,11 @@ insert
 u_state는 상태를 표시. (0: 로그아웃, 1:로그인)
 */
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-0000-0000', 'sy0_닉네임', 'street_0', 'statefull_0', '00000', 1, 'profile.jpg', 'background.jpg', 'sy0의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-0000-0000', 'sy0_닉네임', 'street_0', 'city_0', 'statefull_0', '00000', 1, 'profile.jpg', 'background.jpg', 'sy0의 프로필입니다.');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', 'street_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', 'street_1', 'city_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', 'street_2', 'statefull_2', '22222', 1, 'profile.jpg', 'background.jpg', 'sy2의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', 'street_2', 'city_2', 'statefull_2', '22222', 1, 'profile.jpg', 'background.jpg', 'sy2의 프로필입니다.');
 
 
 --friend
@@ -140,7 +140,10 @@ insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, O
 
 
 --review
---review_recommend는 추천/비추천을 의미. (0: 비추천, 1: 추천)
+/*
+review_recommend는 평점을 의미. (1~10)
+u_no는 작성자를 의미.
+*/
 insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰1', 0, 0, 0, 1, 1);
 insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰2', 0, 0, 0, 1, 2);
 insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰3', 0, 0, 0, 1, 3);
@@ -199,22 +202,33 @@ insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '고난이도')
 
 
 --game_tag
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 5, 1);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 1);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 6, 2);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 7, 2);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 1, 3);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 3);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 2, 4);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 3, 4);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 5);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 16, 5);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 4, 6);
-insert into game_tag(gt_no, tag_no, g_no) values(TAG_GAME_TG_NO_SEQ.nextval, 17, 6);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 5, 1);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 1);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 2);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 7, 2);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 3);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 2, 3);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 2, 4);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 3, 4);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 4, 5);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 16, 5);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 4, 6);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 17, 6);
 
 
 --news_tag
---insert into news_tag(nt_no, tag_no, news_no) values();
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 5, 1);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 6, 1);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 6, 2);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 7, 2);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 1, 3);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 2, 3);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 2, 4);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 3, 4);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 4, 5);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 16, 5);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 4, 6);
+insert into news_tag(nt_no, tag_no, news_no) values(NEWS_TAG_NT_NO_SEQ.nextval, 17, 6);
 
 
 --chat_room
@@ -223,11 +237,27 @@ insert into chat_room(cr_no, cr_name) values(CHAT_ROOM_CR_NO_SEQ.nextval, '채�
 
 
 --chat
-insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 1번유저가 말한 채팅1', sysdate, 1, 1);
-insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 2번유저가 말한 채팅1', sysdate, 2, 1);
-insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 3번유저가 말한 채팅1', sysdate, 3, 1);
-insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 1번유저가 말한 채팅1', sysdate, 1, 2);
-insert into chat(chat_no, chat_content, chat_created_at, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 2번유저가 말한 채팅1', sysdate, 2, 2);
+--chat_checked는 채팅의 확인여부를 나타냄. (0: 확인하지 않음. 1: 확인 함.)
+insert into chat(chat_no, chat_content, chat_created_at, chat_checked, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 1번유저가 말한 채팅1', sysdate, 0, 1, 1);
+insert into chat(chat_no, chat_content, chat_created_at, chat_checked, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 2번유저가 말한 채팅1', sysdate, 0, 2, 1);
+insert into chat(chat_no, chat_content, chat_created_at, chat_checked, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '1번방에서 3번유저가 말한 채팅1', sysdate, 0, 3, 1);
+insert into chat(chat_no, chat_content, chat_created_at, chat_checked, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 1번유저가 말한 채팅1', sysdate, 1, 1, 2);
+insert into chat(chat_no, chat_content, chat_created_at, chat_checked, u_no, cr_no) values(CHAT_CHAT_NO_SEQ.nextval, '2번방에서 2번유저가 말한 채팅1', sysdate, 1, 2, 2);
+
+
+--news_comment
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '1번유저가 뉴스1에 쓴 코멘트1', 1, 1);
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '1번유저가 뉴스2에 쓴 코멘트1', 1, 2);
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '2번유저가 뉴스3에 쓴 코멘트1', 2, 3);
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '2번유저가 뉴스4에 쓴 코멘트1', 2, 4);
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '3번유저가 뉴스5에 쓴 코멘트1', 3, 5);
+insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values(NEWS_COMMENT_NC_NO_SEQ.nextval, sysdate, '3번유저가 뉴스6에 쓴 코멘트1', 3, 6);
+
+
+--profile_comment
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 3번유저의 프로필에 쓴 코멘트1', 1, 3);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 3번유저의 프로필에 쓴 코멘트1', 2, 3);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 3번유저의 프로필에 쓴 코멘트1', 3, 3);
 
 
 commit;
