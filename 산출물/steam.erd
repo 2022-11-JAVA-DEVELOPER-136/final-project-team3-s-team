@@ -51,8 +51,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>1038</x>
-              <y>132</y>
+              <x>1033</x>
+              <y>107</y>
             </constraint>
             <sourceConnections>
               <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
@@ -531,13 +531,8 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-<<<<<<< HEAD
-                                <x>303</x>
-                                <y>629</y>
-=======
                                 <x>416</x>
                                 <y>633</y>
->>>>>>> branch 'master' of https://github.com/2022-11-JAVA-DEVELOPER/final-project-team3-s-team.git
                               </constraint>
                               <sourceConnections>
                                 <net.java.amateras.db.visual.model.ForeignKeyModel>
