@@ -12,18 +12,17 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	private UserService userService;
 	
 //	@Test
-	void testCreate() throws Exception {
-		User user = new User(0, "끼야호이", "1111", "누구", "네이버", "010-1111-1111", "둘리", "사당동");
-		userService.create(user);
-	}
-
+	/*
+	 * void testCreate() throws Exception { User user = new User(0, "끼야호이", "1111",
+	 * "누구", "네이버", "010-1111-1111", "둘리", "사당동"); userService.create(user); }
+	 */
 //	@Test
 	void testIdDuplicateCheck() throws Exception {
 		boolean isExist = userService.idDuplicateCheck("끼야호이");
 		System.out.println("중복체크 : "+isExist);
 	}
 
-	@Test
+	//@Test
 	void testLogin() throws Exception {
 		int result = userService.login("sy2", "2222");
 		System.out.println("로그인 체크:" +result);
@@ -35,23 +34,24 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println("내정보 : "+user);
 	}
 
-//	@Test
+	//@Test
 	void testFindUserByNo() throws Exception {
-		User user = userService.findUserByNo(7);
+		User user = userService.findUserByNo(2);
 		System.out.println("내정보 : "+user);
 	}
 
-//	@Test
+
+	@Test
 	void testUserList() throws Exception {
 		List<User> userList = userService.userList();
 		System.out.println("리스트 : "+userList);
 	}
 
 //	@Test
-	void testUpdate() throws Exception {
-		User user = new User(7, "끼야호이", "0000", "누구", "네이버", "010-1111-1111", "둘리", "사당동");
-		userService.update(user);
-	}
+	/*
+	 * void testUpdate() throws Exception { User user = new User(7, "끼야호이", "0000",
+	 * "누구", "네이버", "010-1111-1111", "둘리", "사당동"); userService.update(user); }
+	 */
 
 //	@Test
 	void testRemove() throws Exception {

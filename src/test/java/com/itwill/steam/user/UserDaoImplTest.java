@@ -14,18 +14,15 @@ class UserDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
 	private UserDao userDao;
 
-	@Test
-	void testCreate() {
-		User user = new User(0, "끼야호", "1111", "누구", "네이버", "010-1111-1111", "둘리", "사당동");
-
-		userDao.createUser(user);
-	}
-
-	//@Test
-	void testUpdate() {
-		User user = new User(6, "끼야호", "3333", "김찬영", "네이버", "010-8568-6730", "둘리", "사당동");
-		userDao.updateUser(user);
-	}
+	/*
+	 * @Test void testCreate() { User user = new User(0, "끼야호", "1111", "누구", "네이버",
+	 * "010-1111-1111", "둘리", "사당동");
+	 * 
+	 * userDao.createUser(user); }
+	 * 
+	 * //@Test void testUpdate() { User user = new User(6, "끼야호", "3333", "김찬영",
+	 * "네이버", "010-8568-6730", "둘리", "사당동"); userDao.updateUser(user); }
+	 */
 
 	//@Test
 	void testRemove()  {
