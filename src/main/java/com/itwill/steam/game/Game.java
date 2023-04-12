@@ -39,6 +39,14 @@ public class Game {
 	private String gProsessor;
 	private String gMemory;
 	private String gGraphic;
+	
+	// 추가
+	private String g_Disk_Space;
+	private String g_Min_Prosessor;
+	private String g_Min_Memory;
+	private String g_Min_Graphic;
+	private String g_Min_Disk_Space;
+		
 	private int gSellCount;
 	
 	private Category category;
