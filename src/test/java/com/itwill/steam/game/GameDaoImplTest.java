@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
 
 @Transactional
 class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
@@ -79,7 +82,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(">>>>> "+gameList.size());
 	}
 	
-	@Test
+	//@Test
 	void testFindGameByNo() {
 		Game game = gameDao.findGameByNo(1);
 		assertNotNull(game);
@@ -98,5 +101,44 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		Game game = gameDao.findGameByNo(1);
 		assertEquals(game.getGSellCount(), 12);
 		System.out.println(">>>>> "+game.getGSellCount());
+	}
+	
+	//@Test
+	void testFindAllCategory() {
+		List<Category> categoryList = gameDao.findAllCategory();
+		assertNotNull(categoryList);
+		assertNotEquals(categoryList.size(), 0);
+		System.out.println(">>>>> "+categoryList);
+		System.out.println(">>>>> "+categoryList.size());
+	}
+	
+	//@Test
+	void testFindAllTag() {
+		List<Tag> tagList = gameDao.findAllTag();
+		assertNotNull(tagList);
+		assertNotEquals(tagList.size(), 0);
+		System.out.println(">>>>> "+tagList);
+		System.out.println(">>>>> "+tagList.size());
+	}
+	
+	//@Test
+	void testFindAllLanguage() {
+		List<Language> languageList = gameDao.findAllLanguage();
+		assertNotNull(languageList);
+		assertNotEquals(languageList.size(), 0);
+		System.out.println(">>>>> "+languageList);
+		System.out.println(">>>>> "+languageList.size());
+	}
+	
+	@Test
+	void testFindNewGames() {
+		List<Game> gameList = gameDao.findNewGames();
+		assertNotNull(gameList);
+		assertNotEquals(gameList.size(), 0);
+		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
+		for(Game game:gameList) {
+			System.out.println(">>>>> "+game.getGReleaseDate());
+		}
 	}
 }

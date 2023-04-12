@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
+
 @Service
 public class GameServiceImpl implements GameService {
 	
@@ -63,5 +67,29 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public int increaseSellCountByNo(int gNo) {
 		return gameDao.increaseSellCountByNo(gNo);
+	}
+
+	//카테고리 테이블의 모든 카테고리 검색
+	@Override
+	public List<Category> findAllCategory() {
+		return gameDao.findAllCategory();
+	}
+
+	//태그 테이블의 모든 태그 검색
+	@Override
+	public List<Tag> findAllTag() {
+		return gameDao.findAllTag();
+	}
+
+	//언어 테이블의 모든 언어 검색
+	@Override
+	public List<Language> findAllLanguage() {
+		return gameDao.findAllLanguage();
+	}
+
+	//게임 발매일 순 정렬 (최신순)
+	@Override
+	public List<Game> findNewGames() {
+		return gameDao.findNewGames();
 	}
 }

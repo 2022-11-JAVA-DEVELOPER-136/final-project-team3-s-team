@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
+
 @Controller
 public class GameController {
 
@@ -32,13 +36,22 @@ public class GameController {
 	}
 	
 	//상품리스트 화면
-	@RequestMapping("/game_list")
+	@RequestMapping("/store")
 	public String gameList(Model model) {
 		
-		List<Game> gameList = gameService.findAllGames();
-		model.addAttribute("gameList", gameList);
+		List<Game> popularGameList = gameService.findPopularGames();
+		List<Game> newGameList = gameService.findNewGames();
+		List<Category> categoryList = gameService.findAllCategory();
+		List<Tag> tagList = gameService.findAllTag();
+		List<Language> languageList = gameService.findAllLanguage();
 		
-		return "game_list";
+		model.addAttribute("popularGameList", popularGameList);
+		model.addAttribute("newGameList", newGameList);
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("tagList", tagList);
+		model.addAttribute("languageList", languageList);
+		
+		return "store";
 	}
 	
 	//상품 상세보기
@@ -146,7 +159,7 @@ public class GameController {
 	public String profile() {
 		return "profile";
 	}
-	@RequestMapping("/store")
+	//@RequestMapping("/store")
 	public String store() {
 		return "store";
 	}

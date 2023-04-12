@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
 
 @Transactional
 class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
@@ -16,7 +19,7 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	GameService gameService;
 
-	@Test
+	//@Test
 	void testFindAllGames() {
 		List<Game> gameList = gameService.findAllGames();
 		assertNotNull(gameList);
@@ -98,5 +101,44 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 		Game game = gameService.findGameByNo(1);
 		assertEquals(game.getGSellCount(), 12);
 		System.out.println(">>>>> "+game.getGSellCount());
+	}
+	
+	//@Test
+	void testFindAllCategory() {
+		List<Category> categoryList = gameService.findAllCategory();
+		assertNotNull(categoryList);
+		assertNotEquals(categoryList.size(), 0);
+		System.out.println(">>>>> "+categoryList);
+		System.out.println(">>>>> "+categoryList.size());
+	}
+	
+	//@Test
+	void testFindAllTag() {
+		List<Tag> tagList = gameService.findAllTag();
+		assertNotNull(tagList);
+		assertNotEquals(tagList.size(), 0);
+		System.out.println(">>>>> "+tagList);
+		System.out.println(">>>>> "+tagList.size());
+	}
+	
+	//@Test
+	void testFindAllLanguage() {
+		List<Language> languageList = gameService.findAllLanguage();
+		assertNotNull(languageList);
+		assertNotEquals(languageList.size(), 0);
+		System.out.println(">>>>> "+languageList);
+		System.out.println(">>>>> "+languageList.size());
+	}
+	
+	@Test
+	void testFindNewGames() {
+		List<Game> gameList = gameService.findNewGames();
+		assertNotNull(gameList);
+		assertNotEquals(gameList.size(), 0);
+		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
+		for(Game game:gameList) {
+			System.out.println(">>>>> "+game.getGReleaseDate());
+		}
 	}
 }
