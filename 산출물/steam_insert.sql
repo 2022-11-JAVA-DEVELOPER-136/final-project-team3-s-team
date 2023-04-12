@@ -182,7 +182,7 @@ insert into workshop(w_no, w_name, w_img, w_desc, u_no, g_no) values(WORKSHOP_W_
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '오픈월드');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'RPG');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '어드벤처');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '싱글 플레이어');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '싱글플레이어');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '인디');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '액션');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '캐주얼');
