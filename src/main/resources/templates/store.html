@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wicodus - Responsive HTML5 Template</title>
+    <title>Wicodus - Store</title>
 
     <!-- CSS -->
     <link href="assets/css/fonts/etline-font.min.css" rel="stylesheet">
@@ -241,15 +241,17 @@
                                 <i class="fab fa-apple"></i>
                               </div>
                               <div class="position-relative">
+                              	<!-- each -->
                                 <span class="item_genre small fw-600" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">
                                   Action, Adventure
                                 </span>
+                                <!-- /.each -->
                               </div>
                             </div>
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning" th:text="|-${game.gDiscountRate}%|">-50%</span>
+                                  <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - game.gDiscountRate * 0.01, 2, 1)}">-50%</span>
                                 </div>
                               </div>
                             </div>
@@ -257,7 +259,7 @@
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
                                   <span class="fw-600 td-lt" th:text="|${game.gPrice}원|">€144.99</span><br>
-                                  <span class="fw-600" th:text="|${game.gPrice * game.gDiscountRate * 0.01}원|">€44.99</span>
+                                  <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 1)}원|">€44.99</span>
                                 </div>
                               </div>
                             </div>
@@ -289,15 +291,17 @@
                                 <i class="fab fa-apple"></i>
                               </div>
                               <div class="position-relative">
+                              	<!-- each -->
                                 <span class="item_genre small fw-600" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">
                                   Action, Adventure
                                 </span>
+                                <!-- /.each -->
                               </div>
                             </div>
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning" th:text="|-${game.gDiscountRate}%|">-50%</span>
+                                  <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - game.gDiscountRate * 0.01, 2, 1)}">-50%</span>
                                 </div>
                               </div>
                             </div>
@@ -305,7 +309,7 @@
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
                                   <span class="fw-600 td-lt" th:text="|${game.gPrice}원|">€144.99</span><br>
-                                  <span class="fw-600" th:text="|${game.gPrice * game.gDiscountRate * 0.01}원|">€44.99</span>
+                                  <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 1)}원|">€44.99</span>
                                 </div>
                               </div>
                             </div>
@@ -777,7 +781,6 @@
 			<td width=100 th:text="${language.langName}">1</td>
 		</tr>
 	</table>
-	-->
-	
+	 -->
   </body>
 </html>
