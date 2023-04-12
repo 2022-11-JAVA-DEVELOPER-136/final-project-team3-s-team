@@ -18,7 +18,7 @@ values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '
 /*
 u_no는 친구요청을 보내는 user의 u_no
 u_fno는 친구요청을 받아서 수락한 user의 u_no
-friend테이블에서 u_to와 u_from의 조합은 유일해야 한다. (UNIQUE)
+friend테이블에서 u_no와 u_fno의 조합은 유일해야 한다. (UNIQUE)
 */
 insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 1, 2);
 insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 1, 3);
