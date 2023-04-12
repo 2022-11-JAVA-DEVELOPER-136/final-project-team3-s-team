@@ -41,11 +41,11 @@ public class Game {
 	private String gGraphic;
 	
 	// 추가
-	private String g_Disk_Space;
-	private String g_Min_Prosessor;
-	private String g_Min_Memory;
-	private String g_Min_Graphic;
-	private String g_Min_Disk_Space;
+	private String gDiskSpace;
+	private String gMinProsessor;
+	private String gMinMemory;
+	private String gMinGraphic;
+	private String gMinDiskSpace;
 		
 	private int gSellCount;
 	
