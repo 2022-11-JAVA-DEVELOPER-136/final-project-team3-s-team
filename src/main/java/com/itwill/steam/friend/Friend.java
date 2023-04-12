@@ -13,17 +13,15 @@ import lombok.ToString;
 @Builder
 public class Friend {
 /*
- * 이름      널?       유형         
-------- -------- ---------- 
-F_NO    NOT NULL NUMBER(10) 
-F_STATE          NUMBER(10) 
-U_TO             NUMBER(10) 
-U_FROM           NUMBER(10) 
+이름    널?       유형         
+----- -------- ---------- 
+F_NO  NOT NULL NUMBER(10) 
+U_NO           NUMBER(10) 
+U_FNO          NUMBER(10) 
  */
 	private int fNo;
-	private int fState;
-	private int uTo;
-	private int uFrom;
+	private int uNo;
+	private int uFNo;
 	
 	
 	

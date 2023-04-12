@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.user.mapper.UserMapper">
+<resultMap type="com.itwill.steam.user.User" id="userWithReviewFriend">
+<id column="u_no" property="uNo"/>
+		<collection property="reviewList" ofType="com.itwill.steam.user.User" autoMapping="true">
+		</collection>
+		<collection property="friendList" ofType="com.itwill.steam.friend.Friend" autoMapping="true">
+		</collection>
+</resultMap>
 	<!-- 회원 Insert -->
 	<insert id="createUser" parameterType="com.itwill.steam.user.User">
 		<selectKey order="BEFORE" resultType="int" keyProperty="uNo">
@@ -14,7 +21,14 @@
 				u_email,
 				u_phone,
 				u_nickname,
-				u_addr
+				u_street,
+				u_city,
+				u_statefull,
+				u_zip,
+				u_state,
+				u_img_profile,
+				u_img_background,
+				u_about
 			)values(
 				#{uNo},
 				#{uId},
@@ -23,7 +37,15 @@
 				#{uEmail},
 				#{uPhone},
 				#{uNickname},
-				#{uAddr}
+				#{UStreet},
+				#{UCity},
+				#{UStatefull},
+				#{UZip},
+				#{UState},
+				#{UImgProfile},
+				#{UImgBackground},
+				#{UAbout}
+				
 			)
 	</insert>
 	
@@ -35,7 +57,14 @@
 			u_email=#{uEmail},
 			u_phone=#{uPhone},
 			u_nickname=#{uNickname},
-			u_addr=#{uAddr}
+			u_street =#{UStreet},
+			u_city =#{UCity},
+			u_statefull = #{UStatefull},
+			u_zip = #{UZip},
+			u_state = #{UState},
+			u_img_profile = #{UImgProfile},
+			u_img_background = #{UImgBackground},
+			u_about = #{UAbout}
 		where u_no =#{uNo}
 	</update>
 	
@@ -55,44 +84,34 @@
 	</select>
 	
 	<!-- 특정회원정보 아이디로 가져오기 -->
-	<select id="findUserById" parameterType="String" resultType="com.itwill.steam.user.User">
-		select 
-				u_no,
-				u_id,
-				u_password,
-				u_name,
-				u_email,
-				u_phone,
-				u_nickname,
-				u_addr
-		from userInfo where u_id = #{uId}
+	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriend'>
+		select * 
+			from userinfo u
+			join review r
+			on u.u_no = r.u_no
+			join friend f
+			on u.u_no = f.u_no
+			where u.u_no =#{uId}
 	</select>
 	<!-- 특정회원정보 번호로 가져오기 -->
-	<select id="findUserByNo" parameterType="int" resultType="com.itwill.steam.user.User">
-		select 
-				u_no,
-				u_id,
-				u_password,
-				u_name,
-				u_email,
-				u_phone,
-				u_nickname,
-				u_addr
-		from userInfo where u_no = #{uNo}
+	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriend'>
+		select * 
+			from userinfo u
+			join review r
+			on u.u_no = r.u_no
+			join friend f
+			on u.u_no = f.u_no
+			where u.u_no =#{uNo}
 	</select>
 	
 	<!-- 모든회원 정보가져오기 -->
-	<select id="findAllUser" resultType="com.itwill.steam.user.User">
-		select 
-				u_no,
-				u_id,
-				u_password,
-				u_name,
-				u_email,
-				u_phone,
-				u_nickname,
-				u_addr
-		from userInfo
+	<select id="findAllUser" resultMap='userWithReviewFriend'>
+		select * 
+			from userinfo u
+			left outer join review r
+			on u.u_no = r.u_no
+			left outer join friend f
+			on u.u_no = f.u_no
 	</select>
 	
 </mapper>
