@@ -92,4 +92,10 @@ public class GameServiceImpl implements GameService {
 	public List<Game> findNewGames() {
 		return gameDao.findNewGames();
 	}
+
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	@Override
+	public List<Game> findNewGamesByName(String gName) {
+		return gameDao.findNewGamesByName(gName);
+	}
 }

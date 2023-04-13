@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.steam.category.Category;
+import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.language.Language;
 import com.itwill.steam.review.Review;
@@ -32,44 +33,66 @@ public class GameController {
 		
 	}
 	
-	//상품리스트 화면 (검색어 x)
-	@RequestMapping(value = "/store", params = "!search")
-	public String gameList(Model model) {
+	//상품리스트 (검색어 x)
+	@RequestMapping(value = "/store", params = "!searchKeyword")
+	public String store(Model model) {
 		
 		List<Game> popularGameList = gameService.findPopularGames();
-		List<Game> newGameList = gameService.findNewGames();
-		List<Category> categoryList = gameService.findAllCategory();
-		List<Tag> tagList = gameService.findAllTag();
-		List<Language> languageList = gameService.findAllLanguage();
-		
 		model.addAttribute("popularGameList", popularGameList);
+		
+		List<Game> newGameList = gameService.findNewGames();
 		model.addAttribute("newGameList", newGameList);
+		
+		List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
+		
+		List<Tag> tagList = gameService.findAllTag();
 		model.addAttribute("tagList", tagList);
+		
+		List<Language> languageList = gameService.findAllLanguage();
 		model.addAttribute("languageList", languageList);
 		
 		return "store";
 	}
 	
-	//상품리스트 화면 (검색어 o)
-	@RequestMapping(value = "/store", params = "search")
-	public String gameList(@RequestParam String search, Model model) {
+	//상품리스트 (검색어 o)
+	@RequestMapping(value = "/store", params = "searchKeyword")
+	public String store(@RequestParam String searchKeyword, Model model) {
+		
+		List<Game> popularGameList = gameService.findGamesByName(searchKeyword);
+		model.addAttribute("popularGameList", popularGameList);
+		
+		List<Game> newGameList = gameService.findNewGamesByName(searchKeyword);
+		model.addAttribute("newGameList", newGameList);
+		
+		List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
+		List<Tag> tagList = gameService.findAllTag();
+		model.addAttribute("tagList", tagList);
+		
+		List<Language> languageList = gameService.findAllLanguage();
+		model.addAttribute("languageList", languageList);
 		
 		return "store";
 	}
 	
 	//상품상세보기 (파라미터 x)
 	@RequestMapping(value = "/store-product", params = "!gNo")
-	public String gameDetail() {
+	public String storeProduct() {
 		return "redirect:store";
 	}
 	
 	//상품상세보기 (파라미터 o)
 	@RequestMapping(value = "/store-product", params = "gNo")
-	public String gameDetail(@RequestParam int gNo, Model model) {
+	public String storeProduct(@RequestParam int gNo, Model model) {
 		
 		//gNo로 게임 검색
 		Game game = gameService.findGameByNo(gNo);
+		if(game==null) {
+			//game이 null인지 체크. null이면 GameNotFoundException 발생시키기
+			throw new GameNotFoundException("game not found");
+		}
 		model.addAttribute("game", game);
 		
 		//해당 게임의 태그로 게임 검색 (유사게임 추천)
@@ -115,5 +138,11 @@ public class GameController {
 	@ExceptionHandler(Exception.class)
 	public String localExceptionHandler(Exception e) {
 		return "steam_error";
+	}
+	
+	//게임이 없는 경우 404로 redirect
+	@ExceptionHandler(GameNotFoundException.class)
+	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
+		return "redirect:404";
 	}
 }

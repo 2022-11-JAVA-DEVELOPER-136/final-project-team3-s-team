@@ -15,7 +15,7 @@ public interface GameMapper {
 	//상품리스트 전체검색
 	public List<Game> findAllGames();
 	
-	//상품리스트에서 게임제목으로 검색
+	//상품리스트에서 게임제목으로 검색 - 인기순 정렬 (판매량 내림차순 정렬)
 	public List<Game> findGamesByName(String gName);
 	
 	//상품리스트에서 카테고리로 필터링
@@ -42,6 +42,7 @@ public interface GameMapper {
 	/*******************************************/
 	
 	//상품리스트에서, 같은 카테고리에서 여러 개의 필터를 선택하거나, 서로 다른 카테고리에서 여러 개의 필터를 선택해서 검색하려면 어떻게 구성해야 할까?
+	//여러개를 검색????
 	
 	//카테고리 테이블의 모든 카테고리 검색
 	public List<Category> findAllCategory();
@@ -54,4 +55,7 @@ public interface GameMapper {
 	
 	//게임 발매일 순 정렬 (최신순)
 	public List<Game> findNewGames();
+	
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	public List<Game> findNewGamesByName(String gName);
 }

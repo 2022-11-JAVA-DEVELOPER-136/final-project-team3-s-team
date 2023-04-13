@@ -95,4 +95,10 @@ public class GameDaoImpl implements GameDao {
 	public List<Game> findNewGames() {
 		return gameMapper.findNewGames();
 	}
+
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	@Override
+	public List<Game> findNewGamesByName(String gName) {
+		return gameMapper.findNewGamesByName(gName);
+	}
 }
