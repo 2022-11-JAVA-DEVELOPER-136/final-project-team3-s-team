@@ -4,8 +4,8 @@ game
 --상품리스트 전체검색
 select * 
 from game g 
-left outer join resources res on g.g_no=res.g_no 
-left outer join game_tag gt on g.g_no=gt.g_no 
+join resources res on g.g_no=res.g_no 
+join game_tag gt on g.g_no=gt.g_no 
 join tag t on t.tag_no=gt.tag_no;
 
 --상품리스트에서 게임제목으로 검색
@@ -65,3 +65,16 @@ select count(*) from game g join game_tag gt on g.g_no=gt.g_no join tag t on gt.
 
 --게임의 언어 중복 확인 (이름으로)
 select count(*) from game g join game_language gl on g.g_no=gl.g_no join language l on gl.lang_no=l.lang_no where g.g_no=1 and l.lang_name='한국어';
+
+
+select ct_name from category;
+select tag_name from tag;
+select lang_name from language;
+
+--게임 발매일 순 정렬 (최신순)
+select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		order by g.g_release_date desc;

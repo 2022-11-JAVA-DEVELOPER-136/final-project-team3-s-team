@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,11 +52,11 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb-product breadcrumb-nowrap breadcrumb breadcrumb-angle bg-transparent pl-0 pr-0 mb-0">
                     <li class="breadcrumb-item"><a href="#">All Games</a></li>
-                    <li class="breadcrumb-item"><a href="#">Action Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:text="${game.category.ctName}">Action Games</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Vestibulum</li>
                   </ol>
                 </nav>
-                <h3 class="product_name mb-4">Vestibulum varius rutrum cursus</h3>
+                <h3 class="product_name mb-4" th:text="${game.gName}">Vestibulum varius rutrum cursus</h3>
                 <div class="d-flex flex-wrap align-items-center">
                   <div class="review d-flex">
                     <div class="review_score">
@@ -71,9 +71,17 @@
                     </div>
                   </div>
                   <ul class="tag-list d-none d-md-flex flex-wrap list-unstyled mb-0">
-                    <li class="tag-item"><a href="" class="badge badge-warning fw-600">Aliquam</a></li>
-                    <li class="tag-item"><a href="" class="badge badge-warning fw-600">Suscipit</a></li>
-                    <li class="tag-item"><a href="" class="text-unset release-date"><i class="far fa-clock text-warning mr-1"></i> OCT 18 2020</a></li>
+                  	<!-- each -->
+                    <li class="tag-item" th:each="gameTag:${game.gameTagList}">
+                    	<a href="" class="badge badge-warning fw-600" th:text="${gameTag.tag.tagName}">Aliquam</a>
+                    </li>
+                    <!-- /.each -->
+                    <li class="tag-item">
+                    	<a href="" class="text-unset release-date" th:text="${game.gReleaseDate}">
+                    		<i class="far fa-clock text-warning mr-1"></i>
+                    		OCT 18 2020
+                    	</a>
+                    </li>
                   </ul>
                 </div>
               </header>
@@ -108,17 +116,17 @@
                       </div>
                     </div>
                     <div id="about" class="about mb-8">
-                      <h6 class="mb-4 fw-400 ls-1 text-uppercase">About this game</h6>
+                      <h6 class="mb-4 fw-400 ls-1 text-uppercase">게임 소개</h6>
                       <hr class="border-secondary my-2">
                       <div>
                         <div class="collapse readmore" id="collapseSummary">
-                          <p>Sed placerat posuere sem ut luctus. Nunc nec odio luctus, eleifend enim nec, pretium arcu. Nam lobortis metus at ipsum dignissim, in consequat nunc laoreet. Suspendisse malesuada suscipit aliquet. Aliquam sit amet justo nibh. Phasellus tincidunt massa nec vestibulum accumsan. Proin eleifend dapibus tortor eu laoreet. In nunc mauris, elementum a magna id, porttitor sagittis mi. Integer velit quam, feugiat ac faucibus sed, vestibulum et massa. Fusce at lectus dui. Pellentesque pretium, velit non ornare ultrices, turpis metus pellentesque tellus, ac tincidunt risus massa non odio. Nullam posuere dignissim ligula, et dignissim odio porta vitae. Curabitur suscipit ultricies pulvinar. Sed ipsum nibh, dictum sit amet mi at, tempus commodo diam. Phasellus vitae nisi in urna rutrum eleifend et nec massa. Donec at mattis eros, ut pellentesque lectus.</p>
+                          <p th:text="${game.gLongDesc}">Sed placerat posuere sem ut luctus. Nunc nec odio luctus, eleifend enim nec, pretium arcu. Nam lobortis metus at ipsum dignissim, in consequat nunc laoreet. Suspendisse malesuada suscipit aliquet. Aliquam sit amet justo nibh. Phasellus tincidunt massa nec vestibulum accumsan. Proin eleifend dapibus tortor eu laoreet. In nunc mauris, elementum a magna id, porttitor sagittis mi. Integer velit quam, feugiat ac faucibus sed, vestibulum et massa. Fusce at lectus dui. Pellentesque pretium, velit non ornare ultrices, turpis metus pellentesque tellus, ac tincidunt risus massa non odio. Nullam posuere dignissim ligula, et dignissim odio porta vitae. Curabitur suscipit ultricies pulvinar. Sed ipsum nibh, dictum sit amet mi at, tempus commodo diam. Phasellus vitae nisi in urna rutrum eleifend et nec massa. Donec at mattis eros, ut pellentesque lectus.</p>
                         </div>
                         <a class="readmore-btn collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
                       </div>
                     </div>
                     <div id="system_requirements" class="mb-8">
-                      <h6 class="mb-4 fw-400 ls-1 text-uppercase">System Requirements</h6>
+                      <h6 class="mb-4 fw-400 ls-1 text-uppercase">시스템 요구사항</h6>
                       <hr class="border-secondary my-2">
                       <div>
                         <ul class="sreq_nav nav nav-tabs-minimal text-center mb-4" role="tablist">
@@ -135,79 +143,55 @@
                               <div class="col-xs-12 col-lg-6 mb-6 mb-lg-0">
                                 <div class="row">
                                   <div class="col-12">
-                                    <span class="d-inline-block text-uppercase fw-500 mb-3 text-info">Minimum Requirements:</span>
+                                    <span class="d-inline-block text-uppercase fw-500 mb-3 text-info">최소 요구사항:</span>
                                   </div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">OS:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur.</div>
+                                  <div class="col-sm-8" th:text="${game.gMinOs}">Lorem ipsum dolor sit amet, consectetur.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Processor:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur.</div>
+                                  <div class="col-sm-8" th:text="${game.gMinProsessor}">Lorem ipsum dolor sit amet, consectetur.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Memory:</strong></div>
-                                  <div class="col-sm-8">6 GB RAM</div>
+                                  <div class="col-sm-8" th:text="${game.gMinMemory}">6 GB RAM</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Graphics:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                  <div class="col-sm-8" th:text="${game.gMinGraphic}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Disk Space:</strong></div>
-                                  <div class="col-sm-8">42 GB available space</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">Architecture:</strong></div>
-                                  <div class="col-sm-8">Requires a 64-bit processor and OS</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">API:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum.</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">Miscellaneous:</strong></div>
-                                  <div class="col-sm-8">Video Preset: Lowest (720p)</div>
+                                  <div class="col-sm-8" th:text="${game.gMinDiskSpace}">42 GB available space</div>
                                 </div>
                               </div>
                               <div class="col-xs-12 col-lg-6">
                                 <div class="row">
                                   <div class="col-12">
-                                    <span class="d-inline-block text-uppercase fw-500 mb-3 text-warning">Recommended Requirements:</span>
+                                    <span class="d-inline-block text-uppercase fw-500 mb-3 text-warning">권장 요구사항:</span>
                                   </div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">OS:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur.</div>
+                                  <div class="col-sm-8" th:text="${game.gOs}">Lorem ipsum dolor sit amet, consectetur.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Processor:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                  <div class="col-sm-8" th:text="${game.gProsessor}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Memory:</strong></div>
-                                  <div class="col-sm-8">8 GB RAM</div>
+                                  <div class="col-sm-8" th:text="${game.gMemory}">8 GB RAM</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Graphics:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                  <div class="col-sm-8" th:text="${game.gGraphic}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                                 </div>
                                 <div class="row mb-4 mb-sm-0">
                                   <div class="col-sm-4"><strong class="fw-500">Disk Space:</strong></div>
-                                  <div class="col-sm-8">42 GB available space</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">Architecture:</strong></div>
-                                  <div class="col-sm-8">Requires a 64-bit processor and OS</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">API:</strong></div>
-                                  <div class="col-sm-8">Lorem ipsum.</div>
-                                </div>
-                                <div class="row mb-4 mb-sm-0">
-                                  <div class="col-sm-4"><strong class="fw-500">Miscellaneous:</strong></div>
-                                  <div class="col-sm-8">Video Preset: High (1080p)</div>
+                                  <div class="col-sm-8" th:text="${game.gDiskSpace}">42 GB available space</div>
                                 </div>
                               </div>
                             </div>
@@ -300,24 +284,26 @@
                       </div>
                     </div>
                     <div class="mb-6">
-                      <h6 class="mb-0 fw-400 ls-1 text-uppercase">More like this</h6>
+                      <h6 class="mb-0 fw-400 ls-1 text-uppercase">비슷한 다른 게임들</h6>
                       <hr class="border-secondary my-2">
                       <div>
-                        <div class="owl-carousel carousel_sm" data-carousel-items="1, 2, 3, 3" data-carousel-margin="10" data-carousel-nav="false" data-carousel-dots="true">
+                        <div class="owl-carousel carousel_sm" data-carousel-items="1, 2, 3, 3" data-carousel-margin="10" data-carousel-nav="false" data-carousel-dots="true" th:each="rgame:${gameListByTagName}">
+                          <!-- each -->
                           <div class="item">
                             <a href="#">
                               <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
                                 <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
                                   <div class="px-4 py-3 lh-1">
-                                    <h6 class="mb-1 small-1 text-light text-uppercase">Phasellus</h6>
+                                    <h6 class="mb-1 small-1 text-light text-uppercase" th:text="${rgame.gName}">Phasellus</h6>
                                     <div class="price d-flex flex-wrap align-items-center">
-                                      <span class="discount_final text-warning small-2">€99.99</span>
+                                      <span class="discount_final text-warning small-2" th:text="${rgame.gPrice}">€99.99</span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </a>
                           </div>
+                          <!-- /.each -->
                           <div class="item">
                             <a href="#">
                               <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
@@ -377,14 +363,14 @@
             <div class="col-lg-4">
               <div class="bg-dark_A-20 p-4 mb-4">
                 <img src="assets/img/content/cont/product_preview.jpg" alt="Product" class="mb-3">
-                <p>Sed neque nibh, vehicula vel molestie eget, venenatis in odio. Nulla nec metus sagittis, scelerisque leo eu, vestibulum justo. Mauris rhoncus arcu eu sagittis consequat.</p>
+                <p th:text="${game.gShortDesc}">Sed neque nibh, vehicula vel molestie eget, venenatis in odio. Nulla nec metus sagittis, scelerisque leo eu, vestibulum justo. Mauris rhoncus arcu eu sagittis consequat.</p>
                 <div class="price-wrapper">
                   <div class="mb-3">
                     <div class="price">
-                        <div class="price-prev">300$</div>
-                        <div class="price-current">224$</div>
+                        <div class="price-prev" th:text="|${game.gPrice}원|">300$</div>
+                        <div class="price-current" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 1)}원|">224$</div>
                       </div>
-                    <div class="discount">
+                    <div class="discount" th:text="|Save: ${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 1)}원 (${#numbers.formatPercent(1 - game.gDiscountRate * 0.01, 2, 2)})|">
                         Save: $20.00 (33%)
                     </div>
                   </div>
@@ -420,57 +406,40 @@
                 </div>
               </div>
               <div class="bg-dark_A-20 p-4">
-                <h6 class="mb-3">Game Information</h6>
+                <h6 class="mb-3">게임 정보</h6>
                 <hr class="border-secondary mt-2 mb-4">
                 <ul class="list-unstyled mb-3">
                   <li>
-                    <span class="platform">Platform:</span> 
-                    <span class="platform-item btn btn-sm btn-outline-warning"><i class="fab fa-windows"></i> Platform #1</span>
+                    <span class="platform">배급사:</span> 
+                    <span class="platform-item btn btn-sm btn-outline-warning" th:text="${game.gDistributor}"><i class="fab fa-windows"></i> Platform #1</span>
                   </li>
                 </ul>
                 <ul class="list-unstyled mb-3">
                   <li class="developer-wrapper">
-                    <a href="" class="developer">Developer:</a>
-                    <a href="" class="developer-item btn btn-sm btn-secondary">Aenean dignissim</a>
+                    <a href="" class="developer">개발사:</a>
+                    <a href="" class="developer-item btn btn-sm btn-secondary" th:text="${game.gDeveloper}">Aenean dignissim</a>
                   </li>
                 </ul>
                 <ul class="list-unstyled small-2 mb-3">
                   <li class="developer-wrapper">
-                    <a href="" class="developer">Genres:</a>
-                    <a href="">Indie</a>,
-                    <a href="">Simulation</a>,
-                    <a href="">Strategy</a>
+                    <a href="" class="developer">태그:</a>
+                    <a href="" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">Indie</a>
                   </li>
                 </ul>
                 <ul class="list-unstyled small-2 mb-3">
                   <li class="developer-wrapper">
-                    <a href="" class="developer">Languages:</a>
+                    <a href="" class="developer">지원 언어:</a>
                     <hr class="my-2 border-secondary">
                     <div>
-                      <div class="d-flex align-items-center">
-                        <span class="flex-1">English</span>
-                        <span class="text-warning ti-check"></span>
+                      <!-- each -->
+                      <div th:each="gameLanguage:${game.gameLanguageList}">
+	                      <div class="d-flex align-items-center">
+	                        <span class="flex-1" th:text="${gameLanguage.language.langName}">English</span>
+	                        <span class="text-warning ti-check"></span>
+	                      </div>
+	                      <hr class="my-2 border-secondary">
                       </div>
-                      <hr class="my-2 border-secondary">
-                      <div class="d-flex align-items-center">
-                        <span class="flex-1">German</span>
-                        <span class="text-warning ti-check"></span>
-                      </div>
-                      <hr class="my-2 border-secondary">
-                      <div class="d-flex align-items-center">
-                        <span class="flex-1">French</span>
-                        <span class="text-warning ti-check"></span>
-                      </div>
-                      <hr class="my-2 border-secondary">
-                      <div class="d-flex align-items-center">
-                        <span class="flex-1">Polish</span>
-                        <span class="text-warning ti-check"></span>
-                      </div>
-                      <hr class="my-2 border-secondary">
-                      <div class="d-flex align-items-center">
-                        <span class="flex-1">Russian</span>
-                        <span class="text-warning ti-check"></span>
-                      </div>
+                      <!-- /.each -->
                     </div>
                   </li>
                 </ul>
@@ -756,5 +725,25 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
+    
+    <!-- game.js -->
+    <script type="text/javascript" src="js/game.js"></script>
+    
+    <!-- 데이터 전송 테스트
+	<table>
+		<tr>
+			<td width=50 th:text="${game.gNo}">1</td>
+			<td width=100 th:text="${game.gName}">1</td>
+			<td width=100 th:text="${game.gShortDesc}">1</td>
+			<td width=100 th:text="${game.gLongDesc}">1</td>
+		</tr>
+		<tr th:each="game:${gameListByTagName}">
+			<td width=50 th:text="${game.gNo}">1</td>
+			<td width=100 th:text="${game.gName}">1</td>
+			<td width=100 th:text="${game.gShortDesc}">1</td>
+			<td width=100 th:text="${game.gLongDesc}">1</td>
+		</tr>
+	</table>
+	 -->
   </body>
 </html>

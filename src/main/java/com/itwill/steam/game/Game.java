@@ -32,13 +32,19 @@ public class Game {
 	private String gDeveloper;
 	private String gDistributor;
 	private int gPrice;
-	private double gDiscountRate;//int타입이면 정수만 입력될텐데 long이나 double타입을 사용해야 하는 것 아닐까?
+	private double gDiscountRate;//할인률
 	private Date gDiscountStart;
 	private Date gDiscountEnd;
 	private String gOs;
 	private String gProsessor;
 	private String gMemory;
 	private String gGraphic;
+	private String gDiskSpace;
+	private String gMinOs;
+	private String gMinProsessor;
+	private String gMinMemory;
+	private String gMinGraphic;
+	private String gMinDiskSpace;
 	private int gSellCount;
 	
 	private Category category;
