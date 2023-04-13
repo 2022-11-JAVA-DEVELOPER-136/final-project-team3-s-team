@@ -30,4 +30,8 @@ public interface GameDao {
 	
 	//상품의 판매량 1 증가
 	public int increaseSellCountByNo(int gNo);
+	
+	
+	
+	
 }

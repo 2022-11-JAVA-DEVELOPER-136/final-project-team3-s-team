@@ -19,4 +19,5 @@ public class GameTag {
 	
 	private Tag tag;
 	private Game game;
+	
 }
