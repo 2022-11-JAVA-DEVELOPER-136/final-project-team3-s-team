@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.user.mapper.UserMapper">
-<resultMap type="com.itwill.steam.user.User" id="userWithReviewFriend">
+<resultMap type="com.itwill.steam.user.User" id="userWithReviewFriendCartWishProfileComment">
 <id column="u_no" property="uNo"/>
 		<collection property="reviewList" ofType="com.itwill.steam.user.User" autoMapping="true">
 		</collection>
 		<collection property="friendList" ofType="com.itwill.steam.friend.Friend" autoMapping="true">
+		</collection>
+		<collection property="cartList" ofType="com.itwill.steam.cart.Cart" autoMapping="true">
+		</collection>
+		<collection property="WishListList" ofType="com.itwill.steam.wishList.WishList" autoMapping="true">
+		</collection>
+		<collection property="ProfileCommentList" ofType="com.itwill.steam.profileComment.ProfileComment" autoMapping="true">
 		</collection>
 </resultMap>
 	<!-- 회원 Insert -->
@@ -84,34 +90,52 @@
 	</select>
 	
 	<!-- 특정회원정보 아이디로 가져오기 -->
-	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriend'>
-		select * 
-			from userinfo u
-			join review r
-			on u.u_no = r.u_no
-			join friend f
-			on u.u_no = f.u_no
-			where u.u_no =#{uId}
-	</select>
-	<!-- 특정회원정보 번호로 가져오기 -->
-	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriend'>
-		select * 
-			from userinfo u
-			join review r
-			on u.u_no = r.u_no
-			join friend f
-			on u.u_no = f.u_no
-			where u.u_no =#{uNo}
-	</select>
-	
-	<!-- 모든회원 정보가져오기 -->
-	<select id="findAllUser" resultMap='userWithReviewFriend'>
+	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriendCartWishProfileComment'>
 		select * 
 			from userinfo u
 			left outer join review r
 			on u.u_no = r.u_no
 			left outer join friend f
 			on u.u_no = f.u_no
+            left outer join cart c
+            on u.u_no = c.u_no
+            left outer join wishList w
+            on u.u_no= w.u_no
+            left outer join profile_comment p
+            on u.u_no = p.u_no
+            where u.u_no =#{uId}
+	</select>
+	<!-- 특정회원정보 번호로 가져오기 -->
+	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriendCartWishProfileComment'>
+		select * 
+			from userinfo u
+			left outer join review r
+			on u.u_no = r.u_no
+			left outer join friend f
+			on u.u_no = f.u_no
+            left outer join cart c
+            on u.u_no = c.u_no
+            left outer join wishList w
+            on u.u_no= w.u_no
+            left outer join profile_comment p
+            on u.u_no = p.u_no
+            where u.u_no =#{uNo}
+	</select>
+	
+	<!-- 모든회원 정보가져오기 -->
+	<select id="findAllUser" resultMap='userWithReviewFriendCartWishProfileComment'>
+		select * 
+			from userinfo u
+			left outer join review r
+			on u.u_no = r.u_no
+			left outer join friend f
+			on u.u_no = f.u_no
+            left outer join cart c
+            on u.u_no = c.u_no
+            left outer join wishlist w
+            on u.u_no= w.u_no
+            left outer join profile_comment p
+            on u.u_no = p.u_no
 	</select>
 	
 </mapper>

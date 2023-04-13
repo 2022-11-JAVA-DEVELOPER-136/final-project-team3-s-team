@@ -24,11 +24,6 @@ public class FriendServiceImpl implements FriendService {
 		return friendDao.removeFriend(fNo);
 	}
 
-	// 친구상태업데이트
-	@Override
-	public int updateFriendState(int fNo, int fState) {
-		return friendDao.updateFriendState(fNo, fState);
-	}
 
 	// 특정유저친구불러오기
 	@Override

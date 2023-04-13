@@ -3,9 +3,12 @@ package com.itwill.steam.user;
 import java.util.List;
 
 import com.itwill.steam.card.Card;
+import com.itwill.steam.cart.Cart;
 import com.itwill.steam.chat.Chat;
 import com.itwill.steam.friend.Friend;
+import com.itwill.steam.profileComment.ProfileComment;
 import com.itwill.steam.review.Review;
+import com.itwill.steam.wishList.WishList;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,6 +60,10 @@ U_ABOUT                   VARCHAR2(1000)
 	
 	private List<Review> reviewList;
 	private List<Friend> friendList;
+	private List<Cart> cartList;
+	private List<WishList> WishListList;
+	private List<ProfileComment> ProfileCommentList;
+	
 	
 	
 	

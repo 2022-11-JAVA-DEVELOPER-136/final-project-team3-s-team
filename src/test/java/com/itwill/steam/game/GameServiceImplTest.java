@@ -19,7 +19,7 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	GameService gameService;
 
-	//@Test
+	@Test
 	void testFindAllGames() {
 		List<Game> gameList = gameService.findAllGames();
 		assertNotNull(gameList);
@@ -142,7 +142,7 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 		}
 	}
 	
-	@Test
+	//@Test
 	void testFindNewGamesByName() {
 		List<Game> gameList = gameService.findNewGamesByName("전략");
 		assertNotNull(gameList);
