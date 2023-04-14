@@ -35,12 +35,12 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public List<Review> selectByUserNo(User user) {
-		return reviewMapper.selectByUser(user);
+		return reviewMapper.selectByUserNo(user);
 	}
 
 	@Override
 	public List<Review> selectByGameNo(Game game) {
-		return reviewMapper.selectByGame(game);
+		return reviewMapper.selectByGameNo(game);
 	}
 
 	@Override

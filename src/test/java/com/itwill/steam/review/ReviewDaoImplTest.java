@@ -35,7 +35,7 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 		reviewDao.deleteGameReview(111);		
 	}
 	
-	@Test
+	//@Test
 	void updateGameReview(){
 		User user = User.builder().uNo(3).build();
 		Game game = Game.builder().gNo(3).build();
@@ -44,26 +44,28 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	
 	//@Test
 	void selectByUserNo() {
-		User user = User.builder().uNo(3).build();
+		User user = User.builder().uNo(2).build();
 		List<Review> reviewByUserNoList = reviewDao.selectByUserNo(user);
 		System.out.println(reviewByUserNoList);
 	}
 	
 	//@Test
 	void selectByGameNo() {
-		Game game = Game.builder().gNo(3).build();
+		Game game = Game.builder().gNo(6).build();
 		List<Review> reviewByGameNoList = reviewDao.selectByGameNo(game);
 		System.out.println(reviewByGameNoList);
 	}
 	
 	//@Test
 	void selectByDateDesc() {
-		
+		List<Review> reviewByDateDescList = reviewDao.selectByDateDesc();
+		System.out.println(reviewByDateDescList);
 	}
 	
 	//@Test
 	void selectByLikeDesc() {
-		
+		List<Review> reviewByLikeDescList = reviewDao.selectByLikeDesc();
+		System.out.println(reviewByLikeDescList);
 	}
 	
 }

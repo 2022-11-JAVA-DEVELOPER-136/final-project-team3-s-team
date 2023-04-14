@@ -21,10 +21,10 @@ public interface ReviewMapper {
 	public int updateGameReview(Review review);
 	
 	//회원번호로 리뷰 전체보기
-	public List<Review> selectByUser(User user);
+	public List<Review> selectByUserNo(User user);
 	
 	//게임번호로 리뷰 전체보기
-	public List<Review> selectByGame(Game game);
+	public List<Review> selectByGameNo(Game game);
 	
 	//리뷰 최신등록순 정렬보기
 	public List<Review> selectByDateDesc();

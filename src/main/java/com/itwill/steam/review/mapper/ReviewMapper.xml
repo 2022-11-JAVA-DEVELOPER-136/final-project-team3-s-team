@@ -23,12 +23,12 @@
 	
 	<!-- 회원번호로 리뷰 전체보기 -->
 	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review">
-		select * from review where u_no=#{user.uNo}
+		select * from review where u_no=#{uNo}
 	</select>
 	
 	<!-- 게임번호로 리뷰 전체보기 -->
 	<select id="selectByGameNo" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
-		select * from review where g_no=#{game.gNo}
+		select * from review where g_no=#{gNo}
 	</select>
 	
 	<!-- 리뷰 최신등록순 정렬보기 -->
