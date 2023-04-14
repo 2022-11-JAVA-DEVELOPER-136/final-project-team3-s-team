@@ -39,12 +39,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> selectByDateDesc() {
-		return reviewDao.selectByDateDesc();
+	public List<Review> selectByDateDesc(Game game) {
+		return reviewDao.selectByDateDesc(game);
 	}
 
 	@Override
-	public List<Review> selectByLikeDesc() {
-		return reviewDao.selectByLikeDesc();
+	public List<Review> selectByLikeDesc(Game game) {
+		return reviewDao.selectByLikeDesc(game);
 	}
 }

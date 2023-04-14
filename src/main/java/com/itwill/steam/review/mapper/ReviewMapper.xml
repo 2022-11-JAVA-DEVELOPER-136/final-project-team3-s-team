@@ -32,13 +32,13 @@
 	</select>
 	
 	<!-- 리뷰 최신등록순 정렬보기 -->
-	<select id="selectByDateDesc" parameterType="com.itwill.steam.review.Review" resultType="com.itwill.steam.review.Review">
-		select * from review order by review_created_at desc, review_updated_at desc
+	<select id="selectByDateDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
+		select * from review where g_no=#{gNo} order by review_created_at desc, review_updated_at desc
 	</select>
 		
 	<!-- 추천수 많은 리뷰 정렬보기 -->
-	<select id="selectByLikeDesc" parameterType="com.itwill.steam.review.Review" resultType="com.itwill.steam.review.Review">
-		select * from review order by review_like desc
+	<select id="selectByLikeDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
+		select * from review where g_no=#{gNo} order by review_like desc, review_like asc
 	</select>
 	
 	
