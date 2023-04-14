@@ -25,7 +25,7 @@ spring:  datasource:
     mode: HTML
     cache: false
 ###################### server, encoding, default-servlet ######################
-server:  port: 80
+server:  port: 8080
   servlet:    context-path: /final-project-team3-s-team
     encoding:      charset: UTF-8
       enabled: true

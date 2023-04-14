@@ -47,7 +47,7 @@ public class Game {
 	private String gMinDiskSpace;
 	private int gSellCount;
 	
-	private Category category;
+	private List<Category> categoryList;
 	private List<Resources> resourcesList;
 	private List<GameLanguage> gameLanguageList;
 	private List<News> newsList;
