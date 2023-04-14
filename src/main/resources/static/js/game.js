@@ -1,3 +1,6 @@
 /**
 game.js
 */
+function filteringButton(){
+	
+}

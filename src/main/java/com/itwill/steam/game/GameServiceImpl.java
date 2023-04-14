@@ -104,4 +104,10 @@ public class GameServiceImpl implements GameService {
 	public List<Game> findNewGamesByName(String gName) {
 		return gameDao.findNewGamesByName(gName);
 	}
+
+	//search 통합 중
+	@Override
+	public List<Game> findGames(SearchDto searchDto) {
+		return gameDao.findGames(searchDto);
+	}
 }
