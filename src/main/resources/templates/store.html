@@ -580,22 +580,25 @@
                           <span class="p-collapsing-title">태그</span>
                       </a>
                       <div class="collapse nav-collapse">
+                      <form id="tagForm">
                           <ul class="list-unstyled py-2">
                           	<!-- each start -->
                             <li class="nav-item" th:each="tag:${tagList}">
                               <div class="nav-link py-2 px-3">
-                                <form>
+                                <!-- <form> 원래 있던 자리 -->
                                   <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Action_check" th:id="|${tag.tagName}_check|">
+                                    <input class="custom-control-input" type="checkbox" value="" id="Action_check"
+                                    name="tagNo" th:value="${tag.tagNo}" th:id="|${tag.tagName}_check|">
                                     <label class="custom-control-label" for="Action_check" th:for="|${tag.tagName}_check|" th:text="${tag.tagName}">
                                       Action
                                     </label>
                                   </div>
-                                </form>
+                                <!-- </form> 원래 있던 자리 -->
                               </div>
                             </li>
                             <!-- each end -->
                           </ul>
+                      </form>
                       </div>
                     </li>
                     <li class="nav-item text-light transition mb-2">
@@ -714,7 +717,7 @@
                     </li>
                     -->
                     <li class="nav-item text-light transition mt-4">
-                      <a href="" class="btn btn-warning d-block">Reset Filter</a>
+                      <a href="" class="btn btn-warning d-block">필터링 검색</a>
                     </li>
                   </ul>
                 </div>

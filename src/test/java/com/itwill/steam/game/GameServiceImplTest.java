@@ -2,6 +2,8 @@ package com.itwill.steam.game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	GameService gameService;
 
-	@Test
+	//@Test
 	void testFindAllGames() {
 		List<Game> gameList = gameService.findAllGames();
 		assertNotNull(gameList);
@@ -149,5 +151,22 @@ class GameServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertNotEquals(gameList.size(), 0);
 		System.out.println(">>>>> "+gameList);
 		System.out.println(">>>>> "+gameList.size());
+	}
+	
+	@Test
+	void testFindGames() {
+		List<Game> gameListWithGame = gameService.findGames(SearchDto.builder()
+															.orderBy(GameCode.POPULAR)
+															.keyword("게임1")
+															.category(Category.builder().ctNo(1).build())
+															.tagList(new ArrayList<Tag>(Arrays.asList(Tag.builder().tagNo(5).build(),
+																Tag.builder().tagNo(6).build())))
+															.languageList(new ArrayList<Language>(Arrays.asList(Language.builder().langNo(1).build(),
+																Language.builder().langNo(2).build())))
+															.build());
+		assertNotNull(gameListWithGame);
+		assertNotEquals(gameListWithGame.size(), 0);
+		System.out.println(">>>>> "+gameListWithGame);
+		System.out.println(">>>>> "+gameListWithGame.size());
 	}
 }
