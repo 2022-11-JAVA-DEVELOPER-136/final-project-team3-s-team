@@ -89,10 +89,6 @@ public class GameController {
 		
 		//gNo로 게임 검색
 		Game game = gameService.findGameByNo(gNo);
-		if(game==null) {
-			//game이 null인지 체크. null이면 GameNotFoundException 발생시키기
-			throw new GameNotFoundException("game not found");
-		}
 		model.addAttribute("game", game);
 		
 		//해당 게임의 태그로 게임 검색 (유사게임 추천)

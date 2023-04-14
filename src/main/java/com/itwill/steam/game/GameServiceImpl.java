@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.steam.category.Category;
+import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.language.Language;
 import com.itwill.steam.tag.Tag;
 
@@ -60,7 +61,12 @@ public class GameServiceImpl implements GameService {
 	//상품상세보기
 	@Override
 	public Game findGameByNo(int gNo) {
-		return gameDao.findGameByNo(gNo);
+		Game game = gameDao.findGameByNo(gNo);
+		if(game==null) {
+			//game이 null인지 체크. null이면 GameNotFoundException 발생시킴.
+			throw new GameNotFoundException("GameNotFound");
+		}
+		return game;
 	}
 
 	//상품의 판매량 1 증가
