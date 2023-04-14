@@ -5,6 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.exception.GameNotFoundException;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
+
 @Service
 public class GameServiceImpl implements GameService {
 	
@@ -56,12 +61,47 @@ public class GameServiceImpl implements GameService {
 	//상품상세보기
 	@Override
 	public Game findGameByNo(int gNo) {
-		return gameDao.findGameByNo(gNo);
+		Game game = gameDao.findGameByNo(gNo);
+		if(game==null) {
+			//game이 null인지 체크. null이면 GameNotFoundException 발생시킴.
+			throw new GameNotFoundException("GameNotFound");
+		}
+		return game;
 	}
 
 	//상품의 판매량 1 증가
 	@Override
 	public int increaseSellCountByNo(int gNo) {
 		return gameDao.increaseSellCountByNo(gNo);
+	}
+
+	//카테고리 테이블의 모든 카테고리 검색
+	@Override
+	public List<Category> findAllCategory() {
+		return gameDao.findAllCategory();
+	}
+
+	//태그 테이블의 모든 태그 검색
+	@Override
+	public List<Tag> findAllTag() {
+		return gameDao.findAllTag();
+	}
+
+	//언어 테이블의 모든 언어 검색
+	@Override
+	public List<Language> findAllLanguage() {
+		return gameDao.findAllLanguage();
+	}
+
+	//게임 발매일 순 정렬 (최신순)
+	@Override
+	public List<Game> findNewGames() {
+		return gameDao.findNewGames();
+	}
+
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	@Override
+	public List<Game> findNewGamesByName(String gName) {
+		return gameDao.findNewGamesByName(gName);
 	}
 }

@@ -27,13 +27,6 @@ public class FriendDaoImpl implements FriendDao {
 		return friendMapper.removeFriend(fNo);
 	}
 
-	@Override
-	public int updateFriendState(int fNo, int fState) {
-		Map<String, Object> map = new HashMap();
-		map.put("fNo", fNo);
-		map.put("fState", fState);
-		return friendMapper.updateFriendState(map);
-	}
 
 	@Override
 	public List<Friend> findFriendByNo(int fNo) {

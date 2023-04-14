@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wicodus - Responsive HTML5 Template</title>
+    <title>Wicodus - Store</title>
 
     <!-- CSS -->
     <link href="assets/css/fonts/etline-font.min.css" rel="stylesheet">
@@ -210,10 +210,10 @@
                 <!-- nav tabs -->
                 <ul class="spotlight-tabs spotlight-tabs-dark nav nav-tabs border-0 mb-5 position-relative flex-nowrap" id="most_popular_products-carousel-01" role="tablist">
                   <li class="nav-item text-fnwp position-relative">
-                    <a class="nav-link active show" id="mp-2-01-tab" data-toggle="tab" href="#mp-2-01-c" role="tab" aria-controls="mp-2-01-c" aria-selected="true">New</a>
+                    <a class="nav-link active show" id="mp-2-01-tab" data-toggle="tab" href="#mp-2-01-c" role="tab" aria-controls="mp-2-01-c" aria-selected="true">인기 게임</a>
                   </li>
                   <li class="nav-item text-fnwp position-relative"> 
-                    <a class="nav-link" id="mp-2-02-tab" data-toggle="tab" href="#mp-2-02-c" role="tab" aria-controls="mp-2-02-c" aria-selected="false">Highlights</a>
+                    <a class="nav-link" id="mp-2-02-tab" data-toggle="tab" href="#mp-2-02-c" role="tab" aria-controls="mp-2-02-c" aria-selected="false">새로운 게임</a>
                   </li>
                   <li class="nav-item text-fnwp position-relative"> 
                     <a class="nav-link" id="mp-2-03-tab" data-toggle="tab" href="#mp-2-03-c" role="tab" aria-controls="mp-2-03-c" aria-selected="false">Coming Soon</a>
@@ -225,38 +225,41 @@
                   <!-- tab item -->
                   <div class="tab-pane fade active show" id="mp-2-01-c" role="tabpanel" aria-labelledby="mp-2-01-tab">
                     <div class="row">
+                      <!-- each start -->
                       <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
+                      <div class="col-md-12 mb-4" th:each="game:${popularGameList}">
+                        <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
                               <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
+                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1" th:text="${game.gName}">Integer sagittis semper</h6>
                               <div class="mb-0">
                                 <i class="mr-2 fab fa-windows"></i>
                                 <i class="mr-2 fab fa-steam"></i>
                                 <i class="fab fa-apple"></i>
                               </div>
                               <div class="position-relative">
-                                <span class="item_genre small fw-600">
+                              	<!-- each -->
+                                <span class="item_genre small fw-600" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">
                                   Action, Adventure
                                 </span>
+                                <!-- /.each -->
                               </div>
                             </div>
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
+                                  <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - game.gDiscountRate * 0.01, 2, 1)}">-50%</span>
                                 </div>
                               </div>
                             </div>
                             <div class="item_price">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
+                                  <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(game.gPrice, 3, 'COMMA')}원|">€144.99</span><br>
+                                  <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
                                 </div>
                               </div>
                             </div>
@@ -264,162 +267,7 @@
                         </a>
                       </div>
                       <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
+                      <!-- each end -->
                     </div>
                   </div>
                   <!-- /.tab item -->
@@ -427,38 +275,41 @@
                   <!-- tab item -->
                   <div class="tab-pane fade" id="mp-2-02-c" role="tabpanel" aria-labelledby="mp-2-02-tab">
                     <div class="row">
+                      <!-- each start -->
                       <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
+                      <div class="col-md-12 mb-4" th:each="game:${newGameList}">
+                        <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
                               <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
+                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1" th:text="${game.gName}">Integer sagittis semper</h6>
                               <div class="mb-0">
                                 <i class="mr-2 fab fa-windows"></i>
                                 <i class="mr-2 fab fa-steam"></i>
                                 <i class="fab fa-apple"></i>
                               </div>
                               <div class="position-relative">
-                                <span class="item_genre small fw-600">
+                              	<!-- each -->
+                                <span class="item_genre small fw-600" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">
                                   Action, Adventure
                                 </span>
+                                <!-- /.each -->
                               </div>
                             </div>
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
+                                  <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - game.gDiscountRate * 0.01, 2, 1)}">-50%</span>
                                 </div>
                               </div>
                             </div>
                             <div class="item_price">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
+                                  <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(game.gPrice, 3, 'COMMA')}원|">€144.99</span><br>
+                                  <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
                                 </div>
                               </div>
                             </div>
@@ -466,162 +317,7 @@
                         </a>
                       </div>
                       <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <a href="store-product.html" class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">-50%</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">€144.99</span><br>
-                                  <span class="fw-600">€44.99</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <!-- /.item -->
+                      <!-- each end -->
                     </div>
                   </div>
                   <!-- /.tab item -->
@@ -858,307 +554,74 @@
 
                     <li class="nav-item text-light transition mb-2 active">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser collapser-active nav-link-border">
-                          <span class="p-collapsing-title">Platform</span>
+                          <span class="p-collapsing-title">카테고리</span>
                       </a>
                       <div class="collapse nav-collapse show">
                           <ul class="list-unstyled py-2">
-                            <li class="nav-item">
+                          	<!-- each start -->
+                            <li class="nav-item" th:each="category:${categoryList}">
                               <div class="nav-link py-1 px-3">
                                   <form>
                                     <div class="custom-control custom-checkbox">
-                                      <input class="custom-control-input" type="checkbox" value="" id="PC_check" checked>
-                                      <label class="custom-control-label" for="PC_check">
+                                      <input class="custom-control-input" type="checkbox" value="" id="PC_check" th:id="|${category.ctName}_check|">
+                                      <label class="custom-control-label" for="PC_check" th:for="|${category.ctName}_check|" th:text="${category.ctName}">
                                         PC
                                       </label>
                                     </div>
                                   </form>
                               </div>
                             </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-1 px-3">
-                                  <form>
-                                    <div class="custom-control custom-checkbox">
-                                      <input class="custom-control-input" type="checkbox" value="" id="MAC_check">
-                                      <label class="custom-control-label" for="MAC_check">
-                                        MAC
-                                      </label>
-                                    </div>
-                                  </form>
-                              </div>
-                            </li>
+                            <!-- each end -->
                           </ul>
                       </div>
                     </li>
                     <li class="nav-item text-light transition mb-2">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser nav-link-border">
-                          <span class="p-collapsing-title">Genre</span>
+                          <span class="p-collapsing-title">태그</span>
                       </a>
                       <div class="collapse nav-collapse">
                           <ul class="list-unstyled py-2">
-                            <li class="nav-item">
+                          	<!-- each start -->
+                            <li class="nav-item" th:each="tag:${tagList}">
                               <div class="nav-link py-2 px-3">
                                 <form>
                                   <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Action_check">
-                                    <label class="custom-control-label" for="Action_check">
+                                    <input class="custom-control-input" type="checkbox" value="" id="Action_check" th:id="|${tag.tagName}_check|">
+                                    <label class="custom-control-label" for="Action_check" th:for="|${tag.tagName}_check|" th:text="${tag.tagName}">
                                       Action
                                     </label>
                                   </div>
                                 </form>
                               </div>
                             </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Adventure_check">
-                                    <label class="custom-control-label" for="Adventure_check">
-                                      Adventure
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Casual_check">
-                                    <label class="custom-control-label" for="Casual_check">
-                                      Casual
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Early_access_check">
-                                    <label class="custom-control-label" for="Early_access_check">
-                                      Early Access
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Free_to_play_check">
-                                    <label class="custom-control-label" for="Free_to_play_check">
-                                      Free to Play
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Indie_check">
-                                    <label class="custom-control-label" for="Indie_check">
-                                      Indie
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Massively_multiplayer_check">
-                                    <label class="custom-control-label" for="Massively_multiplayer_check">
-                                      Massively Multiplayer
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Racing_check">
-                                    <label class="custom-control-label" for="Racing_check">
-                                      Racing
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="RPG_check">
-                                    <label class="custom-control-label" for="RPG_check">
-                                      RPG
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Simulation_check">
-                                    <label class="custom-control-label" for="Simulation_check">
-                                      Simulation
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Sports_check">
-                                    <label class="custom-control-label" for="Sports_check">
-                                      Sports
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Strategy_check">
-                                    <label class="custom-control-label" for="Strategy_check">
-                                      Strategy
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
+                            <!-- each end -->
                           </ul>
                       </div>
                     </li>
                     <li class="nav-item text-light transition mb-2">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser nav-link-border">
-                          <span class="p-collapsing-title">Software</span>
+                          <span class="p-collapsing-title">언어</span>
                       </a>
                       <div class="collapse nav-collapse">
                           <ul class="list-unstyled py-2">
-                            <li class="nav-item">
+                          	<!-- each start -->
+                            <li class="nav-item" th:each="language:${languageList}">
                               <div class="nav-link py-2 px-3">
                                 <form>
                                   <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Animation_modeling_check">
-                                    <label class="custom-control-label" for="Animation_modeling_check">
+                                    <input class="custom-control-input" type="checkbox" value="" id="Animation_modeling_check" th:id="|${language.langName}_check|">
+                                    <label class="custom-control-label" for="Animation_modeling_check" th:for="|${language.langName}_check|" th:text="${language.langName}">
                                       Animation & Modeling
                                     </label>
                                   </div>
                                 </form>
                               </div>
                             </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Audio_production_check">
-                                    <label class="custom-control-label" for="Audio_production_check">
-                                      Audio Production
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Design_check">
-                                    <label class="custom-control-label" for="Design_check">
-                                      Design
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Education_check">
-                                    <label class="custom-control-label" for="Education_check">
-                                      Education
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Game_development_check">
-                                    <label class="custom-control-label" for="Game_development_check">
-                                      Game Development
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Photo_editing_check">
-                                    <label class="custom-control-label" for="Photo_editing_check">
-                                      Photo Editing
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Utilities_check">
-                                    <label class="custom-control-label" for="Utilities_check">
-                                      Utilities
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Video_production_check">
-                                    <label class="custom-control-label" for="Video_production_check">
-                                      Video Production
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Web_publishing_check">
-                                    <label class="custom-control-label" for="Web_publishing_check">
-                                      Web Publishing
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
+                            <!-- each end -->
                           </ul>
                       </div>
                     </li>
+                    <!--
                     <li class="nav-item text-light transition mb-2">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser nav-link-border">
                           <span class="p-collapsing-title">Supported VR</span>
@@ -1249,6 +712,7 @@
                           </ul>
                       </div>
                     </li>
+                    -->
                     <li class="nav-item text-light transition mt-4">
                       <a href="" class="btn btn-warning d-block">Reset Filter</a>
                     </li>
@@ -1287,5 +751,39 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
+    
+    <!-- common.js -->
+    <script type="text/javascript" src="js/common.js"></script>
+    
+    <!-- game.js -->
+    <script type="text/javascript" src="js/game.js"></script>
+    
+    <!-- 데이터 전송 테스트
+	<table>
+		<tr th:each="game:${popularGameList}">
+			<td width=50 th:text="${game.gNo}">1</td>
+			<td width=100 th:text="${game.gName}">1</td>
+			<td width=100 th:text="${game.gSellCount}">1</td>
+		</tr>
+		<tr th:each="game:${newGameList}">
+			<td width=50 th:text="${game.gNo}">1</td>
+			<td width=100 th:text="${game.gName}">1</td>
+			<td width=100 th:text="${game.gReleaseDate}">1</td>
+		</tr>
+		<tr th:each="category:${categoryList}">
+			<td width=50 th:text="${category.ctNo}">1</td>
+			<td width=100 th:text="${category.ctName}">1</td>
+			<td width=100 th:text="${category.ctImg}">1</td>
+		</tr>
+		<tr th:each="tag:${tagList}">
+			<td width=50 th:text="${tag.tagNo}">1</td>
+			<td width=100 th:text="${tag.tagName}">1</td>
+		</tr>
+		<tr th:each="language:${languageList}">
+			<td width=50 th:text="${language.langNo}">1</td>
+			<td width=100 th:text="${language.langName}">1</td>
+		</tr>
+	</table>
+	 -->
   </body>
 </html>

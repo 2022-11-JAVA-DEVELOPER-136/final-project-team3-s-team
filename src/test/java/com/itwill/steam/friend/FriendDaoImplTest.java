@@ -16,21 +16,17 @@ class FriendDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	private FriendDao friendDao;
 	
 	//@Test
-	/*
-	 * void testAddFriend() { Friend friend =
-	 * Friend.builder().fState(0).uTo(1).uFrom(3).build(); int result
-	 * =friendDao.addFriend(friend); System.out.println(result); }
-	 */
+	
+	  void testAddFriend() { Friend friend =
+	 Friend.builder().uNo(1).uFNo(3).build(); int result
+	  =friendDao.addFriend(friend); System.out.println(result); }
+	 
 	//@Test
 	void testRemoveFriend() {
 		friendDao.removeFriend(5);
 	}
 
-	//@Test
-	void testUpdateFriendState() {
-		friendDao.updateFriendState(4, 1);
-	}
-
+	
 	//@Test
 	void testFindFriendByNo() {
 		List<Friend> friendList = friendDao.findFriendByNo(1);

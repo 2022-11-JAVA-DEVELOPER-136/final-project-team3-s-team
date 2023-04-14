@@ -2,6 +2,10 @@ package com.itwill.steam.game;
 
 import java.util.List;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
+
 public interface GameDao {
 	
 	//상품리스트 전체검색
@@ -30,4 +34,23 @@ public interface GameDao {
 	
 	//상품의 판매량 1 증가
 	public int increaseSellCountByNo(int gNo);
+	
+	/*******************************************/
+	
+	//상품리스트에서, 같은 카테고리에서 여러 개의 필터를 선택하거나, 서로 다른 카테고리에서 여러 개의 필터를 선택해서 검색하려면 어떻게 구성해야 할까?
+	
+	//카테고리 테이블의 모든 카테고리 검색
+	public List<Category> findAllCategory();
+	
+	//태그 테이블의 모든 태그 검색
+	public List<Tag> findAllTag();
+	
+	//언어 테이블의 모든 언어 검색
+	public List<Language> findAllLanguage();
+	
+	//게임 발매일 순 정렬 (최신순)
+	public List<Game> findNewGames();
+	
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	public List<Game> findNewGamesByName(String gName);
 }

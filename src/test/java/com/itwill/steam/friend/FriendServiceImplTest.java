@@ -12,19 +12,16 @@ class FriendServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	private FriendService friendService;
 	
 	
-	/*
-	 * // @Test void testAddFriend() { Friend friend = new Friend(0, 0, 1, 3);
-	 * friendService.addFriend(friend); }
-	 */
-//	@Test
+	
+	  @Test void testAddFriend() { Friend friend = new Friend(0,1, 3);
+	 friendService.addFriend(friend); }
+	 
+	@Test
 	void testRemoveFriend() {
 		friendService.removeFriend(6);
 	}
 
-//	@Test
-	void testUpdateFriendState() {
-		friendService.updateFriendState(6, 1);
-	}
+
 
 	@Test
 	void testFindFriendByNo() {

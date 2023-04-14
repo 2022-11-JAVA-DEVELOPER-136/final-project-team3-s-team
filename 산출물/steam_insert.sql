@@ -42,7 +42,7 @@ insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, 
 g_grade : 게임의 평점 (해당 게임의 사용자리뷰의 평균평점)
 */
 insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
-values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 11, 1);
+values(GAME_G_NO_SEQ.nextval, '액션게임1', '액션게임1_짧은설명', '액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_액션게임1_긴설명_', 9, to_date('2020/05/05'), '개발사1', '배급사1', 50000, 50, to_date('2023/03/01'), to_date('2023/04/30'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 11, 1);
 insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
 values(GAME_G_NO_SEQ.nextval, '액션게임2', '액션게임2_짧은설명', '액션게임2_긴설명', 8, to_date('2021/06/06'), '개발사2', '배급사2', 60000, 50, to_date('2023/03/01'), to_date('2023/03/21'), 'Windows 10', 'Intel Core i7', '16GB RAM', 'GeForce GTX 1660', '30GB', 'Windows 10', 'Intel Core i5', '8GB RAM', 'GeForce GTX 1650', '30GB', 33, 1);
 insert into game(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end, g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
@@ -182,7 +182,7 @@ insert into workshop(w_no, w_name, w_img, w_desc, u_no, g_no) values(WORKSHOP_W_
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '오픈월드');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'RPG');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '어드벤처');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '싱글 플레이어');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '싱글플레이어');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '인디');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '액션');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '캐주얼');

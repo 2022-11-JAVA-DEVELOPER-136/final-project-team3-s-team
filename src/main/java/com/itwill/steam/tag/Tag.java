@@ -3,6 +3,7 @@ package com.itwill.steam.tag;
 import java.util.List;
 
 import com.itwill.steam.gameTag.GameTag;
+import com.itwill.steam.newsTag.NewsTag;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +21,5 @@ public class Tag {
 	private String tagName;
 	
 	private List<GameTag> gameTagList;
+	private List<NewsTag> newsTagList;
 }

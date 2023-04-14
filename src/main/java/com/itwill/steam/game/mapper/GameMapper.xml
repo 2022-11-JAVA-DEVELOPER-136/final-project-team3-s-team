@@ -63,6 +63,7 @@
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on t.tag_no=gt.tag_no 
 		where g.g_name like '%'||#{gName}||'%'
+		order by g.g_sell_count desc
 	</select>
 	<select id="findGamesByCategory" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
 		select * 
@@ -128,4 +129,33 @@
 	<update id="increaseSellCountByNo" parameterType="java.lang.Integer">
 		update game set g_sell_count=g_sell_count+1 where g_no=#{gNo}
 	</update>
+	
+	<!-- ******************************************************************************************************************************************** -->
+	
+	<select id="findAllCategory" resultType="com.itwill.steam.category.Category">
+		select * from category
+	</select>
+	<select id="findAllTag" resultType="com.itwill.steam.tag.Tag">
+		select * from tag
+	</select>
+	<select id="findAllLanguage" resultType="com.itwill.steam.language.Language">
+		select * from language
+	</select>
+	<select id="findNewGames" resultMap="gameWithResourcesGameTag">
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		order by g.g_release_date desc
+	</select>
+	<select id="findNewGamesByName" resultMap="gameWithResourcesGameTag" parameterType="java.lang.String">
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		where g.g_name like '%'||#{gName}||'%'
+		order by g.g_release_date desc
+	</select>
 </mapper>

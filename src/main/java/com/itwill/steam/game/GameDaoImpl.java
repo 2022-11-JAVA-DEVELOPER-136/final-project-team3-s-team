@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.steam.category.Category;
 import com.itwill.steam.game.mapper.GameMapper;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
 
 @Repository
 public class GameDaoImpl implements GameDao {
@@ -65,5 +68,37 @@ public class GameDaoImpl implements GameDao {
 	@Override
 	public int increaseSellCountByNo(int gNo) {
 		return gameMapper.increaseSellCountByNo(gNo);
+	}
+
+	/*******************************************/
+	
+	//카테고리 테이블의 모든 카테고리 검색
+	@Override
+	public List<Category> findAllCategory() {
+		return gameMapper.findAllCategory();
+	}
+
+	//태그 테이블의 모든 태그 검색
+	@Override
+	public List<Tag> findAllTag() {
+		return gameMapper.findAllTag();
+	}
+
+	//언어 테이블의 모든 언어 검색
+	@Override
+	public List<Language> findAllLanguage() {
+		return gameMapper.findAllLanguage();
+	}
+	
+	//게임 발매일 순 정렬 (최신순)
+	@Override
+	public List<Game> findNewGames() {
+		return gameMapper.findNewGames();
+	}
+
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	@Override
+	public List<Game> findNewGamesByName(String gName) {
+		return gameMapper.findNewGamesByName(gName);
 	}
 }
