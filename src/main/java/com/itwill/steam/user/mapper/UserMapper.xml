@@ -96,7 +96,7 @@
 	<!-- 특정회원정보 번호로 가져오기 -->
 	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriend'>
 		select * 
-			from userinfo u
+			from userInfo u
 			join review r
 			on u.u_no = r.u_no
 			join friend f
@@ -107,7 +107,7 @@
 	<!-- 모든회원 정보가져오기 -->
 	<select id="findAllUser" resultMap='userWithReviewFriend'>
 		select * 
-			from userinfo u
+			from userInfo u
 			left outer join review r
 			on u.u_no = r.u_no
 			left outer join friend f
