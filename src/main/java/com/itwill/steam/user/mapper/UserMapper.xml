@@ -90,9 +90,34 @@
 	</select>
 	
 	<!-- 특정회원정보 아이디로 가져오기 -->
-	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriendCartWishProfileComment'>
+
+	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriend'>
 		select * 
 			from userinfo u
+			join review r
+			on u.u_no = r.u_no
+			join friend f
+			on u.u_no = f.u_no
+			where u.u_no =#{uId}
+	</select>
+	<!-- 특정회원정보 번호로 가져오기 -->
+	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriend'>
+		select * 
+			from userInfo u
+			join review r
+			on u.u_no = r.u_no
+			join friend f
+			on u.u_no = f.u_no
+			where u.u_no =#{uNo}
+	</select>
+	
+
+
+
+	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriendCartWishProfileComment'>
+
+		select * 
+			from userInfo u
 			left outer join review r
 			on u.u_no = r.u_no
 			left outer join friend f
