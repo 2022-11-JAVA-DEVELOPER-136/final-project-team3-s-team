@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+
+ 
 <div th:fragment="common-sign-up">
 	<div class="modal fade" id="userLogin" tabindex="-1" role="dialog" aria-labelledby="userLoginTitle" aria-hidden="true">
       <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -19,12 +22,14 @@
               </div>
               <span class="hr-text small my-6">Or</span>
             </div>
-            <form class="input-transparent">
+            <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name = f class="input-transparent">
               <div class="form-group">
                 <input type="text" class="form-control border-secondary" name="username" placeholder="Username">
+                <font color="red" th:text="${msg1}"></font>
               </div>
               <div class="form-group">
                 <input type="password" class="form-control border-secondary" name="password" placeholder="Password">
+                <font color="red" th:text="${msg2}"></font>
               </div>
               <div class="form-group d-flex justify-content-between">
                 <div class="custom-control custom-checkbox">
@@ -34,7 +39,7 @@
                 <a class="small-3" href="#">Forgot password?</a>
               </div>
               <div class="form-group mt-6">
-                <button class="btn btn-block btn-warning" type="submit">Login</button>
+                <button class="btn btn-block btn-warning" onclick="login();">login</button>
               </div>
             </form>
             <span class="small">Don't have an account? <a href="#">Create an account</a></span>
