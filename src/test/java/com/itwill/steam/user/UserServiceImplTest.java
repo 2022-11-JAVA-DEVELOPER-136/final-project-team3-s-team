@@ -34,16 +34,17 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println("내정보 : "+user);
 	}
 
-	//@Test
+	@Test
 	void testFindUserByNo() throws Exception {
 		User user = userService.findUserByNo(2);
 		System.out.println("내정보 : "+user);
 	}
 
 
-	@Test
+	//@Test
 	void testUserList() throws Exception {
 		List<User> userList = userService.userList();
+		userList.get(0).getWishListList();
 		System.out.println("리스트 : "+userList);
 	}
 

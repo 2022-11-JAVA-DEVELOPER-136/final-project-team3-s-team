@@ -63,6 +63,7 @@
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on t.tag_no=gt.tag_no 
 		where g.g_name like '%'||#{gName}||'%'
+		order by g.g_sell_count desc
 	</select>
 	<select id="findGamesByCategory" resultMap="gameWithCategoryResourcesGameTagGameLanguage" parameterType="java.lang.String">
 		select * 
@@ -146,6 +147,15 @@
 		join resources res on g.g_no=res.g_no 
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on t.tag_no=gt.tag_no 
+		order by g.g_release_date desc
+	</select>
+	<select id="findNewGamesByName" resultMap="gameWithResourcesGameTag" parameterType="java.lang.String">
+		select * 
+		from game g 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+		where g.g_name like '%'||#{gName}||'%'
 		order by g.g_release_date desc
 	</select>
 </mapper>

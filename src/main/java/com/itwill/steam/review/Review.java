@@ -20,8 +20,10 @@ REVIEW_CREATED_AT          DATE
 REVIEW_UPDATED_AT          DATE           
 REVIEW_COMMENT             VARCHAR2(2000) 
 REVIEW_RECOMMEND           NUMBER(10)     
+REVIEW_LIKE                NUMBER(10)     
+REVIEW_DISLIKE             NUMBER(10)     
 U_NO                       NUMBER(10)     
-G_NO                       NUMBER(10)      
+G_NO                       NUMBER(10)          
  */
 
 @Data
@@ -36,7 +38,9 @@ public class Review {
 	private Date reviewUpdatedAt;
 	private String reviewComment;
 	private int reviewRecommend;
+	private int reviewLike;
+	private int reviewDisLike;
 			
-	private int uNo;
-	private int gNo;
+	private User user;
+	private Game game;
 }

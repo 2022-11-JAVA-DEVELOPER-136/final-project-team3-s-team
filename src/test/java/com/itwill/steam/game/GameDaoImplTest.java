@@ -130,7 +130,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(">>>>> "+languageList.size());
 	}
 	
-	@Test
+	//@Test
 	void testFindNewGames() {
 		List<Game> gameList = gameDao.findNewGames();
 		assertNotNull(gameList);
@@ -140,5 +140,14 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		for(Game game:gameList) {
 			System.out.println(">>>>> "+game.getGReleaseDate());
 		}
+	}
+	
+	@Test
+	void testFindNewGamesByName() {
+		List<Game> gameList = gameDao.findNewGamesByName("전략");
+		assertNotNull(gameList);
+		assertNotEquals(gameList.size(), 0);
+		System.out.println(">>>>> "+gameList);
+		System.out.println(">>>>> "+gameList.size());
 	}
 }

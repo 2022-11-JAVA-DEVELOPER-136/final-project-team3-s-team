@@ -50,4 +50,7 @@ public interface GameService {
 	
 	//게임 발매일 순 정렬 (최신순)
 	public List<Game> findNewGames();
+	
+	//상품리스트에서 게임제목으로 검색 - 발매일순 정렬 (최신순 정렬)
+	public List<Game> findNewGamesByName(String gName);
 }

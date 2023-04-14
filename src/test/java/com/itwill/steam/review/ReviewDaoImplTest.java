@@ -12,17 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplication;
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
+import com.itwill.steam.game.Game;
 import com.itwill.steam.review.mapper.ReviewMapper;
+import com.itwill.steam.user.User;
 
-
+@Transactional
 class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	
 	@Autowired
 	private ReviewDao reviewDao;
 	
-	@Test
+	//@Test
 	void InsertGameReview(){
-		Review review = new Review(115,null,null,"테스트용이지용",0,1,3);
+		User user = User.builder().uNo(1).build();
+		Game game = Game.builder().gNo(1).build();		
+		Review review = new Review(100,null,null,"테스트용리뷰1",1,1,1,user,game);
 		reviewDao.insertGameReview(review);
 	}
 	
@@ -31,20 +35,37 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 		reviewDao.deleteGameReview(111);		
 	}
 	
-	@Test
+	//@Test
 	void updateGameReview(){
-		int rowCount = reviewDao.updateGameReview(new Review(11,null,null,"수정테스트!!바뀌어라~",1,0,1));
+		User user = User.builder().uNo(3).build();
+		Game game = Game.builder().gNo(3).build();
+		int rowCount = reviewDao.updateGameReview(new Review(12,null,null,"리뷰 수정 테스트!!",1,0,1,user,game));
 	}
+	
 	//@Test
 	void selectByUserNo() {
-		List<Review> reviewByUserNoList = reviewDao.selectByUserNo(1);
+		User user = User.builder().uNo(2).build();
+		List<Review> reviewByUserNoList = reviewDao.selectByUserNo(user);
 		System.out.println(reviewByUserNoList);
 	}
 	
-	@Test
+	//@Test
 	void selectByGameNo() {
-		List<Review> reviewByGameNoList = reviewDao.selectByGameNo(6);
+		Game game = Game.builder().gNo(6).build();
+		List<Review> reviewByGameNoList = reviewDao.selectByGameNo(game);
 		System.out.println(reviewByGameNoList);
+	}
+	
+	//@Test
+	void selectByDateDesc() {
+		List<Review> reviewByDateDescList = reviewDao.selectByDateDesc();
+		System.out.println(reviewByDateDescList);
+	}
+	
+	//@Test
+	void selectByLikeDesc() {
+		List<Review> reviewByLikeDescList = reviewDao.selectByLikeDesc();
+		System.out.println(reviewByLikeDescList);
 	}
 	
 }

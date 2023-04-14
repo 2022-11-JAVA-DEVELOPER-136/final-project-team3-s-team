@@ -19,6 +19,12 @@ public class MainController {
 		return "redirect:steam_main";
 	}
 	
+	//POST방식으로 요청해야 하는 method에 GET방식으로 요청하는 경우, steam_main으로 redirect
+	//@GetMapping({})
+	public String steamGet() {
+		return "redirect:steam_main";
+	}
+	
 	/***************************** template test start *****************************/
 	@RequestMapping("/404")
 	public String fileNotFoundError() {

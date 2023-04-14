@@ -78,3 +78,9 @@ select *
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on t.tag_no=gt.tag_no 
 		order by g.g_release_date desc;
+        
+select * 
+		from game g 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no 
+        where t.tag_name='인디' or t.tag_name='액션';
