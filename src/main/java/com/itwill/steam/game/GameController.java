@@ -158,7 +158,7 @@ public class GameController {
 		List<Game> gameListByCategory = gameService.findGamesByCategory(game.getCategory().getCtName());
 		model.addAttribute("gameListByCategory", gameListByCategory);
 		
-		//해당 게임의 리뷰 보여주기 (최신순)
+		//해당 게임의 리뷰 보여주기 (최신순) - 아직 메소드 안바뀌어서 최신순 메소드로 안바꿨음 나중에 바꿔야함.
 		List<Review> reviewList = reviewService.selectByGameNo(Game.builder().gNo(gNo).build());
 		model.addAttribute("reviewList", reviewList);
 		
