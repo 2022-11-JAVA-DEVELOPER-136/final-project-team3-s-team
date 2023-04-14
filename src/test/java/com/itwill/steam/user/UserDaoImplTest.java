@@ -42,7 +42,7 @@ class UserDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println("아이디체크::" + result);
 	}
 
-	//@Test
+	@Test
 	void testFindUserById(){
 		User user = userDao.findUserById("sy0");
 		System.out.println("특정회원::" + user);
