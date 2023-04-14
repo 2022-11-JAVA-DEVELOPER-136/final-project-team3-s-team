@@ -38,7 +38,7 @@ public class WishListController {
 			}
 		
 		//상품 페이지로 연결
-		@GetMapping("/store-product")
+		@RequestMapping("/store-product")
 		public String store_product() {
 			return "store-product";
 		}

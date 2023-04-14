@@ -24,9 +24,8 @@ public class CartController {
 	}
 	
 		//카트 목록 보기
-		//@LoginCheck
-		@GetMapping("/cart")
-		public String cart(HttpServletRequest request, HttpSession session, Model model) {
+		//@RequestMapping("/checkout-order")
+		public String checkoutOrder(HttpServletRequest request, HttpSession session, Model model) {
 			
 			User loginUser = (User)session.getAttribute("loginUser");
 			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
@@ -34,13 +33,35 @@ public class CartController {
 			model.addAttribute("cartList", cartList);
 			model.addAttribute("loginUser", loginUser);
 		
-			return "cart";
+			return "checkout-order";
 		}
 		
 		//주소 입력창으로 연결
-		@GetMapping("/checkout-address")
+		@RequestMapping("/checkout-address")
 		public String checkout_address() {
 			return "checkout-address";
 		}
-	
+		
+		/*
+		@GetMapping(value = "/notice-list")
+		public String notice_list(@RequestParam(required = false, defaultValue = "1") int pageNo,
+									Model model, HttpSession session) {
+			
+			try {
+				if(session != null) {
+					User loginUser = (User)session.getAttribute("loginUser");
+					model.addAttribute("loginUser",loginUser);
+				}
+				PageMakerDto<Notice> noticeListPage = noticeService.selectAll(pageNo);
+				List<Notice> noticeList = noticeListPage.getItemList();
+				model.addAttribute("noticeListPage", noticeListPage);
+				model.addAttribute("noticeList", noticeList);
+				model.addAttribute("pageNo", pageNo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
+			return "notice-list";
+		}
+	*/
 }
