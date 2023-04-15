@@ -16,13 +16,17 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public List<Category> findCategoryByNo(int ctNo) {
 		
-		return null;
+		return categoryMapper.findCategoryByNo(ctNo);
 	}
-
 	@Override
 	public List<Category> findCategoryByName(String ctName) {
 		
-		return null;
+		return categoryMapper.findCategoryByName(ctName);
+	}
+	@Override
+	public List<Category> findCategoryByImage(String ctImg) {
+		
+		return categoryMapper.findCategoryByImage(ctImg);
 	}
 	
 	

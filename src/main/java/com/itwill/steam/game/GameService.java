@@ -2,6 +2,10 @@ package com.itwill.steam.game;
 
 import java.util.List;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.language.Language;
+import com.itwill.steam.tag.Tag;
+
 public interface GameService {
 	
 	//상품리스트 전체검색
@@ -30,4 +34,16 @@ public interface GameService {
 	
 	//상품의 판매량 1 증가
 	public int increaseSellCountByNo(int gNo);
+	
+	
+	
+	// 카테고리 테이블 모든 카테고리 검색
+	public List<Category> findAllCategory();
+		
+	// 태그 테이블 모든 태그 검색
+	public List<Tag> findAllTag();
+		
+	// 언어 테이블 모든 언어 검색
+	public List<Language> findAllLanguage();
+		
 }

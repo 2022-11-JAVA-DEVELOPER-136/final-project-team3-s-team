@@ -74,7 +74,7 @@ public class GameController {
 	public String localExceptionHandler(Exception e) {
 		return "steam_error";
 	}
-	
+	 
 	
 	
 	/***************************** template test start *****************************/
