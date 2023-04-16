@@ -550,8 +550,10 @@
               </div>
               <div class="col-lg-4">
                 <div class="filters border border-secondary rounded p-4">
+                <!-- <form> -->
+                <form>
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
-
+					
                     <li class="nav-item text-light transition mb-2 active">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser collapser-active nav-link-border">
                           <span class="p-collapsing-title">카테고리</span>
@@ -561,14 +563,14 @@
                           	<!-- each start -->
                             <li class="nav-item" th:each="category:${categoryList}">
                               <div class="nav-link py-1 px-3">
-                                  <form>
+                                  <!-- <form> 원래 있던 자리 -->
                                     <div class="custom-control custom-checkbox">
                                       <input class="custom-control-input" type="checkbox" value="" id="PC_check" th:id="|${category.ctName}_check|">
                                       <label class="custom-control-label" for="PC_check" th:for="|${category.ctName}_check|" th:text="${category.ctName}">
                                         PC
                                       </label>
                                     </div>
-                                  </form>
+                                  <!-- </form> 원래 있던 자리 -->
                               </div>
                             </li>
                             <!-- each end -->
@@ -580,7 +582,6 @@
                           <span class="p-collapsing-title">태그</span>
                       </a>
                       <div class="collapse nav-collapse">
-                      <form id="tagForm">
                           <ul class="list-unstyled py-2">
                           	<!-- each start -->
                             <li class="nav-item" th:each="tag:${tagList}">
@@ -598,7 +599,6 @@
                             </li>
                             <!-- each end -->
                           </ul>
-                      </form>
                       </div>
                     </li>
                     <li class="nav-item text-light transition mb-2">
@@ -610,116 +610,26 @@
                           	<!-- each start -->
                             <li class="nav-item" th:each="language:${languageList}">
                               <div class="nav-link py-2 px-3">
-                                <form>
+                                <!-- <form> 원래 있던 자리 -->
                                   <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" type="checkbox" value="" id="Animation_modeling_check" th:id="|${language.langName}_check|">
                                     <label class="custom-control-label" for="Animation_modeling_check" th:for="|${language.langName}_check|" th:text="${language.langName}">
                                       Animation & Modeling
                                     </label>
                                   </div>
-                                </form>
+                                <!-- </form> 원래 있던 자리 -->
                               </div>
                             </li>
                             <!-- each end -->
                           </ul>
                       </div>
                     </li>
-                    <!--
-                    <li class="nav-item text-light transition mb-2">
-                      <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser nav-link-border">
-                          <span class="p-collapsing-title">Supported VR</span>
-                      </a>
-                      <div class="collapse nav-collapse">
-                          <ul class="list-unstyled py-2">
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="VR_check">
-                                    <label class="custom-control-label" for="VR_check">
-                                      Euismod VR
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="VR_check_2">
-                                    <label class="custom-control-label" for="VR_check_2">
-                                      Euismod VR
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="VR_check_3">
-                                    <label class="custom-control-label" for="VR_check_3">
-                                      Euismod VR
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                          </ul>
-                      </div>
-                    </li>
-                    <li class="nav-item text-light transition mb-2">
-                      <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser nav-link-border">
-                          <span class="p-collapsing-title">Release Status</span>
-                      </a>
-                      <div class="collapse nav-collapse">
-                          <ul class="list-unstyled py-2">
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Released_check">
-                                    <label class="custom-control-label" for="Released_check">
-                                      Released
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Pre_Purchase_check">
-                                    <label class="custom-control-label" for="Pre_Purchase_check">
-                                      Pre-Purchase
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                            <li class="nav-item">
-                              <div class="nav-link py-2 px-3">
-                                <form>
-                                  <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="" id="Coming_soon_check">
-                                    <label class="custom-control-label" for="Coming_soon_check">
-                                      Coming Soon
-                                    </label>
-                                  </div>
-                                </form>
-                              </div>
-                            </li>
-                          </ul>
-                      </div>
-                    </li>
-                    -->
                     <li class="nav-item text-light transition mt-4">
                       <a href="" class="btn btn-warning d-block">필터링 검색</a>
                     </li>
                   </ul>
+                  </form>
+                  <!-- /.<form> -->
                 </div>
               </div>
             </div>
