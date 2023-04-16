@@ -25,6 +25,10 @@ public interface UserDao {
 	//특정회원정보 번호로 가져오기
 	public User findUserByNo(int uNo);
 	
+	//특정회원정보 번호로 가져오기
+	public User findUserByNo2(int uNo);
+	
+	
 	//모든회원 정보가져오기
 	public List<User> findAllUser();
 }

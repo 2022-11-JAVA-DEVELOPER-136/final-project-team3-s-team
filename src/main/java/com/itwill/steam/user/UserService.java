@@ -18,6 +18,8 @@ public interface UserService {
 	public User findUserById(String userId);
 	// 회원 정보 회원번호로보기 
 	public User findUserByNo(int userNo);
+	// 회원 정보 회원번호로보기 
+	public User findUserByNo2(int userNo);
 	//회원전체불러오기
 	public List<User> userList();
 	// 회원정보 수정

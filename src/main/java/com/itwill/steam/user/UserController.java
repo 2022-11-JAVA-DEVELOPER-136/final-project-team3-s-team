@@ -1,5 +1,8 @@
 package com.itwill.steam.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
 import com.itwill.steam.exception.UserNotFoundException;
+import com.itwill.steam.friend.Friend;
+import com.itwill.steam.game.GameService;
+import com.itwill.steam.review.Review;
 
 
 
@@ -24,6 +30,12 @@ import com.itwill.steam.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private GameService gameService;
+	
+	
+	
 	@RequestMapping("/user_write")
 	public String user_write_form() {
 		String forward_path = "user_write";
@@ -47,20 +59,54 @@ public class UserController {
 		return "user_login";
 	}
 	@PostMapping("/user_login_action")
-	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session) {
+	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session, HttpServletRequest request) {
+		
 		String forwardPath = "";
 		try {
+			System.out.println("id:"+user.getUId()+", pw:"+user.getUPassword());
 			userService.login(user.getUId(), user.getUPassword());
 			session.setAttribute("sUserId", user.getUId());
+			
+			String sUserId =user.getUId();
+			User loginUser=userService.findUserById(sUserId);
+			request.setAttribute("loginUser", loginUser);
+			
+			
+			// 친구 리스트조회
+			User fUser = new User();
+			
+			List<User> fUserList = new ArrayList<User>();
+			int fCnt = loginUser.getFriendList().size();	// 친구수
+			
+			for(Friend friend : loginUser.getFriendList()) {
+				fUser = userService.findUserByNo(friend.getUFNo());	// 친구 번호
+				fUserList.add(fUser);
+			}
+			
+			request.setAttribute("fUserList", fUserList);
+			
+			request.setAttribute("onCnt", fCnt);	// 온라인 친구수
+			request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
+			
+			// 리뷰조회
+			List<Review> reviewList = loginUser.getReviewList();
+			System.out.println("리뷰::"+reviewList);
+			request.setAttribute("reviewList", reviewList);
+			
+			// Comments 조회
+			
+			// game 조회
+			
+			
 			forwardPath="profile";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());
-			forwardPath="profile";
+			forwardPath="main";
 		}catch (PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg2",e.getMessage());
-			forwardPath="profile";
+			forwardPath="main";
 		}
 		return forwardPath;
 	}
@@ -109,7 +155,6 @@ public class UserController {
 	@LoginCheck
 	@RequestMapping("/user_logout_action")
 	public String user_logout_action(HttpServletRequest request) {
-		
 		String forwardPath = "";
 		request.getSession(false).invalidate();
 		forwardPath="redirect:main";

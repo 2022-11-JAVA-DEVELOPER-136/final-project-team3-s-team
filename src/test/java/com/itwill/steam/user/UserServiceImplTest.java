@@ -22,7 +22,7 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println("중복체크 : "+isExist);
 	}
 
-	@Test
+	//@Test
 	void testLogin() throws Exception {
 		int result = userService.login("sy1", "1111");
 		System.out.println("로그인 체크:" +result);
@@ -30,13 +30,13 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 //	@Test
 	void testFindUserById() throws Exception {
-		User user = userService.findUserById("끼야호이");
+		User user = userService.findUserById("sy0");
 		System.out.println("내정보 : "+user);
 	}
 
-	//@Test
+	@Test
 	void testFindUserByNo() throws Exception {
-		User user = userService.findUserByNo(2);
+		User user = userService.findUserByNo2(1);
 		System.out.println("내정보 : "+user);
 	}
 

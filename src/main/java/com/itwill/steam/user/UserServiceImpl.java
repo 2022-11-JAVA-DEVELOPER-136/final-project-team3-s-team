@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public int login(String userId, String password) {
+		System.out.println("서비스 탐??");
 		int result=1;
 		
 		// 1.아이디 존재여부
@@ -64,6 +65,13 @@ public class UserServiceImpl implements UserService {
 	public User findUserByNo(int userNo)  {
 		return userDao.findUserByNo(userNo);
 	}
+	
+	//회원번호로 상세보기
+	@Override
+	public User findUserByNo2(int userNo)  {
+		return userDao.findUserByNo2(userNo);
+	}
+	
 	//전체회원불러오기
 	@Override
 	public List<User> userList()  {
