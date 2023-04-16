@@ -22,17 +22,11 @@ import com.itwill.steam.friend.Friend;
 import com.itwill.steam.game.GameService;
 import com.itwill.steam.review.Review;
 
-
-
-
-
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private GameService gameService;
 	
 	
 	
@@ -59,46 +53,13 @@ public class UserController {
 		return "user_login";
 	}
 	@PostMapping("/user_login_action")
-	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session, HttpServletRequest request) {
+	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session) {
 		
 		String forwardPath = "";
 		try {
-			System.out.println("id:"+user.getUId()+", pw:"+user.getUPassword());
-			userService.login(user.getUId(), user.getUPassword());
-			session.setAttribute("sUserId", user.getUId());
-			
-			String sUserId =user.getUId();
-			User loginUser=userService.findUserById(sUserId);
-			request.setAttribute("loginUser", loginUser);
-			
-			
-			// 친구 리스트조회
-			User fUser = new User();
-			
-			List<User> fUserList = new ArrayList<User>();
-			int fCnt = loginUser.getFriendList().size();	// 친구수
-			
-			for(Friend friend : loginUser.getFriendList()) {
-				fUser = userService.findUserByNo(friend.getUFNo());	// 친구 번호
-				fUserList.add(fUser);
-			}
-			
-			request.setAttribute("fUserList", fUserList);
-			
-			request.setAttribute("onCnt", fCnt);	// 온라인 친구수
-			request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
-			
-			// 리뷰조회
-			List<Review> reviewList = loginUser.getReviewList();
-			System.out.println("리뷰::"+reviewList);
-			request.setAttribute("reviewList", reviewList);
-			
-			// Comments 조회
-			
-			// game 조회
-			
-			
-			forwardPath="profile";
+			User loginUser =userService.login(user.getUId(), user.getUPassword());
+			session.setAttribute("loginUser", loginUser);
+			forwardPath="main";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());
@@ -109,6 +70,36 @@ public class UserController {
 			forwardPath="main";
 		}
 		return forwardPath;
+	}
+	@GetMapping(value = "/profile")
+	public String profile(Model model,HttpSession session, HttpServletRequest request) {
+		// 세션 정보
+		User loginUser = (User) session.getAttribute("loginUser");
+		
+		
+		// 친구 리스트조회
+		User fUser = new User();
+		
+		List<User> fUserList = new ArrayList<User>();
+		int fCnt = loginUser.getFriendList().size();	// 친구수
+		
+		for(Friend friend : loginUser.getFriendList()) {
+			fUser = userService.findUserByNo(friend.getUFNo());	// 친구 번호
+			fUserList.add(fUser);
+		}
+		request.setAttribute("fUserList", fUserList);
+		request.setAttribute("onCnt", fCnt);	// 온라인 친구수
+		request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
+		
+		// 리뷰조회
+		List<Review> reviewList = loginUser.getReviewList();
+		System.out.println("리뷰::"+reviewList);
+		request.setAttribute("reviewList", reviewList);
+		
+		// Comments 조회
+		
+		// game 조회
+		return "profile";
 	}
 	@LoginCheck
 	@GetMapping("/user_view")

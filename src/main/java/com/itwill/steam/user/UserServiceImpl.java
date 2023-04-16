@@ -36,9 +36,9 @@ public class UserServiceImpl implements UserService {
 	 * 회원로그인
 	 */
 	@Override
-	public int login(String userId, String password) {
+	public User login(String userId, String password) {
 		System.out.println("서비스 탐??");
-		int result=1;
+		
 		
 		// 1.아이디 존재여부
 		User user = userDao.findUserById(userId);
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 			throw new PasswordMissmatchException("패스워드가 일치하지않습니다.");
 		}
 		
-		return result;
+		return user;
 	}
 	//회원아이디로 상세보기
 	@Override

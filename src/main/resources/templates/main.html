@@ -35,7 +35,12 @@
   <body class="page-body">
 
     <!-- navbar -->
-    <div id="common-navbar" th:include="common-navbar::common-navbar"></div>
+    <th:block th:if="${session.loginUser==null}">
+	    <div id="common-navbar" th:include="common-navbar::common-navbar"></div>
+     </th:block>
+     <th:block th:unless="${session.loginUser==null}">
+	    <div id="common-navbar-login" th:include="common-navbar-login::common-navbar-login"></div>
+     </th:block>
     <!-- /.navbar -->
 
     <!-- header -->

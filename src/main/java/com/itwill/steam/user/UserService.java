@@ -13,7 +13,7 @@ public interface UserService {
 	/*
 	 * 0: 아이디 존재 안함 1: 패스워드 불일치 2: 로그인 성공
 	 */
-	public int login(String userId, String password);
+	public User login(String userId, String password);
 	// 회원 정보 아이디로보기 
 	public User findUserById(String userId);
 	// 회원 정보 회원번호로보기 

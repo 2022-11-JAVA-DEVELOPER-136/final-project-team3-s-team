@@ -22,11 +22,10 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println("중복체크 : "+isExist);
 	}
 
-	//@Test
-	void testLogin() throws Exception {
-		int result = userService.login("sy1", "1111");
-		System.out.println("로그인 체크:" +result);
-	}
+	/*
+	 * //@Test void testLogin() throws Exception { int result =
+	 * userService.login("sy1", "1111"); System.out.println("로그인 체크:" +result); }
+	 */
 
 //	@Test
 	void testFindUserById() throws Exception {
