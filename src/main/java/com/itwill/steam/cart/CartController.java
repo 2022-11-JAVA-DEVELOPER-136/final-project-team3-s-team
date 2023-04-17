@@ -50,7 +50,7 @@ public class CartController {
 	}
 
 	@RequestMapping(value = "/checkout-order", method = RequestMethod.POST)
-	public String checkoutOrderConfirm(HttpSession session, Model model, @RequestParam("orderNo") Order orderNo) {
+	public String checkoutAddress(HttpSession session, Model model, @RequestParam("orderNo") Order orderNo) {
 	    try {
 	        User loginUser = (User) session.getAttribute("loginUser");
 	        if (loginUser == null) {
@@ -59,12 +59,31 @@ public class CartController {
 	        }
 	        int order = orderService.insertOrder(orderNo);
 	        model.addAttribute("order", order);
-	        return "checkout-order-confirm";
+	        return "checkout-address";
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "error";
 	    }
 	}
+	
+	/*
+	@RequestMapping(value = "/checkout-order", method = RequestMethod.GET)
+	public String checkoutOrder(HttpSession session, Model model) {
+	    User loginUser = (User) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+	        model.addAttribute("cartList", cartList);
+	    }
+	    return "checkout-order";
+	}
+	
+	@RequestMapping(value = "/checkout-order-address", method = RequestMethod.POST)
+	public String checkoutAddress(Model model, @RequestParam("orderNo") Order orderNo) {
+	    int order = orderService.insertOrder(orderNo);
+	    model.addAttribute("order", order);
+	    return "checkout-address";
+	}
+	 */
 
 		
 		//조까치 아무 것도 안될 때 대비용 비상구
@@ -73,26 +92,5 @@ public class CartController {
 //			return "checkout-order";
 //		}
 		
-		/*
-		@GetMapping(value = "/notice-list")
-		public String notice_list(@RequestParam(required = false, defaultValue = "1") int pageNo,
-									Model model, HttpSession session) {
-			
-			try {
-				if(session != null) {
-					User loginUser = (User)session.getAttribute("loginUser");
-					model.addAttribute("loginUser",loginUser);
-				}
-				PageMakerDto<Notice> noticeListPage = noticeService.selectAll(pageNo);
-				List<Notice> noticeList = noticeListPage.getItemList();
-				model.addAttribute("noticeListPage", noticeListPage);
-				model.addAttribute("noticeList", noticeList);
-				model.addAttribute("pageNo", pageNo);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "error";
-			}
-			return "notice-list";
-		}
-	*/
+		
 }
