@@ -84,3 +84,14 @@ select *
 		join game_tag gt on g.g_no=gt.g_no 
 		join tag t on t.tag_no=gt.tag_no 
         where t.tag_name='인디' or t.tag_name='액션';
+        
+select * from game g 
+join category ct on g.ct_no=ct.ct_no 
+join resources res on g.g_no=res.g_no 
+join game_tag gt on g.g_no=gt.g_no 
+join tag t on gt.tag_no=t.tag_no 
+join game_language gl on g.g_no=gl.g_no 
+join language l on gl.lang_no=l.lang_no 
+join news n on g.g_no=n.g_no 
+join review rev on g.g_no=rev.g_no
+where ct.ct_no in (1, 2) and t.tag_no in (1, 2) and l.lang_no in (1, 2);

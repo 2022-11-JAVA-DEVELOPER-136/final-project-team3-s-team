@@ -23,6 +23,4 @@ U_FNO          NUMBER(10)
 	private int uNo;
 	private int uFNo;
 	
-	
-	
 }

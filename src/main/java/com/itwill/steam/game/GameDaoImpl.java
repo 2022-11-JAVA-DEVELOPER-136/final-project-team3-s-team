@@ -101,4 +101,10 @@ public class GameDaoImpl implements GameDao {
 	public List<Game> findNewGamesByName(String gName) {
 		return gameMapper.findNewGamesByName(gName);
 	}
+
+	//search 통합 중
+	@Override
+	public List<Game> findGames(SearchDto searchDto) {
+		return gameMapper.findGames(searchDto);
+	}
 }

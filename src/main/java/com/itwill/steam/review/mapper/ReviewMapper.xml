@@ -7,8 +7,8 @@
 		<selectKey resultType="java.lang.Integer" keyProperty="reviewNo" order="BEFORE">
 			select review_review_no_seq.nextval from dual
 		</selectKey>
-			insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, u_no, g_no) 
-			values(#{reviewNo}, sysdate, sysdate, #{reviewComment}, #{reviewRecommend}, #{uNo}, #{gNo})
+			insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) 
+			values(#{reviewNo}, sysdate, sysdate, #{reviewComment}, #{reviewRecommend}, #{reviewLike}, #{reviewDisLike}, #{user.uNo}, #{game.gNo})
 	</insert>
 		
 	<!-- 게임 리뷰 삭제 -->
@@ -22,13 +22,24 @@
 	</update>
 	
 	<!-- 회원번호로 리뷰 전체보기 -->
-	<select id="selectByUserNo" parameterType="java.lang.Integer" resultType="com.itwill.steam.review.Review">
+	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review">
 		select * from review where u_no=#{uNo}
 	</select>
 	
 	<!-- 게임번호로 리뷰 전체보기 -->
-	<select id="selectByGameNo" parameterType="java.lang.Integer" resultType="com.itwill.steam.review.Review">
+	<select id="selectByGameNo" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
 		select * from review where g_no=#{gNo}
 	</select>
+	
+	<!-- 리뷰 최신등록순 정렬보기 -->
+	<select id="selectByDateDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
+		select * from review where g_no=#{gNo} order by review_created_at desc, review_updated_at desc
+	</select>
+		
+	<!-- 추천수 많은 리뷰 정렬보기 -->
+	<select id="selectByLikeDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
+		select * from review where g_no=#{gNo} order by review_like desc, review_like asc
+	</select>
+	
 	
 </mapper>

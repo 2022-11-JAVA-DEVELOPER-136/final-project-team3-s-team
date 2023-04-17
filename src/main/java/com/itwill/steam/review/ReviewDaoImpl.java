@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.steam.game.Game;
 import com.itwill.steam.review.mapper.ReviewMapper;
+import com.itwill.steam.user.User;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao {
@@ -32,13 +34,23 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> selectByUserNo(int uNo) {
-		return reviewMapper.selectByUserNo(uNo);
+	public List<Review> selectByUserNo(User user) {
+		return reviewMapper.selectByUserNo(user);
 	}
 
 	@Override
-	public List<Review> selectByGameNo(int gNo) {
-		return reviewMapper.selectByGameNo(gNo);
+	public List<Review> selectByGameNo(Game game) {
+		return reviewMapper.selectByGameNo(game);
+	}
+
+	@Override
+	public List<Review> selectByDateDesc(Game game) {
+		return reviewMapper.selectByDateDesc(game);
+	}
+
+	@Override
+	public List<Review> selectByLikeDesc(Game game) {
+		return reviewMapper.selectByLikeDesc(game);
 	}
 
 	

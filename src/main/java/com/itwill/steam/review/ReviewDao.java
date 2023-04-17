@@ -2,6 +2,9 @@ package com.itwill.steam.review;
 
 import java.util.List;
 
+import com.itwill.steam.game.Game;
+import com.itwill.steam.user.User;
+
 public interface ReviewDao {
 	
 	//게임 리뷰 작성
@@ -14,8 +17,14 @@ public interface ReviewDao {
 	public int updateGameReview(Review review);
 	
 	//회원번호로 리뷰 전체보기
-	public List<Review> selectByUserNo(int uNo);
+	public List<Review> selectByUserNo(User user);
 		
 	//게임번호로 리뷰 전체보기
-	public List<Review> selectByGameNo(int gNo);
+	public List<Review> selectByGameNo(Game game);
+	
+	//리뷰 최신등록순 정렬보기
+	public List<Review> selectByDateDesc(Game game);
+
+	//리뷰 추천수 내림차순 정렬보기
+	public List<Review> selectByLikeDesc(Game game);
 }

@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	//회원가입
 	@Override
-	public int create(User user) throws Exception,ExistedUserException {
+	public int create(User user) {
 		//1.아이디 중복체크
 		if(userDao.existedUser(user.getUId())) {
 			throw new ExistedUserException(user.getUId()+"는 이미 존재하는 아이디입니다");
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	}
 	//아이디중복체크
 	@Override
-	public boolean idDuplicateCheck(String userId) throws Exception {
+	public boolean idDuplicateCheck(String userId)  {
 		boolean isExist = userDao.existedUser(userId);
 		if(isExist) {
 			return true;
@@ -36,8 +36,9 @@ public class UserServiceImpl implements UserService {
 	 * 회원로그인
 	 */
 	@Override
-	public int login(String userId, String password) throws Exception {
-		int result=1;
+	public User login(String userId, String password) {
+		System.out.println("서비스 탐??");
+		
 		
 		// 1.아이디 존재여부
 		User user = userDao.findUserById(userId);
@@ -52,31 +53,38 @@ public class UserServiceImpl implements UserService {
 			throw new PasswordMissmatchException("패스워드가 일치하지않습니다.");
 		}
 		
-		return result;
+		return user;
 	}
 	//회원아이디로 상세보기
 	@Override
-	public User findUserById(String userId) throws Exception {
+	public User findUserById(String userId)  {
 		return userDao.findUserById(userId);
 	}
 	//회원번호로 상세보기
 	@Override
-	public User findUserByNo(int userNo) throws Exception {
+	public User findUserByNo(int userNo)  {
 		return userDao.findUserByNo(userNo);
 	}
+	
+	//회원번호로 상세보기
+	@Override
+	public User findUserByNo2(int userNo)  {
+		return userDao.findUserByNo2(userNo);
+	}
+	
 	//전체회원불러오기
 	@Override
-	public List<User> userList() throws Exception {
+	public List<User> userList()  {
 		return userDao.findAllUser();
 	}
 	//회원수정
 	@Override
-	public int update(User user) throws Exception {
+	public int update(User user) {
 		return userDao.updateUser(user);
 	}
 	//회원삭제
 	@Override
-	public int remove(int userNo) throws Exception {
+	public int remove(int userNo)  {
 		return userDao.removeUser(userNo);
 	}
 

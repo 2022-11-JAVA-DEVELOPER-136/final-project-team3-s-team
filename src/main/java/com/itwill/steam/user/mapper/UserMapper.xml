@@ -1,118 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.user.mapper.UserMapper">
-<resultMap type="com.itwill.steam.user.User" id="userWithReviewFriendCartWishProfileComment">
+<resultMap type="com.itwill.steam.user.User" 
+			id="userWithReviewFriendCartWishProfileComment"
+			autoMapping="true">
 <id column="u_no" property="uNo"/>
-		<collection property="reviewList" ofType="com.itwill.steam.user.User" autoMapping="true">
-		</collection>
-		<collection property="friendList" ofType="com.itwill.steam.friend.Friend" autoMapping="true">
-		</collection>
-		<collection property="cartList" ofType="com.itwill.steam.cart.Cart" autoMapping="true">
-		</collection>
-		<collection property="WishListList" ofType="com.itwill.steam.wishList.WishList" autoMapping="true">
-		</collection>
-		<collection property="ProfileCommentList" ofType="com.itwill.steam.profileComment.ProfileComment" autoMapping="true">
-		</collection>
+
+      <collection property="reviewList" ofType="com.itwill.steam.review.Review" autoMapping="true">
+		<id column="u_no" property="user.uNo"/>
+		<result column="review_comment" property="reviewComment"/>
+	  </collection>
+      <collection property="friendList" ofType="com.itwill.steam.friend.Friend" autoMapping="true">
+      	<result column="u_no" property="uNo"/>
+      	<result column="f_no" property="fNo"/>
+      	<result column="u_fno" property="uFNo"/>
+      </collection>
+      <collection property="cartList" ofType="com.itwill.steam.cart.Cart" autoMapping="true">
+      	<!-- <result column="c_u_no" property="User"/> -->
+      </collection>
+      <collection property="WishListList" ofType="com.itwill.steam.wishList.WishList" autoMapping="true">
+      	<!-- <result column="w_u_no" property="uNo"/> -->
+      </collection>
+      <collection property="ProfileCommentList" ofType="com.itwill.steam.profileComment.ProfileComment" autoMapping="true">
+      	<!-- <result column="p_u_no" property="uNo"/> -->
+      </collection>
 </resultMap>
-	<!-- 회원 Insert -->
-	<insert id="createUser" parameterType="com.itwill.steam.user.User">
-		<selectKey order="BEFORE" resultType="int" keyProperty="uNo">
-			select userinfo_u_no_seq.nextval from dual
-		</selectKey>
-			insert into userInfo(
-				u_no,
-				u_id,
-				u_password,
-				u_name,
-				u_email,
-				u_phone,
-				u_nickname,
-				u_street,
-				u_city,
-				u_statefull,
-				u_zip,
-				u_state,
-				u_img_profile,
-				u_img_background,
-				u_about
-			)values(
-				#{uNo},
-				#{uId},
-				#{uPassword},
-				#{uName},
-				#{uEmail},
-				#{uPhone},
-				#{uNickname},
-				#{UStreet},
-				#{UCity},
-				#{UStatefull},
-				#{UZip},
-				#{UState},
-				#{UImgProfile},
-				#{UImgBackground},
-				#{UAbout}
-				
-			)
-	</insert>
+
+<resultMap type="com.itwill.steam.user.User" 
+			id="userWithFriend"
+			autoMapping="true">
+	<id column="u_no" property="uNo"/>
+      <collection property="friendList" ofType="com.itwill.steam.friend.Friend" autoMapping="true">
+      	<result column="u_no" property="uNo"/>
+      	<result column="f_no" property="fNo"/>
+      	<result column="u_fno" property="uFNo"/>
+      </collection>
+</resultMap>
 	
-	<!-- 회원 update -->
-	<update id="updateUser" parameterType="com.itwill.steam.user.User">
-		update userInfo set
-			u_password= #{uPassword},
-			u_name=#{uName},
-			u_email=#{uEmail},
-			u_phone=#{uPhone},
-			u_nickname=#{uNickname},
-			u_street =#{UStreet},
-			u_city =#{UCity},
-			u_statefull = #{UStatefull},
-			u_zip = #{UZip},
-			u_state = #{UState},
-			u_img_profile = #{UImgProfile},
-			u_img_background = #{UImgBackground},
-			u_about = #{UAbout}
-		where u_no =#{uNo}
-	</update>
-	
-	<!-- 회원삭제 -->
-	<delete id="removeUser" parameterType="int" >
-		delete from userInfo where u_no = #{uNo}
-	</delete>
-	
-	<!-- 회원아이디 중복확인 -->
-	<select id="existedUser" parameterType="String" resultType="int">
-		select count(*) cnt from userInfo where u_id = #{uId}
-	</select>
-	
-	<!-- 아이디와 비밀번호 일치여부 -->
-	<select id="idPwMatch" parameterType="java.util.Map" resultType="int">
-		select count(*) cnt from userInfo where u_id = #{uId} and u_password = #{uPassword}
-	</select>
-	
-	<!-- 특정회원정보 아이디로 가져오기 -->
-	<select id="findUserById" parameterType="String" resultMap='userWithReviewFriendCartWishProfileComment'>
-		select * 
-			from userinfo u
-			left outer join review r
-			on u.u_no = r.u_no
-			left outer join friend f
-			on u.u_no = f.u_no
+
+   <!-- 회원 Insert -->
+   <insert id="createUser" parameterType="com.itwill.steam.user.User">
+      <selectKey order="BEFORE" resultType="int" keyProperty="uNo">
+         select userinfo_u_no_seq.nextval from dual
+      </selectKey>
+         insert into userInfo(
+            u_no,
+            u_id,
+            u_password,
+            u_name,
+            u_email,
+            u_phone,
+            u_nickname,
+            u_street,
+            u_city,
+            u_statefull,
+            u_zip,
+            u_state,
+            u_img_profile,
+            u_img_background,
+            u_about
+         )values(
+            #{uNo},
+            #{uId},
+            #{uPassword},
+            #{uName},
+            #{uEmail},
+            #{uPhone},
+            #{uNickname},
+            #{UStreet},
+            #{UCity},
+            #{UStatefull},
+            #{UZip},
+            #{UState},
+            #{UImgProfile},
+            #{UImgBackground},
+            #{UAbout}
+            
+         )
+   </insert>
+   
+   <!-- 회원 update -->
+   <update id="updateUser" parameterType="com.itwill.steam.user.User">
+      update userInfo set
+         u_password= #{uPassword},
+         u_name=#{uName},
+         u_email=#{uEmail},
+         u_phone=#{uPhone},
+         u_nickname=#{uNickname},
+         u_street =#{UStreet},
+         u_city =#{UCity},
+         u_statefull = #{UStatefull},
+         u_zip = #{UZip},
+         u_state = #{UState},
+         u_img_profile = #{UImgProfile},
+         u_img_background = #{UImgBackground},
+         u_about = #{UAbout}
+      where u_no =#{uNo}
+   </update>
+   
+   <!-- 회원삭제 -->
+   <delete id="removeUser" parameterType="int" >
+      delete from userInfo where u_no = #{uNo}
+   </delete>
+   
+   <!-- 회원아이디 중복확인 -->
+   <select id="existedUser" parameterType="String" resultType="int">
+      select count(*) cnt from userInfo where u_id = #{uId}
+   </select>
+   
+   <!-- 아이디와 비밀번호 일치여부 -->
+   <select id="idPwMatch" parameterType="java.util.Map" resultType="int">
+      select count(*) cnt from userInfo where u_id = #{uId} and u_password = #{uPassword}
+   </select>
+
+ <!-- 특정회원정보 아이디로 가져오기 -->
+   <select id="findUserById" parameterType="String" resultMap='userWithReviewFriendCartWishProfileComment'>
+
+      select 
+      		u.*
+			, r.g_no as r_g_no, r.review_comment, r.review_created_at, r.review_dislike, r.review_like, r.review_no, r.review_recommend, r.review_updated_at, r.u_no as r_u_no
+			, f.f_no, f.u_fno, f.u_no as f_u_no
+			, c.c_no, c.g_no, c.u_no as c_u_no
+			, w.g_no as w_g_no, w.u_no as w_u_no, w.wish_date, w.wish_no
+			, p.pc_comment, p.pc_created_at, p.pc_no, p.u_fno, p.u_no as p_u_no
+         from userInfo u
+         left outer join review r
+         on u.u_no = r.u_no
+         left outer join friend f
+         on u.u_no = f.u_no
             left outer join cart c
             on u.u_no = c.u_no
             left outer join wishList w
             on u.u_no= w.u_no
             left outer join profile_comment p
             on u.u_no = p.u_no
-            where u.u_no =#{uId}
-	</select>
-	<!-- 특정회원정보 번호로 가져오기 -->
-	<select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriendCartWishProfileComment'>
-		select * 
-			from userinfo u
-			left outer join review r
-			on u.u_no = r.u_no
-			left outer join friend f
-			on u.u_no = f.u_no
+            where u.u_id =#{uId}
+   </select>
+   <!-- 특정회원정보 번호로 가져오기 -->
+   <select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriendCartWishProfileComment'>
+      select 
+      		u.*
+			, r.g_no as r_g_no, r.review_comment, r.review_created_at, r.review_dislike, r.review_like, r.review_no, r.review_recommend, r.review_updated_at, r.u_no as r_u_no
+			, f.f_no, f.u_fno, f.u_no as f_u_no
+			, c.c_no, c.g_no, c.u_no as c_u_no
+			, w.g_no as w_g_no, w.u_no as w_u_no, w.wish_date, w.wish_no
+			, p.pc_comment, p.pc_created_at, p.pc_no, p.u_fno, p.u_no as p_u_no 
+         from userinfo u
+         left outer join review r
+         on u.u_no = r.u_no
+         left outer join friend f
+         on u.u_no = f.u_no
             left outer join cart c
             on u.u_no = c.u_no
             left outer join wishList w
@@ -120,22 +157,39 @@
             left outer join profile_comment p
             on u.u_no = p.u_no
             where u.u_no =#{uNo}
-	</select>
-	
-	<!-- 모든회원 정보가져오기 -->
-	<select id="findAllUser" resultMap='userWithReviewFriendCartWishProfileComment'>
-		select * 
-			from userinfo u
-			left outer join review r
-			on u.u_no = r.u_no
-			left outer join friend f
-			on u.u_no = f.u_no
+   </select>
+   
+      <!-- // TODO 특정회원정보 번호로 가져오기 -->
+   <select id="findUserByNo2" parameterType="int" resultMap='userWithFriend'>
+      select 
+      		u.*
+			, f.f_no, f.u_fno, f.u_no as f_u_no
+         from userinfo u
+	         left outer join friend f
+	         on u.u_no = f.u_no
+         where u.u_no =#{uNo}
+   </select>
+   
+   <!-- 모든회원 정보가져오기 -->
+   <select id="findAllUser" resultMap='userWithReviewFriendCartWishProfileComment'>
+      select 
+      		u.*
+			, r.g_no as r_g_no, r.review_comment, r.review_created_at, r.review_dislike, r.review_like, r.review_no, r.review_recommend, r.review_updated_at, r.u_no as r_u_no
+			, f.f_no, f.u_fno, f.u_no as f_u_no
+			, c.c_no, c.g_no, c.u_no as c_u_no
+			, w.g_no as w_g_no, w.u_no as w_u_no, w.wish_date, w.wish_no
+			, p.pc_comment, p.pc_created_at, p.pc_no, p.u_fno, p.u_no as p_u_no 
+         from userinfo u
+         left outer join review r
+         on u.u_no = r.u_no
+         left outer join friend f
+         on u.u_no = f.u_no
             left outer join cart c
             on u.u_no = c.u_no
             left outer join wishlist w
             on u.u_no= w.u_no
             left outer join profile_comment p
             on u.u_no = p.u_no
-	</select>
-	
+   </select>
+   
 </mapper>
