@@ -29,11 +29,19 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- Custom CSS -->
+    
   </head>
   <body class="page-body">
   
     <!-- navbar -->
-    <div id="common-navbar" th:include="common-navbar::common-navbar"></div>
+    <th:block th:if="${session.loginUser==null}">
+    	<div id="common-navbar" th:include="common-navbar::common-navbar"></div>
+    </th:block>
+    <th:block th:unless="${session.loginUser==null}">
+    	<div id="common-navbar-login" th:include="common-navbar-login::common-navbar-login"></div>
+    </th:block>
     <!-- /.navbar -->
 
     <!-- header -->
@@ -288,9 +296,13 @@
     <div id="common-footer" th:include="common-footer::common-footer"></div>
     <!-- /.footer -->
 
-    <!-- sign Up -->
+    <!-- sign-in -->
+    <div id="common-sign-in" th:include="common-sign-in::common-sign-in"></div>
+    <!-- /.sign-in -->
+    
+    <!-- sign-up -->
     <div id="common-sign-up" th:include="common-sign-up::common-sign-up"></div>
-    <!-- /.sign Up -->
+    <!-- /.sign-up -->
 
     <!-- offcanvas-cart -->
     <div id="common-offcanvas-cart" th:include="common-offcanvas-cart::common-offcanvas-cart"></div>
@@ -310,5 +322,8 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js" id="_mainJS"></script>
+    
+    <!-- Custom JS -->
+    
   </body>
 </html>
