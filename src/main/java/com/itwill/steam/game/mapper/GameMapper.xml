@@ -176,8 +176,11 @@
 		<if test="keyword != null">
 			and g.g_name like '%'||#{keyword}||'%'
 		</if>
-		<if test="category != null">
-			and ct.ct_no=#{category.ctNo}
+		<if test="categoryList != null">
+			<foreach item="item" collection="categoryList"
+				open="and ct.ct_no in (" separator="," close=")">
+				#{item.ctNo}
+			</foreach>
 		</if>
 		<if test="tagList != null">
 			<foreach item="item" collection="tagList"

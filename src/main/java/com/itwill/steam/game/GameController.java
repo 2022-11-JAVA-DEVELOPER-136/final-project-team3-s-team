@@ -22,20 +22,17 @@ import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.tag.Tag;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class GameController {
 
-	@Autowired
-	private GameService gameService;
-	@Autowired
-	private ReviewService reviewService;
-	
-	public GameController() {
-		
-	}
+	private final GameService gameService;
+	private final ReviewService reviewService;
 	
 	//상품리스트 (검색어 x, 필터 x)
-	@RequestMapping(value = "/store", params = {"!keyword", "!categoryNo", "!tagNo", "!languageNo"})
+	@RequestMapping(value = "/store", params = {"!keyword", "!ctNo", "!tagNo", "!langNo"})
 	public String store(Model model) {
 		
 		SearchDto searchDto = new SearchDto();
@@ -61,7 +58,7 @@ public class GameController {
 	}
 	
 	//상품리스트 (검색어 o, 필터 x)
-	@RequestMapping(value = "/store", params = {"keyword", "!categoryNo", "!tagNo", "!languageNo"})
+	@RequestMapping(value = "/store", params = {"keyword", "!ctNo", "!tagNo", "!langNo"})
 	public String store(@RequestParam String keyword, Model model) {
 		
 		SearchDto searchDto = new SearchDto();
@@ -88,24 +85,95 @@ public class GameController {
 		return "store";
 	}
 	
-	//상품리스트 (검색어 o, 필터 o)
-	@RequestMapping(value = "/store")
-	public String store(@RequestParam String keyword,
-						@RequestParam String categoryNo,
+	//상품리스트 (검색어 x, 필터 o)
+	@RequestMapping(value = "/store", params = {"!keyword", "ctNo", "tagNo", "langNo"})
+	public String store(@RequestParam String ctNo,
 						@RequestParam String tagNo,
-						@RequestParam String languageNo,
+						@RequestParam String langNo,
+						Model model) {
+		
+		SearchDto searchDto = new SearchDto();
+		
+		if(!ctNo.equals("")) {
+			List<Category> categoryList = new ArrayList<Category>();
+			String[] ctNos = ctNo.split(",");
+			for(String ctNoStr:ctNos) {
+				categoryList.add(Category.builder().ctNo(Integer.parseInt(ctNoStr)).build());
+			}
+			searchDto.setCategoryList(categoryList);
+		}
+		if(!tagNo.equals("")) {
+			List<Tag> tagList = new ArrayList<Tag>();
+			String[] tagNos = tagNo.split(",");
+			for(String tagNoStr:tagNos) {
+				tagList.add(Tag.builder().tagNo(Integer.parseInt(tagNoStr)).build());
+			}
+			searchDto.setTagList(tagList);
+		}
+		if(!langNo.equals("")) {
+			List<Language> languageList = new ArrayList<Language>();
+			String[] langNos = langNo.split(",");
+			for(String langNoStr:langNos) {
+				languageList.add(Language.builder().langNo(Integer.parseInt(langNoStr)).build());
+			}
+			searchDto.setLanguageList(languageList);
+		}
+		
+		searchDto.setOrderBy(GameCode.POPULAR);
+		List<Game> popularGameList = gameService.findGames(searchDto);
+		model.addAttribute("popularGameList", popularGameList);
+		
+		searchDto.setOrderBy(GameCode.NEW);
+		List<Game> newGameList = gameService.findGames(searchDto);
+		model.addAttribute("newGameList", newGameList);
+		
+		List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
+		List<Tag> tagList = gameService.findAllTag();
+		model.addAttribute("tagList", tagList);
+		
+		List<Language> languageList = gameService.findAllLanguage();
+		model.addAttribute("languageList", languageList);
+		
+		return "store";
+	}
+	
+	//상품리스트 (검색어 o, 필터 o)
+	@RequestMapping(value = "/store", params = {"keyword", "ctNo", "tagNo", "langNo"})
+	public String store(@RequestParam String keyword,
+						@RequestParam String ctNo,
+						@RequestParam String tagNo,
+						@RequestParam String langNo,
 						Model model) {
 		
 		SearchDto searchDto = new SearchDto();
 		
 		if(!keyword.equals("")) searchDto.setKeyword(keyword);
-		
-		if(!categoryNo.equals("")) searchDto.setCategory(Category.builder().ctNo(Integer.parseInt(categoryNo)).build());
-		//tag, language는 여러개 받아야한다. 임시로 하나만 받게 했음. 수정해야 함.
-		if(!tagNo.equals("")) searchDto.setTagList(new ArrayList<Tag>(Arrays.asList(Tag.builder().tagNo(Integer.parseInt(tagNo)).build())));
-		if(!languageNo.equals("")) searchDto.setLanguageList(new ArrayList<Language>(Arrays.asList(Language.builder().langNo(Integer.parseInt(languageNo)).build())));
-		
-		
+		if(!ctNo.equals("")) {
+			List<Category> categoryList = new ArrayList<Category>();
+			String[] ctNos = ctNo.split(",");
+			for(String ctNoStr:ctNos) {
+				categoryList.add(Category.builder().ctNo(Integer.parseInt(ctNoStr)).build());
+			}
+			searchDto.setCategoryList(categoryList);
+		}
+		if(!tagNo.equals("")) {
+			List<Tag> tagList = new ArrayList<Tag>();
+			String[] tagNos = tagNo.split(",");
+			for(String tagNoStr:tagNos) {
+				tagList.add(Tag.builder().tagNo(Integer.parseInt(tagNoStr)).build());
+			}
+			searchDto.setTagList(tagList);
+		}
+		if(!langNo.equals("")) {
+			List<Language> languageList = new ArrayList<Language>();
+			String[] langNos = langNo.split(",");
+			for(String langNoStr:langNos) {
+				languageList.add(Language.builder().langNo(Integer.parseInt(langNoStr)).build());
+			}
+			searchDto.setLanguageList(languageList);
+		}
 		
 		searchDto.setOrderBy(GameCode.POPULAR);
 		List<Game> popularGameList = gameService.findGames(searchDto);
