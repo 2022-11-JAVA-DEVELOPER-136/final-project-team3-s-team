@@ -9,4 +9,15 @@ public class WishListController {
 	@Autowired
 	private WishListService wishListService;
 	
+	public WishListController() {
+		
+	}
+	
+	//
+	
+	
+	
+	
+	
+	
 }
