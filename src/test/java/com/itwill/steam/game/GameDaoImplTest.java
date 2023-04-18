@@ -87,7 +87,7 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		Game game = gameDao.findGameByNo(1);
 		assertNotNull(game);
 		System.out.println(">>>>> "+game);
-		System.out.println(">>>>> "+game.getCategory());
+		System.out.println(">>>>> "+game.getCategoryList());
 		System.out.println(">>>>> "+game.getResourcesList().size()+game.getResourcesList());
 		System.out.println(">>>>> "+game.getGameTagList().size()+game.getGameTagList());
 		System.out.println(">>>>> "+game.getGameLanguageList().size()+game.getGameLanguageList());
