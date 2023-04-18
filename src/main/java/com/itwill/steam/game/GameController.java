@@ -22,90 +22,50 @@ import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.tag.Tag;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class GameController {
 
-	@Autowired
-	private GameService gameService;
-	@Autowired
-	private ReviewService reviewService;
+	private final GameService gameService;
+	private final ReviewService reviewService;
 	
-	public GameController() {
-		
-	}
-	
-	//상품리스트 (검색어 x, 필터 x)
-	@RequestMapping(value = "/store", params = {"!keyword", "!categoryNo", "!tagNo", "!languageNo"})
-	public String store(Model model) {
-		
-		SearchDto searchDto = new SearchDto();
-		
-		searchDto.setOrderBy(GameCode.POPULAR);
-		List<Game> popularGameList = gameService.findGames(searchDto);
-		model.addAttribute("popularGameList", popularGameList);
-		
-		searchDto.setOrderBy(GameCode.NEW);
-		List<Game> newGameList = gameService.findGames(searchDto);
-		model.addAttribute("newGameList", newGameList);
-		
-		List<Category> categoryList = gameService.findAllCategory();
-		model.addAttribute("categoryList", categoryList);
-		
-		List<Tag> tagList = gameService.findAllTag();
-		model.addAttribute("tagList", tagList);
-		
-		List<Language> languageList = gameService.findAllLanguage();
-		model.addAttribute("languageList", languageList);
-		
-		return "store";
-	}
-	
-	//상품리스트 (검색어 o, 필터 x)
-	@RequestMapping(value = "/store", params = {"keyword", "!categoryNo", "!tagNo", "!languageNo"})
-	public String store(@RequestParam String keyword, Model model) {
-		
-		SearchDto searchDto = new SearchDto();
-		
-		if(!keyword.equals("")) searchDto.setKeyword(keyword);
-		
-		searchDto.setOrderBy(GameCode.POPULAR);
-		List<Game> popularGameList = gameService.findGames(searchDto);
-		model.addAttribute("popularGameList", popularGameList);
-		
-		searchDto.setOrderBy(GameCode.NEW);
-		List<Game> newGameList = gameService.findGames(searchDto);
-		model.addAttribute("newGameList", newGameList);
-		
-		List<Category> categoryList = gameService.findAllCategory();
-		model.addAttribute("categoryList", categoryList);
-		
-		List<Tag> tagList = gameService.findAllTag();
-		model.addAttribute("tagList", tagList);
-		
-		List<Language> languageList = gameService.findAllLanguage();
-		model.addAttribute("languageList", languageList);
-		
-		return "store";
-	}
-	
-	//상품리스트 (검색어 o, 필터 o)
+	//상품리스트 (제목검색, 필터링 가능)
 	@RequestMapping(value = "/store")
-	public String store(@RequestParam String keyword,
-						@RequestParam String categoryNo,
-						@RequestParam String tagNo,
-						@RequestParam String languageNo,
+	public String store(@RequestParam(required = false) String keyword,
+						@RequestParam(required = false) String ctNo,
+						@RequestParam(required = false) String tagNo,
+						@RequestParam(required = false) String langNo,
 						Model model) {
 		
 		SearchDto searchDto = new SearchDto();
 		
-		if(!keyword.equals("")) searchDto.setKeyword(keyword);
-		
-		if(!categoryNo.equals("")) searchDto.setCategory(Category.builder().ctNo(Integer.parseInt(categoryNo)).build());
-		//tag, language는 여러개 받아야한다. 임시로 하나만 받게 했음. 수정해야 함.
-		if(!tagNo.equals("")) searchDto.setTagList(new ArrayList<Tag>(Arrays.asList(Tag.builder().tagNo(Integer.parseInt(tagNo)).build())));
-		if(!languageNo.equals("")) searchDto.setLanguageList(new ArrayList<Language>(Arrays.asList(Language.builder().langNo(Integer.parseInt(languageNo)).build())));
-		
-		
+		if(!(keyword==null || keyword.equals(""))) searchDto.setKeyword(keyword);
+		if(!(ctNo==null || ctNo.equals(""))) {
+			List<Category> categoryList = new ArrayList<Category>();
+			String[] ctNos = ctNo.split(",");
+			for(String ctNoStr:ctNos) {
+				categoryList.add(Category.builder().ctNo(Integer.parseInt(ctNoStr)).build());
+			}
+			searchDto.setCategoryList(categoryList);
+		}
+		if(!(tagNo==null || tagNo.equals(""))) {
+			List<Tag> tagList = new ArrayList<Tag>();
+			String[] tagNos = tagNo.split(",");
+			for(String tagNoStr:tagNos) {
+				tagList.add(Tag.builder().tagNo(Integer.parseInt(tagNoStr)).build());
+			}
+			searchDto.setTagList(tagList);
+		}
+		if(!(langNo==null || langNo.equals(""))) {
+			List<Language> languageList = new ArrayList<Language>();
+			String[] langNos = langNo.split(",");
+			for(String langNoStr:langNos) {
+				languageList.add(Language.builder().langNo(Integer.parseInt(langNoStr)).build());
+			}
+			searchDto.setLanguageList(languageList);
+		}
 		
 		searchDto.setOrderBy(GameCode.POPULAR);
 		List<Game> popularGameList = gameService.findGames(searchDto);
@@ -135,10 +95,12 @@ public class GameController {
 	
 	//상품상세보기 (파라미터 o)
 	@RequestMapping(value = "/store-product", params = "gNo")
-	public String storeProduct(@RequestParam int gNo, Model model) {
+	public String storeProduct(@RequestParam String gNo, Model model) {
+		
+		if(gNo.equals("")) throw new GameNotFoundException("GameNotFound");//gNo가 emptyString인지 체크. emptyString이면 GameNotFoundException 발생시킴.
 		
 		//gNo로 게임 검색
-		Game game = gameService.findGameByNo(gNo);
+		Game game = gameService.findGameByNo(Integer.parseInt(gNo));
 		model.addAttribute("game", game);
 		
 		//해당 게임의 태그로 게임 검색 (유사게임 추천)
@@ -158,8 +120,8 @@ public class GameController {
 		List<Game> gameListByCategory = gameService.findGamesByCategory(game.getCategory().getCtName());
 		model.addAttribute("gameListByCategory", gameListByCategory);
 		
-		//해당 게임의 리뷰 보여주기 (최신순)
-		List<Review> reviewList = reviewService.selectByGameNo(Game.builder().gNo(gNo).build());
+		//해당 게임의 리뷰 보여주기 (최신순) - 아직 메소드 안바뀌어서 최신순 메소드로 안바꿨음 나중에 바꿔야함.
+		List<Review> reviewList = reviewService.selectByGameNo(Game.builder().gNo(Integer.parseInt(gNo)).build());
 		model.addAttribute("reviewList", reviewList);
 		
 		//해당 게임의 인기리뷰 보여주기 (인기순)

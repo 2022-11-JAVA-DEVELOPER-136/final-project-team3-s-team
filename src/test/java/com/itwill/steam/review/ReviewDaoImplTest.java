@@ -58,13 +58,15 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	
 	//@Test
 	void selectByDateDesc() {
-		List<Review> reviewByDateDescList = reviewDao.selectByDateDesc();
+		Game game = Game.builder().gNo(5).build();
+		List<Review> reviewByDateDescList = reviewDao.selectByDateDesc(game);
 		System.out.println(reviewByDateDescList);
 	}
 	
-	//@Test
+	@Test
 	void selectByLikeDesc() {
-		List<Review> reviewByLikeDescList = reviewDao.selectByLikeDesc();
+		Game game = Game.builder().gNo(4).build();
+		List<Review> reviewByLikeDescList = reviewDao.selectByLikeDesc(game);
 		System.out.println(reviewByLikeDescList);
 	}
 	

@@ -17,6 +17,7 @@ public interface UserMapper {
 	public int idPwMatch(Map<String,Object> map);
 	public User findUserById(String userId);
 	public User findUserByNo(int uNo);
+	public User findUserByNo2(int uNo);
 	public List<User> findAllUser();
 	
 }

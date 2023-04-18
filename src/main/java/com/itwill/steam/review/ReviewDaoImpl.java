@@ -44,13 +44,13 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> selectByDateDesc() {
-		return reviewMapper.selectByDateDesc();
+	public List<Review> selectByDateDesc(Game game) {
+		return reviewMapper.selectByDateDesc(game);
 	}
 
 	@Override
-	public List<Review> selectByLikeDesc() {
-		return reviewMapper.selectByLikeDesc();
+	public List<Review> selectByLikeDesc(Game game) {
+		return reviewMapper.selectByLikeDesc(game);
 	}
 
 	

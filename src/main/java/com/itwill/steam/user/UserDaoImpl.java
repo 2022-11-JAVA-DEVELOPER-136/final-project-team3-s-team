@@ -65,6 +65,12 @@ public class UserDaoImpl implements UserDao {
 		
 		return userMapper.findUserByNo(uNo);
 	}
+	
+	@Override
+	public User findUserByNo2(int uNo) {
+		
+		return userMapper.findUserByNo2(uNo);
+	}
 
 	@Override
 	public List<User> findAllUser() {

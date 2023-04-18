@@ -27,10 +27,10 @@ public interface ReviewMapper {
 	public List<Review> selectByGameNo(Game game);
 	
 	//리뷰 최신등록순 정렬보기
-	public List<Review> selectByDateDesc();
+	public List<Review> selectByDateDesc(Game game);
 
 	//리뷰 추천수 내림차순 정렬보기
-	public List<Review> selectByLikeDesc();
+	public List<Review> selectByLikeDesc(Game game);
 	
 	
 }

@@ -39,7 +39,7 @@ class ReviewServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	}
 	
 	
-	@Test
+	//@Test
 	void testSelectByUserNo() {
 		User user = User.builder().uNo(2).build();
 		List<Review> reviewByUserNoList = reviewService.selectByUserNo(user);
@@ -55,12 +55,14 @@ class ReviewServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	
 	//@Test
 	void testSelectByDateDesc() {
-		List<Review> reviewByDateDesc = reviewService.selectByDateDesc();
+		Game game = Game.builder().gNo(2).build();
+		List<Review> reviewByDateDesc = reviewService.selectByDateDesc(game);
 	}
 	
-	//@Test
+	@Test
 	void testSelectByLikeDesc() {
-		List<Review> reviewByLikeDesc = reviewService.selectByLikeDesc();
+		Game game = Game.builder().gNo(1).build();
+		List<Review> reviewByLikeDesc = reviewService.selectByLikeDesc(game);
 	}
 
 }

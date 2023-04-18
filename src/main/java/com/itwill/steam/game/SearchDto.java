@@ -24,11 +24,11 @@ public class SearchDto {
 	/*
 	 * keyword, category, tagList, languageList 끼리는 AND 연산
 	 * 
-	 * tagList, languageList 안의 Tag, Language는 OR 연산
+	 * categoryList, tagList, languageList 안의 Category, Tag, Language는 OR 연산
 	 */
 	
 	private String keyword;//검색어로 게임제목 검색
-	private Category category;
+	private List<Category> categoryList;
 	private List<Tag> tagList;
 	private List<Language> languageList;
 	private int orderBy;//정렬방법 : GameCode의 상수 사용.

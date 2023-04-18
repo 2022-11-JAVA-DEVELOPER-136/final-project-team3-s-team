@@ -7,7 +7,7 @@ public interface CartDao {
 	//상품 추가
 	public int insertCart(Cart cart);
 	
-	//상품 보여주기
+	//상품 선택
 	public List<Cart> selectCart(int cNo);
 	
 	//상품 삭제

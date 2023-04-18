@@ -34,11 +34,11 @@ public class MainController {
 	public String about() {
 		return "about";
 	}
-	@RequestMapping("/checkout-address")
+	//@RequestMapping("/checkout-address")
 	public String checkoutAddress() {
 		return "checkout-address";
 	}
-	@RequestMapping("/checkout-order")
+	//@RequestMapping("/checkout-order")
 	public String checkoutOrder() {
 		return "checkout-order";
 	}

@@ -158,7 +158,8 @@ class GameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		List<Game> gameListWithGame = gameDao.findGames(SearchDto.builder()
 															.orderBy(GameCode.POPULAR)
 															.keyword("게임1")
-															.category(Category.builder().ctNo(1).build())
+															.categoryList(new ArrayList<Category>(Arrays.asList(Category.builder().ctNo(1).build(),
+																Category.builder().ctNo(2).build())))
 															.tagList(new ArrayList<Tag>(Arrays.asList(Tag.builder().tagNo(5).build(),
 																Tag.builder().tagNo(6).build())))
 															.languageList(new ArrayList<Language>(Arrays.asList(Language.builder().langNo(1).build(),

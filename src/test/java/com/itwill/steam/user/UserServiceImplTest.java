@@ -11,32 +11,32 @@ class UserServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
 	private UserService userService;
 	
-//	@Test
-	/*
-	 * void testCreate() throws Exception { User user = new User(0, "끼야호이", "1111",
-	 * "누구", "네이버", "010-1111-1111", "둘리", "사당동"); userService.create(user); }
-	 */
+	@Test
+	void testCreate() throws Exception {
+		User user = User.builder().uNo(0).uId("sy0").build();
+		userService.create(user); 
+	 }
+	 
 //	@Test
 	void testIdDuplicateCheck() throws Exception {
 		boolean isExist = userService.idDuplicateCheck("끼야호이");
 		System.out.println("중복체크 : "+isExist);
 	}
 
-	@Test
-	void testLogin() throws Exception {
-		int result = userService.login("sy1", "1111");
-		System.out.println("로그인 체크:" +result);
-	}
+	/*
+	 * //@Test void testLogin() throws Exception { int result =
+	 * userService.login("sy1", "1111"); System.out.println("로그인 체크:" +result); }
+	 */
 
 //	@Test
 	void testFindUserById() throws Exception {
-		User user = userService.findUserById("끼야호이");
+		User user = userService.findUserById("sy0");
 		System.out.println("내정보 : "+user);
 	}
 
-	//@Test
+//	@Test
 	void testFindUserByNo() throws Exception {
-		User user = userService.findUserByNo(2);
+		User user = userService.findUserByNo2(1);
 		System.out.println("내정보 : "+user);
 	}
 
