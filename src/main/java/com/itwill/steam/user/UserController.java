@@ -19,7 +19,7 @@ import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
 import com.itwill.steam.exception.UserNotFoundException;
 import com.itwill.steam.friend.Friend;
-import com.itwill.steam.game.GameService;
+
 import com.itwill.steam.review.Review;
 
 @Controller
@@ -48,9 +48,9 @@ public class UserController {
 		}
 		return forward_path;
 	}
-	@GetMapping(value = "/user_login")
+	@RequestMapping(value = "/common-sign-up")
 	public String user_main() {
-		return "user_login";
+		return "common-sign-up";
 	}
 	@PostMapping("/user_login_action")
 	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session) {
@@ -71,11 +71,15 @@ public class UserController {
 		}
 		return forwardPath;
 	}
+	@LoginCheck
 	@GetMapping(value = "/profile")
 	public String profile(Model model,HttpSession session, HttpServletRequest request) {
 		// 세션 정보
 		User loginUser = (User) session.getAttribute("loginUser");
 		
+		if (loginUser == null) {
+			return "redirect:main";
+		}
 		
 		// 친구 리스트조회
 		User fUser = new User();
