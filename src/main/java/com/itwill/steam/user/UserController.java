@@ -21,12 +21,14 @@ import com.itwill.steam.exception.UserNotFoundException;
 import com.itwill.steam.friend.Friend;
 
 import com.itwill.steam.review.Review;
+import com.itwill.steam.review.ReviewService;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private ReviewService reviewService;
 	
 	
 	
@@ -36,22 +38,28 @@ public class UserController {
 		return forward_path;
 	}
 	
-	@PostMapping("user_write_action")
+	@PostMapping("/user_write_action")
 	public String user_write_action(@ModelAttribute("fuser") User user,Model model){
-		String forward_path = "";
+		String forwardPath = "";
+		
 		try {
 			userService.create(user);
-			forward_path="redirect:main";
+			model.addAttribute("succYn", "Y");
+			forwardPath = "main";
 		}catch (ExistedUserException e) {
 			model.addAttribute("msg", e.getMessage());
-			forward_path="main";
+			model.addAttribute("succYn", "N");
+			forwardPath = "main";
 		}
-		return forward_path;
+		
+		return forwardPath;
 	}
+	
 	@RequestMapping(value = "/common-sign-up")
 	public String user_main() {
 		return "common-sign-up";
 	}
+	
 	@PostMapping("/user_login_action")
 	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session) {
 		
@@ -59,14 +67,17 @@ public class UserController {
 		try {
 			User loginUser =userService.login(user.getUId(), user.getUPassword());
 			session.setAttribute("loginUser", loginUser);
-			forwardPath="redirect:main";
+			model.addAttribute("loginSuccYn", "Y");
+			forwardPath="main";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());
+			model.addAttribute("loginSuccYn", "N");
 			forwardPath="main";
 		}catch (PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg2",e.getMessage());
+			model.addAttribute("loginSuccYn", "N");
 			forwardPath="main";
 		}
 		return forwardPath;
@@ -95,7 +106,11 @@ public class UserController {
 		request.setAttribute("onCnt", fCnt);	// 온라인 친구수
 		request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
 		
-		// 리뷰조회
+		// TODO 리뷰조회 from 리뷰서비스
+//		List<Review> reveiwList1 = reviewService.selectByUserNo(loginUser);
+//		System.out.println("리뷰::"+reveiwList1);
+		
+		// 리뷰조회 from user
 		List<Review> reviewList = loginUser.getReviewList();
 		System.out.println("리뷰::"+reviewList);
 		request.setAttribute("reviewList", reviewList);

@@ -11,7 +11,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name ="upForm" class="input-transparent">
+            <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name ="upForm" id="upForm" class="input-transparent">
+              <input type="hidden" th:value="${succYn}" id="succYn" />
               <div class="form-group">
               	<label>ID</label>
                 <input type="text" class="form-control border-secondary" name="uId" id="uId" placeholder="UserId">
