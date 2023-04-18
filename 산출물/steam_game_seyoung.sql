@@ -106,3 +106,8 @@ join language l on gl.lang_no=l.lang_no
 join news n on g.g_no=n.g_no 
 join review rev on g.g_no=rev.g_no
 where t.tag_no=4;
+
+--해당 게임에 달린 리뷰 개수
+select count(*) from game g
+join review rev on g.g_no=rev.g_no
+where g.g_no=1;

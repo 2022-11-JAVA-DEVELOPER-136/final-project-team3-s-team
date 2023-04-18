@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.steam.game.Game;
+import com.itwill.steam.game.GameService;
 import com.itwill.steam.order.Order;
 import com.itwill.steam.order.OrderService;
 import com.itwill.steam.user.User;
@@ -26,65 +28,104 @@ public class CartController {
 	@Autowired
 	private OrderService orderService;
 	
+	@Autowired
+	private GameService gameService;
+	
 	public CartController() {
 		
 	}
 	
-	/**로그인 첨가**/
-	@RequestMapping(value = "/checkout-order", method = RequestMethod.GET)
-	public String checkoutOrder(HttpSession session, Model model) {
-	    try {
-	        User loginUser = (User) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
-	            return "redirect:main";
-	        }
-	        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
-	        model.addAttribute("cartList", cartList);
-	        model.addAttribute("loginUser", loginUser);
-	        return "checkout-order";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "error";
-	    }
-	}
+	// checkout-order 페이지로 이동
+		@RequestMapping(value = "/checkout-order", method = RequestMethod.GET)
+		public String checkoutOrder(HttpSession session, Model model) {
+		    try {
+		        User loginUser = (User) session.getAttribute("loginUser");
+		        if (loginUser == null) {
+		            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
+		            return "redirect:main";
+		        }
+		        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+		        model.addAttribute("cartList", cartList);
+		        model.addAttribute("loginUser", loginUser);
+		        return "checkout-order";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "error";
+		    }
+		}
+		
+		// checkout-address 페이지로 이동
+		@RequestMapping(value = "/checkout-address", method = RequestMethod.GET)
+		public String checkoutAddress(HttpSession session, Model model) {
+			User loginUser = (User) session.getAttribute("loginUser");
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+			model.addAttribute("cartList", cartList);
+			model.addAttribute("loginUser", loginUser);
+			return "checkout-address";
+		}
+		
+		// 장바구니에 담긴 상품 삭제
+		@RequestMapping(value = "/deletecart", method = RequestMethod.GET)
+		public String deleteCart(@RequestParam("cNo") int cNo, HttpSession session) {
+		    try {
+		        User loginUser = (User) session.getAttribute("loginUser");
+		        if (loginUser != null) {
+		            cartService.deleteCart(loginUser.getUNo());
+		        }
+		        return "redirect:checkout-order";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "error";
+		    }
+		}
+		
+		@RequestMapping(value = "/selectcart", method = RequestMethod.GET)
+		public String selectCart(@RequestParam("game") String gName, Model model) {
+		    try {
+		        List<Game> game = gameService.findGamesByName(gName);
+		        model.addAttribute("game", game);
+		        return "selectcart";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "error";
+		    }
+		}
 
-	@RequestMapping(value = "/checkout-order", method = RequestMethod.POST)
-	public String checkoutAddress(HttpSession session, Model model, @RequestParam("orderNo") Order orderNo) {
-	    try {
-	        User loginUser = (User) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
-	            return "redirect:main";
-	        }
-	        int order = orderService.insertOrder(orderNo);
-	        model.addAttribute("order", order);
-	        return "checkout-address";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "error";
-	    }
-	}
-	
-	/*
-	@RequestMapping(value = "/checkout-order", method = RequestMethod.GET)
-	public String checkoutOrder(HttpSession session, Model model) {
-	    User loginUser = (User) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
-	        model.addAttribute("cartList", cartList);
-	    }
-	    return "checkout-order";
-	}
-	
-	@RequestMapping(value = "/checkout-order-address", method = RequestMethod.POST)
-	public String checkoutAddress(Model model, @RequestParam("orderNo") Order orderNo) {
-	    int order = orderService.insertOrder(orderNo);
-	    model.addAttribute("order", order);
-	    return "checkout-address";
-	}
-	 */
 
+		
+		/*****************************************************************************************/
+		// checkout-payment 페이지로 이동
+		@RequestMapping(value = "/checkout-payment", method = RequestMethod.GET)
+		public String checkoutPayment(HttpSession session, Model model) {
+			User loginUser = (User) session.getAttribute("loginUser");
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+			model.addAttribute("cartList", cartList);
+			model.addAttribute("loginUser", loginUser);
+			return "checkout-payment";
+		}
+
+		// 주문서 정보를 받아 주문을 처리하고 주문번호를 반환함
+		@RequestMapping(value = "/checkout-address", method = RequestMethod.POST)
+		public String placeOrder(HttpSession session, Model model) {
+			try {
+				User loginUser = (User) session.getAttribute("loginUser");
+				List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+				
+				// 주문 처리
+				Order order = new Order(0, null, 0, loginUser.getUNo());
+				int orderNo = orderService.insertOrder(order);
+				
+				// 주문번호와 주문한 상품목록 정보를 모델에 추가하여 checkout-payment 페이지로 이동함
+				model.addAttribute("orderNo", orderNo);
+				model.addAttribute("cartList", cartList);
+				return "checkout-payment";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
+		}
+	
 		
 		//조까치 아무 것도 안될 때 대비용 비상구
 //		@RequestMapping("/checkout-order")
