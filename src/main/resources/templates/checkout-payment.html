@@ -83,32 +83,8 @@
                   <div>
                     <h4>Payment Options</h4>
                     <hr class="border-secondary my-4">
-                    <span class="d-block small-1 o-90 mb-4">Select Payment Method</span>
                     <div>
                       <div id="accordion-5" class="accordion accordion-connected accordion-no-header">
-                        <div class="card">
-                          <div class="card-header" id="Paypal">
-                            <h5 class="mb-0">
-                              <a data-toggle="collapse" href="#collapse-5-1" class="collapsed d-flex align-items-center">
-                                <span class="icon"><i class="fab fa-paypal text-warning lead-5"></i></span>
-                                Paypal
-                              </a>
-                            </h5>
-                          </div>
-                          <div id="collapse-5-1" class="collapse" aria-labelledby="Paypal" data-parent="#accordion-5">
-                            <div class="card-body">
-                              <span class="d-block mb-3">After clicking on 'Place order', you will be redirected to the PayPal page to finish your transaction.</span>
-                              <form class="input-transparent">
-                                <div class="form-group custom-control custom-checkbox">
-                                  <input class="custom-control-input" type="checkbox" value="" id="paypal_ref">
-                                  <label class="custom-control-label" for="paypal_ref">
-                                    Save payment details for faster checkout next time
-                                  </label>
-                                </div>
-                              </form>            
-                            </div>
-                          </div>
-                        </div>
                         <div class="card">
                           <div class="card-header" id="Card">
                             <h5 class="mb-0">
@@ -124,11 +100,11 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="cardNumber">Card Number *</label>
-                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="">
+                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${loginUser.cardNumber}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="securityCode">Security Code *</label>
-                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="">
+                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${loginUser.cardCvc}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <div class="d-flex align-items-center pt-md-7">
@@ -140,7 +116,7 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="nameOnCard">Name on Card *</label>
-                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required="">
+                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${loginUser.cardName}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="expiryDate">Expiry Date *</label>
@@ -210,46 +186,8 @@
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="form-group mb-md-0 col-md-6">
-                                    <label class="small-1" for="issueNumber">Issue Number <span class="small">(if applicable)</span></label>
-                                    <input class="form-control" id="issueNumber" type="text" name="issueNumber" required="">
-                                  </div>
-                                  <div class="form-group mb-md-0 col-md-6">
-                                    <div>
-                                      <label class="o-0 d-none d-md-inline-block" for="issueNumber">Remember my payment details</label>
-                                      <div class="form-group custom-control custom-checkbox mb-0 pt-2 pl-2">
-                                        <input class="custom-control-input" type="checkbox" value="" id="rMyPD">
-                                        <label class="custom-control-label" for="rMyPD">
-                                          Remember my payment details
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                               </form>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="ApplePay">
-                            <h5 class="mb-0">
-                              <a data-toggle="collapse" href="#collapse-5-3" class="collapsed d-flex align-items-center">
-                                <span class="icon"><i class="fab fa-apple-pay text-warning lead-5"></i></span>
-                                Apple Pay
-                              </a>
-                            </h5>
-                          </div>
-                          <div id="collapse-5-3" class="collapse" aria-labelledby="ApplePay" data-parent="#accordion-5">
-                            <div class="card-body">
-                              <span class="d-block mb-3">After clicking on 'Place order', you will be redirected to the Apple Pay page to finish your transaction.</span>
-                              <form class="input-transparent">
-                                <div class="form-group custom-control custom-checkbox">
-                                  <input class="custom-control-input" type="checkbox" value="" id="applePay_ref">
-                                  <label class="custom-control-label" for="applePay_ref">
-                                    Save payment details for faster checkout next time
-                                  </label>
-                                </div>
-                              </form>            
                             </div>
                           </div>
                         </div>
