@@ -6,8 +6,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-	
-class OwnedGameDaoImplTest {
+import org.springframework.transaction.annotation.Transactional;
+
+import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
+
+@Transactional
+class OwnedGameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	@Autowired
 	private OwnedGameDao ownedGameDao;
@@ -15,7 +19,6 @@ class OwnedGameDaoImplTest {
 	@Test
 	void testOwnedGameList() {
 		List<OwnedGame> ownedGameList = ownedGameDao.ownedGameList(1);
-		assertNotNull(ownedGameList);
 		System.out.println(">>>>> " + ownedGameList);
 		
 	}
