@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.steam.category.Category;
+import com.itwill.steam.common.util.PageMaker;
 import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.language.Language;
@@ -37,6 +38,7 @@ public class GameController {
 						@RequestParam(required = false) String ctNo,
 						@RequestParam(required = false) String tagNo,
 						@RequestParam(required = false) String langNo,
+						@RequestParam(required = false, defaultValue = "1") String pageNo,
 						Model model) {
 		
 		SearchDto searchDto = new SearchDto();
@@ -84,6 +86,8 @@ public class GameController {
 		List<Language> languageList = gameService.findAllLanguage();
 		model.addAttribute("languageList", languageList);
 		
+		model.addAttribute("pageMaker", new PageMaker(popularGameList.size(), Integer.parseInt(pageNo)));
+		
 		return "store";
 	}
 	
@@ -95,9 +99,9 @@ public class GameController {
 	
 	//상품상세보기 (파라미터 o)
 	@RequestMapping(value = "/store-product", params = "gNo")
-	public String storeProduct(@RequestParam String gNo, Model model) {
+	public String storeProduct(@RequestParam(defaultValue = "0") String gNo, Model model) {
 		
-		if(gNo.equals("")) throw new GameNotFoundException("GameNotFound");//gNo가 emptyString인지 체크. emptyString이면 GameNotFoundException 발생시킴.
+		//defaultValue를 "0"으로 설정한 이유 : gNo가 emptyString인 경우를 처리하는 코드를 따로 작성하고 싶지 않아서. (emptyString으로 들어오면, Integer.parseInt()메소드에서 문제 발생.)
 		
 		//gNo로 게임 검색
 		Game game = gameService.findGameByNo(Integer.parseInt(gNo));
@@ -130,17 +134,7 @@ public class GameController {
 		return "store-product";
 	}
 	
-	//상품리스트에서 제목 검색
-	//@RequestMapping("/game_search")
-	public String gameSearch() {
-		return "game_search";
-	}
 	
-	//상품리스트에서 필터링 (카테고리, 태그, 언어)
-	//@RequestMapping("/game_filtering")
-	public String gameFiltering() {
-		return "game_filtering";
-	}
 	
 	//Local Exception Handler
 	@ExceptionHandler(Exception.class)
