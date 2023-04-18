@@ -63,7 +63,7 @@ public class GameServiceImpl implements GameService {
 	public Game findGameByNo(int gNo) {
 		Game game = gameDao.findGameByNo(gNo);
 		if(game==null) {
-			//game이 null인지 체크. null이면 GameNotFoundException 발생시킴.
+			//game이 null인지 체크. null이면 GameNotFoundException 발생시킴. (없는 게임번호로 검색한 경우)
 			throw new GameNotFoundException("GameNotFound");
 		}
 		return game;
