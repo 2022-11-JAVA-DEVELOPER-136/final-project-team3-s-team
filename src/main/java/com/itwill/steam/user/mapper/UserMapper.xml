@@ -40,7 +40,7 @@
 
    <!-- 회원 Insert -->
    <insert id="createUser" parameterType="com.itwill.steam.user.User">
-      <selectKey order="BEFORE" resultType="int" keyProperty="uNo">
+      <selectKey order="BEFORE" resultType="java.lang.Integer" keyProperty="uNo">
          select userinfo_u_no_seq.nextval from dual
       </selectKey>
          insert into userInfo(
@@ -62,20 +62,19 @@
          )values(
             #{uNo},
             #{uId},
-            #{uPassword},
-            #{uName},
-            #{uEmail},
-            #{uPhone},
-            #{uNickname},
-            #{UStreet},
-            #{UCity},
-            #{UStatefull},
-            #{UZip},
-            #{UState},
-            #{UImgProfile},
-            #{UImgBackground},
-            #{UAbout}
-            
+            #{UPassword,jdbcType=VARCHAR},
+            #{uName,jdbcType=VARCHAR},
+            #{uEmail,jdbcType=VARCHAR},
+            #{uPhone,jdbcType=VARCHAR},
+            #{UNickname,jdbcType=VARCHAR},
+            #{UStreet,jdbcType=VARCHAR},
+            #{UCity,jdbcType=VARCHAR},
+            #{UStatefull,jdbcType=VARCHAR},
+            #{UZip,jdbcType=VARCHAR},
+            #{UState,jdbcType=VARCHAR},
+            #{UImgProfile,jdbcType=VARCHAR},
+            #{UImgBackground,jdbcType=VARCHAR},
+            #{UAbout,jdbcType=VARCHAR}
          )
    </insert>
    

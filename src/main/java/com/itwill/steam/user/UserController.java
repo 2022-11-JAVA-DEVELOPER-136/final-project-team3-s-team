@@ -44,7 +44,7 @@ public class UserController {
 			forward_path="redirect:main";
 		}catch (ExistedUserException e) {
 			model.addAttribute("msg", e.getMessage());
-			forward_path="user_write";
+			forward_path="main";
 		}
 		return forward_path;
 	}
@@ -59,7 +59,7 @@ public class UserController {
 		try {
 			User loginUser =userService.login(user.getUId(), user.getUPassword());
 			session.setAttribute("loginUser", loginUser);
-			forwardPath="main";
+			forwardPath="redirect:main";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());

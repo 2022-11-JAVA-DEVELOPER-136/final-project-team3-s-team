@@ -21,7 +21,7 @@
             </div>
             <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name ="f" class="input-transparent">
               <div class="form-group">
-                <input type="text" class="form-control border-secondary" name="uId" placeholder="Username">
+                <input type="text" class="form-control border-secondary" name="uId" placeholder="uId">
                 <font color="red" th:text="${msg1}" id="uChk"></font>
                 
               </div>
