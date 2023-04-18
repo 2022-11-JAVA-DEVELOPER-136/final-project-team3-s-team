@@ -21,13 +21,9 @@ public class OwnedGameController {
 	public OwnedGameController() {
 	}
 	
-	@RequestMapping(value = "/store-library", params = "uNo")
-	public String gameDetail(@RequestParam int uNo, Model model) {
-		
-		List<OwnedGame> game = ownedGameService.ownedGameList(uNo);
-		model.addAttribute("game", game);
-		
-		return "store-library";
-	}
+    @RequestMapping(value = "/store-library", params = "uNo")
+    public List<OwnedGame> getOwnedGameList(@RequestParam int uNo) {
+        return ownedGameService.ownedGameList(uNo);
+    }
 	
 }
