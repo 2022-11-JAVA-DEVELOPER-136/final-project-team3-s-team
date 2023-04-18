@@ -18,6 +18,8 @@ spring:  datasource:
     url: jdbc:log4jdbc:oracle:thin:@182.237.126.19:1521:XE    #url: jdbc:oracle:thin:@182.237.126.19:1521:XE
     username: F2211JDEVELOPER#TEAM3
     password: F2211JDEVELOPER#TEAM3
+    ##username: jdeveloper41##
+    ##password: jdeveloper41##
   thymeleaf:
     prefix: classpath:templates/
     suffix: .html
