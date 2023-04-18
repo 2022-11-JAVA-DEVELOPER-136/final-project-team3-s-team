@@ -27,17 +27,18 @@ class WishListDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 	@Test
 	void testSelectWishList() {
-		System.out.println(">>>>"+wishListDao.selectWishList(1));
+		wishListDao.selectWishList(1);
+		
 	}
 
 	//@Test
 	void testDeleteWishList() {
-		System.out.println(">>>>" + wishListDao.deleteWishList(1));
+		wishListDao.deleteWishList(1);
 	}
 
 	//@Test
 	void testDeleteAllWishLists() {
-		
+		wishListDao.deleteAllWishLists(1);
 	}
 
 }
