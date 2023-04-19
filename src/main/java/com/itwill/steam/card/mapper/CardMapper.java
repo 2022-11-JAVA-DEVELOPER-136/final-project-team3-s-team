@@ -20,5 +20,5 @@ public interface CardMapper {
 	public int updateCardName(Map<String, Object> map);
 	
 	// 특정회원 카드 정보 불러오기
-	public List<Card> findCardByNo(int uNo);
+	public Card findCardByNo(int uNo);
 }

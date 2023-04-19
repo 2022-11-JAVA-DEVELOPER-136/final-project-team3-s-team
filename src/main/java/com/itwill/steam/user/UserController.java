@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.steam.card.CardService;
 import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
 import com.itwill.steam.exception.UserNotFoundException;
@@ -29,12 +30,15 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private ReviewService reviewService;
-	
+	@Autowired
+	private CardService cardService;
 	
 	
 	@RequestMapping("/user_write")
 	public String user_write_form() {
 		String forward_path = "user_write";
+		
+		
 		return forward_path;
 	}
 	
@@ -87,7 +91,7 @@ public class UserController {
 	public String profile(Model model,HttpSession session, HttpServletRequest request) {
 		// 세션 정보
 		User loginUser = (User) session.getAttribute("loginUser");
-		
+		cardService.findCardByNo(loginUser.getUNo());
 		if (loginUser == null) {
 			return "redirect:main";
 		}
