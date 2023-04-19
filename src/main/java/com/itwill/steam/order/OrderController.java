@@ -42,12 +42,13 @@ public class OrderController {
 	}
 	//카드 불러오기
 	
-	@PostMapping(value = "/checkout-payment")
+	@RequestMapping(value = "/checkout-payment")
 	public String checkoutCard(HttpServletRequest request) throws Exception {
 		User loginUser =(User)request.getSession().getAttribute("loginUser");
 		
-		List<Card> cardList=cardService.findCardByNo(loginUser.getUNo());
-		request.setAttribute("cardList", cardList);
+		Card card=cardService.findCardByNo(loginUser.getUNo());
+		request.setAttribute("card", card);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+card);
 		return "checkout-payment";
 	}
 	//라이브러리로 정보 옮기기

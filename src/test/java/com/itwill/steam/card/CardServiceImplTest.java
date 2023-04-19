@@ -29,8 +29,8 @@ class CardServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 //	@Test
 	void testFindCardByNo() {
-		List<Card> listCard = cardService.findCardByNo(1);
-		System.out.println("특정회원 : "+listCard);
+		Card card = cardService.findCardByNo(1);
+		System.out.println("특정회원 : "+card);
 	}
 
 }

@@ -95,7 +95,7 @@ public class CartController {
 		
 		/*****************************************************************************************/
 		// checkout-payment 페이지로 이동
-		@RequestMapping(value = "/checkout-payment", method = RequestMethod.GET)
+		//@RequestMapping(value = "/checkout-payment", method = RequestMethod.GET)
 		public String checkoutPayment(HttpSession session, Model model) {
 			User loginUser = (User) session.getAttribute("loginUser");
 			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());

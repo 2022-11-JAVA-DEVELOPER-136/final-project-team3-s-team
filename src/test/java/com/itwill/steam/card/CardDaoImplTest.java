@@ -38,7 +38,7 @@ class CardDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	}
 	//@Test
 	void testFindCardByNo() {
-		List<Card> cardList= cardDao.findCardByNo(1);
-		System.out.println(cardList);
+		Card card = cardDao.findCardByNo(1);
+		System.out.println(card);
 	}
 }
