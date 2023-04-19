@@ -1,4 +1,4 @@
-package com.itwill.steam.common.util;
+package com.itwill.steam.game.util;
 
 public class PageMaker {
 	// 페이지당 게시물 수

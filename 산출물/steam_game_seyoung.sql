@@ -111,3 +111,56 @@ where t.tag_no=4;
 select count(*) from game g
 join review rev on g.g_no=rev.g_no
 where g.g_no=1;
+
+select * from
+(select rownum idx, gg.* from
+    (select * from game g 
+    join category ct on g.ct_no=ct.ct_no 
+    join resources res on g.g_no=res.g_no 
+    join game_tag gt on g.g_no=gt.g_no 
+    join tag t on gt.tag_no=t.tag_no 
+    join game_language gl on g.g_no=gl.g_no 
+    join language l on gl.lang_no=l.lang_no 
+    join news n on g.g_no=n.g_no 
+    join review rev on g.g_no=rev.g_no
+    where ct.ct_no in (1, 2) and t.tag_no in (1, 2) and l.lang_no in (1, 2)
+    ) gg
+) where idx >= 1 and idx <= 100;
+
+
+
+
+select * from
+	(select rownum idx, gg.* from
+		(
+
+		select *  from game g 
+		join category ct on g.ct_no=ct.ct_no 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on gt.tag_no=t.tag_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no 
+		join news n on g.g_no=n.g_no 
+		join review rev on g.g_no=rev.g_no
+		where 1=1
+
+				order by g.g_sell_count desc
+
+		) gg
+		) where idx >= 1 and idx  <=  100;
+        
+        
+select * from game g 
+		join category ct on g.ct_no=ct.ct_no 
+		join resources res on g.g_no=res.g_no 
+		join game_tag gt on g.g_no=gt.g_no 
+		join tag t on gt.tag_no=t.tag_no 
+		join game_language gl on g.g_no=gl.g_no 
+		join language l on gl.lang_no=l.lang_no 
+		join news n on g.g_no=n.g_no 
+		join review rev on g.g_no=rev.g_no
+		where 1=1
+
+				--order by g.g_sell_count desc;
+                order by g.g_release_date desc;
