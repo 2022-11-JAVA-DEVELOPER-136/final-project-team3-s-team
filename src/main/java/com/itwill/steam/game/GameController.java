@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -108,7 +112,7 @@ public class GameController {
 	
 	//상품상세보기 (파라미터 o)
 	@RequestMapping(value = "/store-product", params = "gNo")
-	public String storeProduct(@RequestParam(defaultValue = "0") String gNo, Model model) {
+	public String storeProduct(@RequestParam(defaultValue = "0") String gNo, Model model, HttpSession session) {
 		
 		//defaultValue를 "0"으로 설정한 이유 : gNo가 emptyString인 경우를 처리하는 코드를 따로 작성하고 싶지 않아서. (emptyString으로 들어오면, Integer.parseInt()메소드에서 문제 발생.)
 		
@@ -139,6 +143,12 @@ public class GameController {
 		
 		//해당 게임의 인기리뷰 보여주기 (인기순)
 		//메소드없음
+		
+		//로그인한 경우, 유저의 OwnedGame 검색
+		String loginUser = (String)session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			
+		}
 		
 		return "store-product";
 	}

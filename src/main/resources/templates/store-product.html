@@ -17,6 +17,8 @@
 
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet">
+    
+    
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -31,6 +33,7 @@
     <![endif]-->
     
     <!-- Custom CSS -->
+    <link href="css/game.css" rel="stylesheet">
     
   </head>
   <body class="page-body">
@@ -101,16 +104,24 @@
                     <!-- carousel wrapper-->
                     <div class="carousel-product">
                       <div class="slider text-secondary" data-slick="product-body">
-                        <img src="assets/img/content/product/01.jpg" alt="Game">
+                      	<th:block th:each="resources:${game.resourcesList}">
+                        <img src="assets/img/content/product/01.jpg" alt="Game" th:src="|image/${resources.resName}|">
+                        </th:block>
+                        <!-- 
                         <img src="assets/img/content/product/02.jpg" alt="Game">
                         <img src="assets/img/content/product/01.jpg" alt="Game">
                         <img src="assets/img/content/product/01.jpg" alt="Game">
+                         -->
                       </div>
                       <div class="slider product-slider-nav text-secondary">
-                        <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game"></div>
+                      	<th:block th:each="resources:${game.resourcesList}">
+                        <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game" th:src="|image/${resources.resName}|"></div>
+                        </th:block>
+                        <!-- 
                         <div class="slide-item px-1"><img src="assets/img/content/product/02.jpg" class="screenshot" alt="Game"></div>
                         <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game"></div>
                         <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game"></div>
+                         -->
                       </div>
                     </div>
                     <!-- /.carousel wrapper -->
@@ -370,7 +381,7 @@
             </div>
             <div class="col-lg-4">
               <div class="bg-dark_A-20 p-4 mb-4">
-                <img src="assets/img/content/cont/product_preview.jpg" alt="Product" class="mb-3">
+                <img src="assets/img/content/cont/product_preview.jpg" alt="Product" class="mb-3" th:src="|image/${game.resourcesList.get(0).resName}|">
                 <p th:text="${game.gShortDesc}">Sed neque nibh, vehicula vel molestie eget, venenatis in odio. Nulla nec metus sagittis, scelerisque leo eu, vestibulum justo. Mauris rhoncus arcu eu sagittis consequat.</p>
                 <div class="price-wrapper">
                   <div class="mb-3">
@@ -390,7 +401,14 @@
                         </div>
                       </div>
                        -->
-                    <div class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i> Add to Cart</a></div>
+                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+                    <th:block th:if="false">
+                    <div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
+                    </th:block>
+                    <!-- 그 외의 경우 -->
+                    <th:block th:if="true">
+                    <div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+                    </th:block>
                   </div>
                 </div>
                 <div>
@@ -414,7 +432,14 @@
                     </form>
                   </div>
                    -->
-                  <a href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i> Add to wishlist</a>
+                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+                  <th:block th:if="false">
+                  <div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
+                  </th:block>
+                  <!-- 그 외의 경우 -->
+                  <th:block th:if="true">
+                  <a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+                  </th:block>
                 </div>
               </div>
               <div class="bg-dark_A-20 p-4">

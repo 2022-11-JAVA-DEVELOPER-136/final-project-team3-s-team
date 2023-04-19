@@ -83,12 +83,24 @@ insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.n
 
 
 --resources
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1.jpg', 1);
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action2.jpg', 2);
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying1.jpg', 3);
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying2.jpg', 4);
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy1.jpg', 5);
-insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy2.jpg', 6);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-1.gif', 1);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-2.gif', 1);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-3.gif', 1);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action2-1.gif', 2);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action2-2.gif', 2);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action2-3.gif', 2);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying1-1.gif', 3);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying1-2.gif', 3);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying1-3.gif', 3);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying2-1.gif', 4);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying2-2.gif', 4);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'roleplaying2-3.gif', 4);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy1-1.gif', 5);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy1-2.gif', 5);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy1-3.gif', 5);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy2-1.gif', 6);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy2-2.gif', 6);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'strategy2-3.gif', 6);
 
 
 --news
