@@ -32,7 +32,7 @@ public class CardServiceImpl implements CardService {
 
 	// 특정회원 카드 정보 불러오기
 	@Override
-	public List<Card> findCardByNo(int uNo) {
+	public Card findCardByNo(int uNo) {
 		return cardDao.findCardByNo(uNo);
 	}
 

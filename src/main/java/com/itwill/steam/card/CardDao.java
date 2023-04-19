@@ -14,6 +14,6 @@ public interface CardDao {
 	public int updateCardName(String cardName,int cardSeq);
 	
 	// 특정회원 카드 정보 불러오기
-	public List<Card> findCardByNo(int uNo);
+	public Card findCardByNo(int uNo);
 		
 }

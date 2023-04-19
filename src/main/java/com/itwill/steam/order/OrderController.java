@@ -1,5 +1,7 @@
 package com.itwill.steam.order;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -40,10 +42,13 @@ public class OrderController {
 	}
 	//카드 불러오기
 	
-	@PostMapping(value = "/checkout-payment")
+	@RequestMapping(value = "/checkout-payment")
 	public String checkoutCard(HttpServletRequest request) throws Exception {
-		Card loginUser =(Card)request.getSession().getAttribute("loginUser");
-		//String cardNumber = loginUser.getCardNumber();
+		User loginUser =(User)request.getSession().getAttribute("loginUser");
+		
+		Card card=cardService.findCardByNo(loginUser.getUNo());
+		request.setAttribute("card", card);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+card);
 		return "checkout-payment";
 	}
 	//라이브러리로 정보 옮기기

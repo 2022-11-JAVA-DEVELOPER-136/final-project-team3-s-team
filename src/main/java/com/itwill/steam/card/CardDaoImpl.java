@@ -33,7 +33,7 @@ public class CardDaoImpl implements CardDao {
 	}
 
 	@Override
-	public List<Card> findCardByNo(int uNo) {
+	public Card findCardByNo(int uNo) {
 		
 		return cardMapper.findCardByNo(uNo);
 	}

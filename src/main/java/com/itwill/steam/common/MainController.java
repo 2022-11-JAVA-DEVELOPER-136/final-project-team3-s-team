@@ -42,7 +42,7 @@ public class MainController {
 	public String checkoutOrder() {
 		return "checkout-order";
 	}
-	@RequestMapping("/checkout-payment")
+	//@RequestMapping("/checkout-payment")
 	public String checkoutPayment() {
 		return "checkout-payment";
 	}
