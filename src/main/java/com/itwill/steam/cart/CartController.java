@@ -46,7 +46,25 @@ public class CartController {
 		        }
 		        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
 		        model.addAttribute("cartList", cartList);
-		        model.addAttribute("loginUser", loginUser);
+		        
+		        // 총액 계산
+		        int fullPrice = 0;
+		        int discountPrice = 0;
+		        int tax = 0;
+		        int savedPrice = 0;
+		        int finalPrice = 0;
+		        for (Cart cart : cartList) {
+		            fullPrice += cart.getGame().getGPrice();
+		            discountPrice=(int) (fullPrice*cart.getGame().getGDiscountRate()/100);
+		        }
+		        tax=fullPrice*1/10;	
+		        savedPrice=fullPrice-discountPrice;
+		        finalPrice=fullPrice-discountPrice+tax;
+		        model.addAttribute("fullPrice", fullPrice);
+		        model.addAttribute("discountPrice", discountPrice);
+		        model.addAttribute("tax", tax);
+		        model.addAttribute("savedPrice", savedPrice);
+		        model.addAttribute("finalPrice", finalPrice);
 		        return "checkout-order";
 		    } catch (Exception e) {
 		        e.printStackTrace();
@@ -62,19 +80,6 @@ public class CartController {
 			model.addAttribute("cartList", cartList);
 			model.addAttribute("loginUser", loginUser);
 			return "checkout-address";
-		}
-		
-		// 상품 불러오기
-		@RequestMapping(value = "/selectcart", method = RequestMethod.GET)
-		public String selectCart(@RequestParam("game") int cNo, Model model) {
-			try {
-				List<Cart> game = cartService.selectCart(cNo);
-				model.addAttribute("game", game);
-				return "selectcart";
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "error";
-			}
 		}
 		
 		// 장바구니에 담긴 상품 삭제

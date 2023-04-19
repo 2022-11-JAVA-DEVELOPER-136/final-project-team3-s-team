@@ -85,6 +85,7 @@
                     <hr class="border-secondary my-4">
                     <div class="row">
                       <!-- item -->
+                      <th:block th:each="cart:${cartList}">
                       <div class="col-md-12 mb-4">
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
@@ -95,7 +96,7 @@
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
                               <a href="store-product">
-                                <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">게임이름</h6>
+                                <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1" th:text="${cart.game.gName}">게임이름</h6>
                               </a>
                               <div class="mb-0">
                                 <i class="mr-2 fab fa-windows"></i>
@@ -113,15 +114,15 @@
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">50%할인</span>
+                                  <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - cart.game.gDiscountRate * 0.01, 2, 1)}">할인율</span>
                                 </div>
                               </div>
                             </div>
                             <div class="item_price d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
-                                  <span class="fw-600 td-lt">₩50,000</span><br>
-                                  <span class="fw-600">₩25,000</span>
+                                  <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(cart.game.gPrice, 3, 'COMMA')}원|">정가</span><br>
+                                  <span class="fw-600" th:text="|${#numbers.formatInteger(cart.game.gPrice - cart.game.gPrice * cart.game.gDiscountRate * 0.01, 3, 'COMMA')}원|">할인가</span>
                                 </div>
                               </div>
                             </div>
@@ -135,162 +136,7 @@
                           </div>
                         </div>
                       </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product">
-                                <img class="checkout-order-img img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product">
-                                <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">롤플레잉게임1</h6>
-                              </a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                            </div>
-                            <!-- 
-                            <div class="amount-wrapper d-flex align-items-center justify-content-center border border-secondary">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-minus"></i></button>
-                              <input class="input-amount quantity" min="0" name="quantity" value="1" type="number">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-plus"></i></button>
-                            </div>
-                             -->
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">50%할인</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">₩70,000</span><br>
-                                  <span class="fw-600">₩35,000</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="pl-4">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right lead-2">
-								  <a href="#" class="ti-trash text-warning"></a>
-								</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product">
-                                <img class="checkout-order-img img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product">
-                                <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">전략게임1</h6>
-                              </a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                            </div>
-                            <!-- 
-                            <div class="amount-wrapper d-flex align-items-center justify-content-center border border-secondary">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-minus"></i></button>
-                              <input class="input-amount quantity" min="0" name="quantity" value="3" type="number">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-plus"></i></button>
-                            </div>
-                             -->
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">50%할인</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">₩40,000</span><br>
-                                  <span class="fw-600">₩20,000</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="pl-4">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right lead-2">
-                                  <a href="#" class="ti-trash text-warning"></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product">
-                                <img class="checkout-order-img img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product">
-                                <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">전략게임2</h6>
-                              </a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                            </div>
-                            <!-- 
-                            <div class="amount-wrapper d-flex align-items-center justify-content-center border border-secondary">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-minus"></i></button>
-                              <input class="input-amount quantity" min="0" name="quantity" value="1" type="number">
-                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn-amount btn btn-sm btn-outline-warning btn-circle"><i class="fas fa-plus"></i></button>
-                            </div>
-                             -->
-                            <div class="item_discount d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right text-secondary px-6">
-                                  <span class="fw-600 btn bg-warning">50%할인</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item_price d-none d-sm-block">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 td-lt">₩50,000</span><br>
-                                  <span class="fw-600">₩25,000</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="pl-4">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right lead-2">
-                                  <a href="#" class="ti-trash text-warning"></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      </th:block>
                       <!-- /.item -->
                     </div>
                     <hr class="border-secondary my-4">

@@ -10,25 +10,25 @@
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
 						<div>Full Price</div>
-						<div class="ml-auto">₩210,000</div>
+						<div class="ml-auto" th:text="|${#numbers.formatInteger(fullPrice, 3, 'COMMA')}원|">총액</div>
 					</div>
 				</li>
 				<li class="my-1">
 					<div class="d-flex text-info small-2 fw-600">
 						<div>Your Discount</div>
-						<div class="ml-auto">₩-105,000</div>
+						<div class="ml-auto" th:text="|${#numbers.formatInteger(discountPrice, 3, 'COMMA')}원|">할인액</div>
 					</div>
 				</li>
 				<li class="my-1">
 					<div class="d-flex text-danger small-2 fw-600">
 						<div>Estimated Tax</div>
-						<div class="ml-auto">₩21,000</div>
+						<div class="ml-auto" th:text="|${#numbers.formatInteger(tax, 3, 'COMMA')}원|">세금</div>
 					</div>
 				</li>
 				<li class="my-1">
 					<div class="d-flex text-warning small-2 fw-600">
 						<div>You Save</div>
-						<div class="ml-auto">₩-84,000</div>
+						<div class="ml-auto" th:text="|-${#numbers.formatInteger(savedPrice, 3, 'COMMA')}원|">감면액</div>
 					</div>
 				</li>
 				<!-- 
@@ -43,17 +43,11 @@
 				<li>
 					<div class="d-flex small-1 fw-600">
 						<div>Total</div>
-						<div class="ml-auto text-warning">₩126,000</div>
+						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">최종액</div>
 					</div>
 				</li>
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
-				<!-- 
-					<form action="checkout-address" method="get">
-    				<input type="hidden" name="orderNo" value="${order.orderNo}" />
-    				<button class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</button>
-					</form>
-					 -->
 					<a href="checkout-address" class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</a>
 				</li>
 				<li class="lh-1">
