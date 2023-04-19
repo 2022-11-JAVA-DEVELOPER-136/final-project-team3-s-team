@@ -81,19 +81,19 @@
    <!-- 회원 update -->
    <update id="updateUser" parameterType="com.itwill.steam.user.User">
       update userInfo set
-         u_password= #{uPassword},
-         u_name=#{uName},
-         u_email=#{uEmail},
-         u_phone=#{uPhone},
-         u_nickname=#{uNickname},
-         u_street =#{UStreet},
-         u_city =#{UCity},
-         u_statefull = #{UStatefull},
-         u_zip = #{UZip},
+         u_password= NVL(#{uPassword,jdbcType=VARCHAR}, u_password),
+         u_name=NVL(#{uName,jdbcType=VARCHAR}, u_name),
+         u_email=#{uEmail,jdbcType=VARCHAR},
+         u_phone=#{uPhone,jdbcType=VARCHAR},
+         u_nickname=#{uNickname,jdbcType=VARCHAR},
+         u_street =#{UStreet,jdbcType=VARCHAR},
+         u_city =#{UCity,jdbcType=VARCHAR},
+         u_statefull = #{UStatefull,jdbcType=VARCHAR},
+         u_zip = #{UZip,jdbcType=VARCHAR},
          u_state = #{UState},
-         u_img_profile = #{UImgProfile},
-         u_img_background = #{UImgBackground},
-         u_about = #{UAbout}
+         u_img_profile = #{UImgProfile,jdbcType=VARCHAR},
+         u_img_background = #{UImgBackground,jdbcType=VARCHAR},
+         u_about = #{UAbout,jdbcType=VARCHAR}
       where u_no =#{uNo}
    </update>
    
@@ -133,7 +133,7 @@
             on u.u_no= w.u_no
             left outer join profile_comment p
             on u.u_no = p.u_no
-            where u.u_id =#{uId}
+            where u.u_id =#{uId,jdbcType=VARCHAR}
    </select>
    <!-- 특정회원정보 번호로 가져오기 -->
    <select id="findUserByNo" parameterType="int" resultMap='userWithReviewFriendCartWishProfileComment'>

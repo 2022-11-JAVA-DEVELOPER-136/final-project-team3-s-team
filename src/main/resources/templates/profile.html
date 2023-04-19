@@ -763,26 +763,65 @@
             <div class="tab-pane fade" id="mp-2-04-c" role="tabpanel" aria-labelledby="mp-2-04-tab">
               <div class="position-relative">
                 <div class="row">
-                  <div class="col-lg-7 mb-9 mb-lg-0">
-                    <div class="mb-8">
-                      <h4><i class="ti-shopping-cart text-warning mr-2"></i>Store</h4>
+                  <div class="col-lg-12 mb-9 mb-lg-0">
+                  
+                    <div class="mb-8 srch">
+                      <h4><i class="ti-shopping-cart text-warning mr-2"></i>My Profile</h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
-                      <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4">
+                      <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4" id="updtForm" name="updtForm">
                         <div class="form-group custom-control mb-1">
-                          <span>Wallet Balance: <span class="text-warning fw-500">300$</span></span>
+                          <span>Id : <span class="text-warning fw-500" th:text="${session.loginUser.uId}">300$</span></span>
                         </div>
                         <div class="form-group custom-control mb-1">
-                          <a href="#" class="text-primary fw-500">View purchase history</a>
+                          <!-- <span>NickName : <span class="text-warning fw-500" th:text="${session.loginUser.uNickname}">300$</span></span> -->
+                          	Password : <input id="uPassword" name="uPassword" type="password" th:value="${session.loginUser.uPassword}"  style="background-color:rgba(0, 0, 0, 0.2);color:#ffc107;border-color:#3a4048;">
                         </div>
                         <div class="form-group custom-control mb-1">
-                          <span>Country: <span class="text-warning"><i class="fas fa-globe mx-2"></i><span class="fw-500">United States (US)</span></span></span>
+                          <!-- <span>Name : <span class="text-warning fw-500" id="uName" th:text="${session.loginUser.uName}">300$</span></span> -->
+							Name : <input id="uName" name="uName" type="text" th:value="${session.loginUser.uName}" style="background-color:rgba(0, 0, 0, 0.2);color:#ffc107;border-color:#3a4048;">
                         </div>
-                        <div class="form-group custom-control mb-0">
-                          <a href="#" class="text-primary fw-500">View licenses and product key activations</a>
+                        <div class="form-group custom-control mb-1">
+                          <!-- <span>Email : <span class="text-warning fw-500" th:text="${session.loginUser.uEmail}">300$</span></span> -->
+                          	Email : <input id="uEmail" name="uEmail" type="text" th:value="${session.loginUser.uEmail}" style="background-color:rgba(0, 0, 0, 0.2);color:#ffc107;border-color:#3a4048;">
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <!-- <span>Phone : <span class="text-warning fw-500" th:text="${session.loginUser.uPhone}">300$</span></span> -->
+                          	Phone : <input id="uPhone" name="uPhone" type="text" th:value="${session.loginUser.uPhone}"  style="background-color:rgba(0, 0, 0, 0.2);color:#ffc107;border-color:#3a4048;">
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <!-- <span>NickName : <span class="text-warning fw-500" th:text="${session.loginUser.uNickname}">300$</span></span> -->
+                          	NickName : <input id="uNickname" name="uNickname" type="text" th:value="${session.loginUser.uNickname}"  style="background-color:rgba(0, 0, 0, 0.2);color:#ffc107;border-color:#3a4048;">
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                        <input type="hidden" id="uNo" name="uNo" th:value="${session.loginUser.uNo}" />
+                        <input type="hidden" th:value="${succYn}" id="succYn" />
+                          <a href="javascript:void(0)" class="text-primary fw-500" id="infoChangeBtn">내 정보 변경</a>
                         </div>
                       </form>
                     </div>
+                    
                     <div class="mb-8">
+                      <h4><i class="ti-shopping-cart text-warning mr-2"></i>주소</h4>
+                      <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
+                      <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4">
+                        <div class="form-group custom-control mb-1">
+                          <span>Street : <span class="text-warning fw-500" th:text="${session.loginUser.uStreet}">300$</span></span>
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <span>City : <span class="text-warning fw-500" th:text="${session.loginUser.uCity}">300$</span></span>
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <span>StateFull : <span class="text-warning fw-500" th:text="${session.loginUser.uStatefull}">300$</span></span>
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <span>Zip : <span class="text-warning fw-500" th:text="${session.loginUser.uZip}">300$</span></span>
+                        </div>
+                        <div class="form-group custom-control mb-1">
+                          <span>State : <span class="text-warning fw-500" th:text="${session.loginUser.uState}">300$</span></span>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- <div class="mb-8">
                       <h4><i class="far fa-envelope text-warning mr-2"></i>Email Preferences</h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                       <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4">
@@ -885,7 +924,7 @@
                           </label>
                         </div>
                       </form>
-                    </div>
+                    </div> -->
                     <div>
                       <h4><i class="ti-truck text-warning mr-2"></i>Payment Details</h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
@@ -911,8 +950,10 @@
                         </div>
                       </form>
                     </div>
+                    
+                    
                   </div>
-                  <div class="col-lg-5">
+                  <div class="col-lg-5" style="display:none">
                     <div class="card bg-dark_A-20 border border-secondary">
                       <div class="px-5 pt-3"><span class="fw-600 ls-1 text-uppercase small-1"><i class="fas fa-user text-warning mr-2"></i>Profile Setting</span></div>
                       <div class="px-5 pt-3 pb-6">
@@ -2112,6 +2153,7 @@
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
     
     <!-- Custom JS -->
+    <script src="js/user.js"></script>
     
   </body>
 </html>

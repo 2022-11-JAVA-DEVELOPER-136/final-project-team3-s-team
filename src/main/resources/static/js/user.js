@@ -132,10 +132,7 @@ user.js
 			return false;
 		}
 
-/*		document.f.action ="user_login_action";
-		document.f.method='POST';
-		document.f.submit();*/
-		
+
 		$.ajax({
 			url : "/final-project-team3-s-team/user_login_action",
 			type : "post",
@@ -167,15 +164,35 @@ user.js
 		
 		
 	}
+
 	
-	/*
-	if($("#uChk").text() != "") {
-		$("#userLogin").modal('show');
-	} else if($("#fChk").text() != "") {
-		$("#userLogin").modal('show');
-	}
+	var clickYn = false;
 	
-	if($("#checked").text() != "") {
-		$("#userWrite").modal('show');
-	}
-	*/
+	$("#infoChangeBtn").click(function(){
+	
+		$.ajax({
+			url : "/final-project-team3-s-team/user_modify_action",
+			type : "post",
+			data : $("#updtForm").serialize(),
+			success : function(resData){
+				// resDs에 응답 html 담겨있음
+				// 성공
+				if($(resData).find("#succYn").val() == "Y") {
+					alert("수정되었습니다.");
+					$("#uName").val($(resData).find("#uName").val());
+					$("#uEmail").val($(resData).find("#uEmail").val());
+					$("#uPhone").val($(resData).find("#uPhone").val());
+					$("#uNickname").val($(resData).find("#uNickname").val());
+					//location.href = "/final-project-team3-s-team/profile";	// profile으로 이동
+					
+				// 실패
+				} else {
+					
+				}
+			},
+			error: function(errorThrown) {
+				console.log(errorThrown);
+			}
+		});
+		
+	});

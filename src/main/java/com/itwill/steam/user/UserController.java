@@ -91,10 +91,12 @@ public class UserController {
 	public String profile(Model model,HttpSession session, HttpServletRequest request) {
 		// 세션 정보
 		User loginUser = (User) session.getAttribute("loginUser");
-		cardService.findCardByNo(loginUser.getUNo());
+		
+//		cardService.findCardByNo(loginUser.getUNo());
 		if (loginUser == null) {
 			return "redirect:main";
 		}
+		System.out.println("로긴유저::"+loginUser);
 		
 		// 친구 리스트조회
 		User fUser = new User();
@@ -124,34 +126,50 @@ public class UserController {
 		// game 조회
 		return "profile";
 	}
-	@LoginCheck
-	@GetMapping("/user_view")
-	public String user_view(HttpServletRequest request) {
-		String forwardPath = "";
-		String sUserId =(String)request.getSession().getAttribute("sUserId");
-		User loginUser=userService.findUserById(sUserId);
-		request.setAttribute("loginUser", loginUser);
-		forwardPath="user_view";
-		
-		return forwardPath;
-	}
-	@LoginCheck
-	@PostMapping("user_modify")
-	public String user_modify_form(HttpServletRequest request) {
-		String forwardPath = "";
-		String sUserId=(String)request.getSession().getAttribute("sUserId");
-		User loginUser=userService.findUserById(sUserId);
-		request.setAttribute("loginUser", loginUser);
-		forwardPath="user_modify";
-		
-		return forwardPath;
-	}
+//	@LoginCheck
+//	@GetMapping("/user_view")
+//	public String user_view(HttpServletRequest request) {
+//		String forwardPath = "";
+//		String sUserId =(String)request.getSession().getAttribute("sUserId");
+//		User loginUser=userService.findUserById(sUserId);
+//		request.setAttribute("loginUser", loginUser);
+//		forwardPath="user_view";
+//		
+//		return forwardPath;
+//	}
+//	@LoginCheck
+//	@PostMapping("user_modify")
+//	public String user_modify_form(HttpServletRequest request) {
+//		String forwardPath = "";
+//		String sUserId=(String)request.getSession().getAttribute("sUserId");
+//		User loginUser=userService.findUserById(sUserId);
+//		request.setAttribute("loginUser", loginUser);
+//		forwardPath="user_modify";
+//		
+//		return forwardPath;
+//	}
 	@LoginCheck
 	@PostMapping("/user_modify_action")
-	public String user_modify_action(@ModelAttribute User user,HttpServletRequest request) {
+	public String user_modify_action(@ModelAttribute User user,Model model,HttpServletRequest request) {
 		String forwardPath = "";
-		userService.update(user);
-		forwardPath="redirect:user_view";
+		try {
+
+			userService.update(user);
+			
+			User loginUser = userService.findUserByNo(user.getUNo());
+			request.getSession().setAttribute("loginUser", loginUser);
+			model.addAttribute("succYn", "Y");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("msg1",e.getMessage());
+			model.addAttribute("succYn", "N");
+		}
+		
+		
+		
+		//forwardPath="redirect:user_view";
+		forwardPath="profile";
 		return forwardPath;
 	}
 	@LoginCheck
