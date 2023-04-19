@@ -1,5 +1,7 @@
 package com.itwill.steam.ownedGame;
 
-public interface OwnedGameService {
+import java.util.List;
 
+public interface OwnedGameService {
+	public List<OwnedGame> ownedGameList(int uNo);
 }
