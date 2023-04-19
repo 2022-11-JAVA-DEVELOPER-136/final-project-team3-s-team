@@ -44,33 +44,34 @@ public class WishListController {
 		return "wishlist";
 	}
 	
-	
-	// store-product 페이지로 이동
-	@RequestMapping(value = "/store-product", method = RequestMethod.GET)
-	public String storeproduct(HttpSession session, Model model) {
+		/*
+		// store-product 페이지로 이동
+		@RequestMapping(value = "/store-product", method = RequestMethod.GET)
+		public String storeproduct(HttpSession session, Model model) {
+			
+			User loginUser = (User)session.getAttribute("loginUser");
+			//List<Game> gameList = gameService.find(loginUser.getUNo());
+			
+			//model.addAttribute("gameList", gameList);
+			model.addAttribute("loginUser", loginUser);
+			
+			return "store-product";
+		}
+		*/
 		
-		User loginUser = (User)session.getAttribute("loginUser");
-		//List<Game> gameList = gameService.find(loginUser.getUNo());
-		
-		//model.addAttribute("gameList", gameList);
-		model.addAttribute("loginUser", loginUser);
-		
-		return "store-product";
-	}
-	
-	
-	// profile 페이지로 이동
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(HttpSession session, Model model) {
-		
-		User loginUser = (User)session.getAttribute("loginUser");
-		
-		
-		model.addAttribute("loginUser", loginUser);
-		
-		return "profile";
-	}
-	
+		/*
+		// profile 페이지로 이동
+		@RequestMapping(value = "/profile", method = RequestMethod.GET)
+		public String profile(HttpSession session, Model model) {
+			
+			User loginUser = (User)session.getAttribute("loginUser");
+			
+			
+			model.addAttribute("loginUser", loginUser);
+			
+			return "profile";
+		}
+		*/
 	
 	
 }
