@@ -2,8 +2,10 @@ package com.itwill.steam.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.steam.category.Category;
-import com.itwill.steam.common.util.PageMaker;
 import com.itwill.steam.exception.GameNotFoundException;
+import com.itwill.steam.game.util.PageMaker;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.language.Language;
 import com.itwill.steam.review.Review;
@@ -43,7 +45,10 @@ public class GameController {
 		
 		SearchDto searchDto = new SearchDto();
 		
-		if(!(keyword==null || keyword.equals(""))) searchDto.setKeyword(keyword);
+		if(!(keyword==null || keyword.equals(""))) {
+			searchDto.setKeyword(keyword);
+			model.addAttribute("keyword", keyword);
+		}
 		if(!(ctNo==null || ctNo.equals(""))) {
 			List<Category> categoryList = new ArrayList<Category>();
 			String[] ctNos = ctNo.split(",");
@@ -51,6 +56,7 @@ public class GameController {
 				categoryList.add(Category.builder().ctNo(Integer.parseInt(ctNoStr)).build());
 			}
 			searchDto.setCategoryList(categoryList);
+			model.addAttribute("ctNo", ctNo);
 		}
 		if(!(tagNo==null || tagNo.equals(""))) {
 			List<Tag> tagList = new ArrayList<Tag>();
@@ -59,6 +65,7 @@ public class GameController {
 				tagList.add(Tag.builder().tagNo(Integer.parseInt(tagNoStr)).build());
 			}
 			searchDto.setTagList(tagList);
+			model.addAttribute("tagNo", tagNo);
 		}
 		if(!(langNo==null || langNo.equals(""))) {
 			List<Language> languageList = new ArrayList<Language>();
@@ -67,11 +74,15 @@ public class GameController {
 				languageList.add(Language.builder().langNo(Integer.parseInt(langNoStr)).build());
 			}
 			searchDto.setLanguageList(languageList);
+			model.addAttribute("langNo", langNo);
 		}
 		
 		searchDto.setOrderBy(GameCode.POPULAR);
 		List<Game> popularGameList = gameService.findGames(searchDto);
 		model.addAttribute("popularGameList", popularGameList);
+		
+		PageMaker pageMaker = new PageMaker(popularGameList.size(), Integer.parseInt(pageNo));//현재 검색하는 조건의 전체 게임 개수를 필요로 한다.
+		model.addAttribute("pageMaker", pageMaker);
 		
 		searchDto.setOrderBy(GameCode.NEW);
 		List<Game> newGameList = gameService.findGames(searchDto);
@@ -85,8 +96,6 @@ public class GameController {
 		
 		List<Language> languageList = gameService.findAllLanguage();
 		model.addAttribute("languageList", languageList);
-		
-		model.addAttribute("pageMaker", new PageMaker(popularGameList.size(), Integer.parseInt(pageNo)));
 		
 		return "store";
 	}
@@ -133,8 +142,6 @@ public class GameController {
 		
 		return "store-product";
 	}
-	
-	
 	
 	//Local Exception Handler
 	@ExceptionHandler(Exception.class)

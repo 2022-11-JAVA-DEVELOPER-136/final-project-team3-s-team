@@ -31,5 +31,5 @@ public class SearchDto {
 	private List<Category> categoryList;
 	private List<Tag> tagList;
 	private List<Language> languageList;
-	private int orderBy;//정렬방법 : GameCode의 상수 사용.
+	private int orderBy;//정렬방법: 인기순(1) OR 최신순(2) -> GameCode의 상수 사용.
 }

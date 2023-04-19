@@ -235,7 +235,9 @@
                     <div class="row">
                       <!-- each start -->
                       <!-- item -->
-                      <div class="col-md-12 mb-4" th:each="game:${popularGameList}">
+                      <th:block th:each="game:${popularGameList}">
+                      <th:block th:if="${gameStat.count >= pageMaker.pageBegin} and ${gameStat.count <= pageMaker.pageEnd}">
+                      <div class="col-md-12 mb-4">
                         <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
@@ -274,6 +276,8 @@
                           </div>
                         </a>
                       </div>
+                      </th:block>
+                      </th:block>
                       <!-- /.item -->
                       <!-- each end -->
                     </div>
@@ -285,7 +289,9 @@
                     <div class="row">
                       <!-- each start -->
                       <!-- item -->
-                      <div class="col-md-12 mb-4" th:each="game:${newGameList}">
+                      <th:block th:each="game:${newGameList}">
+                      <th:block th:if="${gameStat.count >= pageMaker.pageBegin} and ${gameStat.count <= pageMaker.pageEnd}">
+                      <div class="col-md-12 mb-4">
                         <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
@@ -324,6 +330,8 @@
                           </div>
                         </a>
                       </div>
+                      </th:block>
+                      </th:block>
                       <!-- /.item -->
                       <!-- each end -->
                     </div>
@@ -539,14 +547,14 @@
                   <ul class="pagination justify-content-end">
                     <th:block th:if="${pageMaker.curPage > 1}">
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous" th:href="|store?pageNo=${pageMaker.prevPage}|">
+                      <a class="page-link" href="#" aria-label="Previous" th:href="@{/store(pageNo=${pageMaker.prevPage}, keyword=${keyword}, ctNo=${ctNo}, tagNo=${tagNo}, langNo=${langNo})}">
                         <span class="ti-angle-left small-7" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                       </a>
                     </li>
                     </th:block>
                     <th:block th:each="pageNo:${#numbers.sequence(pageMaker.blockBegin, pageMaker.blockEnd)}">
-                    <li class="page-item"><a class="page-link" href="#" th:href="@{/store(pageNo=${pageNo})}" th:text="${pageNo}">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" th:href="@{/store(pageNo=${pageNo}, keyword=${keyword}, ctNo=${ctNo}, tagNo=${tagNo}, langNo=${langNo})}" th:text="${pageNo}">1</a></li>
                     </th:block>
                     <!-- 
                     <li class="page-item active"><a class="page-link" href="#">2</a></li>
@@ -554,19 +562,12 @@
                      -->
                     <th:block th:if="${pageMaker.curPage < pageMaker.totPage}">
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next" th:href="|store?pageNo=${pageMaker.nextPage}|">
+                      <a class="page-link" href="#" aria-label="Next" th:href="@{/store(pageNo=${pageMaker.nextPage}, keyword=${keyword}, ctNo=${ctNo}, tagNo=${tagNo}, langNo=${langNo})}">
                         <span class="ti-angle-right small-7" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                       </a>
                     </li>
                     </th:block>
-                    <!-- 데이터 확인용 -->
-                    <li th:text="${pageMaker.curPage}"></li><!-- 현재 페이지 -->
-                    <li th:text="${pageMaker.pageBegin}"></li><!-- 현재 페이지에서 뿌려줄 게시물 시작번호 -->
-                    <li th:text="${pageMaker.pageEnd}"></li><!-- 현재 페이지에서 뿌려줄 게시물 끝번호 -->
-                    <li th:text="${pageMaker.curBlock}"></li><!-- 현재 페이지 블록 -->
-                    <li th:text="${pageMaker.totPage}"></li><!-- 전체 페이지 개수 -->
-                    <!-- /.데이터 확인용 -->
                   </ul>
                 </nav>
                 <!-- /.pagination -->

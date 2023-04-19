@@ -10,7 +10,7 @@
 	
 	<insert id="insertWishList" parameterType="com.itwill.steam.wishList.WishList">
     	insert into wishList(wish_no, wish_date, u_no, g_no)
-		values(wishList_wish_no_seq.nextval, #{wishDate}, #{user.uNo}, #{game.gNo})
+		values(wishList_wish_no_seq.nextval, sysdate, #{user.uNo}, #{game.gNo})
 	</insert>
 	<select id="selectWishList" resultMap="WishListUserGame">
 		select *
