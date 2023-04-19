@@ -85,7 +85,7 @@
                     <hr class="border-secondary my-4">
                     <div>
                       <div id="accordion-5" class="accordion accordion-connected accordion-no-header">
-                        <div class="card">
+                        <div class="card" th:each="card:${cardList}">
                           <div class="card-header" id="Card">
                             <h5 class="mb-0">
                               <a data-toggle="collapse" href="#collapse-5-2" class="d-flex align-items-center">
@@ -100,11 +100,11 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="cardNumber">Card Number *</label>
-                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${loginUser.cardNumber}">
+                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${card.cardNumber}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="securityCode">Security Code *</label>
-                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${loginUser.cardCvc}">
+                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${card.cardCvc}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <div class="d-flex align-items-center pt-md-7">
@@ -116,7 +116,7 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="nameOnCard">Name on Card *</label>
-                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${loginUser.cardName}">
+                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${card.cardName}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="expiryDate">Expiry Date *</label>
@@ -219,9 +219,9 @@
     <!-- /.sign-in -->
     
     <!-- sign-up -->
-    <!-- 
+    
     <div id="common-sign-up" th:include="common-sign-up::common-sign-up"></div>
-     -->
+    
     <!-- /.sign-up -->
 
     <!-- offcanvas-cart -->
@@ -241,6 +241,6 @@
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
     
     <!-- Custom JS -->
-    
+     <script src="js/user.js"></script>
   </body>
 </html>
