@@ -41,5 +41,19 @@
 		select * from review where g_no=#{gNo} order by review_like desc, review_like asc
 	</select>
 	
+	<!-- 게시글 좋아요 -->
+	<update id="updateReviewLike">
+		update review set review_like = review_like + 1 where review_no = #{reviewNo}
+	</update>
+	
+	<!-- 게시글 싫어요 -->
+	<update id="updateReviewDisLike">
+		update review set review_dislike = review_dislike + 1 where review_no = #{reviewNo}
+	</update>
+	
+	<select id="selectByReviewNo" parameterType="int" resultType="com.itwill.steam.review.Review">
+		 select * from review where review_no = #{reviewNo}
+	</select>
+	
 	
 </mapper>

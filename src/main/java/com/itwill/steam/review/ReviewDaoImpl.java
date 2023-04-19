@@ -15,21 +15,21 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Autowired
 	private ReviewMapper reviewMapper;
 
-	//게임 리뷰 작성
+	// 게임 리뷰 작성
 	@Override
-	public int insertGameReview(Review review){		
+	public int insertGameReview(Review review) {
 		return reviewMapper.insertGameReview(review);
 	}
-	
-	//리뷰 삭제
+
+	// 리뷰 삭제
 	@Override
-	public int deleteGameReview(int reviewNo){
+	public int deleteGameReview(int reviewNo) {
 		return reviewMapper.deleteGameReview(reviewNo);
 	}
 
-	//리뷰 수정
+	// 리뷰 수정
 	@Override
-	public int updateGameReview(Review review){		
+	public int updateGameReview(Review review) {
 		return reviewMapper.updateGameReview(review);
 	}
 
@@ -51,6 +51,21 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public List<Review> selectByLikeDesc(Game game) {
 		return reviewMapper.selectByLikeDesc(game);
+	}
+
+	@Override
+	public int updateReviewLike(int reviewNo) {
+		return reviewMapper.updateReviewLike(reviewNo);
+	}
+
+	@Override
+	public int updateReviewDisLike(int reviewNo) {
+		return reviewMapper.updateReviewDisLike(reviewNo);
+	}
+
+	@Override
+	public Review selectByReviewNo(int reviewNo) {
+		return reviewMapper.selectByReviewNo(reviewNo);
 	}
 
 	

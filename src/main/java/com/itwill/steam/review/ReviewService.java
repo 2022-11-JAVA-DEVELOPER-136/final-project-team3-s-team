@@ -20,10 +20,18 @@ public interface ReviewService {
 
 	// 게임번호로 리뷰 전체보기
 	public List<Review> selectByGameNo(Game game);
-	
-	//리뷰 최신등록순 정렬보기
+
+	// 리뷰 최신등록순 정렬보기
 	public List<Review> selectByDateDesc(Game game);
 
-	//리뷰 추천수 내림차순 정렬보기
+	// 리뷰 추천수 내림차순 정렬보기
 	public List<Review> selectByLikeDesc(Game game);
+
+	// 리뷰글 좋아요
+	public int updateReviewLike(int reviewNo);
+
+	// 리뷰글 싫어요
+	public int updateReviewDisLike(int reviewNo);
+
+	public Review selectByReviewNo(int reviewNo);
 }

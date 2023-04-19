@@ -34,12 +34,12 @@ G_NO                       NUMBER(10)
 
 public class Review {
 	private int reviewNo;
-	private Date reviewCreatedAt;
-	private Date reviewUpdatedAt;
-	private String reviewComment;
-	private int reviewRecommend;
-	private int reviewLike;
-	private int reviewDisLike;
+	private Date reviewCreatedAt; //생성일자
+	private Date reviewUpdatedAt; //수정일자
+	private String reviewComment; //리뷰내용
+	private int reviewRecommend; //리뷰별점
+	private int reviewLike; //좋아요
+	private int reviewDisLike; //싫어요
 			
 	private User user;
 	private Game game;
