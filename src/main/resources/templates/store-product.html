@@ -62,8 +62,8 @@
               <header>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb-product breadcrumb-nowrap breadcrumb breadcrumb-angle bg-transparent pl-0 pr-0 mb-0">
-                    <li class="breadcrumb-item"><a href="#">All Games</a></li>
-                    <li class="breadcrumb-item"><a href="#" th:text="${game.category.ctName}">Action Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}">All Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="${game.category.ctName}">Action Games</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Vestibulum</li>
                   </ol>
                 </nav>
@@ -528,8 +528,9 @@
                 <hr class="border-secondary mt-2 mb-6">
                 <div class="row">
                   <!-- each -->
+                  <th:block th:each="review:${reviewList}">
                   <!-- Item -->
-                  <div class="col-12 mb-7" th:each="review:${reviewList}">
+                  <div class="col-12 mb-7">
                     <div class="d-flex flex-wrap flex-sm-nowrap">
                       <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar"></div>
                       <div class="review-item ml-sm-4">
@@ -542,11 +543,15 @@
                           <!-- /.time -->
                           <!-- star -->
                           <div class="ml-2 text-warning">
+                          	<!-- each -->
+                          	<th:block th:if="${review.reviewRecommend / 2} >= 1" th:each="seq:${#numbers.sequence(1, review.reviewRecommend / 2)}">
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            </th:block>
+                            <!-- /.each -->
+                            <th:block th:if="${#numbers.formatDecimal(review.reviewRecommend, 1, 1)} / 2 - ${review.reviewRecommend / 2} == 0.5">
                             <i class="fas fa-star-half-alt"></i>
+                            </th:block>
+                            <span th:text="${#numbers.formatDecimal(review.reviewRecommend, 1, 1)} / 2"></span>
                           </div>
                           <!-- /.star -->
                           <!-- info -->
@@ -577,6 +582,7 @@
                     </div>
                   </div>
                   <!-- /.Item -->
+                  </th:block>
                   <!-- /.each -->
                 </div>
               </div>
