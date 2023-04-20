@@ -14,7 +14,7 @@ class OrderServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	OrderService orderService;
 	//@Test
 	void testInsertOrder() {
-		Order order = new Order(0, new Date(), 999999, 2);
+		Order order = Order.builder().oTotalPrice(120000).uNo(3).build();
 		orderService.insertOrder(order);
 	}
 
