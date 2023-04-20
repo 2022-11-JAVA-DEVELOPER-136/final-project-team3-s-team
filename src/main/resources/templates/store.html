@@ -53,7 +53,7 @@
           </div>
           <div id="storeCarousel" class="carousel-spotlight carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-
+			  <th:block th:if="${#lists.size(popularGameList)} >= 1">
 			  <!-- carousel item (active) -->
               <div class="carousel-item active">
                 <div class="row">
@@ -108,10 +108,12 @@
                   </div>
                 </div>
               </div>
-              <!-- /.carousel item -->
+              <!-- /.carousel item (active) -->
+              </th:block>
 			  
 			  <!-- each -->
 			  <th:block th:each="seq:${#numbers.sequence(1, 4)}">
+			  <th:block th:if="${#lists.size(popularGameList)} >= ${seq}+1">
               <!-- carousel item -->
               <div class="carousel-item">
                 <div class="row">
@@ -167,6 +169,7 @@
                 </div>
               </div>
               <!-- /.carousel item -->
+              </th:block>
               </th:block>
               <!-- /.each -->
             </div>
@@ -567,7 +570,7 @@
               <div class="col-lg-4">
                 <div class="filters border border-secondary rounded p-4">
                 <!-- <form> -->
-                <form id="filter" name="filter">
+                <form id="filterForm" name="filterForm">
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
                     <li class="nav-item text-light transition mb-2 active">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser collapser-active nav-link-border">
@@ -640,7 +643,7 @@
                   <!-- /.<form> -->
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
                   	<li class="nav-item text-light transition mt-4">
-                      <a href="javascript:filterButton('#filter');" class="btn btn-warning d-block">필터링 검색</a>
+                      <span id="filterButton" class="btn btn-warning d-block">필터링 검색</span>
                     </li>
                   </ul>
                 </div>
