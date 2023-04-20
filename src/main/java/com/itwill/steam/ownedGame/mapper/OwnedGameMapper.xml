@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.ownedGame.mapper.OwnedGameMapper">
-<select id="ownedGameList" parameterType="int" resultType="OwnedGame">
-    SELECT * FROM owned_game og 
-    join game g on g.g_no=og.g_no
-    WHERE u_no = #{uNo}
-</select>
+	<resultMap type="com.itwill.steam.ownedGame.OwnedGame" id="ownedGameWithGame" autoMapping="true">
+		<id column="og_no" property="ogNo"/>
+		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
+		</association>
+		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
+		</association>
+	</resultMap>
+	<select id="ownedGameList" parameterType="com.itwill.steam.user.User" resultMap="ownedGameWithGame">
+	    SELECT * FROM owned_game og 
+	    join game g on g.g_no=og.g_no
+	    WHERE u_no = #{uNo}
+	</select>
 </mapper>

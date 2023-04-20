@@ -18,7 +18,7 @@
 		join cart c on c.g_no=g.g_no 
 		where c.u_no=#{user.uNo}
 	</select>
-	<delete id="deleteCart" parameterType="com.itwill.steam.cart.Cart">
+	<delete id="deleteCart" parameterType="java.lang.Integer">
 		delete from cart where c_no = #{cNo}
 	</delete>
 	<delete id="deleteAllCarts" parameterType="com.itwill.steam.cart.Cart">

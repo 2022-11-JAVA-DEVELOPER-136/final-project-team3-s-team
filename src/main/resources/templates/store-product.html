@@ -62,8 +62,8 @@
               <header>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb-product breadcrumb-nowrap breadcrumb breadcrumb-angle bg-transparent pl-0 pr-0 mb-0">
-                    <li class="breadcrumb-item"><a href="#">All Games</a></li>
-                    <li class="breadcrumb-item"><a href="#" th:text="${game.category.ctName}">Action Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}">All Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="${game.category.ctName}">Action Games</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Vestibulum</li>
                   </ol>
                 </nav>
@@ -306,23 +306,27 @@
                       <h6 class="mb-0 fw-400 ls-1 text-uppercase">같은 태그를 가진 게임들</h6>
                       <hr class="border-secondary my-2">
                       <div>
-                        <div class="owl-carousel carousel_sm" data-carousel-items="1, 2, 3, 3" data-carousel-margin="10" data-carousel-nav="false" data-carousel-dots="true" th:each="tgame:${gameListByTagName}">
+                        <div class="owl-carousel carousel_sm" data-carousel-items="1, 2, 3, 3" data-carousel-margin="10" data-carousel-nav="false" data-carousel-dots="true">
                           <!-- each -->
+                          <th:block th:each="tgame:${gameListByTagName}">
                           <div class="item">
-                            <a href="#">
-                              <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
+                            <a href="#" th:href="@{/store-product(gNo=${tgame.gNo})}">
+                              <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);"
+                              	th:style="${'background-image : url(image/'} + ${tgame.resourcesList.get(0).resName} + ');'">
                                 <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
                                   <div class="px-4 py-3 lh-1">
                                     <h6 class="mb-1 small-1 text-light text-uppercase" th:text="${tgame.gName}">Phasellus</h6>
                                     <div class="price d-flex flex-wrap align-items-center">
-                                      <span class="discount_final text-warning small-2" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
+                                      <span class="discount_final text-warning small-2" th:text="|${#numbers.formatInteger(tgame.gPrice - tgame.gPrice * tgame.gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </a>
                           </div>
+                          </th:block>
                           <!-- /.each -->
+                          <!-- 
                           <div class="item">
                             <a href="#">
                               <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
@@ -365,13 +369,14 @@
                               </div>
                             </a>
                           </div>
+                           -->
                         </div>
                       </div>
                     </div>
                     <div class="mb-0">
                       <div>
                         <div>
-                          <p class="small">Duis sit amet lectus pharetra, placerat ante et, varius urna. Praesent euismod lacinia lacus, at posuere quam vestibulum ut. Vivamus eu ligula at massa laoreet commodo. In consequat aliquet scelerisque. Proin dapibus velit quis suscipit interdum. Vestibulum eu sapien eget lorem volutpat dapibus molestie a metus. Proin in turpis a arcu luctus euismod. Sed vitae ante at leo bibendum blandit nec vel mauris. Ut laoreet bibendum lobortis.</p>
+                          <p class="small" th:text="|취향에 맞는 또 다른 게임을 찾아보세요!|">Duis sit amet lectus pharetra, placerat ante et, varius urna. Praesent euismod lacinia lacus, at posuere quam vestibulum ut. Vivamus eu ligula at massa laoreet commodo. In consequat aliquet scelerisque. Proin dapibus velit quis suscipit interdum. Vestibulum eu sapien eget lorem volutpat dapibus molestie a metus. Proin in turpis a arcu luctus euismod. Sed vitae ante at leo bibendum blandit nec vel mauris. Ut laoreet bibendum lobortis.</p>
                         </div>
                       </div>
                     </div>
@@ -496,14 +501,17 @@
           </div>
           <div class="owl-carousel" data-carousel-items="1, 3, 6">
           	<!-- each -->
+            <th:block th:each="cgame:${gameListByCategory}">
             <!-- item -->
-            <div class="item mx-3" th:each="cgame:${gameListByCategory}">
-              <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3">
-              <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:text="${cgame.gName}">Nunc consectetur</a>
+            <div class="item mx-3">
+              <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3" th:src="|image/${cgame.resourcesList.get(0).resName}|">
+              <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:href="@{/store-product(gNo=${cgame.gNo})}" th:text="${cgame.gName}">Nunc consectetur</a>
               <span class="time d-block small-4" th:text="${#dates.format(cgame.gReleaseDate, 'yyyy-MM-dd')}">05/08/2020</span>
+              <!-- 사용자 좋아요 개수로 보여줄까? -->
               <span class="d-block small text-warning"><i class="far fa-eye"></i> 23</span>
             </div>
             <!-- /.item -->
+            </th:block>
             <!-- /.each -->
           </div>
         </div>
@@ -520,8 +528,9 @@
                 <hr class="border-secondary mt-2 mb-6">
                 <div class="row">
                   <!-- each -->
+                  <th:block th:each="review:${reviewList}">
                   <!-- Item -->
-                  <div class="col-12 mb-7" th:each="review:${reviewList}">
+                  <div class="col-12 mb-7">
                     <div class="d-flex flex-wrap flex-sm-nowrap">
                       <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar"></div>
                       <div class="review-item ml-sm-4">
@@ -534,11 +543,15 @@
                           <!-- /.time -->
                           <!-- star -->
                           <div class="ml-2 text-warning">
+                          	<!-- each -->
+                          	<th:block th:if="${review.reviewRecommend / 2} >= 1" th:each="seq:${#numbers.sequence(1, review.reviewRecommend / 2)}">
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            </th:block>
+                            <!-- /.each -->
+                            <th:block th:if="${#numbers.formatDecimal(review.reviewRecommend, 1, 1)} / 2 - ${review.reviewRecommend / 2} == 0.5">
                             <i class="fas fa-star-half-alt"></i>
+                            </th:block>
+                            <span th:text="${#numbers.formatDecimal(review.reviewRecommend, 1, 1)} / 2"></span>
                           </div>
                           <!-- /.star -->
                           <!-- info -->
@@ -569,6 +582,7 @@
                     </div>
                   </div>
                   <!-- /.Item -->
+                  </th:block>
                   <!-- /.each -->
                 </div>
               </div>

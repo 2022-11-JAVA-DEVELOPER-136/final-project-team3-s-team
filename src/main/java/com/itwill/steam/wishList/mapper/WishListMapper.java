@@ -13,7 +13,7 @@ public interface WishListMapper {
 	public int insertWishList(WishList wishList);
 	
 	//상품 선택
-	public List<WishList> selectWishList(int wishNo);
+	public List<WishList> selectWishList(int uNo);
 	
 	//상품 삭제
 	public int deleteWishList(int wishNo);

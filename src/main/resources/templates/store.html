@@ -53,81 +53,115 @@
           </div>
           <div id="storeCarousel" class="carousel-spotlight carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-
-              <!-- carousel item -->
+			  <th:block th:if="${#lists.size(popularGameList)} >= 1">
+			  <!-- carousel item (active) -->
               <div class="carousel-item active">
                 <div class="row">
+                  <!-- left carousel -->
                   <div class="col-lg-8 pr-lg-1">
-                    <a href="#">
-                      <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);">
+                    <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
+                      <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);"
+                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(0).resName} + ');'">
                       </div>
                     </a>
                   </div>
+                  <!-- /.left carousel -->
                   <div class="col-lg-4 d-none d-lg-block pl-lg-1">
                     <div class="row no-gutters h-100">
+                      <!-- right-up carousel -->
                       <div class="col-12 pb-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"></div>
+                        <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
+                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(1).resName} + ');'">
+                          </div>
                         </a>
                       </div>
+                      <!-- /.right-up carousel -->
+                      <!-- right-down carousel -->
                       <div class="col-12 pt-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"></div>
+                        <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
+                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(2).resName} + ');'">
+                          </div>
                         </a>
                       </div>
+                      <!-- /.right-down carousel -->
                     </div>  
                   </div>
                   <div class="col-12">
                     <div class="bg-dark d-flex p-4">
                       <div class="flex-1 d-flex align-items-center">
-                        <h5 class="mb-0"><a href="#">Exploration Memories</a></h5>
+                        <h5 class="mb-0">
+                        	<a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}" th:text="${popularGameList.get(0).gName}">Exploration Memories</a>
+                        </h5>
                       </div>
                       <div class="price d-none d-md-flex flex-wrap align-items-center">
-                        <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded"><span class="fw-600">-30%</span></div>
+                        <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded">
+                        	<span class="fw-600" th:text="${#numbers.formatPercent(0 - popularGameList.get(0).gDiscountRate * 0.01, 2, 1)}">-30%</span>
+                        </div>
                         <div class="pl-3 d-flex flex-column my-md-3 my-lg-0 lh-1">
-                          <span class="small discount fw-600 td-lt mb-1">€144.99</span>
-                          <span class="discount_final lead-2">€99.99</span>
+                          <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice, 3, 'COMMA')}원|">€144.99</span>
+                          <span class="discount_final lead-2" th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice - popularGameList.get(0).gPrice * popularGameList.get(0).gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- /.carousel item -->
-
+              <!-- /.carousel item (active) -->
+              </th:block>
+			  
+			  <!-- each -->
+			  <th:block th:each="seq:${#numbers.sequence(1, 4)}">
+			  <th:block th:if="${#lists.size(popularGameList)} >= ${seq}+1">
               <!-- carousel item -->
               <div class="carousel-item">
                 <div class="row">
+                  <!-- left carousel -->
                   <div class="col-lg-8 pr-lg-1">
-                    <a href="#">
-                      <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);">
+                    <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
+                      <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);"
+                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(0).resName} + ');'">
                       </div>
                     </a>
                   </div>
+                  <!-- /.left carousel -->
                   <div class="col-lg-4 d-none d-lg-block pl-lg-1">
                     <div class="row no-gutters h-100">
+                      <!-- right-up carousel -->
                       <div class="col-12 pb-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"></div>
+                        <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
+                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(1).resName} + ');'">
+                          </div>
                         </a>
                       </div>
+                      <!-- /.right-up carousel -->
+                      <!-- right-down carousel -->
                       <div class="col-12 pt-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"></div>
+                        <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
+                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(2).resName} + ');'">
+                          </div>
                         </a>
                       </div>
+                      <!-- /.right-down carousel -->
                     </div>  
                   </div>
                   <div class="col-12">
                     <div class="bg-dark d-flex p-4">
                       <div class="flex-1 d-flex align-items-center">
-                        <h5 class="mb-0"><a href="#">Exploration Memories</a></h5>
+                        <h5 class="mb-0">
+                        	<a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}" th:text="${popularGameList.get(seq).gName}">Exploration Memories</a>
+                        </h5>
                       </div>
                       <div class="price d-none d-md-flex flex-wrap align-items-center">
-                        <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded"><span class="fw-600">-30%</span></div>
+                        <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded">
+                        	<span class="fw-600" th:text="${#numbers.formatPercent(0 - popularGameList.get(seq).gDiscountRate * 0.01, 2, 1)}">-30%</span>
+                        </div>
                         <div class="pl-3 d-flex flex-column my-md-3 my-lg-0 lh-1">
-                          <span class="small discount fw-600 td-lt mb-1">€144.99</span>
-                          <span class="discount_final lead-2">€99.99</span>
+                          <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice, 3, 'COMMA')}원|">€144.99</span>
+                          <span class="discount_final lead-2" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice - popularGameList.get(seq).gPrice * popularGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
                         </div>
                       </div>
                     </div>
@@ -135,48 +169,9 @@
                 </div>
               </div>
               <!-- /.carousel item -->
-
-              <!-- carousel item -->
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-lg-8 pr-lg-1">
-                    <a href="#">
-                      <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);">
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-lg-4 d-none d-lg-block pl-lg-1">
-                    <div class="row no-gutters h-100">
-                      <div class="col-12 pb-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"></div>
-                        </a>
-                      </div>
-                      <div class="col-12 pt-1">
-                        <a href="#">
-                          <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"></div>
-                        </a>
-                      </div>
-                    </div>  
-                  </div>
-                  <div class="col-12">
-                    <div class="bg-dark d-flex p-4">
-                      <div class="flex-1 d-flex align-items-center">
-                        <h5 class="mb-0"><a href="#">Exploration Memories</a></h5>
-                      </div>
-                      <div class="price d-none d-md-flex flex-wrap align-items-center">
-                        <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded"><span class="fw-600">-30%</span></div>
-                        <div class="pl-3 d-flex flex-column my-md-3 my-lg-0 lh-1">
-                          <span class="small discount fw-600 td-lt mb-1">€144.99</span>
-                          <span class="discount_final lead-2">€99.99</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.carousel item -->
-
+              </th:block>
+              </th:block>
+              <!-- /.each -->
             </div>
 
             <!-- left and right controls -->
@@ -575,7 +570,7 @@
               <div class="col-lg-4">
                 <div class="filters border border-secondary rounded p-4">
                 <!-- <form> -->
-                <form id="filter" name="filter">
+                <form id="filterForm" name="filterForm">
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
                     <li class="nav-item text-light transition mb-2 active">
                       <a href="" aria-expanded="false" data-toggle="collapse" class="nav-link py-2 px-3 text-uppercase  collapsed collapser collapser-active nav-link-border">
@@ -648,7 +643,7 @@
                   <!-- /.<form> -->
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
                   	<li class="nav-item text-light transition mt-4">
-                      <a href="javascript:filterButton('#filter');" class="btn btn-warning d-block">필터링 검색</a>
+                      <span id="filterButton" class="btn btn-warning d-block">필터링 검색</span>
                     </li>
                   </ul>
                 </div>

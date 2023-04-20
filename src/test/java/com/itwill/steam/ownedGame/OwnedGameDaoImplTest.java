@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
+import com.itwill.steam.user.User;
+import com.itwill.steam.user.UserDao;
 
 @Transactional
 class OwnedGameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
@@ -18,8 +20,11 @@ class OwnedGameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	@Test
 	void testOwnedGameList() {
-		List<OwnedGame> ownedGameList = ownedGameDao.ownedGameList(1);
+		User user = User.builder().uNo(1).build();
+		
+		List<OwnedGame> ownedGameList = ownedGameDao.ownedGameList(user);
 		System.out.println(">>>>> " + ownedGameList);
+		System.out.println(">>>>>"+ownedGameList.get(0).getOgLastplay());
 		
 	}
 	

@@ -57,7 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
 			review.setReviewRecommend(recommend);
 		} else {
 			// 잘못된 인자가 전달되면 예외 발생(null/값의 범위 벗어남/잘못된형식일때)
-			throw new IllegalArgumentException("Invalid recommend value: " + recommend);
+			throw new IllegalArgumentException("recommend value: " + recommend);
 		}
 
 		return reviewDao.insertGameReview(review);

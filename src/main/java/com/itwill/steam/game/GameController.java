@@ -138,7 +138,7 @@ public class GameController {
 		model.addAttribute("gameListByCategory", gameListByCategory);
 		
 		//해당 게임의 리뷰 보여주기 (최신순) - 아직 메소드 안바뀌어서 최신순 메소드로 안바꿨음 나중에 바꿔야함.
-		List<Review> reviewList = reviewService.selectByGameNo(Game.builder().gNo(Integer.parseInt(gNo)).build());
+		List<Review> reviewList = reviewService.selectByDateDesc(Game.builder().gNo(Integer.parseInt(gNo)).build());
 		model.addAttribute("reviewList", reviewList);
 		
 		//해당 게임의 인기리뷰 보여주기 (인기순)

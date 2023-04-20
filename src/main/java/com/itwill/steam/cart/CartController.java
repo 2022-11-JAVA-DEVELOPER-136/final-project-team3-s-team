@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,19 +51,16 @@ public class CartController {
 		        // 총액 계산
 		        int fullPrice = 0;
 		        int discountPrice = 0;
-		        int tax = 0;
 		        int savedPrice = 0;
 		        int finalPrice = 0;
 		        for (Cart cart : cartList) {
 		            fullPrice += cart.getGame().getGPrice();
 		            discountPrice=(int) (fullPrice*cart.getGame().getGDiscountRate()/100);
 		        }
-		        tax=fullPrice*1/10;	
 		        savedPrice=fullPrice-discountPrice;
-		        finalPrice=fullPrice-discountPrice+tax;
+		        finalPrice=fullPrice-discountPrice;
 		        model.addAttribute("fullPrice", fullPrice);
 		        model.addAttribute("discountPrice", discountPrice);
-		        model.addAttribute("tax", tax);
 		        model.addAttribute("savedPrice", savedPrice);
 		        model.addAttribute("finalPrice", finalPrice);
 		        return "checkout-order";
@@ -71,6 +69,7 @@ public class CartController {
 		        return "error";
 		    }
 		}
+		
 		
 		// checkout-address 페이지로 이동
 		@RequestMapping(value = "/checkout-address", method = RequestMethod.GET)
@@ -82,13 +81,16 @@ public class CartController {
 			return "checkout-address";
 		}
 		
+		
 		// 장바구니에 담긴 상품 삭제
-		@RequestMapping(value = "/deletecart", method = RequestMethod.GET)
-		public String deleteCart(@RequestParam("cNo") int cNo, HttpSession session) {
+		@RequestMapping(value = "/deleteCart")
+		public String deleteCart(@RequestParam String cNo, HttpSession session) {
+			System.out.println(">>>>>"+cNo);
+			
 		    try {
 		        User loginUser = (User) session.getAttribute("loginUser");
 		        if (loginUser != null) {
-		            cartService.deleteCart(loginUser.getUNo());
+		            cartService.deleteCart(Integer.parseInt(cNo));
 		        }
 		        return "redirect:checkout-order";
 		    } catch (Exception e) {
@@ -97,11 +99,4 @@ public class CartController {
 		    }
 		}
 
-		//조까치 아무 것도 안될 때 대비용 비상구
-//		@RequestMapping("/checkout-order")
-//		public String checkout_order() {
-//			return "checkout-order";
-//		}
-		
-		
 }

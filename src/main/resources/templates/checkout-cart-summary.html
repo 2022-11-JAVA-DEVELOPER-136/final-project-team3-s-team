@@ -10,25 +10,42 @@
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
 						<div>Full Price</div>
+						<th:block th:if="${fullPrice} != 0">
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(fullPrice, 3, 'COMMA')}원|">총액</div>
+						</th:block>
+						<th:block th:if="${fullPrice} == 0">
+						<div class="ml-auto" th:text="0원">총액</div>
+						</th:block>
 					</div>
 				</li>
 				<li class="my-1">
 					<div class="d-flex text-info small-2 fw-600">
 						<div>Your Discount</div>
+						<th:block th:if="${discountPrice}!=0">
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(discountPrice, 3, 'COMMA')}원|">할인액</div>
+						</th:block>
+						<th:block th:if="${discountPrice} == 0">
+						<div class="ml-auto" th:text="0원">할인액</div>
+						</th:block>
 					</div>
 				</li>
+				<!-- 
 				<li class="my-1">
 					<div class="d-flex text-danger small-2 fw-600">
 						<div>Estimated Tax</div>
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(tax, 3, 'COMMA')}원|">세금</div>
 					</div>
 				</li>
+				 -->
 				<li class="my-1">
 					<div class="d-flex text-warning small-2 fw-600">
 						<div>You Save</div>
+						<th:block th:if="${savedPrice}!=0">
 						<div class="ml-auto" th:text="|-${#numbers.formatInteger(savedPrice, 3, 'COMMA')}원|">감면액</div>
+						</th:block>
+						<th:block th:if="${savedPrice} == 0">
+						<div class="ml-auto" th:text="0원">감면액</div>
+						</th:block>
 					</div>
 				</li>
 				<!-- 
@@ -43,7 +60,12 @@
 				<li>
 					<div class="d-flex small-1 fw-600">
 						<div>Total</div>
+						<th:block th:if="${finalPrice}!=0">
 						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">최종액</div>
+						</th:block>
+						<th:block th:if="${finalPrice} == 0">
+						<div class="ml-auto" th:text="0원">최종액</div>
+						</th:block>
 					</div>
 				</li>
 				<li><hr class="my-3 border-secondary"></li>

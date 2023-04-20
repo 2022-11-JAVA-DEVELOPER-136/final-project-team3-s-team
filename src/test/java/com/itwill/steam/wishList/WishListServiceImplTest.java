@@ -2,6 +2,8 @@ package com.itwill.steam.wishList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +16,7 @@ class WishListServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
 	private WishListService wishListService;
 	
-	@Test
+	//@Test
 	void testInsertWishList() {
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();
@@ -22,9 +24,11 @@ class WishListServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		wishListService.insertWishList(wishList);
 	}
 
-	//@Test
+	@Test
 	void testSelectWishList() {
-		wishListService.selectWishList(1);
+		List<WishList> wishlistList = wishListService.selectWishList(1);
+		System.out.println(">>>>>"+wishlistList);
+		System.out.println(">>>>>"+wishlistList.size());
 	}
 
 	//@Test

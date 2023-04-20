@@ -5,8 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.itwill.steam.ownedGame.OwnedGame;
+import com.itwill.steam.user.User;
 
 @Mapper
 public interface OwnedGameMapper {
-	public List<OwnedGame> ownedGameList(int uNo);
+	public List<OwnedGame> ownedGameList(User user);
 }

@@ -1,13 +1,6 @@
 /**
 game.js
 */
-function filterButton(formId){
-	let form = $(formId);
-	form.method = 'POST';
-	form.action = 'store';
-	form.submit();
-}
-
 $(function(){
 	/************************************store.html************************************/
 	//페이지 버튼 클릭시 실행할 function 등록
@@ -20,6 +13,14 @@ $(function(){
 	//tab 파라미터가 있는 경우, 해당 탭에 클릭이벤트 발생
 	if(location.href.endsWith('&tab=2')) $('#mp-2-02-tab').click();
 	if(location.href.endsWith('&tab=3')) $('#mp-2-03-tab').click();
+	
+	//필터링검색 버튼 클릭시 실행할 function 등록
+	$('#filterButton').on('click', function(){
+		let form = $('#filterForm');
+		form.method = 'POST';
+		form.action = 'store';
+		form.submit();
+	});
 	/**********************************************************************************/
 	
 	/********************************store-product.html********************************/

@@ -1,3 +1,6 @@
 /**
 cart.js
 */
+$(function(){
+	
+});
