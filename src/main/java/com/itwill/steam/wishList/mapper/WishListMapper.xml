@@ -12,11 +12,11 @@
     	insert into wishList(wish_no, wish_date, u_no, g_no)
 		values(wishList_wish_no_seq.nextval, sysdate, #{user.uNo}, #{game.gNo})
 	</insert>
-	<select id="selectWishList" resultMap="WishListUserGame">
+	<select id="selectWishList" parameterType="java.lang.Integer" resultMap="WishListUserGame">
 		select *
 		from game g 
 		join wishList w on w.g_no=g.g_no 
-		where w.u_no=#{user.uNo}
+		where w.u_no=#{uNo}
 	</select>
 	<delete id="deleteWishList" parameterType="com.itwill.steam.wishList.WishList">
 		delete from wishList where wish_no = #{wishNo}
