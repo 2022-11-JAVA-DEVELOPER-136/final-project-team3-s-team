@@ -91,7 +91,7 @@
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
                               <a href="store-product">
-                                <img class="checkout-order-img img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store">
+                                <img class="checkout-order-img img bl-3 text-primary"  src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${cart.game.resourcesList.get(0).resName}|">
                               </a>
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
@@ -129,7 +129,7 @@
                             <div class="pl-4">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right lead-2">
-                                  <a href="#" class="ti-trash text-warning" th:onclick='deleteCart("${cNo}")'></a>
+                                  <a href="#" class="ti-trash text-warning" th:href="@{deleteCart(cNo=${cart.cNo})}"></a>
                                 </div>
                               </div>
                             </div>
@@ -202,5 +202,6 @@
     
     <!-- Custom JS -->
     <script type="text/javascript" src="js/order.js"></script>
+    <script type="text/javascript" src="js/cart.js"></script>
   </body>
 </html>

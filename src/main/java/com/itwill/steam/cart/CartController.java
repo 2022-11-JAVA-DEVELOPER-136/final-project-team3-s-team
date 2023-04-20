@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,12 +83,14 @@ public class CartController {
 		
 		
 		// 장바구니에 담긴 상품 삭제
-		@RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
-		public String deleteCart(@RequestParam("cNo") int cNo, HttpSession session) {
+		@RequestMapping(value = "/deleteCart")
+		public String deleteCart(@RequestParam String cNo, HttpSession session) {
+			System.out.println(">>>>>"+cNo);
+			
 		    try {
 		        User loginUser = (User) session.getAttribute("loginUser");
 		        if (loginUser != null) {
-		            cartService.deleteCart(cNo);
+		            cartService.deleteCart(Integer.parseInt(cNo));
 		        }
 		        return "redirect:checkout-order";
 		    } catch (Exception e) {
@@ -96,5 +99,4 @@ public class CartController {
 		    }
 		}
 
-		
 }
