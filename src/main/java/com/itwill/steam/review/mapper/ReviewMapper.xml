@@ -38,7 +38,7 @@
 		
 	<!-- 추천수 많은 리뷰 정렬보기 -->
 	<select id="selectByLikeDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
-		select * from review where g_no=#{gNo} order by review_like desc, review_like asc
+		select * from review where g_no=#{gNo} order by review_like desc, review_dislike asc
 	</select>
 	
 	<!-- 게시글 좋아요 -->
