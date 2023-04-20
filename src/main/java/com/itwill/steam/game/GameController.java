@@ -141,6 +141,15 @@ public class GameController {
 		List<Review> reviewList = reviewService.selectByDateDesc(Game.builder().gNo(Integer.parseInt(gNo)).build());
 		model.addAttribute("reviewList", reviewList);
 		
+		//해당 게임의 리뷰 평균평점 구해서 보내기
+		double reviewSum = 0;
+		int reviewSize = reviewList.size();
+		for(Review review:reviewList) {
+			reviewSum += review.getReviewRecommend();
+		}
+		double reviewAvg = reviewSum / reviewSize / 2;//reviewRecommend가 1~10점이어서 나누기 2 했음.
+		model.addAttribute("reviewAvg", reviewAvg);
+		
 		//해당 게임의 인기리뷰 보여주기 (인기순)
 		//메소드없음
 		
@@ -156,12 +165,12 @@ public class GameController {
 	//Local Exception Handler
 	@ExceptionHandler(Exception.class)
 	public String localExceptionHandler(Exception e) {
-		return "steam_error";
+		return "redirect:404";
 	}
 	
 	//게임이 없는 경우 404로 redirect
 	@ExceptionHandler(GameNotFoundException.class)
 	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
-		return "redirect:404";
+		return "redirect:store";
 	}
 }

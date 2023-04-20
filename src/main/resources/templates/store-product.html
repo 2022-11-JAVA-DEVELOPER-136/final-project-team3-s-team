@@ -62,29 +62,32 @@
               <header>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb-product breadcrumb-nowrap breadcrumb breadcrumb-angle bg-transparent pl-0 pr-0 mb-0">
-                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}">All Games</a></li>
-                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="${game.category.ctName}">Action Games</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Vestibulum</li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}" th:text="|모든 게임|">All Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="|${game.category.ctName} 게임|">Action Games</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" th:text="${game.gName}">Vestibulum</li>
                   </ol>
                 </nav>
                 <h3 class="product_name mb-4" th:text="${game.gName}">Vestibulum varius rutrum cursus</h3>
                 <div class="d-flex flex-wrap align-items-center">
                   <div class="review d-flex">
                     <div class="review_score">
-                      <div class="review_score-btn">9.7</div>
+                      <div class="review_score-btn" th:text="${reviewAvg}">9.7</div>
                     </div>
+                    <!-- star -->
                     <div class="star_rating-se text-warning mr-7">
+                      <th:block th:if="${reviewAvg} >= 1" th:each="seq:${#numbers.sequence(1, reviewAvg)}">
                       <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
+                      </th:block>
+                      <th:block th:if="${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == 0.5 or ${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == -0.5"><!-- or 이하는 문제 생기면 지우고 개선점 찾을 것 -->
+                      <i class="fas fa-star-half-alt"></i>
+                      </th:block>
                     </div>
+                    <!-- /.star -->
                   </div>
                   <ul class="tag-list d-none d-md-flex flex-wrap list-unstyled mb-0">
                   	<!-- each -->
                     <li class="tag-item" th:each="gameTag:${game.gameTagList}">
-                    	<a href="" class="badge badge-warning fw-600" th:text="${gameTag.tag.tagName}">Aliquam</a>
+                    	<a href="" class="badge badge-warning fw-600" th:href="@{/store(tagNo=${gameTag.tag.tagNo})}" th:text="${gameTag.tag.tagName}">Aliquam</a>
                     </li>
                     <!-- /.each -->
                     <li class="tag-item">
@@ -465,7 +468,9 @@
                 <ul class="list-unstyled small-2 mb-3">
                   <li class="developer-wrapper">
                     <a href="" class="developer">태그:</a>
-                    <a href="" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">Indie</a>
+                    <th:block th:each="gameTag:${game.gameTagList}">
+                    <a href="" th:href="@{/store(tagNo=${gameTag.tag.tagNo})}" th:text="|${gameTag.tag.tagName} |">Indie</a>
+                    </th:block>
                   </li>
                 </ul>
                 <ul class="list-unstyled small-2 mb-3">
