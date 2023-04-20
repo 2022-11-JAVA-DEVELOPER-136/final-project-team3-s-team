@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.steam.ownedGame.mapper.OwnedGameMapper;
+import com.itwill.steam.user.User;
 
 @Repository
 public class OwnedGameDaoImpl implements OwnedGameDao {
@@ -14,8 +15,8 @@ public class OwnedGameDaoImpl implements OwnedGameDao {
 	private OwnedGameMapper ownedGameMapper;
 	
 	@Override
-	public List<OwnedGame> ownedGameList(int uNo) {
-		return ownedGameMapper.ownedGameList(uNo);
+	public List<OwnedGame> ownedGameList(User user) {
+		return ownedGameMapper.ownedGameList(user);
 	}
 
 }

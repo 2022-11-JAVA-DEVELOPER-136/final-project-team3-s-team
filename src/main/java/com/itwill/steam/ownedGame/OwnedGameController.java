@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.steam.user.User;
+
 	
 @Controller
 public class OwnedGameController {
@@ -20,9 +22,9 @@ public class OwnedGameController {
 	}
 	
     @RequestMapping(value = "/store-library", params = "uNo")
-    public String getOwnedGameList(@RequestParam String uNo, Model model) {
+    public String getOwnedGameList(@RequestParam User user, Model model) {
     	
-    	List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(Integer.parseInt(uNo));
+    	List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(user);
     	model.addAttribute("ownedGameList", ownedGameList);
         
         return "store-library";
