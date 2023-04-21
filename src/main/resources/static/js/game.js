@@ -28,12 +28,12 @@ $(function(){
 	//카트 담기 - 로그인한 경우
 	$('#addCartLogin').on('click', function(e) {
 		alert('login cart');
-		/*
+		
 		let form = $('#hiddenForm');
 		form.attr('method', 'post');
-		form.attr('action', '??????');
+		form.attr('action', 'insert-cart');
 		form.submit();
-		*/
+		
 	});
 	
 	//카트 담기 - 로그아웃한 경우

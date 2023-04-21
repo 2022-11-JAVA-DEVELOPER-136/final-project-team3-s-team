@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.steam.cart.Cart;
+import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
 import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.game.util.PageMaker;
@@ -32,6 +34,8 @@ import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.tag.Tag;
 import com.itwill.steam.user.User;
 import com.itwill.steam.user.UserService;
+import com.itwill.steam.wishList.WishList;
+import com.itwill.steam.wishList.WishListService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -42,6 +46,8 @@ public class GameController {
 	private final GameService gameService;
 	private final ReviewService reviewService;
 	private final OwnedGameService ownedGameService;
+	private final CartService cartService;
+	private final WishListService wishListService;
 	
 	//상품리스트 (제목검색, 필터링 가능)
 	@RequestMapping(value = "/store")
@@ -163,19 +169,30 @@ public class GameController {
 		User loginUser = (User)session.getAttribute("loginUser");
 		String isLogin = "false";
 		String isExistLibrary = "false";
+		String isExistCart = "false";
+		String isExistWishlist = "false";
+		
 		if(loginUser!=null) {
 			model.addAttribute("loginUser", loginUser);
 			isLogin = "true";
 			
 			List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(loginUser);
 			for(OwnedGame ownedGame:ownedGameList) {
-				if(game.getGNo()==ownedGame.getGame().getGNo()) {
-					isExistLibrary = "true";
-				}
+				if(game.getGNo()==ownedGame.getGame().getGNo()) isExistLibrary = "true";
+			}
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+			for(Cart cart:cartList) {
+				if(game.getGNo()==cart.getGame().getGNo()) isExistCart = "true";
+			}
+			List<WishList> wishLists = wishListService.selectWishList(loginUser.getUNo());
+			for(WishList wishList:wishLists) {
+				if(game.getGNo()==wishList.getGame().getGNo()) isExistWishlist = "true";
 			}
 		}
 		model.addAttribute("isLogin", isLogin);
 		model.addAttribute("isExistLibrary", isExistLibrary);
+		model.addAttribute("isExistCart", isExistCart);
+		model.addAttribute("isExistWishlist", isExistWishlist);
 		
 		return "store-product";
 	}

@@ -83,7 +83,7 @@ public class CartController {
 		}
 		
 		//장바구니에 상품 추가
-		@PostMapping(value = "/insertCart")
+		@PostMapping(value = "/insert-cart")
 		public String insertCart(@RequestParam String uNo, @RequestParam String gNo) {
 		    try {
 		    	Cart cart=Cart.builder().user(User.builder().uNo(Integer.parseInt(uNo)).build())

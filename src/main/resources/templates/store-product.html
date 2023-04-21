@@ -421,8 +421,12 @@
 	                    <th:block th:if="${isExistLibrary} == 'true'">
 	                    	<div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
 	                    </th:block>
-	                    <!-- 그 외의 경우 -->
-	                    <th:block th:if="${isExistLibrary} == 'false'">
+	                    <!-- 라이브러리에 없고, 카트에는 있는 경우 -->
+	                    <th:block th:if="${isExistLibrary} == 'false' and ${isExistCart} == 'true'">
+	                    	<div id="isExistedCart" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>카트에 있음</span></div>
+	                    </th:block>
+	                    <!-- 라이브러리에 없고, 카트에도 없는 경우 -->
+	                    <th:block th:if="${isExistLibrary} == 'false' and ${isExistCart} == 'false'">
 	                    	<div id="addCartLogin" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</span></div>
 	                    </th:block>
                     </th:block>
@@ -459,8 +463,12 @@
 	                  <th:block th:if="${isExistLibrary} == 'true'">
 	                  	<div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
 	                  </th:block>
-	                  <!-- 그 외의 경우 -->
-	                  <th:block th:if="${isExistLibrary} == 'false'">
+	                  <!-- 라이브러리에 없고, 위시리스트에는 있는 경우 -->
+	                  <th:block th:if="${isExistLibrary} == 'false' and ${isExistWishlist} == 'true'">
+	                  	<span id="isExistedWishlist" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 있음</span>
+	                  </th:block>
+	                  <!-- 라이브러리에 없고, 위시리스트에도 없는 경우 -->
+	                  <th:block th:if="${isExistLibrary} == 'false' and ${isExistWishlist} == 'false'">
 	                  	<span id="addWishlistLogin" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</span>
 	                  </th:block>
                   </th:block>
