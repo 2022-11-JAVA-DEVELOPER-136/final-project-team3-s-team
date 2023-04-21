@@ -12,8 +12,8 @@ public interface WishListMapper {
 	//상품 추가
 	public int insertWishList(WishList wishList);
 	
-	//상품 선택
-	public List<WishList> selectWishList(int uNo);
+	//유저번호로 해당 유저 위시리스트 보여주기
+	public List<WishList> selectWishListByUserNo(int uNo);
 	
 	//상품 삭제
 	public int deleteWishList(int wishNo);

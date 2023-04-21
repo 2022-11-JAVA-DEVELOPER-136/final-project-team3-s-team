@@ -19,8 +19,8 @@ public class WishListServiceImpl implements WishListService {
 	
 	//상품 선택
 	@Override
-	public List<WishList> selectWishList(int uNo) {
-		return wishListDao.selectWishList(uNo);
+	public List<WishList> selectWishListByUserNo(int uNo) {
+		return wishListDao.selectWishListByUserNo(uNo);
 	}
 	
 	//상품 삭제

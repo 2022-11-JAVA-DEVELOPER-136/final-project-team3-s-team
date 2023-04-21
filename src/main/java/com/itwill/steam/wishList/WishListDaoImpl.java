@@ -21,8 +21,8 @@ public class WishListDaoImpl implements WishListDao {
 	
 	//상품 선택
 	@Override
-	public List<WishList> selectWishList(int uNo) {
-		return WishListMapper.selectWishList(uNo);
+	public List<WishList> selectWishListByUserNo(int uNo) {
+		return WishListMapper.selectWishListByUserNo(uNo);
 	}
 	
 	//상품 삭제

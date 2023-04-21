@@ -26,7 +26,7 @@ class WishListServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 	@Test
 	void testSelectWishList() {
-		List<WishList> wishlistList = wishListService.selectWishList(1);
+		List<WishList> wishlistList = wishListService.selectWishListByUserNo(2);
 		System.out.println(">>>>>"+wishlistList);
 		System.out.println(">>>>>"+wishlistList.size());
 	}
