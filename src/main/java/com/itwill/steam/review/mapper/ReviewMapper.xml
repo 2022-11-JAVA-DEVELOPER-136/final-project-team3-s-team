@@ -30,16 +30,53 @@
 	<select id="selectByGameNo" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
 		select * from review where g_no=#{gNo}
 	</select>
-	
+
 	<!-- 리뷰 최신등록순 정렬보기 -->
-	<select id="selectByDateDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
-		select * from review where g_no=#{gNo} order by review_created_at desc, review_updated_at desc
+	<select id="selectByDateDesc" parameterType="com.itwill.steam.game.Game" resultMap="ReviewWithUserDateResultMap">
+		select r.*,
+		u.u_nickname as u_nickname,
+		u.u_img_profile as u_img_profile
+		from review r
+		join userinfo u on r.u_no = u.u_no
+		where r.g_no=#{gNo}
+		order by r.review_created_at desc, r.review_updated_at desc
 	</select>
+	<!-- Review와 User를 조인한 결과를 매핑하는 ResultMap -->
+	<resultMap type="com.itwill.steam.review.Review" id="ReviewWithUserDateResultMap">
+		<id property="reviewNo" column="review_no" />
+		<result property="reviewCreatedAt" column="review_created_at" />
+		<result property="reviewUpdatedAt" column="review_updated_at" />
+		<result property="reviewComment" column="review_comment" />
+		<result property="reviewRecommend" column="review_recommend" />
+		<result property="reviewLike" column="review_like" />
+		<result property="reviewDisLike" column="review_dislike" />
+		<association property="user" javaType="com.itwill.steam.user.User">
+			<result property="uNickname" column="u_nickname" />
+			<result property="uImgProfile" column="u_img_profile" />
+		</association>
+	</resultMap>
 		
 	<!-- 추천수 많은 리뷰 정렬보기 -->
-	<select id="selectByLikeDesc" parameterType="com.itwill.steam.game.Game" resultType="com.itwill.steam.review.Review">
-		select * from review where g_no=#{gNo} order by review_like desc, review_dislike asc
+	<select id="selectByLikeDesc" parameterType="com.itwill.steam.game.Game" resultMap="ReviewWithUserLikeResultMap">
+		select r.*,
+		u.u_nickname as u_nickname
+		from review r
+		join userinfo u on r.u_no = u.u_no
+		where r.g_no=#{gNo} 
+		order by r.review_like desc, r.review_dislike asc
 	</select>
+	<resultMap type="com.itwill.steam.review.Review" id="ReviewWithUserLikeResultMap">
+    <id property="reviewNo" column="review_no" />
+    <result property="reviewCreatedAt" column="review_created_at" />
+    <result property="reviewUpdatedAt" column="review_updated_at" />
+    <result property="reviewComment" column="review_comment" />
+    <result property="reviewRecommend" column="review_recommend" />
+    <result property="reviewLike" column="review_like" />
+    <result property="reviewDisLike" column="review_dislike" />
+    <association property="user" javaType="com.itwill.steam.user.User">
+        <result property="uNickname" column="u_nickname" />
+    </association>
+	</resultMap>
 	
 	<!-- 게시글 좋아요 -->
 	<update id="updateReviewLike">
