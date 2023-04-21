@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.cart.mapper.CartMapper">
 	<resultMap type="com.itwill.steam.cart.Cart" id="CartUserGame" autoMapping="true">
+		<id column="c_no" property="cNo"/>
 		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
+			<id column="g_no" property="gNo"/>
+			<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+			</collection>
 		</association>
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
 		</association>
