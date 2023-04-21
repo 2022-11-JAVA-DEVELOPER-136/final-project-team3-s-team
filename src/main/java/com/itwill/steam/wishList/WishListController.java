@@ -60,7 +60,7 @@ public class WishListController {
 		//세션에서 로그인한 사용자 정보를 가져와서 'loginUser'변수에 저장
 		User loginUser = (User) session.getAttribute("loginUser");
 		//로그인유저의 번호를 사용해서 위시리스트를 조회하고 그 결과를 wishlist에 저장
-		List<WishList> wishlist = wishListService.selectWishListByUserNo(loginUser.getUNo());
+		List<WishList> wishlist = wishListService.selectWishList(loginUser.getUNo());
 		//조회된 wishlist를 'wishlist'라는 이름으로 model에 저장
 		model.addAttribute("wishlist", wishlist);
 		//로그인한 사용자 정보를 'loginUser'라는 이름으로 model에 저장

@@ -8,10 +8,10 @@ public interface WishListService {
 	public int insertWishList(WishList wishList);
 	
 	//상품 선택
-	public List<WishList> selectWishListByUserNo(int uNo);
+	public List<WishList> selectWishList(int uNo);
 	
 	//상품 삭제
-	public int deleteWishList(int uNo);
+	public int deleteWishList(int wishNo);
 	
 	//상품 전체 삭제
 	public int deleteAllWishLists(int uNo);

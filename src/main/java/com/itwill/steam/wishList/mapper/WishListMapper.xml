@@ -12,7 +12,7 @@
     	insert into wishList(wish_no, wish_date, u_no, g_no)
 		values(wishList_wish_no_seq.nextval, sysdate, #{user.uNo}, #{game.gNo})
 	</insert>
-	<select id="selectWishListByUserNo" parameterType="java.lang.Integer" resultMap="WishListUserGame">
+	<select id="selectWishList" parameterType="java.lang.Integer" resultMap="WishListUserGame">
 		select *
 		from game g 
 		join wishList w on w.g_no=g.g_no 

@@ -27,7 +27,7 @@ class WishListDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 	@Test
 	void testSelectWishList() {
-		wishListDao.selectWishListByUserNo(1);
+		wishListDao.selectWishList(1);
 		
 	}
 
