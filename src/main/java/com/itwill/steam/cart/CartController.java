@@ -81,6 +81,21 @@ public class CartController {
 			return "checkout-address";
 		}
 		
+		//장바구니에 상품 추가
+		@RequestMapping(value = "/insertCart")
+		public String insertCart(HttpSession session, Model model) {
+		    try {
+		    	Cart cart=(Cart)session.getAttribute("cart");
+		        User loginUser = (User) session.getAttribute("loginUser");
+		        if (loginUser != null) {
+		            cartService.insertCart(cart);
+		        }
+		        return "redirect:store-product";
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "error";
+		    }
+		}
 		
 		// 장바구니에 담긴 상품 삭제
 		@RequestMapping(value = "/deleteCart")
