@@ -37,8 +37,10 @@
     
   </head>
   <body class="page-body">
-  <form id="f" name="f">
-  	<input type="hidden" name="uNo" value="${loginUser.uNo}">
+  <form id="hiddenForm" name="hiddenForm">
+  	<th:block th:if="${isLogin} == 'true'">
+  	<input type="hidden" name="uNo" value="" th:value="${loginUser.uNo}">
+  	</th:block>
   	<input type="hidden" name="gNo" value="" th:value="${game.gNo}">
   </form>
 
@@ -416,17 +418,17 @@
                     <!-- 로그인 한 경우 -->
                     <th:block th:if="${isLogin} == 'true'">
 	                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-	                    <th:block th:if="${isExist} == 'true'">
+	                    <th:block th:if="${isExistLibrary} == 'true'">
 	                    	<div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
 	                    </th:block>
 	                    <!-- 그 외의 경우 -->
-	                    <th:block th:if="${isExist} == 'false'">
-	                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+	                    <th:block th:if="${isExistLibrary} == 'false'">
+	                    	<div id="addCartLogin" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</span></div>
 	                    </th:block>
                     </th:block>
                     <!-- 로그인 하지 않은 경우 -->
                     <th:block th:if="${isLogin} == 'false'">
-                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+                    	<div id="addCartLogout" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</span></div>
                     </th:block>
                   </div>
                 </div>
@@ -454,17 +456,17 @@
                   <!-- 로그인한 경우 -->
                   <th:block th:if="${isLogin} == 'true'">
 	                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-	                  <th:block th:if="${isExist} == 'true'">
+	                  <th:block th:if="${isExistLibrary} == 'true'">
 	                  	<div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
 	                  </th:block>
 	                  <!-- 그 외의 경우 -->
-	                  <th:block th:if="${isExist} == 'false'">
-	                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+	                  <th:block th:if="${isExistLibrary} == 'false'">
+	                  	<span id="addWishlistLogin" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</span>
 	                  </th:block>
                   </th:block>
                   <!-- 로그인 하지 않은 경우 -->
                   <th:block th:if="${isLogin} == 'false'">
-                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+                  	<span id="addWishlistLogout" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</span>
                   </th:block>
                 </div>
               </div>
@@ -698,8 +700,8 @@
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
     
     <!-- Custom JS -->
-    <script type="text/javascript" src="js/game.js"></script>
     <script src="js/user.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
     
   </body>
 </html>

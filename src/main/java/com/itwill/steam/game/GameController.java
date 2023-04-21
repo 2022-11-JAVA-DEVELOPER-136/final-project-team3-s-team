@@ -162,7 +162,7 @@ public class GameController {
 		//로그인한 경우, 유저의 OwnedGame 검색
 		User loginUser = (User)session.getAttribute("loginUser");
 		String isLogin = "false";
-		String isExist = "false";
+		String isExistLibrary = "false";
 		if(loginUser!=null) {
 			model.addAttribute("loginUser", loginUser);
 			isLogin = "true";
@@ -170,12 +170,12 @@ public class GameController {
 			List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(loginUser);
 			for(OwnedGame ownedGame:ownedGameList) {
 				if(game.getGNo()==ownedGame.getGame().getGNo()) {
-					isExist = "true";
+					isExistLibrary = "true";
 				}
 			}
 		}
 		model.addAttribute("isLogin", isLogin);
-		model.addAttribute("isExist", isExist);
+		model.addAttribute("isExistLibrary", isExistLibrary);
 		
 		return "store-product";
 	}
