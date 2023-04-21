@@ -137,9 +137,13 @@ public class GameController {
 		List<Game> gameListByCategory = gameService.findGamesByCategory(game.getCategory().getCtName());
 		model.addAttribute("gameListByCategory", gameListByCategory);
 		
-		//해당 게임의 리뷰 보여주기 (최신순) - 아직 메소드 안바뀌어서 최신순 메소드로 안바꿨음 나중에 바꿔야함.
-		List<Review> reviewList = reviewService.selectByDateDesc(Game.builder().gNo(Integer.parseInt(gNo)).build());
+		//해당 게임의 리뷰 보여주기 (최신순)
+		List<Review> reviewList = reviewService.selectByDateDesc(game);
 		model.addAttribute("reviewList", reviewList);
+		
+		//해당 게임의 인기리뷰 보여주기 (인기순)
+		List<Review> reviewListPopular = reviewService.selectByLikeDesc(game);
+		model.addAttribute("reviewListPopular", reviewListPopular);
 		
 		//해당 게임의 리뷰 평균평점 구해서 보내기
 		double reviewSum = 0;
@@ -150,8 +154,7 @@ public class GameController {
 		double reviewAvg = reviewSum / reviewSize / 2;//reviewRecommend가 1~10점이어서 나누기 2 했음.
 		model.addAttribute("reviewAvg", reviewAvg);
 		
-		//해당 게임의 인기리뷰 보여주기 (인기순)
-		//메소드없음
+		
 		
 		//로그인한 경우, 유저의 OwnedGame 검색
 		String loginUser = (String)session.getAttribute("loginUser");
@@ -165,6 +168,7 @@ public class GameController {
 	//Local Exception Handler
 	@ExceptionHandler(Exception.class)
 	public String localExceptionHandler(Exception e) {
+		//e.printStackTrace();
 		return "redirect:404";
 	}
 	
