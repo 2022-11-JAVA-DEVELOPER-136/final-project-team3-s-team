@@ -10,6 +10,8 @@ import com.itwill.steam.orderItem.OrderItem;
 public interface OrderMapper {
 		//주문생성하기
 		public int insertOrder(Order order);
+		//오더아이템 생성하기
+		public int insertOrderItem(OrderItem orderItem);
 		//유저번호로 검색하기
 		public List<Order> findByUserNo(int uNo);
 		//주문번호로 검색하기
