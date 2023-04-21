@@ -19,24 +19,23 @@ import com.itwill.steam.card.CardService;
 import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.orderItem.OrderItem;
+import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.user.LoginCheck;
 import com.itwill.steam.user.User;
 import com.itwill.steam.user.UserService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class OrderController {
-	@Autowired
-	private OrderService orderService;
-	@Autowired
-	private CardService cardService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private CartService cartService;
 	
-	public OrderController() {
-		
-	}
+	private final OrderService orderService;
+	private final CardService cardService;
+	private final UserService userService;
+	private final CartService cartService;
+	private final OwnedGameService ownedGameService;
+	
 	//주소 불러오기
 	@RequestMapping(value = "/checkout-address")
 	public String checkoutAddress(HttpServletRequest request) throws Exception{
@@ -63,7 +62,7 @@ public class OrderController {
 		request.setAttribute("month", month);//카드 날짜 불러오기
 		request.setAttribute("year", year);//카드 년도 불러오기
 		
-		//card summery 
+		//orderitem summery
 		List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
 		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
 		for(Cart cart:cartList) {
@@ -92,7 +91,11 @@ public class OrderController {
         request.setAttribute("finalPrice", finalPrice);
         
         //다음으로 전달하기 위해 order객체 세션에 저장 - 더 좋은 방법으로 수정할 예정
-        Order order = Order.builder().oTotalPrice(finalPrice).uNo(loginUser.getUNo()).build();
+        Order order = Order.builder()
+        		.oTotalPrice(finalPrice)
+        		.uNo(loginUser.getUNo())
+        		.orderItemList(orderItemList)
+        		.build();
         request.getSession().setAttribute("order", order);
         
 		return "checkout-payment";
@@ -102,7 +105,7 @@ public class OrderController {
 	
 	//주문생성
 	@RequestMapping("/order_insert_action")
-	public String order_insert_action(Model model,HttpSession session) {
+	public String orderInsertAction(Model model,HttpSession session) {
 		String forwardPath = "";
 		
 		Order order = (Order)session.getAttribute("order");
@@ -111,6 +114,8 @@ public class OrderController {
 		try {
 			orderService.insertOrder(order);
 			cartService.deleteAllCarts(loginUser.getUNo());
+			//ownedGameService의 라이브러리 추가 메소드 사용해서 추가 해야 함. - 메소드 생기면 할 것
+			
 			forwardPath = "redirect:main";
 		}catch (Exception e) {
 			e.printStackTrace();
