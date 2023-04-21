@@ -19,6 +19,7 @@ import com.itwill.steam.game.GameService;
 import com.itwill.steam.order.Order;
 import com.itwill.steam.order.OrderService;
 import com.itwill.steam.user.User;
+import com.itwill.steam.wishList.WishList;
 
 @Controller
 public class CartController {
@@ -82,14 +83,12 @@ public class CartController {
 		}
 		
 		//장바구니에 상품 추가
-		@RequestMapping(value = "/insertCart")
-		public String insertCart(HttpSession session, Model model) {
+		@PostMapping(value = "/insertCart")
+		public String insertCart(@RequestParam String uNo, @RequestParam String gNo) {
 		    try {
-		    	Cart cart=(Cart)session.getAttribute("cart");
-		        User loginUser = (User) session.getAttribute("loginUser");
-		        if (loginUser != null) {
-		            cartService.insertCart(cart);
-		        }
+		    	Cart cart=Cart.builder().user(User.builder().uNo(Integer.parseInt(uNo)).build())
+		    			  .game(Game.builder().gNo(Integer.parseInt(gNo)).build()).build();
+		        cartService.insertCart(cart);
 		        return "redirect:store-product";
 		    } catch (Exception e) {
 		        e.printStackTrace();
