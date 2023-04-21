@@ -21,7 +21,7 @@ class OwnedGameServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		
 		User user = User.builder().uNo(1).build();
 		
-		List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(user);
+		List<OwnedGame> ownedGameList = ownedGameService.getTop4OwnedGamesByLastTime(user);
 		System.out.println(">>>>> " + ownedGameList);
 	}
 	

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.ownedGame.mapper.OwnedGameMapper">
+
 	<resultMap type="com.itwill.steam.ownedGame.OwnedGame" id="ownedGameWithGame" autoMapping="true">
 		<id column="og_no" property="ogNo"/>
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
@@ -12,5 +13,28 @@
 	    SELECT * FROM owned_game og 
 	    join game g on g.g_no=og.g_no
 	    WHERE u_no = #{uNo}
+	    order by og_playtime desc
 	</select>
+<!-- 가장많이 플레이한 4개 게임 -->
+<select id="getTop4OwnedGamesByPlaytime" parameterType="int" resultMap="ownedGameWithGame">	
+	 SELECT *
+FROM (
+  SELECT * FROM owned_game og 
+	    join game g on g.g_no=og.g_no
+	    WHERE u_no = #{uNo}
+	    order by og_playtime desc
+)
+WHERE ROWNUM &lt;= 4 
+</select>
+<!-- 가장최근에 플레이한 3개 게임 -->
+<select id="getTop4OwnedGamesByLastTime" parameterType="int" resultMap="ownedGameWithGame">	
+	 SELECT *
+FROM (
+  SELECT * FROM owned_game og 
+	    join game g on g.g_no=og.g_no
+	    WHERE u_no = #{uNo}
+	    order by og_lastplay desc
+)
+WHERE ROWNUM &lt;= 3
+</select>
 </mapper>
