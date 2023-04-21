@@ -120,7 +120,7 @@
                         <div class="form-group">
                           <label class="small-1" for="state">State *</label>
                           <select class="form-control" id="state">
-                            <option>Alabama</option>
+                            <option value="" th:value="Alabama">Alabama</option>
                             <option>Colorado</option>
                             <option>Louisiana</option>
                             <option>New York</option>
@@ -169,31 +169,31 @@
                       <li class="my-1">
                         <div class="d-flex small-2 fw-600">
                           <div>Street</div>
-                          <div class="ml-auto text-warning" th:text="${loginUser.uStreet}">3154  Doctors Drive</div>
+                          <div id="billing_details_street" class="ml-auto text-warning" th:text="${loginUser.uStreet}">3154  Doctors Drive</div>
                         </div>
                       </li>
                       <li class="my-1">
                         <div class="d-flex small-2 fw-600">
                           <div>City</div>
-                          <div class="ml-auto" th:text="${loginUser.uCity}">Los Angeles</div>
+                          <div id="billing_details_city"class="ml-auto" th:text="${loginUser.uCity}">Los Angeles</div>
                         </div>
                       </li>
                       <li class="my-1">
                         <div class="d-flex text-info small-2 fw-600">
                           <div>State Full</div>
-                          <div class="ml-auto"th:text="${loginUser.uStatefull}">California</div>
+                          <div id= "billing_details_stateFull"class="ml-auto"th:text="${loginUser.uStatefull}">California</div>
                         </div>
                       </li>
                       <li class="my-1">
                         <div class="d-flex small-2 fw-600">
                           <div>Zip Code</div>
-                          <div class="ml-auto text-danger"th:text="${loginUser.uZip}">90017</div>
+                          <div id="billing_details_Zip"class="ml-auto text-danger"th:text="${loginUser.uZip}">90017</div>
                         </div>
                       </li>
                       <li class="my-1">
                         <div class="d-flex small-2 fw-600">
                           <div>Phone Number</div>
-                          <div class="ml-auto text-warning"th:text="${loginUser.uPhone}">310-341-3767</div>
+                          <div id="billing_details_phoneNumber"class="ml-auto text-warning"th:text="${loginUser.uPhone}">310-341-3767</div>
                         </div>
                       </li>
                       <li><hr class="my-3 border-secondary"></li>
@@ -244,6 +244,6 @@
     <script src="assets/js/main.js" id="_mainJS" data-plugins="load"></script>
     
     <!-- Custom JS -->
-    
+    <script src="js/order.js" type="text/javascript"></script>
   </body>
 </html>

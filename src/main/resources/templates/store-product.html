@@ -37,6 +37,10 @@
     
   </head>
   <body class="page-body">
+  <form id="f" name="f">
+  	<input type="hidden" name="uNo" value="${loginUser.uNo}">
+  	<input type="hidden" name="gNo" value="" th:value="${game.gNo}">
+  </form>
 
     <!-- navbar -->
     <th:block th:if="${session.loginUser==null}">
@@ -62,29 +66,32 @@
               <header>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb-product breadcrumb-nowrap breadcrumb breadcrumb-angle bg-transparent pl-0 pr-0 mb-0">
-                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}">All Games</a></li>
-                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="${game.category.ctName}">Action Games</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Vestibulum</li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store}" th:text="|모든 게임|">All Games</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/store(ctNo=${game.category.ctNo})}" th:text="|${game.category.ctName} 게임|">Action Games</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" th:text="${game.gName}">Vestibulum</li>
                   </ol>
                 </nav>
                 <h3 class="product_name mb-4" th:text="${game.gName}">Vestibulum varius rutrum cursus</h3>
                 <div class="d-flex flex-wrap align-items-center">
                   <div class="review d-flex">
                     <div class="review_score">
-                      <div class="review_score-btn">9.7</div>
+                      <div class="review_score-btn" th:text="${reviewAvg}">9.7</div>
                     </div>
+                    <!-- star -->
                     <div class="star_rating-se text-warning mr-7">
+                      <th:block th:if="${reviewAvg} >= 1" th:each="seq:${#numbers.sequence(1, reviewAvg)}">
                       <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
+                      </th:block>
+                      <th:block th:if="${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == 0.5 or ${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == -0.5"><!-- or 이하는 문제 생기면 지우고 개선점 찾을 것 -->
+                      <i class="fas fa-star-half-alt"></i>
+                      </th:block>
                     </div>
+                    <!-- /.star -->
                   </div>
                   <ul class="tag-list d-none d-md-flex flex-wrap list-unstyled mb-0">
                   	<!-- each -->
                     <li class="tag-item" th:each="gameTag:${game.gameTagList}">
-                    	<a href="" class="badge badge-warning fw-600" th:text="${gameTag.tag.tagName}">Aliquam</a>
+                    	<a href="" class="badge badge-warning fw-600" th:href="@{/store(tagNo=${gameTag.tag.tagNo})}" th:text="${gameTag.tag.tagName}">Aliquam</a>
                     </li>
                     <!-- /.each -->
                     <li class="tag-item">
@@ -406,13 +413,20 @@
                         </div>
                       </div>
                        -->
-                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-                    <th:block th:if="false">
-                    <div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
+                    <!-- 로그인 한 경우 -->
+                    <th:block th:if="${isLogin} == 'true'">
+	                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+	                    <th:block th:if="${isExist} == 'true'">
+	                    	<div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
+	                    </th:block>
+	                    <!-- 그 외의 경우 -->
+	                    <th:block th:if="${isExist} == 'false'">
+	                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+	                    </th:block>
                     </th:block>
-                    <!-- 그 외의 경우 -->
-                    <th:block th:if="true">
-                    <div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+                    <!-- 로그인 하지 않은 경우 -->
+                    <th:block th:if="${isLogin} == 'false'">
+                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
                     </th:block>
                   </div>
                 </div>
@@ -437,13 +451,20 @@
                     </form>
                   </div>
                    -->
-                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-                  <th:block th:if="false">
-                  <div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
+                  <!-- 로그인한 경우 -->
+                  <th:block th:if="${isLogin} == 'true'">
+	                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+	                  <th:block th:if="${isExist} == 'true'">
+	                  	<div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
+	                  </th:block>
+	                  <!-- 그 외의 경우 -->
+	                  <th:block th:if="${isExist} == 'false'">
+	                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+	                  </th:block>
                   </th:block>
-                  <!-- 그 외의 경우 -->
-                  <th:block th:if="true">
-                  <a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+                  <!-- 로그인 하지 않은 경우 -->
+                  <th:block th:if="${isLogin} == 'false'">
+                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
                   </th:block>
                 </div>
               </div>
@@ -465,7 +486,9 @@
                 <ul class="list-unstyled small-2 mb-3">
                   <li class="developer-wrapper">
                     <a href="" class="developer">태그:</a>
-                    <a href="" th:each="gameTag:${game.gameTagList}" th:text="|${gameTag.tag.tagName} |">Indie</a>
+                    <th:block th:each="gameTag:${game.gameTagList}">
+                    <a href="" th:href="@{/store(tagNo=${gameTag.tag.tagNo})}" th:text="|${gameTag.tag.tagName} |">Indie</a>
+                    </th:block>
                   </li>
                 </ul>
                 <ul class="list-unstyled small-2 mb-3">
@@ -532,14 +555,14 @@
                   <!-- Item -->
                   <div class="col-12 mb-7">
                     <div class="d-flex flex-wrap flex-sm-nowrap">
-                      <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar"></div>
+                      <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar" th:src="|image/${review.user.uImgProfile}|"></div>
                       <div class="review-item ml-sm-4">
                         <div class="small d-flex align-items-start">
                           <!-- user -->
-                          <span class="name text-lt badge badge-info fw-600 small-4">metus</span>
+                          <span class="name text-lt badge badge-info fw-600 small-4" th:text="${review.user.uNickname}">metus</span>
                           <!-- /.user -->
                           <!-- time -->
-                          <div class="time ml-2">05/08/2020</div>
+                          <div class="time ml-2" th:text="${#dates.format(review.reviewUpdatedAt, 'yyyy-MM-dd')}">05/08/2020</div>
                           <!-- /.time -->
                           <!-- star -->
                           <div class="ml-2 text-warning">
@@ -557,8 +580,18 @@
                           <!-- info -->
                           <div class="ml-auto">
                             <div class="d-flex small-1">
-                              <div class="mr-2"><a href="" class="text-info"><i class="fas fa-thumbs-up"></i></a></div>
-                              <div class="mr-2"><a href="" class="text-info"><i class="fas fa-thumbs-down"></i></a></div>
+                              <div class="mr-2">
+                              	<a href="" class="text-info">
+                              		<i class="fas fa-thumbs-up"></i>
+                              		<span th:text="${review.reviewLike}">135</span>
+                              	</a>
+                              </div>
+                              <div class="mr-2">
+                              	<a href="" class="text-info">
+                              		<i class="fas fa-thumbs-down"></i>
+                              		<span th:text="${review.reviewDisLike}">135</span>
+                              	</a>
+                              </div>
                               <div class="dropdown">
                                   <a class="dropdown-toggle text-info" href="#" id="dropdownShare_01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-share-alt"></i></a>
                                   <div class="dropdown-menu dropdown-menu-share" aria-labelledby="dropdownShare_01">
@@ -572,9 +605,11 @@
                           <!-- /.info -->
                         </div>
                         <div>
+                          <!-- 
                           <span class="d-block lead-2 mb-2">Class aptent taciti sociosqu ad litora torquent per conubia nostra</span>
+                           -->
                           <div class="collapse readmore r-fade">
-                            <p class="mb-0 small-3">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam, vel mollis diam tempus ac. Duis euismod diam et ante egestas, sed porttitor orci euismod. In quis ligula fermentum, elementum quam quis, pellentesque lorem. Vivamus eget ligula ante. Aliquam porttitor nisl sit amet malesuada finibus. Etiam sit amet porttitor purus. Etiam at aliquam massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus sollicitudin malesuada.</p>
+                            <p class="mb-0 small-3" th:text="${review.reviewComment}">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam, vel mollis diam tempus ac. Duis euismod diam et ante egestas, sed porttitor orci euismod. In quis ligula fermentum, elementum quam quis, pellentesque lorem. Vivamus eget ligula ante. Aliquam porttitor nisl sit amet malesuada finibus. Etiam sit amet porttitor purus. Etiam at aliquam massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus sollicitudin malesuada.</p>
                           </div>
                           <a class="readmore-btn collapsed collapser" data-toggle="collapse" aria-expanded="false" href=""></a>
                         </div>
@@ -592,64 +627,35 @@
                 <h6 class="mb-4 fw-400 ls-1 text-uppercase">인기 리뷰</h6>
                 <div class="border border-secondary rounded p-4">
                   <!-- each -->
+                  <th:block th:each="reviewP:${reviewListPopular}">
                   <!-- Item -->
                   <div class="review-item mb-5">
                     <div class="small d-flex">
                       <div class="flex-1">
-                        <span class="name badge badge-warning fw-600 small-4">metus</span>
-                        <span class="time ml-2">05/08/2020</span>
+                        <span class="name badge badge-warning fw-600 small-4" th:text="${reviewP.user.uNickname}">metus</span>
+                        <span class="time ml-2" th:text="${#dates.format(reviewP.reviewUpdatedAt, 'yyyy-MM-dd')}">05/08/2020</span>
                       </div>
-                      <a href="" class="text-info"><i class="fas fa-thumbs-up"></i> 135</a>
+                      <a href="" class="text-info">
+                      	<i class="fas fa-thumbs-up"></i>
+                      	<span th:text="${reviewP.reviewLike}">135</span>
+                      	<i class="fas fa-thumbs-down"></i>
+                      	<span th:text="${reviewP.reviewDisLike}">135</span>
+                      </a>
                     </div>
                     <div>
+                      <!-- 
                       <span class="lead-2">Sociosqu ad litora torquent</span>
+                       -->
                       <div class="collapse readmore r-fade">
-                        <p class="mb-0 small-3">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam.</p>
+                        <p class="mb-0 small-3" th:text="${reviewP.reviewComment}">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam.</p>
                       </div>
                       <a class="readmore-btn collapsed collapser" data-toggle="collapse" aria-expanded="false" href=""></a>
                     </div>
                   </div>
                   <hr class="border-secondary mt-0 mb-5">
                   <!-- /.Item -->
+                  </th:block>
                   <!-- /.each -->
-                  <!-- Item -->
-                  <div class="review-item mb-5">
-                    <div class="small d-flex">
-                      <div class="flex-1">
-                        <span class="name badge badge-warning fw-600 small-4">metus</span>
-                        <span class="time ml-2">05/08/2020</span>
-                      </div>
-                      <a href="" class="text-info"><i class="fas fa-thumbs-up"></i> 135</a>
-                    </div>
-                    <div>
-                      <span class="lead-2">Sociosqu ad litora torquent</span>
-                      <div class="collapse readmore r-fade">
-                        <p class="mb-0 small-3">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam.</p>
-                      </div>
-                      <a class="readmore-btn collapsed collapser" data-toggle="collapse" aria-expanded="false" href=""></a>
-                    </div>
-                  </div>
-                  <hr class="border-secondary mt-0 mb-5">
-                  <!-- /.Item -->
-                  <!-- Item -->
-                  <div class="review-item mb-0">
-                    <div class="small d-flex">
-                      <div class="flex-1">
-                        <span class="name badge badge-warning fw-600 small-4">metus</span>
-                        <span class="time ml-2">05/08/2020</span>
-                      </div>
-                      <a href="" class="text-info"><i class="fas fa-thumbs-up"></i> 135</a>
-                    </div>
-                    <div>
-                      <span class="lead-2">Sociosqu ad litora torquent</span>
-                      <div class="collapse readmore r-fade">
-                        <p class="mb-0 small-3">Vestibulum vitae sem eget tortor dignissim convallis. Sed a vehicula tortor. Etiam semper gravida erat eget tristique. Integer suscipit finibus diam, vestibulum lobortis eros lobortis eu.Sed blandit tincidunt nibh, nec ullamcorper lacus porttitor a. Cras vitae justo nisi. Cras in congue turpis. Cras cursus vestibulum diam.</p>
-                      </div>
-                      <a class="readmore-btn collapsed collapser" data-toggle="collapse" aria-expanded="false" href=""></a>
-                    </div>
-                  </div>
-                  <!-- /.Item -->
-
                 </div>
               </div>
             </div>

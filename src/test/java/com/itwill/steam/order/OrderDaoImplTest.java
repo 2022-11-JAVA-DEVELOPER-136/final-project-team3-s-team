@@ -16,7 +16,7 @@ class OrderDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 	
 	//@Test
 	void testInsertOrder() {
-		Order order = new Order(0,new Date(),120000,3);
+		Order order = Order.builder().oTotalPrice(120000).uNo(3).build();
 		orderDao.insertOrder(order);
 	}
 

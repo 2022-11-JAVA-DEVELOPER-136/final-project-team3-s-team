@@ -100,11 +100,11 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="cardNumber">Card Number *</label>
-                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${card.cardNumber}">
+                                    <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${card?.cardNumber?:''}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="securityCode">Security Code *</label>
-                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${card.cardCvc}">
+                                    <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${card?.cardCvc?:''}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <div class="d-flex align-items-center pt-md-7">
@@ -116,7 +116,7 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
                                     <label class="small-1" for="nameOnCard">Name on Card *</label>
-                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${card.cardName}">
+                                    <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${card?.cardName?:''}">
                                   </div>
                                   <div class="form-group col-md-3">
                                     <label class="small-1" for="expiryDate">Expiry Date *</label>
@@ -124,23 +124,20 @@
                                       <div class="form-group mb-md-0 col-md-6">
                                         <select class="form-control pl-2" id="expiryDate">
                                           <option>MM</option>
-                                          <option>1</option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                          <option>6</option>
-                                          <option>7</option>
-                                          <option>8</option>
-                                          <option>9</option>
-                                          <option>10</option>
-                                          <option>11</option>
-                                          <option>12</option>
+                                          <th:block th:each="monthNumber:${#numbers.sequence(1,12)}">
+                                          <option th:if="${month == #numbers.formatInteger(monthNumber, 2)}" th:value="${monthNumber}" th:text="${monthNumber}" th:selected="true">1</option>
+                                          <option th:if="${month != #numbers.formatInteger(monthNumber, 2)}" th:value="${monthNumber}" th:text="${monthNumber}">1</option>
+                                          </th:block>
                                         </select>
                                       </div>
                                       <div class="form-group mb-md-0 col-md-6">
                                         <select class="form-control pl-2" id="expiryDateYYYY">
-                                          <option>YYYY</option>
+                                          <option>YY</option>
+                                          <th:block th:each="yearNumber:${#numbers.sequence(19,30)}">
+                                          <option th:if="${year == #numbers.formatInteger(yearNumber, 2)}" th:value="${yearNumber}" th:text="${yearNumber}" th:selected="true">1</option>
+                                          <option th:if="${year != #numbers.formatInteger(yearNumber, 2)}" th:value="${yearNumber}" th:text="${yearNumber}">1</option>
+                                          </th:block>
+                                          <!-- 
                                           <option>2019</option>
                                           <option>2020</option>
                                           <option>2021</option>
@@ -148,6 +145,7 @@
                                           <option>2023</option>
                                           <option>2024</option>
                                           <option>2025</option>
+                                           -->
                                         </select>
                                       </div>
                                     </div>
@@ -157,7 +155,7 @@
                                     <div class="form-row">
                                       <div class="form-group mb-md-0 col-md-6">
                                         <select class="form-control pl-2" id="startDate">
-                                          <option>MM</option>
+                                          <option th:text="${card.cardExDate}" th:selected="true">MM</option>
                                           <option>1</option>
                                           <option>2</option>
                                           <option>3</option>
@@ -197,9 +195,61 @@
                 </div>
               </div>
               <!-- cart-summary -->
-              <div class="col-lg-4">
-                <div id="checkout-cart-summary" th:include="checkout-cart-summary::checkout-cart-summary"></div>
-              </div>
+	<div class="archive border border-secondary rounded" >
+		<div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase lead-1">Cart Summary</span></div>
+		<div class="p-4">
+			<ul class="list-unstyled small mb-0">
+				<li class="small-2">Price Details</li>
+				<li><hr class="my-3 border-secondary"></li>
+				<li class="my-1">
+					<div class="d-flex small-2 fw-600">
+						<div>Full Price</div>
+						<div class="ml-auto" th:text="|${#numbers.formatInteger(fullPrice, 3, 'COMMA')}원|">₩210,000</div>
+					</div>
+				</li>
+				<li class="my-1">
+					<div class="d-flex text-info small-2 fw-600">
+						<div>Your Discount</div>
+						<div class="ml-auto" th:text="|${#numbers.formatInteger(discountPrice, 3, 'COMMA')}원|">₩-105,000</div>
+					</div>
+				</li>
+				<li class="my-1">
+					<div class="d-flex text-warning small-2 fw-600">
+						<div>You Save</div>
+						<div class="ml-auto" th:text="|-${#numbers.formatInteger(savedPrice, 3, 'COMMA')}원|">₩-84,000</div>
+					</div>
+				</li>
+				<!-- 
+				<li class="my-1">
+					<div class="d-flex small-2 fw-600">
+						<div>Delivery Charges</div>
+						<div class="ml-auto text-warning">Free</div>
+					</div>
+				</li>
+				 -->
+				<li><hr class="my-3 border-secondary"></li>
+				<li>
+					<div class="d-flex small-1 fw-600">
+						<div>Total</div>
+						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">₩126,000</div>
+					</div>
+				</li>
+				<li><hr class="my-3 border-secondary"></li>
+				<li>
+				<!-- 
+					<form action="checkout-address" method="get">
+    				<input type="hidden" name="orderNo" value="${order.orderNo}" />
+    				<button class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</button>
+					</form>
+					 -->
+					<a id="orderBt" href="#" class="btn btn-lg btn-block btn-warning mt-4" th:href="@{/order_insert_action}">PLACE ORDER</a>
+				</li>
+				<li class="lh-1">
+					<span class="small-4 text-lt w-100 mt-4 pb-1 d-inline-block">By clicking Place Order, you accept our <a href="#" target="_blank" class="text-rp text-primary text-underline">refund policy</a>.</span>
+				</li>
+			</ul>
+		</div>
+	</div>
               <!-- /.cart-summary -->
             </div>
           </div>
@@ -242,5 +292,6 @@
     
     <!-- Custom JS -->
      <script src="js/user.js"></script>
+     <script src="js/order.js" type="text/javascript"></script>
   </body>
 </html>

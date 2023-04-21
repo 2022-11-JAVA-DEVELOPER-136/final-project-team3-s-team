@@ -1,8 +1,9 @@
 package com.itwill.steam.order;
 
 import java.util.Date;
+import java.util.List;
 
-
+import com.itwill.steam.orderItem.OrderItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,6 @@ public class Order {
 	private int uNo;
 	//private List<User> userList;
 	//private List<User> orderList;
-	//private List<OrderItem> orderItemList;
+	private List<OrderItem> orderItemList;
 	
 }

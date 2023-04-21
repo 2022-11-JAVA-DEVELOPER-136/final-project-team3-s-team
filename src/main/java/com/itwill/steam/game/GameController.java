@@ -25,9 +25,13 @@ import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.game.util.PageMaker;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.language.Language;
+import com.itwill.steam.ownedGame.OwnedGame;
+import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.tag.Tag;
+import com.itwill.steam.user.User;
+import com.itwill.steam.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +41,7 @@ public class GameController {
 
 	private final GameService gameService;
 	private final ReviewService reviewService;
+	private final OwnedGameService ownedGameService;
 	
 	//상품리스트 (제목검색, 필터링 가능)
 	@RequestMapping(value = "/store")
@@ -137,18 +142,40 @@ public class GameController {
 		List<Game> gameListByCategory = gameService.findGamesByCategory(game.getCategory().getCtName());
 		model.addAttribute("gameListByCategory", gameListByCategory);
 		
-		//해당 게임의 리뷰 보여주기 (최신순) - 아직 메소드 안바뀌어서 최신순 메소드로 안바꿨음 나중에 바꿔야함.
-		List<Review> reviewList = reviewService.selectByDateDesc(Game.builder().gNo(Integer.parseInt(gNo)).build());
+		//해당 게임의 리뷰 보여주기 (최신순)
+		List<Review> reviewList = reviewService.selectByDateDesc(game);
 		model.addAttribute("reviewList", reviewList);
 		
 		//해당 게임의 인기리뷰 보여주기 (인기순)
-		//메소드없음
+		List<Review> reviewListPopular = reviewService.selectByLikeDesc(game);
+		model.addAttribute("reviewListPopular", reviewListPopular);
+		
+		//해당 게임의 리뷰 평균평점 구해서 보내기
+		double reviewSum = 0;
+		int reviewSize = reviewList.size();
+		for(Review review:reviewList) {
+			reviewSum += review.getReviewRecommend();
+		}
+		double reviewAvg = reviewSum / reviewSize / 2;//reviewRecommend가 1~10점이어서 나누기 2 했음.
+		model.addAttribute("reviewAvg", reviewAvg);
 		
 		//로그인한 경우, 유저의 OwnedGame 검색
-		String loginUser = (String)session.getAttribute("loginUser");
+		User loginUser = (User)session.getAttribute("loginUser");
+		String isLogin = "false";
+		String isExist = "false";
 		if(loginUser!=null) {
+			model.addAttribute("loginUser", loginUser);
+			isLogin = "true";
 			
+			List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(loginUser);
+			for(OwnedGame ownedGame:ownedGameList) {
+				if(game.getGNo()==ownedGame.getGame().getGNo()) {
+					isExist = "true";
+				}
+			}
 		}
+		model.addAttribute("isLogin", isLogin);
+		model.addAttribute("isExist", isExist);
 		
 		return "store-product";
 	}
@@ -156,12 +183,13 @@ public class GameController {
 	//Local Exception Handler
 	@ExceptionHandler(Exception.class)
 	public String localExceptionHandler(Exception e) {
-		return "steam_error";
+		//e.printStackTrace();
+		return "redirect:404";
 	}
 	
 	//게임이 없는 경우 404로 redirect
 	@ExceptionHandler(GameNotFoundException.class)
 	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
-		return "redirect:404";
+		return "redirect:store";
 	}
 }
