@@ -83,17 +83,17 @@
       update userInfo set
          u_password= NVL(#{uPassword,jdbcType=VARCHAR}, u_password),
          u_name=NVL(#{uName,jdbcType=VARCHAR}, u_name),
-         u_email=#{uEmail,jdbcType=VARCHAR},
-         u_phone=#{uPhone,jdbcType=VARCHAR},
-         u_nickname=#{uNickname,jdbcType=VARCHAR},
-         u_street =#{UStreet,jdbcType=VARCHAR},
-         u_city =#{UCity,jdbcType=VARCHAR},
-         u_statefull = #{UStatefull,jdbcType=VARCHAR},
-         u_zip = #{UZip,jdbcType=VARCHAR},
-         u_state = #{UState},
-         u_img_profile = #{UImgProfile,jdbcType=VARCHAR},
-         u_img_background = #{UImgBackground,jdbcType=VARCHAR},
-         u_about = #{UAbout,jdbcType=VARCHAR}
+         u_email=NVL(#{uEmail,jdbcType=VARCHAR},u_email),
+         u_phone=NVL(#{uPhone,jdbcType=VARCHAR},u_phone),
+         u_nickname=NVL(#{uNickname,jdbcType=VARCHAR},u_nickname),
+         u_street =NVL(#{UStreet,jdbcType=VARCHAR},u_street),
+         u_city =NVL(#{UCity,jdbcType=VARCHAR},u_city),
+         u_statefull =NVL(#{UStatefull,jdbcType=VARCHAR},u_statefull),
+         u_zip =NVL(#{UZip,jdbcType=VARCHAR},u_zip),
+         u_state = NVL(#{UState},u_state),
+         u_img_profile = NVL(#{UImgProfile,jdbcType=VARCHAR},u_img_profile),
+         u_img_background = NVL(#{UImgBackground,jdbcType=VARCHAR},u_img_background),
+         u_about = NVL(#{UAbout,jdbcType=VARCHAR}, u_about)
       where u_no =#{uNo}
    </update>
    

@@ -111,9 +111,6 @@ public class OrderController {
 		try {
 			orderService.insertOrder(order);
 			cartService.deleteAllCarts(loginUser.getUNo());
-			//model.addAttribute("successMessage","주문이 되었습니다.");
-			//model.addAttribute("order",order);
-			
 			forwardPath = "redirect:main";
 		}catch (Exception e) {
 			e.printStackTrace();

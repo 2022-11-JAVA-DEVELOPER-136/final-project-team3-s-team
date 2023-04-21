@@ -25,17 +25,37 @@ $(function(){
 	
 	/********************************store-product.html********************************/
 	
-	//ADD TO CART버튼 클릭시 해당 게임을 카트에 등록
-	$('#addCart').on('click', function(e) {
-		/*
-		let form = $('#f');
-		form.method = 'POST';
-		form.action = '';
+	//카트 담기 - 로그인한 경우
+	$('#addCartLogin').on('click', function(e) {
+		alert('login cart');
+		
+		let form = $('#hiddenForm');
+		form.attr('method', 'post');
+		form.attr('action', 'insert-cart');
 		form.submit();
-		*/
+		
 	});
 	
-	//ADD TO WISHLIST버튼 클릭시 해당 게임을 위시리스트에 등록
+	//카트 담기 - 로그아웃한 경우
+	$('#addCartLogout').on('click', function(e) {
+		$('#signin').click();
+	});
+	
+	//위시리스트 담기 - 로그인한 경우
+	$('#addWishlistLogin').on('click', function(e) {
+		alert('login wishlist');
+		
+		let form = $('#hiddenForm');
+		form.attr('method', 'post');
+		form.attr('action', 'insert-wishlist');
+		form.submit();
+		
+	});
+	
+	//위시리스트 담기 - 로그아웃한 경우
+	$('#addWishlistLogout').on('click', function(e) {
+		$('#signin').click();
+	});
 	
 	/**********************************************************************************/
 });

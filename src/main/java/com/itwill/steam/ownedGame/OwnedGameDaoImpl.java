@@ -19,4 +19,16 @@ public class OwnedGameDaoImpl implements OwnedGameDao {
 		return ownedGameMapper.ownedGameList(user);
 	}
 
+	@Override
+	public List<OwnedGame> getTop4OwnedGamesByPlaytime(User user) {
+		
+		return ownedGameMapper.getTop4OwnedGamesByPlaytime(user);
+	}
+
+	@Override
+	public List<OwnedGame> getTop4OwnedGamesByLastTime(User user) {
+		// TODO Auto-generated method stub
+		return ownedGameMapper.getTop4OwnedGamesByLastTime(user);
+	}
+
 }

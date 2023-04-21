@@ -16,7 +16,7 @@ class CartServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 	@Autowired
 	private CartService cartService;
 	
-	//@Test
+	@Test
 	void testInsertCart() {
 		Cart cart = new Cart(0, User.builder().uNo(1).build(), Game.builder().gNo(1).build());
 		cartService.insertCart(cart);
@@ -33,7 +33,7 @@ class CartServiceImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println(">>>>"+cartService.deleteCart(1));
 	}
 	
-	@Test
+	//@Test
 	void testDeleteAllCarts() {
 		cartService.deleteAllCarts(1);
 		System.out.println("deleted");

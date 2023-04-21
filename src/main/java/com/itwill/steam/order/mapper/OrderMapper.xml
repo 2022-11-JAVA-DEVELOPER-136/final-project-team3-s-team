@@ -7,6 +7,12 @@
 		</selectKey>
 			insert into orders(o_no, o_date, o_total_price, u_no) values(#{oNo}, sysdate, #{oTotalPrice}, #{uNo})
 	</insert>
+	<insert id="insertOrderItem" parameterType="com.itwill.steam.orderItem.OrderItem">
+		<selectKey resultType="int" keyProperty="oiNo" order="BEFORE">
+			select orders_oi_no_seq.nextval from dual
+		</selectKey>
+			insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, #{gNO});
+	</insert>
 	<delete id="deleteByUserNo" parameterType="int" >
 		delete from orders where u_no=#{uNo}
 	</delete>

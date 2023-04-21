@@ -8,7 +8,7 @@ public interface CartService {
 	public int insertCart(Cart cart);
 	
 	//상품 선택
-	public List<Cart> selectCart(int cNo);
+	public List<Cart> selectCart(int uNo);
 	
 	//상품 삭제
 	public int deleteCart(int cNo);
