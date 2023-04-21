@@ -37,6 +37,10 @@
     
   </head>
   <body class="page-body">
+  <form id="f" name="f">
+  	<input type="hidden" name="uNo" value="${loginUser.uNo}">
+  	<input type="hidden" name="gNo" value="" th:value="${game.gNo}">
+  </form>
 
     <!-- navbar -->
     <th:block th:if="${session.loginUser==null}">
@@ -409,13 +413,20 @@
                         </div>
                       </div>
                        -->
-                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-                    <th:block th:if="false">
-                    <div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
+                    <!-- 로그인 한 경우 -->
+                    <th:block th:if="${isLogin} == 'true'">
+	                    <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+	                    <th:block th:if="${isExist} == 'true'">
+	                    	<div id="isExistedLibraryC" class="flex-1"><div class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>라이브러리에 있음</div></div>
+	                    </th:block>
+	                    <!-- 그 외의 경우 -->
+	                    <th:block th:if="${isExist} == 'false'">
+	                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+	                    </th:block>
                     </th:block>
-                    <!-- 그 외의 경우 -->
-                    <th:block th:if="true">
-                    <div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
+                    <!-- 로그인 하지 않은 경우 -->
+                    <th:block th:if="${isLogin} == 'false'">
+                    	<div id="addCart" class="flex-1"><a href="" class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</a></div>
                     </th:block>
                   </div>
                 </div>
@@ -440,13 +451,20 @@
                     </form>
                   </div>
                    -->
-                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
-                  <th:block th:if="false">
-                  <div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
+                  <!-- 로그인한 경우 -->
+                  <th:block th:if="${isLogin} == 'true'">
+	                  <!-- 로그인한 유저의 라이브러리에 해당 게임이 존재하는 경우 -->
+	                  <th:block th:if="${isExist} == 'true'">
+	                  	<div id="isExistedLibraryW" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>라이브러리에 있음</div>
+	                  </th:block>
+	                  <!-- 그 외의 경우 -->
+	                  <th:block th:if="${isExist} == 'false'">
+	                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+	                  </th:block>
                   </th:block>
-                  <!-- 그 외의 경우 -->
-                  <th:block th:if="true">
-                  <a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
+                  <!-- 로그인 하지 않은 경우 -->
+                  <th:block th:if="${isLogin} == 'false'">
+                  	<a id="addWishlist" href="" class="btn btn-block btn-secondary"><i class="fas fa-heart"></i>위시리스트에 담기</a>
                   </th:block>
                 </div>
               </div>
@@ -537,11 +555,11 @@
                   <!-- Item -->
                   <div class="col-12 mb-7">
                     <div class="d-flex flex-wrap flex-sm-nowrap">
-                      <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar"></div>
+                      <div><img src="assets/img/avatar/1.jpg" class="d-none d-sm-block avatar rounded" alt="Avatar" th:src="|image/${review.user.uImgProfile}|"></div>
                       <div class="review-item ml-sm-4">
                         <div class="small d-flex align-items-start">
                           <!-- user -->
-                          <span class="name text-lt badge badge-info fw-600 small-4">metus</span><!-- th:text="${review.user.uName}" -->
+                          <span class="name text-lt badge badge-info fw-600 small-4" th:text="${review.user.uNickname}">metus</span>
                           <!-- /.user -->
                           <!-- time -->
                           <div class="time ml-2" th:text="${#dates.format(review.reviewUpdatedAt, 'yyyy-MM-dd')}">05/08/2020</div>
@@ -614,7 +632,7 @@
                   <div class="review-item mb-5">
                     <div class="small d-flex">
                       <div class="flex-1">
-                        <span class="name badge badge-warning fw-600 small-4">metus</span>
+                        <span class="name badge badge-warning fw-600 small-4" th:text="${reviewP.user.uNickname}">metus</span>
                         <span class="time ml-2" th:text="${#dates.format(reviewP.reviewUpdatedAt, 'yyyy-MM-dd')}">05/08/2020</span>
                       </div>
                       <a href="" class="text-info">
