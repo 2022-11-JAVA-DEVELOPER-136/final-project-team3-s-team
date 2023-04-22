@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
+import com.itwill.steam.game.Game;
+import com.itwill.steam.game.GameCode;
 import com.itwill.steam.game.GameService;
+import com.itwill.steam.game.SearchDto;
 import com.itwill.steam.user.User;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,10 @@ public class MainController {
 	//메인 페이지
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
+		
+		SearchDto searchDto = SearchDto.builder().orderBy(GameCode.POPULAR).build();
+		List<Game> popularGameList = gameService.findGames(searchDto);
+		model.addAttribute("popularGameList", popularGameList);
 		
 		/*****common-navbar.html에서 사용*****/
         List<Category> categoryList = gameService.findAllCategory();
