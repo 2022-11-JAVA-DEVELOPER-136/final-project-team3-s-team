@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.steam.category.Category;
 import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameService;
 import com.itwill.steam.order.Order;
@@ -59,6 +60,11 @@ public class CartController {
 	        model.addAttribute("discountPrice", discountPrice);
 	        model.addAttribute("savedPrice", savedPrice);
 	        model.addAttribute("finalPrice", finalPrice);
+	        
+	        //common-navbar.html에서 사용
+	        List<Category> categoryList = gameService.findAllCategory();
+			model.addAttribute("categoryList", categoryList);
+	        
 	        return "checkout-order";
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -74,6 +80,11 @@ public class CartController {
 		List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("loginUser", loginUser);
+		
+		//common-navbar.html에서 사용
+		List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
 		return "checkout-address";
 	}
 	

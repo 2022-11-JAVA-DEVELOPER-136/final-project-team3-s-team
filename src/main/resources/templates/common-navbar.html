@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-4 col-sm-3 col-md-2 mr-auto">
-            <a class="navbar-brand logo" href="#">
+            <a class="navbar-brand logo" href="#" th:href="main">
               <img src="image/steam.png" alt="Wicodus" class="logo-light mx-auto">
             </a>
           </div>
@@ -23,6 +23,7 @@
             <a class="btn btn-sm btn-warning text-secondary mr-2" href="#" data-toggle="modal" data-target="#userLogin" id="signin">Sign in</a>
             <a class="btn btn-sm text-light d-none d-sm-inline-block" href="#" data-toggle="modal" data-target="#userWrite" id="signup">Sign up</a>
             <ul class="nav navbar-nav d-none d-sm-inline-flex flex-row">
+              <!-- 국제화 설정
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle small" href="#" id="dropdownGaming" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mr-2 fas fa-globe"></i>EN </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="dropdownGaming">
@@ -31,6 +32,7 @@
                   <a class="dropdown-item" href="#">Español</a>
                 </div>
               </li>
+               -->
               <li class="nav-item">
                 <a class="nav-link small" href="" data-toggle="offcanvas" data-target="#offcanvas-cart">
                   <span class="p-relative d-inline-flex">
@@ -50,19 +52,12 @@
         <div class="collapse navbar-collapse" id="collapsingNavbar">
           <ul class="navbar-nav">
             <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link dropdown-toggle pl-lg-0" href="#" id="dropdownGaming_games" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games </a>
+              <a class="nav-link dropdown-toggle pl-lg-0" href="#" id="dropdownGaming_games" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="게임">Games</a>
               <div class="dropdown-menu dropdown-menu-dark-lg" aria-labelledby="dropdownGaming_games">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Adventure</a>
-                <a class="dropdown-item" href="#">Cooperative</a>
-                <a class="dropdown-item" href="#">MMO</a>
-                <a class="dropdown-item" href="#">RPG</a>
-                <a class="dropdown-item" href="#">Simulation</a>
-                <a class="dropdown-item" href="#">Economy</a>
-                <a class="dropdown-item" href="#">Horror</a>
-                <a class="dropdown-item" href="#">Arcade</a>
-                <a class="dropdown-item" href="#">Hack & Slash</a>
-                <a class="dropdown-item" href="#">Puzzle</a>
+              	<a class="dropdown-item" href="#" th:href="@{/store}" th:text="|모든 게임|">Action</a>
+              <th:block th:each="category:${categoryList}">
+                <a class="dropdown-item" href="#" th:href="@{/store(ctNo=${category.ctNo})}" th:text="${category.ctName}">Action</a>
+              </th:block>
               </div>
             </li>
             <li class="nav-item dropdown dropdown-hover">

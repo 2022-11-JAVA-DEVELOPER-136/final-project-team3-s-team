@@ -21,7 +21,9 @@ import com.itwill.steam.card.Card;
 import com.itwill.steam.card.CardService;
 import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
+import com.itwill.steam.category.Category;
 import com.itwill.steam.exception.ExistedLibraryException;
+import com.itwill.steam.game.GameService;
 import com.itwill.steam.orderItem.OrderItem;
 import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.user.LoginCheck;
@@ -39,6 +41,7 @@ public class OrderController {
 	private final UserService userService;
 	private final CartService cartService;
 	private final OwnedGameService ownedGameService;
+	private final GameService gameService;
 	
 	//주소 불러오기
 	@RequestMapping(value = "/checkout-address")
@@ -52,7 +55,7 @@ public class OrderController {
 	}
 	//카드정보 불러오기
 	@RequestMapping(value = "/checkout-payment")
-	public String checkoutCard(HttpServletRequest request) throws Exception {
+	public String checkoutCard(HttpServletRequest request, Model model) throws Exception {
 		User loginUser =(User)request.getSession().getAttribute("loginUser");
 		if(loginUser==null) {
 			return "redirect:main";
@@ -100,6 +103,10 @@ public class OrderController {
         		.orderItemList(orderItemList)
         		.build();
         request.getSession().setAttribute("order", order);
+        
+        //common-navbar.html에서 사용
+      	List<Category> categoryList = gameService.findAllCategory();
+      	model.addAttribute("categoryList", categoryList);
         
 		return "checkout-payment";
 	}

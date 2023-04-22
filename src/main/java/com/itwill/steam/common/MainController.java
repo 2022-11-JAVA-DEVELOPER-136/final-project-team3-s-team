@@ -1,13 +1,35 @@
 package com.itwill.steam.common;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.steam.category.Category;
+import com.itwill.steam.game.GameService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class MainController {
 	
-	//메인화면
+	private final GameService gameService;
+	
+	//메인 페이지
+	@RequestMapping("/main")
+	public String main(Model model) {
+		
+		//common-navbar.html에서 사용
+		List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
+		return "main";
+	}
+	
+	//steam_main
 	@RequestMapping("/steam_main")
 	public String steamMain() {
 		return "steam_main";
@@ -19,6 +41,12 @@ public class MainController {
 		return "redirect:steam_main";
 	}
 	
+	//404 페이지
+	@RequestMapping("/404")
+	public String fileNotFoundError() {
+		return "404";
+	}
+	
 	//POST방식으로 요청해야 하는 method에 GET방식으로 요청하는 경우, steam_main으로 redirect
 	//@GetMapping({})
 	public String steamGet() {
@@ -26,10 +54,6 @@ public class MainController {
 	}
 	
 	/***************************** template test start *****************************/
-	@RequestMapping("/404")
-	public String fileNotFoundError() {
-		return "404";
-	}
 	@RequestMapping("/about")
 	public String about() {
 		return "about";
@@ -70,10 +94,6 @@ public class MainController {
 	public String helpCenterArticle() {
 		return "help-center-article";
 	}
-	@RequestMapping("/main")
-	public String main() {
-		return "main";
-	}
 	@RequestMapping("/news")
 	public String news() {
 		return "news";
@@ -90,7 +110,7 @@ public class MainController {
 	public String privateMessaging() {
 		return "private-messaging";
 	}
-	@RequestMapping("/profile")
+	//@RequestMapping("/profile")
 	public String profile() {
 		return "profile";
 	}

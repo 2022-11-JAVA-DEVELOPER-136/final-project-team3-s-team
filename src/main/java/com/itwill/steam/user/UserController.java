@@ -16,34 +16,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.steam.card.CardService;
+import com.itwill.steam.category.Category;
 import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
 import com.itwill.steam.exception.UserNotFoundException;
 import com.itwill.steam.friend.Friend;
-
+import com.itwill.steam.game.GameService;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class UserController {
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private ReviewService reviewService;
-	@Autowired
-	private CardService cardService;
-	
+	private final UserService userService;
+	private final GameService gameService;
+	private final ReviewService reviewService;
+	private final CardService cardService;
 	
 	@RequestMapping("/user_write")
 	public String user_write_form() {
 		String forward_path = "user_write";
-		
-		
 		return forward_path;
 	}
 	
 	@PostMapping("/user_write_action")
-	public String user_write_action(@ModelAttribute("fuser") User user,Model model){
+	public String user_write_action(@ModelAttribute("fuser") User user, Model model){
 		String forwardPath = "";
 		
 		try {
@@ -65,7 +64,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/user_login_action")
-	public String user_login_action(@ModelAttribute("fuser") User user,Model model,HttpSession session) {
+	public String user_login_action(@ModelAttribute("fuser") User user, Model model, HttpSession session) {
 		
 		String forwardPath = "";
 		try {
@@ -124,6 +123,11 @@ public class UserController {
 		// Comments 조회
 		
 		// game 조회
+		
+		//common-navbar.html에서 사용
+		List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
 		return "profile";
 	}
 //	@LoginCheck
@@ -210,5 +214,4 @@ public class UserController {
 	public String user_exception_handler(Exception e) {
 		return "steam_error";
 	}
-	
 }

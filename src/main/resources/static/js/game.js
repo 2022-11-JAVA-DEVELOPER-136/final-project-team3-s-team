@@ -17,7 +17,7 @@ $(function(){
 	//필터링검색 버튼 클릭시 실행할 function 등록
 	$('#filterButton').on('click', function(){
 		let form = $('#filterForm');
-		form.attr('method', 'post');
+		form.attr('method', 'get');
 		form.attr('action', 'store');
 		form.submit();
 	});
