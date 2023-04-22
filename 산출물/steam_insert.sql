@@ -27,8 +27,8 @@ insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 2, 3);
 
 --card
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy0_카드_1', '1111-1111-1111-1111', '02/24', 111, 1);
-insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy0_카드_2', '2222-2222-2222-2222', '05/25', 222, 1);
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy1_카드_1', '1234-1234-1234-1234', '03/26', 123, 2);
+insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy2_카드_1', '2222-2222-2222-2222', '05/25', 222, 3);
 
 
 --category
@@ -114,24 +114,24 @@ insert into news(news_no, news_title, news_header, news_content, news_img, news_
 
 --cart
 --sy0
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 1);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 3);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 5);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 2);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 4);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 6);
 --sy1
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 2);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 4);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 6);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 1);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 3);
+insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 5);
 
 
 --wishlist
 --sy0
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 1);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 3);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 5);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 2);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 4);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 6);
 --sy1
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 2);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 4);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 6);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 1);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 3);
+insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 5);
 
 
 --orders, order_item

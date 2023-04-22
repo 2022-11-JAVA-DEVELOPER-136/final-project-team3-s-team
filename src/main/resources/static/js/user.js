@@ -143,7 +143,23 @@ user.js
 				console.log($(resData).find("#loginSuccYn").val());
 				if($(resData).find("#loginSuccYn").val() == "Y") {
 					$("#userLogin").modal('hide');						// 모달 닫기
-					location.href = "/final-project-team3-s-team/main";	// main으로 이동
+					//location.href = "/final-project-team3-s-team/main";	// main으로 이동
+				//location.reload();
+					//$("#relogin").load("/final-project-team3-s-team/store #relogin2 > *");
+					//$("#relogin").load("/final-project-team3-s-team/store-product #relogin2 > *");
+					//$("#relogin").load("/final-project-team3-s-team/main #relogin2 > *");
+				if (window.location.pathname === "/final-project-team3-s-team/store") {
+  $("#relogin").load("/final-project-team3-s-team/store #relogin2 > *");
+} else if (window.location.pathname === "/final-project-team3-s-team/store-product") {
+  $("#relogin").load("/final-project-team3-s-team/store-product #relogin2 > *");
+} else if (window.location.pathname === "/final-project-team3-s-team/main") {
+  $("#relogin").load("/final-project-team3-s-team/main #relogin2 > *");
+} else if (window.location.pathname === "/final-project-team3-s-team/news-article") {
+  $("#relogin").load("/final-project-team3-s-team/news-article #relogin2 > *");
+} else if (window.location.pathname === "/final-project-team3-s-team/private-messaging") {
+  $("#relogin").load("/final-project-team3-s-team/private-messaging #relogin2 > *");
+} 
+
 				// 로그인 실패
 				} else {
 					if($(resData).find("#uChk").text() != null || $(resData).find("#uChk").text() != "") {

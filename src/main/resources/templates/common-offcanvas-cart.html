@@ -11,13 +11,17 @@
       <div class="offcanvas-cart-body flex-1">
         <div class="offcanvas-cart-list row align-items-center no-gutters">
           <!-- item -->
-          <div class="ocs-cart-item col-12">
+          <div th:each="cart:${cartList}" class="ocs-cart-item col-12">
             <div class="row align-items-center no-gutters">
               <div class="col-3 item_img d-none d-sm-block">
-                <a href="store-product.html"><img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Product"></a>
+                <a href="store-product.html"><img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" 
+                	alt="Product" th:src="|image/${cart.game.resourcesList.get(0).resName}|"></a>
               </div>
               <div class="col-7 flex-1 flex-grow pl-0 pl-sm-4 pr-4">
-                <a href="store-product.html"><span class="d-block item_title text-lt ls-1 lh-1 small-1 fw-600 text-uppercase mb-2">Integer sagittis semper</span></a>
+                <a href="store-product.html">
+                	<span class="d-block item_title text-lt ls-1 lh-1 small-1 fw-600 text-uppercase mb-2" th:text="${cart.game.gName}">Integer sagittis semper</span>
+                </a>
+                <!-- 
                 <div class="position-relative lh-1">
                   <div class="number-input">
                     <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ><i class="ti-minus"></i></button>
@@ -25,17 +29,20 @@
                     <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="ti-plus"></i></button>
                   </div>
                 </div>
+                 -->
               </div>
               <div class="col-2">
                 <div class="row align-items-center h-100 no-gutters">
                   <div class="ml-auto text-center">
-                    <a href="#"><i class="far fa-trash-alt"></i></a><br>
-                    <span class="fw-500 text-warning">€44.99</span>
+                    <a href="#"><i class="far fa-trash-alt" th:href="@{deleteCart(cNo=${cart.cNo})}"></i></a><br>
+                    <span class="fw-500 text-warning"
+                     th:text="|${#numbers.formatInteger(cart.game.gPrice - cart.game.gPrice * cart.game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+         </th:block>
           <!-- /.item -->
         </div>
       </div>
