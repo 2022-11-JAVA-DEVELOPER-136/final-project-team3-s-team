@@ -17,16 +17,15 @@ $(function(){
 	//필터링검색 버튼 클릭시 실행할 function 등록
 	$('#filterButton').on('click', function(){
 		let form = $('#filterForm');
-		form.method = 'POST';
-		form.action = 'store';
+		form.attr('method', 'post');
+		form.attr('action', 'store');
 		form.submit();
 	});
 	/**********************************************************************************/
 	
 	/********************************store-product.html********************************/
-	
 	//카트 담기 - 로그인한 경우
-	$('#addCartLogin').on('click', function(e) {
+	$('#addCartLogin').on('click', function() {
 		alert('login cart');
 		
 		let form = $('#hiddenForm');
@@ -37,12 +36,12 @@ $(function(){
 	});
 	
 	//카트 담기 - 로그아웃한 경우
-	$('#addCartLogout').on('click', function(e) {
+	$('#addCartLogout').on('click', function() {
 		$('#signin').click();
 	});
 	
 	//위시리스트 담기 - 로그인한 경우
-	$('#addWishlistLogin').on('click', function(e) {
+	$('#addWishlistLogin').on('click', function() {
 		alert('login wishlist');
 		
 		let form = $('#hiddenForm');
@@ -53,9 +52,8 @@ $(function(){
 	});
 	
 	//위시리스트 담기 - 로그아웃한 경우
-	$('#addWishlistLogout').on('click', function(e) {
+	$('#addWishlistLogout').on('click', function() {
 		$('#signin').click();
 	});
-	
 	/**********************************************************************************/
 });
