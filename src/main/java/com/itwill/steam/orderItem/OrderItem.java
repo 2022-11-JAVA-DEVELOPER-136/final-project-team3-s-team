@@ -16,6 +16,6 @@ import lombok.ToString;
 public class OrderItem {
 	private int oiNo;
 	
-	private int uNo;
+	private int oNo;//?
 	private Game game;
 }

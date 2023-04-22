@@ -9,9 +9,12 @@ $(function(){
 	$('#billing_city').on('keyup', function(){
 		$('#billing_details_city').html($('#billing_city').val());
 	});
+	
+	//이거 아직 작동 안 함 - 수정 필요
 	$('#state').on('click', function(){
 		val = $('#billing_details_stateFull option:selected').text($('#state').text());
 	});
+	
 	$('#billing_postcode').on('keyup', function(){
 		$('#billing_details_Zip').html($('#billing_postcode').val());
 	});
@@ -20,9 +23,14 @@ $(function(){
 	});
 	
 	//주문완료시 alert 띄우기
-	$('#orderBt').on('click', function(){
+	$('#orderBtn').on('click', function(){
 		alert('주문완료~');
+		
+		let form = $('#hiddenForm');
+		form.attr('method', 'post');
+		form.attr('action', 'order-insert-action');
+		form.submit();
 	});
 	
-	console.log($('#state option'));
+	//console.log($('#state option'));
 });

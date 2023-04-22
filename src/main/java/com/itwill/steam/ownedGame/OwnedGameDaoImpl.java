@@ -1,6 +1,7 @@
 package com.itwill.steam.ownedGame;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,4 +32,15 @@ public class OwnedGameDaoImpl implements OwnedGameDao {
 		return ownedGameMapper.getTop4OwnedGamesByLastTime(user);
 	}
 
+	//주문이 끝날 때 해당 주문의 주문아이템을 해당 유저의 라이브러리에 입력
+	@Override
+	public int insertOwnedGame(Map<String, Object> map) {
+		return ownedGameMapper.insertOwnedGame(map);
+	}
+
+	//유저의 라이브러리에 해당 게임이 존재하는지 확인
+	@Override
+	public int existOwnedGame(Map<String, Object> map) {
+		return ownedGameMapper.existOwnedGame(map);
+	}
 }

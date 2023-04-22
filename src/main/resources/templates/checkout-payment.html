@@ -33,6 +33,8 @@
     
   </head>
   <body class="page-body">
+  <form id="hiddenForm" name="hiddenForm">
+  </form>
 
     <!-- navbar -->
     <th:block th:if="${session.loginUser==null}">
@@ -242,7 +244,7 @@
     				<button class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</button>
 					</form>
 					 -->
-					<a id="orderBt" href="#" class="btn btn-lg btn-block btn-warning mt-4" th:href="@{/order_insert_action}">PLACE ORDER</a>
+					<span id="orderBtn" class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</span>
 				</li>
 				<li class="lh-1">
 					<span class="small-4 text-lt w-100 mt-4 pb-1 d-inline-block">By clicking Place Order, you accept our <a href="#" target="_blank" class="text-rp text-primary text-underline">refund policy</a>.</span>

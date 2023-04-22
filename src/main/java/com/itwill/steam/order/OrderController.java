@@ -1,7 +1,9 @@
 package com.itwill.steam.order;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import com.itwill.steam.card.Card;
 import com.itwill.steam.card.CardService;
 import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
+import com.itwill.steam.exception.ExistedLibraryException;
 import com.itwill.steam.orderItem.OrderItem;
 import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.user.LoginCheck;
@@ -68,7 +72,6 @@ public class OrderController {
 		for(Cart cart:cartList) {
 			orderItemList.add(OrderItem.builder()
 								.oiNo(cart.getCNo())
-								.uNo(cart.getUser().getUNo())
 								.game(cart.getGame())
 								.build()
 								);
@@ -101,29 +104,32 @@ public class OrderController {
 		return "checkout-payment";
 	}
 
-
-	
 	//주문생성
-	@RequestMapping("/order_insert_action")
-	public String orderInsertAction(Model model,HttpSession session) {
-		String forwardPath = "";
+	@PostMapping("/order-insert-action")
+	public String orderInsertAction(Model model, HttpSession session) {
 		
 		Order order = (Order)session.getAttribute("order");
+		User loginUser = (User)session.getAttribute("loginUser");
 		
-		User loginUser=(User) session.getAttribute("loginUser");
-		try {
-			orderService.insertOrder(order);
-			cartService.deleteAllCarts(loginUser.getUNo());
-			//ownedGameService의 라이브러리 추가 메소드 사용해서 추가 해야 함. - 메소드 생기면 할 것
-			
-			forwardPath = "redirect:main";
-		}catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("errorMessage", "주문이 실패하였습니다.");
-			forwardPath = "error";
-		}
-		return forwardPath;
+		/*****트랜잭션 시작*****/
+		//주문 입력
+		orderService.insertOrder(order);
+		
+		//라이브러리 입력
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uNo", loginUser.getUNo());
+		map.put("order", order);
+		ownedGameService.insertOwnedGame(map);
+		
+		//카트 삭제
+		cartService.deleteAllCarts(loginUser.getUNo());
+		/*****트랜잭션 종료*****/
+		
+		return "redirect:main";
 	};
 	
-	//라이브러리로 정보 옮기기
+	@ExceptionHandler(ExistedLibraryException.class)
+	public String existedLibraryExceptionHandler(ExistedLibraryException e) {
+		return "redirect:main";
+	}
 }
