@@ -197,14 +197,14 @@ public class GameController {
 		return "store-product";
 	}
 	
-	//Local Exception Handler
+	//Local Exception Handler : 404로 redirect
 	@ExceptionHandler(Exception.class)
 	public String localExceptionHandler(Exception e) {
 		//e.printStackTrace();
 		return "redirect:404";
 	}
 	
-	//게임이 없는 경우 404로 redirect
+	//게임이 없는 경우 store로 redirect
 	@ExceptionHandler(GameNotFoundException.class)
 	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
 		return "redirect:store";
