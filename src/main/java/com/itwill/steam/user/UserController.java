@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.steam.card.CardService;
+import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
 import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
@@ -32,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	private final UserService userService;
 	private final GameService gameService;
+	private final CartService cartService;
 	private final ReviewService reviewService;
 	private final CardService cardService;
 	
@@ -124,9 +126,12 @@ public class UserController {
 		
 		// game 조회
 		
-		//common-navbar.html에서 사용
-		List<Category> categoryList = gameService.findAllCategory();
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
+		int cartQuantity = cartService.countCart(loginUser.getUNo());
+		model.addAttribute("cartQuantity", cartQuantity);
+		/*************************************/
 		
 		return "profile";
 	}

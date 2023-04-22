@@ -61,9 +61,12 @@ public class CartController {
 	        model.addAttribute("savedPrice", savedPrice);
 	        model.addAttribute("finalPrice", finalPrice);
 	        
-	        //common-navbar.html에서 사용
+	        /*****common-navbar.html에서 사용*****/
 	        List<Category> categoryList = gameService.findAllCategory();
 			model.addAttribute("categoryList", categoryList);
+			int cartQuantity = cartService.countCart(loginUser.getUNo());
+			model.addAttribute("cartQuantity", cartQuantity);
+			/*************************************/
 	        
 	        return "checkout-order";
 	    } catch (Exception e) {
@@ -81,9 +84,12 @@ public class CartController {
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("loginUser", loginUser);
 		
-		//common-navbar.html에서 사용
-		List<Category> categoryList = gameService.findAllCategory();
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
+		int cartQuantity = cartService.countCart(loginUser.getUNo());
+		model.addAttribute("cartQuantity", cartQuantity);
+		/*************************************/
 		
 		return "checkout-address";
 	}

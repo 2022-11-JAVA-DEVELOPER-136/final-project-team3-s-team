@@ -37,4 +37,9 @@ public class CartDaoImpl implements CartDao {
 		return CartMapper.deleteAllCarts(uNo);
 	}
 
+	//유저의 카트에 담긴 품목 수 반환
+	@Override
+	public int countCart(int uNo) {
+		return CartMapper.countCart(uNo);
+	}
 }

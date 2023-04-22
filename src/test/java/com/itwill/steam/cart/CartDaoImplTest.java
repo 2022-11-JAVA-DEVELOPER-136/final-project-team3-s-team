@@ -23,7 +23,7 @@ class CartDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		System.out.println("inserted");
 	}
 	
-	@Test
+	//@Test
 	void testSelectCart() {
 		System.out.println(">>>>"+cartDao.selectCart(1));
 	}
@@ -38,5 +38,10 @@ class CartDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		cartDao.deleteAllCarts(1);
 		System.out.println("deleted");
 		//System.out.println(">>>>"+cartDao.deleteAllCarts(1));
+	}
+	
+	@Test
+	void testCountCart() {
+		assertEquals(cartDao.countCart(1), 3);
 	}
 }

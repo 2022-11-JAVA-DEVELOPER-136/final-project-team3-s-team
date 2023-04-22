@@ -35,4 +35,9 @@ public class CartServiceImpl implements CartService {
 		return cartDao.deleteAllCarts(uNo);
 	}
 
+	//유저의 카트에 담긴 품목 수 반환
+	@Override
+	public int countCart(int uNo) {
+		return cartDao.countCart(uNo);
+	}
 }

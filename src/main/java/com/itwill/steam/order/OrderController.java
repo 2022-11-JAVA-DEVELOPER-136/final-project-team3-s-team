@@ -44,7 +44,7 @@ public class OrderController {
 	private final GameService gameService;
 	
 	//주소 불러오기
-	@RequestMapping(value = "/checkout-address")
+	//@RequestMapping(value = "/checkout-address")
 	public String checkoutAddress(HttpServletRequest request) throws Exception{
 		User loginUser = (User)request.getSession().getAttribute("loginUser");
 		if(loginUser==null) {
@@ -53,6 +53,7 @@ public class OrderController {
 		request.setAttribute("loginUser", loginUser);
 		return "checkout-address";
 	}
+	
 	//카드정보 불러오기
 	@RequestMapping(value = "/checkout-payment")
 	public String checkoutCard(HttpServletRequest request, Model model) throws Exception {
@@ -104,9 +105,12 @@ public class OrderController {
         		.build();
         request.getSession().setAttribute("order", order);
         
-        //common-navbar.html에서 사용
-      	List<Category> categoryList = gameService.findAllCategory();
-      	model.addAttribute("categoryList", categoryList);
+        /*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		int cartQuantity = cartService.countCart(loginUser.getUNo());
+		model.addAttribute("cartQuantity", cartQuantity);
+		/*************************************/
         
 		return "checkout-payment";
 	}

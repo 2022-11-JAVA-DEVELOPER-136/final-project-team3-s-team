@@ -21,4 +21,6 @@ public interface CartMapper {
 	//상품 전체 삭제
 	public int deleteAllCarts(int uNo);
 	
+	//유저의 카트에 담긴 품목 수 반환
+	public int countCart(int uNo);
 }

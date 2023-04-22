@@ -56,7 +56,8 @@ public class GameController {
 						@RequestParam(required = false) String tagNo,
 						@RequestParam(required = false) String langNo,
 						@RequestParam(required = false, defaultValue = "1") String pageNo,
-						Model model) {
+						Model model,
+						HttpSession session) {
 		
 		SearchDto searchDto = new SearchDto();
 		
@@ -103,15 +104,20 @@ public class GameController {
 		List<Game> newGameList = gameService.findGames(searchDto);
 		model.addAttribute("newGameList", newGameList);
 		
-		//common-navbar.html에서 사용 -> 모든 페이지 요청시 보내줘야 함
-		List<Category> categoryList = gameService.findAllCategory();
-		model.addAttribute("categoryList", categoryList);
-		
 		List<Tag> tagList = gameService.findAllTag();
 		model.addAttribute("tagList", tagList);
 		
 		List<Language> languageList = gameService.findAllLanguage();
 		model.addAttribute("languageList", languageList);
+		
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		if(session.getAttribute("loginUser")!=null) {
+			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
+			model.addAttribute("cartQuantity", cartQuantity);
+		}
+		/*************************************/
 		
 		return "store";
 	}
@@ -127,10 +133,6 @@ public class GameController {
 	public String storeProduct(@RequestParam(defaultValue = "0") String gNo, Model model, HttpSession session) {
 		
 		//defaultValue를 "0"으로 설정한 이유 : gNo가 emptyString인 경우를 처리하는 코드를 따로 작성하고 싶지 않아서. (emptyString으로 들어오면, Integer.parseInt()메소드에서 문제 발생.)
-		
-		//common-navbar.html에서 사용
-		List<Category> categoryList = gameService.findAllCategory();
-		model.addAttribute("categoryList", categoryList);
 		
 		//gNo로 게임 검색
 		Game game = gameService.findGameByNo(Integer.parseInt(gNo));
@@ -198,6 +200,15 @@ public class GameController {
 		model.addAttribute("isExistLibrary", isExistLibrary);
 		model.addAttribute("isExistCart", isExistCart);
 		model.addAttribute("isExistWishlist", isExistWishlist);
+		
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		if(session.getAttribute("loginUser")!=null) {
+			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
+			model.addAttribute("cartQuantity", cartQuantity);
+		}
+		/*************************************/
 		
 		return "store-product";
 	}

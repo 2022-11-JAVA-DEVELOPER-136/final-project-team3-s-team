@@ -2,13 +2,17 @@ package com.itwill.steam.common;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
 import com.itwill.steam.game.GameService;
+import com.itwill.steam.user.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,14 +21,20 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 	
 	private final GameService gameService;
+	private final CartService cartService;
 	
 	//메인 페이지
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(Model model, HttpSession session) {
 		
-		//common-navbar.html에서 사용
-		List<Category> categoryList = gameService.findAllCategory();
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
+		if(session.getAttribute("loginUser")!=null) {
+			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
+			model.addAttribute("cartQuantity", cartQuantity);
+		}
+		/*************************************/
 		
 		return "main";
 	}
