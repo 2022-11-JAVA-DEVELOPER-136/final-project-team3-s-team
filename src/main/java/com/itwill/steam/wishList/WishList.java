@@ -19,7 +19,7 @@ import lombok.ToString;
 public class WishList {
 	
 	private int wishNo;
-	private Date wishDate;
+	private Date wishDate;//찜 요일
 	
 	private User user;
 	private Game game;
