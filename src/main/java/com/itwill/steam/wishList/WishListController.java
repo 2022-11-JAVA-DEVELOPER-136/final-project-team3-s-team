@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameService;
@@ -68,7 +69,32 @@ public class WishListController {
 
 		return "wishlist";
 	}
-
+	
+	// 리스트 번호로 리스트 삭제
+	@PostMapping("/delete")
+	public String deleteWishList(@RequestParam("wishNo") int wishNo, Model model) {
+		int result = wishListService.deleteWishList(wishNo);
+		if (result > 0) {
+			model.addAttribute("success", true);
+		} else {
+			model.addAttribute("success", false);
+		}
+		return "redirect:/wishlist";
+	}
+	
+	// 회원번호로 리스트 전체 삭제
+	@PostMapping("/delete-all")
+	public String deleteAllWishLists(Model model, HttpSession session) {
+		User loginUser = (User) session.getAttribute("loginUser");
+		int result = wishListService.deleteAllWishLists(loginUser.getUNo());
+		if (result > 0) {
+			model.addAttribute("success", true);
+		} else {
+			model.addAttribute("success", false);
+		}
+		return "redirect:/wishlist";
+	}
+	
 	/*
 	 * // store-product 페이지로 이동
 	 * 
