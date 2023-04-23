@@ -26,8 +26,7 @@ $(function(){
 	/********************************store-product.html********************************/
 	//카트 담기 - 로그인한 경우
 	$('#addCartLogin').on('click', function() {
-		alert('login cart');
-		
+		//alert('login cart');
 		let form = $('#hiddenForm');
 		form.attr('method', 'post');
 		form.attr('action', 'insert-cart');
@@ -42,8 +41,7 @@ $(function(){
 	
 	//위시리스트 담기 - 로그인한 경우
 	$('#addWishlistLogin').on('click', function() {
-		alert('login wishlist');
-		
+		//alert('login wishlist');
 		let form = $('#hiddenForm');
 		form.attr('method', 'post');
 		form.attr('action', 'insert-wishlist');
@@ -54,6 +52,24 @@ $(function(){
 	//위시리스트 담기 - 로그아웃한 경우
 	$('#addWishlistLogout').on('click', function() {
 		$('#signin').click();
+	});
+	
+	//라이브러리에 있는 경우
+	$('#isExistedLibraryC').on('click', function() {
+		//프로필 - 게임탭으로 이동
+	});
+	$('#isExistedLibraryW').on('click', function() {
+		//프로필 - 게임탭으로 이동
+	});
+	
+	//카트에 이미 담겨있는 경우
+	$('#isExistedCart').on('click', function() {
+		//카트로 이동
+	});
+	
+	//위시리스트에 이미 담겨있는 경우
+	$('#isExistedWishlist').on('click', function() {
+		//프로필 - 위시리스트탭으로 이동
 	});
 	/**********************************************************************************/
 });

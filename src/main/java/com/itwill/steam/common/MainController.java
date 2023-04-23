@@ -1,5 +1,6 @@
 package com.itwill.steam.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,8 @@ import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameCode;
 import com.itwill.steam.game.GameService;
 import com.itwill.steam.game.SearchDto;
+import com.itwill.steam.ownedGame.OwnedGame;
+import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.user.User;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ public class MainController {
 	
 	private final GameService gameService;
 	private final CartService cartService;
+	private final OwnedGameService ownedGameService;
 	
 	//메인 페이지
 	@RequestMapping("/main")
@@ -47,11 +51,19 @@ public class MainController {
 		if(loginUser!=null) {
 			model.addAttribute("loginUser", loginUser);
 			isLogin = "true";
-			model.addAttribute("isLogin", isLogin);
 			
 			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
 			model.addAttribute("cartQuantity", cartQuantity);
+			
+			List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(loginUser);
+			//model.addAttribute("ownedGameList", ownedGameList);
+			List<Integer> ogameList = new ArrayList<Integer>();
+			for(OwnedGame ownedGame:ownedGameList) {
+				ogameList.add(ownedGame.getGame().getGNo());
+			}
+			model.addAttribute("ogameList", ogameList);
 		}
+		model.addAttribute("isLogin", isLogin);
 		/*************************************/
 		
 		return "main";

@@ -37,6 +37,7 @@
   	  <th:block th:if="${isLogin} == 'true'">
   	  <input type="hidden" name="uNo" value="" th:value="${loginUser.uNo}">
   	  </th:block>
+  	  <input type="hidden" name="gNo" value="0">
   	</form>
 
     <!-- navbar -->
@@ -157,6 +158,7 @@
     <!-- main content -->
     <main class="main-content">
 
+	  <!-- section 1 -->
       <!-- content area -->
       <section class="content-section owl-carousel-spotlight carousel-spotlight ig-carousel text-light" style="background-image: url(assets/img/bg/bg_shape.png);">
         <div class="container">
@@ -194,10 +196,30 @@
                           <div class="position-relative overflow-hidden">
                             <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${popularGameList.get(seq).resourcesList.get(0).resName}|">
                             <div class="review_h text-light">
+                              <!-- 로그인한 경우 -->
+                              <th:block th:if="${!#lists.isEmpty(ogameList)}">
+	                              <!-- 라이브러리에 있는 경우 -->
+	                              <th:block th:if="${#lists.contains(ogameList, popularGameList.get(seq).gNo)}">
+	                              <a href="#" th:href="@{store-product(gNo=${popularGameList.get(seq).gNo})}">
+	                                <i class="item_icon_cart fas fa-shopping-cart"></i>
+	                                <span th:text="|라이브러리에 있음|">Add to cart</span>
+	                              </a>
+	                              </th:block>
+	                              <!-- 라이브러리에 없는 경우 -->
+	                              <th:block th:if="${!#lists.contains(ogameList, popularGameList.get(seq).gNo)}">
+	                              <a href="#">
+	                                <i class="item_icon_cart fas fa-shopping-cart"></i>
+	                                <span class="item_atc_text" th:text="|카트담기|" gno="" th:gno=${popularGameList.get(seq).gNo}>Add to cart</span>
+	                              </a>
+	                              </th:block>
+                              </th:block>
+                              <!-- 로그인하지 않은 경우 -->
+                              <th:block th:if="${isLogin} == 'false'">
                               <a href="#">
                                 <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text" th:text="카트담기">Add to cart</span>
+                                <span class="item_atc_text" th:text="|카트담기|" gno="" th:gno=${popularGameList.get(seq).gNo}>Add to cart</span>
                               </a>
+                              </th:block>
                             </div>
                           </div>
                           <div>
@@ -229,27 +251,55 @@
               <!-- tab item -->
               <div class="tab-pane fade" id="mp-02-c" role="tabpanel" aria-labelledby="mp-02-tab">
                 <div class="owl-carousel gs-carousel" data-carousel-margin="30" data-carousel-nav="true" data-carousel-navText="<span class='icon-cl-next pe-7s-angle-left'></span>, <span class='icon-cl-next pe-7s-angle-right'></span>">
+                  <!-- each -->
+                  <th:block th:if="${!#lists.isEmpty(newGameList)}">
+                  <th:block th:each="seq:${#numbers.sequence(0, 4)}">
                   <!-- item -->
                   <div class="item">
                     <div class="item-cont">
                       <figure class="owl_item_review">
                         <div>
                           <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
+                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${newGameList.get(seq).resourcesList.get(0).resName}|">
                             <div class="review_h text-light">
+                              <!-- 로그인한 경우 -->
+                              <th:block th:if="${!#lists.isEmpty(ogameList)}">
+	                              <!-- 라이브러리에 있는 경우 -->
+	                              <th:block th:if="${#lists.contains(ogameList, newGameList.get(seq).gNo)}">
+	                              <a href="#" th:href="@{store-product(gNo=${newGameList.get(seq).gNo})}">
+	                                <i class="item_icon_cart fas fa-shopping-cart"></i>
+	                                <span th:text="|라이브러리에 있음|">Add to cart</span>
+	                              </a>
+	                              </th:block>
+	                              <!-- 라이브러리에 없는 경우 -->
+	                              <th:block th:if="${!#lists.contains(ogameList, newGameList.get(seq).gNo)}">
+	                              <a href="#">
+	                                <i class="item_icon_cart fas fa-shopping-cart"></i>
+	                                <span class="item_atc_text" th:text="|카트담기|" gno="" th:gno=${newGameList.get(seq).gNo}>Add to cart</span>
+	                              </a>
+	                              </th:block>
+                              </th:block>
+                              <!-- 로그인하지 않은 경우 -->
+                              <th:block th:if="${isLogin} == 'false'">
                               <a href="#">
                                 <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
+                                <span class="item_atc_text" th:text="|카트담기|" gno="" th:gno=${newGameList.get(seq).gNo}>Add to cart</span>
                               </a>
+                              </th:block>
                             </div>
                           </div>
                           <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
+                            <h5 class="owl_item_title text-lt">
+                            	<a href="" th:href=@{/store-product(gNo=${newGameList.get(seq).gNo})} th:text="${newGameList.get(seq).gName}">Donec dignissim ...</a>
+                            </h5>
                             <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
+                              <span class="owl_item_price" th:text="|${#numbers.formatInteger(newGameList.get(seq).gPrice - newGameList.get(seq).gPrice * newGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                              <th:block th:each="seq2:${#numbers.sequence(0, 1)}">
+                              <span class="owl_item_genre" th:text="${newGameList.get(seq).gameTagList.get(seq2).tag.tagName}">Action, Adventure</span>
+                              <th:block th:if="${seq2} == 0">
+                              <span class="owl_item_genre">,</span>
+                              </th:block>
+                              </th:block>
                             </div>
                           </div>
                         </div>
@@ -257,118 +307,9 @@
                     </div>
                   </div>
                   <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
+                  </th:block>
+                  </th:block>
+                  <!-- /.each -->
                 </div>
               </div>
               <!-- /.tab item -->
@@ -527,6 +468,7 @@
       </section>
       <!-- /.content area -->
 
+      <!-- section 2 -->
       <!-- content area -->
       <section class="section gs_features">
         <div class="row no-gutters">
@@ -598,6 +540,7 @@
       </section>
       <!-- /.content area -->
 
+      <!-- section 3 -->
       <!-- content area -->
       <section class="content-section text-light" style="background: linear-gradient(to bottom, #111931 0%, #0f131e 100%);">
         <div class="container">

@@ -161,9 +161,11 @@
                           <li class="nav-item">
                             <a class="py-2 px-7 nav-link active show" id="fillup-home-tab" data-toggle="tab" href="#fillup-1" role="tab" aria-controls="fillup-home-tab" aria-selected="true"><i class="fab fa-windows"></i> PC</a>
                           </li>
+                          <!-- 2번째 탭
                           <li class="nav-item">
                             <a class="py-2 px-7 nav-link" id="fillup-profile-tab" data-toggle="tab" href="#fillup-2" role="tab" aria-controls="fillup-profile-tab" aria-selected="false"><i class="fas fa-apple-alt"></i> MAC</a>
                           </li>
+                           -->
                         </ul>
                         <div class="tab-content" id="fillupTabContent">
                           <div class="tab-pane fade active show" id="fillup-1" role="tabpanel" aria-labelledby="fillup-home-tab">
@@ -224,6 +226,7 @@
                               </div>
                             </div>
                           </div>
+                          <!-- 2번째 탭
                           <div class="tab-pane fade" id="fillup-2" role="tabpanel" aria-labelledby="fillup-profile-tab">
                             <div class="row">
                               <div class="col-xs-12 col-lg-6 mb-6 mb-lg-0">
@@ -304,10 +307,10 @@
                                   <div class="col-sm-4"><strong class="fw-500">Miscellaneous:</strong></div>
                                   <div class="col-sm-8">Video Preset: High (1080p)</div>
                                 </div>
-                                
                               </div>
                             </div>
                           </div>
+                           -->
                         </div>
                       </div>
                     </div>
@@ -427,12 +430,12 @@
 	                    </th:block>
 	                    <!-- 라이브러리에 없고, 카트에도 없는 경우 -->
 	                    <th:block th:if="${isExistLibrary} == 'false' and ${isExistCart} == 'false'">
-	                    	<div id="addCartLogin" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</span></div>
+	                    	<div id="addCartLogin" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>카트에 담기</span></div>
 	                    </th:block>
                     </th:block>
                     <!-- 로그인 하지 않은 경우 -->
                     <th:block th:if="${isLogin} == 'false'">
-                    	<div id="addCartLogout" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>장바구니에 담기</span></div>
+                    	<div id="addCartLogout" class="flex-1"><span class="btn btn-block btn-warning"><i class="fas fa-shopping-cart"></i>카트에 담기</span></div>
                     </th:block>
                   </div>
                 </div>
@@ -540,8 +543,11 @@
               <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3" th:src="|image/${cgame.resourcesList.get(0).resName}|">
               <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:href="@{/store-product(gNo=${cgame.gNo})}" th:text="${cgame.gName}">Nunc consectetur</a>
               <span class="time d-block small-4" th:text="${#dates.format(cgame.gReleaseDate, 'yyyy-MM-dd')}">05/08/2020</span>
-              <!-- 사용자 좋아요 개수로 보여줄까? -->
-              <span class="d-block small text-warning"><i class="far fa-eye"></i> 23</span>
+              <!-- 게임 판매량을 하트로 보여주기. 게임테이블에 좋아요 기능을 담을 컬럼을 만들었어도 좋았을 것 같다. -->
+              <span class="d-block small text-warning">
+              	<i class="far fa-heart"></i>
+              	<span th:text="${cgame.gSellCount}"></span>
+              </span>
             </div>
             <!-- /.item -->
             </th:block>
