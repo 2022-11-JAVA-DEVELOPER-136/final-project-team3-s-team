@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.review.mapper.ReviewMapper">
 	
+	
+		
 	<!-- 게임 리뷰 작성 -->
 	<insert id="insertGameReview" parameterType="com.itwill.steam.review.Review">
 		<selectKey resultType="java.lang.Integer" keyProperty="reviewNo" order="BEFORE">
@@ -23,7 +25,11 @@
 	
 	<!-- 회원번호로 리뷰 전체보기 -->
 	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review">
-		select * from review where u_no=#{uNo}
+		select 
+			r.*
+			, (select res_name from resources where g_no = r.g_no and rownum=1) as res_name 
+		from review r
+		where r.u_no=#{uNo}
 	</select>
 	
 	<!-- 게임번호로 리뷰 전체보기 -->

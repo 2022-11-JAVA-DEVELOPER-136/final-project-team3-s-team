@@ -1,8 +1,10 @@
 package com.itwill.steam.ownedGame;
 
 import java.util.Date;
+import java.util.List;
 
 import com.itwill.steam.game.Game;
+import com.itwill.steam.resources.Resources;
 import com.itwill.steam.user.User;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,8 @@ public class OwnedGame {
 	private int ogNo; 
 	private int ogPlaytime; 
 	private Date ogLastplay;
+	
+	private List<Resources> resourcesList;
 	
 	private User user;
 	private Game game;

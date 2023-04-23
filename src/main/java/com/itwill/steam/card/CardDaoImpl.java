@@ -1,9 +1,5 @@
 package com.itwill.steam.card;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,11 +21,9 @@ public class CardDaoImpl implements CardDao {
 	}
 
 	@Override
-	public int updateCardName(String cardName,int cardSeq) {
-		Map<String, Object> map = new HashMap();
-		map.put("cardName", cardName);
-		map.put("cardSeq", cardSeq);
-		return cardMapper.updateCardName(map);
+	public int updateCard(Card card) {
+		
+		return cardMapper.updateCard(card);
 	}
 
 	@Override

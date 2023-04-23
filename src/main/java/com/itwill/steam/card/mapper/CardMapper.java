@@ -17,7 +17,7 @@ public interface CardMapper {
 	public int removeCard(int cardSeq);
 	
 	// 카드 이름변경
-	public int updateCardName(Map<String, Object> map);
+	public int updateCard(Card card);
 	
 	// 특정회원 카드 정보 불러오기
 	public Card findCardByNo(int uNo);

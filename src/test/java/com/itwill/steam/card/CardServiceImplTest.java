@@ -1,7 +1,5 @@
 package com.itwill.steam.card;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.steam.FinalProjectTeam3STeamApplicationTests;
@@ -24,7 +22,8 @@ class CardServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 
 //	@Test
 	void testUpdateCardName() {
-		cardService.updateCardName("화이트카드", 10);
+		Card card = new Card(0, "블랙카드", "0000-0000-0000-0000", "20년", 163,User.builder().uNo(1).build());
+		cardService.updateCard(card);
 	}
 
 //	@Test

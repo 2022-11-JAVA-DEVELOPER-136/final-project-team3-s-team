@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.itwill.steam.game.Game;
+import com.itwill.steam.resources.Resources;
 import com.itwill.steam.user.User;
 
 import lombok.AllArgsConstructor;
@@ -40,7 +41,9 @@ public class Review {
 	private int reviewRecommend; //리뷰별점
 	private int reviewLike; //좋아요
 	private int reviewDisLike; //싫어요
-			
+	
+	private String resName; //TODO
 	private User user;
 	private Game game;
+	
 }

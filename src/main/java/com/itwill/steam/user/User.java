@@ -7,6 +7,7 @@ import com.itwill.steam.cart.Cart;
 import com.itwill.steam.chat.Chat;
 import com.itwill.steam.friend.Friend;
 import com.itwill.steam.profileComment.ProfileComment;
+import com.itwill.steam.resources.Resources;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.wishList.WishList;
 

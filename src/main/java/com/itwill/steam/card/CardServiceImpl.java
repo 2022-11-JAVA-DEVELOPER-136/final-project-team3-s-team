@@ -1,10 +1,9 @@
 package com.itwill.steam.card;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
+import com.itwill.steam.exception.ExistedUserException;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -15,7 +14,24 @@ public class CardServiceImpl implements CardService {
 	// 카드등록
 	@Override
 	public int createCard(Card card) {
+		// 카드등록 체크(유저 한명당 카드만 하나등록)
+		if(!cardExistChk(card)) {
+			System.out.println("이미카드등록!!!");
+			throw new ExistedUserException("이미 카드가 등록되어있습니다.");
+		}
+		
 		return cardDao.createCard(card);
+	}
+	
+	private boolean cardExistChk(Card card) {
+		boolean chk = false;
+		card = findCardByNo(card.getUser().getUNo());
+		
+		if(card == null) {
+			chk = true;
+		}
+		
+		return chk;
 	}
 
 	// 카드삭제
@@ -24,10 +40,10 @@ public class CardServiceImpl implements CardService {
 		return cardDao.removeCard(cardSeq);
 	}
 
-	// 카드 이름변경
+	// 카드 변경
 	@Override
-	public int updateCardName(String cardName, int cardSeq) {
-		return cardDao.updateCardName(cardName, cardSeq);
+	public int updateCard(Card card) {
+		return cardDao.updateCard(card);
 	}
 
 	// 특정회원 카드 정보 불러오기

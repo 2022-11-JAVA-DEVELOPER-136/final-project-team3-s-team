@@ -20,7 +20,7 @@ class OwnedGameServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	@Autowired
 	OwnedGameService ownedGameService;
 	
-	//@Test
+	@Test
 	void testOwnedGameList() {
 		
 		User user = User.builder().uNo(1).build();
@@ -29,7 +29,7 @@ class OwnedGameServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 		System.out.println(">>>>> " + ownedGameList);
 	}
 	
-	@Test
+//	@Test
 	void testInsertOwnedGame() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uNo", 1);

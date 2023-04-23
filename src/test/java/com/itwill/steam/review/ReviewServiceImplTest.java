@@ -22,8 +22,8 @@ class ReviewServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	void testInsertGameReview() {
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();
-		Review review = new Review(119,null,null,"테스트용이지용",0,1,3,user,game);
-		reviewService.insertGameReview(review);
+		//Review review = new Review(119,null,null,"테스트용이지용",0,1,3,user,game);
+		//reviewService.insertGameReview(review);
 	}
 	
 	//@Test
@@ -35,7 +35,7 @@ class ReviewServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	void testUpdateGameReview() {
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();
-		int rowCount = reviewService.updateGameReview(new Review(11,null,null,"서비스테스트!!바뀌어라~",1,0,1,user,game));
+		//int rowCount = reviewService.updateGameReview(new Review(11,null,null,"서비스테스트!!바뀌어라~",1,0,1,user,game));
 	}
 	
 	

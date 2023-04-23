@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.steam.card.Card;
 import com.itwill.steam.card.CardService;
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
@@ -22,7 +22,11 @@ import com.itwill.steam.exception.ExistedUserException;
 import com.itwill.steam.exception.PasswordMissmatchException;
 import com.itwill.steam.exception.UserNotFoundException;
 import com.itwill.steam.friend.Friend;
+import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameService;
+import com.itwill.steam.ownedGame.OwnedGame;
+import com.itwill.steam.ownedGame.OwnedGameService;
+import com.itwill.steam.resources.Resources;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 
@@ -36,6 +40,8 @@ public class UserController {
 	private final CartService cartService;
 	private final ReviewService reviewService;
 	private final CardService cardService;
+	private final OwnedGameService ownedGameService;
+	
 	
 	@RequestMapping("/user_write")
 	public String user_write_form() {
@@ -113,18 +119,30 @@ public class UserController {
 		request.setAttribute("onCnt", fCnt);	// 온라인 친구수
 		request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
 		
-		// TODO 리뷰조회 from 리뷰서비스
-//		List<Review> reveiwList1 = reviewService.selectByUserNo(loginUser);
-//		System.out.println("리뷰::"+reveiwList1);
-		
 		// 리뷰조회 from user
-		List<Review> reviewList = loginUser.getReviewList();
-		System.out.println("리뷰::"+reviewList);
+//		List<Review> reviewList = loginUser.getReviewList();
+//		request.setAttribute("reviewList", reviewList);
+		List<Review> reviewList = reviewService.selectByUserNo(loginUser);
+		System.out.println("리뷰리스트 :::"+reviewList);
 		request.setAttribute("reviewList", reviewList);
+		
 		
 		// Comments 조회
 		
 		// game 조회
+		List<OwnedGame> ownedGamePlayTimeList = ownedGameService.getTop4OwnedGamesByPlaytime(loginUser);	// 가장많이 플레이한 4개 게임
+		List<OwnedGame> ownedGameLastTimeList = ownedGameService.getTop4OwnedGamesByLastTime(loginUser);	// 가장최근에 플레이한 3개 게임
+		List<OwnedGame> ownedGameList = ownedGameService.ownedGameList(loginUser);							// 게임리스트
+		
+		request.setAttribute("ownedGamePlayTimeList", ownedGamePlayTimeList);
+		request.setAttribute("ownedGameLastTimeList", ownedGameLastTimeList);
+		request.setAttribute("ownedGameList", ownedGameList);
+		
+		
+		
+		// 카드조회
+		Card card = cardService.findCardByNo(loginUser.getUNo());
+		request.setAttribute("card", card);
 		
 		/*****common-navbar.html에서 사용*****/
         List<Category> categoryList = gameService.findAllCategory();
@@ -181,6 +199,61 @@ public class UserController {
 		forwardPath="profile";
 		return forwardPath;
 	}
+	
+	@LoginCheck
+	@PostMapping("/card_modify_action")
+	public String card_modify_action(@ModelAttribute Card card,Model model,HttpServletRequest request) {
+		String forwardPath = "";
+		try {
+			
+			System.out.println("카드객체::"+card);
+			
+			// 세션객체 가져오기
+			User loginUser = (User)request.getSession().getAttribute("loginUser");
+			
+			// 구분코드
+			String param = request.getParameter("param");
+			
+			// 카드 등록
+			if("I".equals(param))
+			{	
+				card.setUser(loginUser);
+				cardService.createCard(card);
+			}
+			// 카드 수정
+			else if("U".equals(param))
+			{
+				cardService.updateCard(card);
+			}
+			// 카드 삭제
+			else if("D".equals(param))
+			{
+				cardService.removeCard(card.getCardSeq());
+			}
+			
+			
+			// 카드조회
+			Card resCard = cardService.findCardByNo(loginUser.getUNo());
+			request.setAttribute("card", resCard);
+			
+			
+			model.addAttribute("succYn", "Y");
+			
+		} catch (UserNotFoundException e) {
+			System.out.println("이미등록");
+			model.addAttribute("msg2",e.getMessage());
+			model.addAttribute("succYn", "N");
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("msg1",e.getMessage());
+			model.addAttribute("succYn", "N");
+		}
+		
+		//forwardPath="redirect:user_view";
+		forwardPath="profile";
+		return forwardPath;
+	}
+	
 	@LoginCheck
 	@PostMapping("/user_remove_action")
 	public String user_remove_action(HttpServletRequest request) {

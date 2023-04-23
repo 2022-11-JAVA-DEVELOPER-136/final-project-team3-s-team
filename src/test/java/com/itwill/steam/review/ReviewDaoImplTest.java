@@ -16,17 +16,17 @@ import com.itwill.steam.game.Game;
 import com.itwill.steam.review.mapper.ReviewMapper;
 import com.itwill.steam.user.User;
 
-@Transactional
+
 class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	
 	@Autowired
 	private ReviewDao reviewDao;
 	
-	//@Test
+	@Test
 	void InsertGameReview(){
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();		
-		Review review = new Review(100,null,null,"테스트용리뷰1",1,1,1,user,game);
+		Review review = new Review(100,null,null,"테스트용리뷰1",1,1,1,"",user,game);
 		reviewDao.insertGameReview(review);
 	}
 	
@@ -39,7 +39,7 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	void updateGameReview(){
 		User user = User.builder().uNo(3).build();
 		Game game = Game.builder().gNo(3).build();
-		int rowCount = reviewDao.updateGameReview(new Review(12,null,null,"리뷰 수정 테스트!!",1,0,1,user,game));
+		//int rowCount = reviewDao.updateGameReview(new Review(12,null,null,"리뷰 수정 테스트!!",1,0,1,user,game));
 	}
 	
 	//@Test

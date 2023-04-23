@@ -31,11 +31,11 @@
 	</delete>
 
 	<!-- 카드 이름변경 -->
-	<update id="updateCardName" parameterType="java.util.Map">
+	<update id="updateCard" parameterType="com.itwill.steam.card.Card">
 		update Card set
-
-		card_name=#{cardName}
-
+			card_name=#{cardName}
+			, card_number=#{cardNumber}
+			, card_ex_Date=#{cardExDate}
 		where card_seq = #{cardSeq}
 	</update>
 	<!-- 특정회원 카드 정보 불러오기 -->
