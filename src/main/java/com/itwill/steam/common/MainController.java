@@ -30,14 +30,25 @@ public class MainController {
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session) {
 		
+		String isLogin = "false";
+		
 		SearchDto searchDto = SearchDto.builder().orderBy(GameCode.POPULAR).build();
 		List<Game> popularGameList = gameService.findGames(searchDto);
 		model.addAttribute("popularGameList", popularGameList);
 		
+		searchDto.setOrderBy(GameCode.NEW);
+		List<Game> newGameList = gameService.findGames(searchDto);
+		model.addAttribute("newGameList", newGameList);
+		
 		/*****common-navbar.html에서 사용*****/
         List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
-		if(session.getAttribute("loginUser")!=null) {
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			model.addAttribute("loginUser", loginUser);
+			isLogin = "true";
+			model.addAttribute("isLogin", isLogin);
+			
 			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
 			model.addAttribute("cartQuantity", cartQuantity);
 		}

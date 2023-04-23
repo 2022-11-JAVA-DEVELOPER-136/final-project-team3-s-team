@@ -33,6 +33,11 @@
     
   </head>
   <body class="page-body">
+    <form id="hiddenForm" name="hiddenForm">
+  	  <th:block th:if="${isLogin} == 'true'">
+  	  <input type="hidden" name="uNo" value="" th:value="${loginUser.uNo}">
+  	  </th:block>
+  	</form>
 
     <!-- navbar -->
     <th:block th:if="${session.loginUser==null}">
@@ -56,7 +61,7 @@
         </div>
         <!-- Carousel items -->
         <div class="carousel-inner a-cont">
-          <th:block th:if="${#lists.size(popularGameList) >= 1}">
+          <th:block th:if="${!#lists.isEmpty(popularGameList)} and ${#lists.size(popularGameList) >= 1}">
           <!-- carousel-item (active) -->
           <div class="carousel-item active">
             <div class="h-fullscreen__page bs-c br-n ow-h" style="background-image: url(assets/img/content/carousel/slide_01.jpg);"
@@ -99,7 +104,7 @@
           
 		  <!-- each -->
 		  <th:block th:each="seq:${#numbers.sequence(1, 2)}">
-		  <th:block th:if="${#lists.size(popularGameList) >= seq + 1}">
+		  <th:block th:if="${!#lists.isEmpty(popularGameList)} and ${#lists.size(popularGameList) >= seq + 1}">
           <!-- carousel-item -->
           <div class="carousel-item">
             <div class="h-fullscreen__page bs-c br-n ow-h" style="background-image: url(assets/img/content/carousel/slide_02.jpg);"
@@ -162,10 +167,10 @@
             <!-- nav tabs -->
             <ul class="spotlight-tabs spotlight-tabs-dark nav nav-tabs border-0 mb-5 position-relative flex-nowrap" id="most_popular_products-carousel" role="tablist">
               <li class="nav-item text-fnwp pg-none relative">
-                <a class="nav-link active" id="mp-01-tab" data-toggle="tab" href="#mp-01-c" role="tab" aria-controls="mp-01-c" aria-selected="true">New</a>
+                <a class="nav-link active" id="mp-01-tab" data-toggle="tab" href="#mp-01-c" role="tab" aria-controls="mp-01-c" aria-selected="true" th:text="|인기 게임|">New</a>
               </li>
               <li class="nav-item text-fnwp relative">
-                <a class="nav-link" id="mp-02-tab" data-toggle="tab" href="#mp-02-c" role="tab" aria-controls="mp-02-c" aria-selected="false">Highlights</a>
+                <a class="nav-link" id="mp-02-tab" data-toggle="tab" href="#mp-02-c" role="tab" aria-controls="mp-02-c" aria-selected="false" th:text="|새로운 게임|">Highlights</a>
               </li>
               <li class="nav-item text-fnwp relative">
                 <a class="nav-link" id="mp-03-tab" data-toggle="tab" href="#mp-03-c" role="tab" aria-controls="mp-03-c" aria-selected="false">Coming Soon</a>
@@ -178,27 +183,35 @@
               <!-- tab item -->
               <div class="tab-pane fade show active" id="mp-01-c" role="tabpanel" aria-labelledby="mp-01-tab">
                 <div class="owl-carousel gs-carousel" data-carousel-margin="30" data-carousel-nav="true" data-carousel-navText="<span class='icon-cl-next pe-7s-angle-left'></span>, <span class='icon-cl-next pe-7s-angle-right'></span>">
+                  <!-- each -->
+                  <th:block th:if="${!#lists.isEmpty(popularGameList)}">
+                  <th:block th:each="seq:${#numbers.sequence(0, 4)}">
                   <!-- item -->
                   <div class="item">
                     <div class="item-cont">
                       <figure class="owl_item_review">
                         <div>
                           <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
+                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${popularGameList.get(seq).resourcesList.get(0).resName}|">
                             <div class="review_h text-light">
                               <a href="#">
                                 <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
+                                <span class="item_atc_text" th:text="카트담기">Add to cart</span>
                               </a>
                             </div>
                           </div>
                           <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
+                            <h5 class="owl_item_title text-lt">
+                            	<a href="" th:href=@{/store-product(gNo=${popularGameList.get(seq).gNo})} th:text="${popularGameList.get(seq).gName}">Donec dignissim ...</a>
+                            </h5>
                             <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
+                              <span class="owl_item_price" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice - popularGameList.get(seq).gPrice * popularGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                              <th:block th:each="seq2:${#numbers.sequence(0, 1)}">
+                              <span class="owl_item_genre" th:text="${popularGameList.get(seq).gameTagList.get(seq2).tag.tagName}">Action, Adventure</span>
+                              <th:block th:if="${seq2} == 0">
+                              <span class="owl_item_genre">,</span>
+                              </th:block>
+                              </th:block>
                             </div>
                           </div>
                         </div>
@@ -206,118 +219,9 @@
                     </div>
                   </div>
                   <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
+                  </th:block>
+                  </th:block>
+                  <!-- /.each -->
                 </div>
               </div>
               <!-- /.tab item -->
@@ -836,6 +740,7 @@
     
     <!-- Custom JS -->
     <script src="js/user.js"></script>
+    <script src="js/main.js"></script>
     
   </body>
 </html>
