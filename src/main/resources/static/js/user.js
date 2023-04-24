@@ -150,10 +150,12 @@ $(document).ready(function(){
 		doAction("user_login_action", $("#f"), function(resDs){
 			if($(resDs).find("#loginSuccYn").val() == "Y") {
 				// 0.5초 후 리로드
-				setTimeout(function(){
+				$("#userLogin").modal('hide');	
+				location.reload();
+				/*setTimeout(function(){
 							$("#userLogin").modal('hide');						// 모달 닫기
 							$("#relogin").load(pathNm+" #relogin2 > *");
-						}, 500);
+						}, 500);*/
 				
 			// 로그인 실패
 			} else {
