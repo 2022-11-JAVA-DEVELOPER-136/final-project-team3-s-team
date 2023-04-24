@@ -29,6 +29,8 @@ import com.itwill.steam.ownedGame.OwnedGameService;
 import com.itwill.steam.resources.Resources;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
+import com.itwill.steam.wishList.WishList;
+import com.itwill.steam.wishList.WishListService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +43,7 @@ public class UserController {
 	private final ReviewService reviewService;
 	private final CardService cardService;
 	private final OwnedGameService ownedGameService;
+	private final WishListService wishListService;
 	
 	
 	@RequestMapping("/user_write")
@@ -125,8 +128,11 @@ public class UserController {
 		List<Review> reviewList = reviewService.selectByUserNo(loginUser);
 		System.out.println("리뷰리스트 :::"+reviewList);
 		request.setAttribute("reviewList", reviewList);
+		//wishList
+		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
 		
-		
+		System.out.println(wishListList);
+		request.setAttribute("wishListList", wishListList);
 		// Comments 조회
 		
 		// game 조회

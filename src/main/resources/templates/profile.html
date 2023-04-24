@@ -223,7 +223,6 @@
                         </div>
                       </div>
                       <div class="row">
-                      	<!-- comment form -->
                         <div class="col-12 mb-8">
                           <form action="#" class="input-transparent pb-8 border-bottom border-secondary">
                             <div class="form-row">
@@ -253,7 +252,6 @@
                             </div>
                           </form>
                         </div>
-                        <!-- /.comment form -->
                         <div class="col-12">
                           <div class="row">
                             <!-- comment-item -->
@@ -812,7 +810,7 @@
             <!-- tab item -->
             <!-- 찜목록 -->
             <div class="tab-pane fade" id="mp-2-05-c" role="tabpanel" aria-labelledby="mp-2-05-tab">
-              <div class="position-relative">
+              <div class="position-relative" >
                 <header class="header mb-2">
                   <h3>Wishlist</h3>
                   <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
@@ -821,14 +819,14 @@
                   <div class="col-lg-8 mb-9 mb-lg-0">
                     <div class="row">
                       <!-- item -->
-                      <div class="col-md-12 mb-4">
+                      <div class="col-md-12 mb-4" th:each="wishList:${wishListList}">
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
                               <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
+                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1"  th:text="${wishList?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
                               <div class="mb-0">
                                 <i class="mr-2 fab fa-windows"></i>
                                 <i class="mr-2 fab fa-steam"></i>
@@ -855,251 +853,7 @@
                         </div>
                       </div>
                       <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-0">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store"></a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1">Integer sagittis semper</h6></a>
-                              <div class="mb-0">
-                                <i class="mr-2 fab fa-windows"></i>
-                                <i class="mr-2 fab fa-steam"></i>
-                                <i class="fab fa-apple"></i>
-                              </div>
-                              <div class="position-relative">
-                                <span class="item_genre small fw-600">
-                                  Action, Adventure
-                                </span>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt">€144.99</span><br>
-                                  <span class="fw-600 lead-1 text-warning">€44.99</span>
-                                  <span class="small d-none d-sm-block fw-600">
-                                    Added on 8/25/<span class="d-none d-lg-inline">20</span>19 ( <a href="#" class="text-dotted-warning">remove</a> )
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
+                     
                     </div>
                     <!-- pagination -->
                     <nav class="mt-7 pt-4 border-top border-secondary" aria-label="Page navigation">
