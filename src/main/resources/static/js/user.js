@@ -2,6 +2,18 @@
 user.js
 */
 
+$(function(){
+	/*
+	profile.html에서 사용
+	
+	tab 파라미터가 있는 경우, 해당 탭에 클릭이벤트 발생
+	tab=2 --> 게임 탭
+	tab=5 --> 위시리스트 탭
+	*/
+	if(location.href.endsWith('&tab=2')) $('#mp-2-02-tab').click();//게임 탭
+	if(location.href.endsWith('&tab=5')) $('#mp-2-05-tab').click();//위시리스트 탭
+});
+
 var pathNm = location.pathname;
 
 $(document).ready(function(){

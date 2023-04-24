@@ -55,21 +55,40 @@ $(function(){
 	});
 	
 	//라이브러리에 있는 경우
-	$('#isExistedLibraryC').on('click', function() {
+	$('#isExistedLibraryC').on('click', function(e) {
 		//프로필 - 게임탭으로 이동
+		let form = $('#hiddenForm');
+		form.children("input[name='tab']").val(2);
+		form.attr('method', 'get');
+		form.attr('action', 'profile');
+		form.submit();
 	});
 	$('#isExistedLibraryW').on('click', function() {
 		//프로필 - 게임탭으로 이동
+		let form = $('#hiddenForm');
+		form.children("input[name='tab']").val(2);
+		form.attr('method', 'get');
+		form.attr('action', 'profile');
+		form.submit();
 	});
 	
 	//카트에 이미 담겨있는 경우
 	$('#isExistedCart').on('click', function() {
 		//카트로 이동
+		let form = $('#hiddenForm');
+		form.attr('method', 'get');
+		form.attr('action', 'checkout-order');
+		form.submit();
 	});
 	
 	//위시리스트에 이미 담겨있는 경우
 	$('#isExistedWishlist').on('click', function() {
 		//프로필 - 위시리스트탭으로 이동
+		let form = $('#hiddenForm');
+		form.children("input[name='tab']").val(5);
+		form.attr('method', 'get');
+		form.attr('action', 'profile');
+		form.submit();
 	});
 	/**********************************************************************************/
 });
