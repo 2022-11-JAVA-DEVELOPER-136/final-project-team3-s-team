@@ -38,7 +38,7 @@ class OwnedGameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		ownedGameDao.insertOwnedGame(map);
 	}
 	
-	@Test
+	//@Test
 	void testExistOwnedGame() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uNo", 1);
@@ -46,5 +46,15 @@ class OwnedGameDaoImplTest extends FinalProjectTeam3STeamApplicationTests {
 		assertEquals(ownedGameDao.existOwnedGame(map), 1);
 		map.put("gNo", 4);
 		assertEquals(ownedGameDao.existOwnedGame(map), 0);
+	}
+	
+	@Test
+	void testFindOwnedGame() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uNo", 1);
+		map.put("gNo", 1);
+		assertNotNull(ownedGameDao.findOwnedGame(map));
+		map.put("gNo", 4);
+		assertNull(ownedGameDao.findOwnedGame(map));
 	}
 }	

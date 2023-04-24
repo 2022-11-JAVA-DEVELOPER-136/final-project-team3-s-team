@@ -43,4 +43,10 @@ public class OwnedGameDaoImpl implements OwnedGameDao {
 	public int existOwnedGame(Map<String, Object> map) {
 		return ownedGameMapper.existOwnedGame(map);
 	}
+
+	//uNo, gNo를 사용해서 OwnedGame 1개 검색
+	@Override
+	public OwnedGame findOwnedGame(Map<String, Object> map) {
+		return ownedGameMapper.findOwnedGame(map);
+	}
 }

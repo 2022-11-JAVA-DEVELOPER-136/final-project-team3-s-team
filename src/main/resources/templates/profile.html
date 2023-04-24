@@ -166,7 +166,7 @@
                                <figure class="owl_item_review">
                                  <div>
                                    <div class="position-relative overflow-hidden">
-                                     <img class="mb-2" src="assets/img/avatar/1.jpg" alt="Avatar" th:src="|image/${user.uImgProfile}|">
+                                     <img class="mb-2" src="assets/img/avatar/1.jpg" alt="Avatar" th:src="|image/${session.loginUser.uImgProfile}|">
                                      <div class="review_h text-light">
                                        <a href="#" class="d-block" th:text="${user?.uName ?: '친구 사귀셈'}">
                                          Dewei Tsou

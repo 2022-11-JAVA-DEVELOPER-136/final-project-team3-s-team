@@ -19,4 +19,7 @@ public interface OwnedGameMapper {
 	
 	//유저의 라이브러리에 해당 게임이 존재하는지 확인
 	public int existOwnedGame(Map<String, Object> map);
+	
+	//uNo, gNo를 사용해서 OwnedGame 1개 검색
+	public OwnedGame findOwnedGame(Map<String, Object> map);
 }

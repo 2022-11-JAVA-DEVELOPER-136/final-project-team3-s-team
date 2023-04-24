@@ -81,4 +81,7 @@
 	<select id="existOwnedGame" parameterType="java.util.Map" resultType="java.lang.Integer">
 		select count(*) from owned_game where u_no=#{uNo} and g_no=#{gNo}
 	</select>
+	<select id="findOwnedGame" parameterType="java.util.Map" resultType="com.itwill.steam.ownedGame.OwnedGame">
+		select * from owned_game where u_no=#{uNo} and g_no=#{gNo}
+	</select>
 </mapper>

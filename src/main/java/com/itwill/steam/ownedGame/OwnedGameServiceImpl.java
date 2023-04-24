@@ -57,4 +57,10 @@ public class OwnedGameServiceImpl implements OwnedGameService {
 		
 		return result;
 	}
+	
+	//uNo, gNo를 사용해서 OwnedGame 1개 검색
+	@Override
+	public OwnedGame findOwnedGame(Map<String, Object> map) {
+		return ownedGameDao.findOwnedGame(map);
+	}
 }

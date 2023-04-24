@@ -1,14 +1,19 @@
 package com.itwill.steam.common;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
@@ -18,6 +23,7 @@ import com.itwill.steam.game.GameService;
 import com.itwill.steam.game.SearchDto;
 import com.itwill.steam.ownedGame.OwnedGame;
 import com.itwill.steam.ownedGame.OwnedGameService;
+import com.itwill.steam.user.LoginCheck;
 import com.itwill.steam.user.User;
 
 import lombok.RequiredArgsConstructor;
@@ -67,6 +73,42 @@ public class MainController {
 		/*************************************/
 		
 		return "main";
+	}
+	
+	//라이브러리 - 파라미터 x
+	@LoginCheck
+	@RequestMapping(value = "/library", params = "!gNo")
+	public String library(RedirectAttributes redirectAttributes) {
+		
+		redirectAttributes.addAttribute("tab", 2);
+		
+		return "redirect:profile";
+	}
+	
+	//라이브러리 - 파라미터 o
+	@LoginCheck
+	@RequestMapping(value = "/library", params = "gNo")//나중에 post로 바꾸자
+	public String library(@RequestParam String gNo, Model model, HttpSession session) {
+		
+		if(gNo.equals("")) return "redirect:library";
+		User loginUser = (User)session.getAttribute("loginUser");
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		int cartQuantity = cartService.countCart(loginUser.getUNo());
+		model.addAttribute("cartQuantity", cartQuantity);
+		/*************************************/
+		
+		Game game = gameService.findGameByNo(Integer.parseInt(gNo));
+		model.addAttribute("game", game);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uNo", loginUser.getUNo());
+		map.put("gNo", Integer.parseInt(gNo));
+		OwnedGame ownedGame = ownedGameService.findOwnedGame(map);
+		model.addAttribute("ownedGame", ownedGame);
+		
+		return "library";
 	}
 	
 	//steam_main
