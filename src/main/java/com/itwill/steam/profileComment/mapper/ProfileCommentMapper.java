@@ -20,6 +20,6 @@ public interface ProfileCommentMapper {
 	public int deleteProfileComment(int pcNo);
 	
 	//유저번호로 해당유저 방명록 리스트 보기
-	public List<ProfileComment> selectByUserNo(User user);
+	public List<ProfileComment> selectByProfileUserNo(User user);
 
 }
