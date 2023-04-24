@@ -470,6 +470,7 @@
 
       <!-- section 2 -->
       <!-- content area -->
+      <!-- 
       <section class="section gs_features">
         <div class="row no-gutters">
           <div class="col-xl-6 col-12 py-8 px-4 px-sm-8 py-md-9 px-md-9 br-n bs-c effect-wrapper effect-grayscale position-relative hover" style="background-image: url('assets/img/content/cont/cg-fl_01.jpg');">
@@ -538,17 +539,19 @@
           </div>
         </div>
       </section>
+       -->
       <!-- /.content area -->
 
       <!-- section 3 -->
       <!-- content area -->
+      <!-- 
       <section class="content-section text-light" style="background: linear-gradient(to bottom, #111931 0%, #0f131e 100%);">
         <div class="container">
           <header class="header text-left">
             <h2 class="mb-6">Latest News</h2>
           </header>
           <div class="row">
-            <!-- post -->
+            
             <div class="col-12 mb-8">
               <div class="row">
                 <div class="col-lg-4 mb-6 mb-lg-0">
@@ -574,9 +577,8 @@
                 </div>
               </div>
             </div>
-            <!-- /.post -->
-
-            <!-- post -->
+			
+            
             <div class="col-12 mb-8">
               <div class="row">
                 <div class="col-lg-4 mb-6 mb-lg-0">
@@ -602,9 +604,8 @@
                 </div>
               </div>
             </div>
-            <!-- /.post -->
-
-            <!-- post -->
+			
+            
             <div class="col-12">
               <div class="row">
                 <div class="col-lg-4 mb-6 mb-lg-0">
@@ -630,17 +631,19 @@
                 </div>
               </div>
             </div>
-            <!-- /.post -->
+            
           </div>
         </div>
       </section>
+       -->
       <!-- /.content area -->
 
       <!-- banner -->
       <div class="content-section pt-0">
         <div class="container">
-          <a href="#" class="d-block">
-            <div class="position-relative br-n bs-cont bp-c" style="background-image: url('assets/img/content/banner_01.jpg');">
+          <a href="#" class="d-block" th:href="main">
+            <div class="position-relative br-n bs-cont bp-c" style="background-image: url('assets/img/content/banner_01.jpg');"
+            	th:style="${'background-image:url(image/steam.png)'}">
               <img src="assets/img/content/banner_01.jpg" alt="banner" class="invisible"/>
             </div>
           </a>
