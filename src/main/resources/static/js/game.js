@@ -90,5 +90,34 @@ $(function(){
 		form.attr('action', 'profile');
 		form.submit();
 	});
+	
+	
+	$('#reviewDiv>.dropdown-item').on('click', function(e) {
+		console.log($(e.target).text());
+		
+		let form = $('#hiddenForm');
+		if(!form.children("input[name='uNo']").val()) $('#signin').click();
+		if(form.children("input[name='uNo']").val()) {
+			let reviewForm = $('#reviewForm');
+			reviewForm.children("input[name='rate']").val($(e.target).text());
+		}
+		
+		e.preventDefault();
+	});
+		
+	//게임 리뷰 작성
+	$('#reviewSend').on('click', function(e) {
+		let form = $('#hiddenForm');
+		if(!form.children("input[name='uNo']").val()) $('#signin').click();
+		if(form.children("input[name='uNo']").val()) {
+			let reviewForm = $('#reviewForm');
+			if(!reviewForm.children("input[name='rate']").val()) alert('별점을 입력해주세요');
+			if(reviewForm.children("input[name='rate']").val()) {
+				reviewForm.attr('method', 'post');
+				reviewForm.attr('action', 'review_write');
+				reviewForm.submit();
+			}
+		}
+	});
 	/**********************************************************************************/
 });
