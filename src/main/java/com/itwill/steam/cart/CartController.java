@@ -40,7 +40,7 @@ public class CartController {
 	        User loginUser = (User) session.getAttribute("loginUser");
 	        if (loginUser == null) {
 	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
-	            return "redirect:main";
+	            //return "redirect:main";
 	        }
 	        
 	        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
@@ -70,6 +70,24 @@ public class CartController {
 			/*************************************/
 	        
 	        return "checkout-order";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "error";
+	    }
+	}
+	
+	//모든 페이지에서 카트 정보 뿌리기...기원
+	@RequestMapping(value = "/fas fa-shopping-cart", method = RequestMethod.GET)
+	public String offcanvasCart(HttpSession session, Model model) {
+		try {
+	        User loginUser = (User) session.getAttribute("loginUser");
+	        if (loginUser == null) {
+	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
+	            return "redirect:main";
+	        }
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+	        model.addAttribute("cartList", cartList);
+	        return "fas fa-shopping-cart";
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "error";
@@ -114,7 +132,7 @@ public class CartController {
 	}
 	
 	// 장바구니에 담긴 상품 삭제
-	@RequestMapping(value = "/delete-cart")
+	@PostMapping(value = "/delete-cart")
 	public String deleteCart(@RequestParam String cNo, HttpSession session) {
 	    try {
 	        User loginUser = (User) session.getAttribute("loginUser");
