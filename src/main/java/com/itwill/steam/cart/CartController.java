@@ -42,6 +42,7 @@ public class CartController {
 	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
 	            return "redirect:main";
 	        }
+	        
 	        List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
 	        model.addAttribute("cartList", cartList);
 	        
@@ -113,10 +114,8 @@ public class CartController {
 	}
 	
 	// 장바구니에 담긴 상품 삭제
-	@RequestMapping(value = "/deleteCart")
+	@RequestMapping(value = "/delete-cart")
 	public String deleteCart(@RequestParam String cNo, HttpSession session) {
-		System.out.println(">>>>>"+cNo);
-		
 	    try {
 	        User loginUser = (User) session.getAttribute("loginUser");
 	        if (loginUser != null) {
