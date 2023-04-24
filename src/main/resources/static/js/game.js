@@ -99,8 +99,6 @@ $(function(){
 	
 	//게임리뷰 별점등록
 	$('#reviewDiv>a.dropdown-item').on('click', function(e) {
-		//console.log($(e.target).text());
-		
 		let form = $('#hiddenForm');
 		if(!form.children("input[name='uNo']").val()) {
 			//로그아웃한 경우
@@ -112,7 +110,6 @@ $(function(){
 			//console.log($(e.target).attr('val'));
 			form.children("input[name='rate']").val($(e.target).attr('val'));
 		}
-		//e.stopPropagation();
 		e.preventDefault();
 	});
 	
