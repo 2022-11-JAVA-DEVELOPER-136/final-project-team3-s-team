@@ -172,24 +172,22 @@
    <!-- 모든회원 정보가져오기 -->
    <select id="findAllUser" resultMap='userWithReviewFriendCartWishProfileComment'>
       select 
-      		u.*
-			, r.g_no as r_g_no, r.review_comment, r.review_created_at, r.review_dislike, r.review_like, r.review_no, r.review_recommend, r.review_updated_at, r.u_no as r_u_no
-			, f.f_no, f.u_fno, f.u_no as f_u_no
-			, c.c_no, c.g_no, c.u_no as c_u_no
-			, w.g_no as w_g_no, w.u_no as w_u_no, w.wish_date, w.wish_no
-			, p.pc_comment, p.pc_created_at, p.pc_no, p.u_fno, p.u_no as p_u_no
-			, (select res_name from resources where g_no = r.g_no and rownum=1) as res_name 
+      		* 
          from userinfo u
          left outer join review r
          on u.u_no = r.u_no
          left outer join friend f
          on u.u_no = f.u_no
-            left outer join cart c
-            on u.u_no = c.u_no
-            left outer join wishlist w
-            on u.u_no= w.u_no
-            left outer join profile_comment p
-            on u.u_no = p.u_no
+         left outer join cart c
+         on u.u_no = c.u_no
+         left outer join wishlist w
+         on u.u_no= w.u_no
+         left outer join profile_comment p
+         on u.u_no = p.u_no
+         left outer join resources rs
+         on rs.g_no = r.g_no
+         
+            
    </select>
    
 </mapper>

@@ -10,8 +10,8 @@ $(function(){
 	tab=2 --> 게임 탭
 	tab=5 --> 위시리스트 탭
 	*/
-	if(location.href.endsWith('tab=2')) $('#mp-2-02-tab').click();//게임 탭
-	if(location.href.endsWith('tab=5')) $('#mp-2-05-tab').click();//위시리스트 탭
+	if(location.href.endsWith('&tab=2')) $('#mp-2-02-tab').click();//게임 탭
+	if(location.href.endsWith('&tab=5')) $('#mp-2-05-tab').click();//위시리스트 탭
 });
 
 var pathNm = location.pathname;
@@ -22,7 +22,43 @@ $(document).ready(function(){
 		$("#cardAddBtn").hide();
 	}
 	
+	// Settings 클릭시에
+	$("#mp-2-04-tab").click(function(){
+		$("#settingChkDiv").modal("show");
+	});
+	
+	// Setting 비번체크 알림창에서 닫기버튼 클릭시
+	$("#closeBtn").click(function(){
+		location.reload();
+	});
+	
 });
+
+function pwChk() {
+	
+	if ($("#settingPassword").val() == "") {
+			alert("비밀번호를 입력하세요.");
+			$("#settingPassword").focus();
+			return false;
+		}
+		
+	doAction("user_pwChk_action", $("#pwForm"), function(resDs){
+		console.log(resDs);
+			
+			if($(resDs).find("#pwSuccYn").val() == "Y") {
+				$("#settingChkDiv").modal('hide');	// 모달닫기
+				location.href="/final-project-team3-s-team/profile#mp-2-04-c";
+			// 로그인 실패
+			} else {
+				
+				if($(resDs).find("#psMsgChk").text() != null || $(resDs).find("#psMsgChk").text() != "") {
+					// 실패 메시지 존재시 뿌려줌
+					$("#psMsgChk").text($(resDs).find("#psMsgChk").text());
+				}
+			}
+		});
+		
+}
 
 	function userCreate() {
     		
@@ -121,6 +157,7 @@ $(document).ready(function(){
 		doAction("user_write_action", $("#upForm"), function(resDs){
 			// 가입성공
 			if($(resDs).find("#succYn").val() == "Y") {
+				alert("회원가입이 완료되었습니다.");
 				$("#userWrite").modal('hide');						// 모달 닫기
 				location.href = "/final-project-team3-s-team/main";	// main으로 이동
 			// 가입실패

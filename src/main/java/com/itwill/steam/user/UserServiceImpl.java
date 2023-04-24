@@ -37,8 +37,6 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User login(String userId, String password) {
-		System.out.println("서비스 탐??");
-		
 		
 		// 1.아이디 존재여부
 		User user = userDao.findUserById(userId);

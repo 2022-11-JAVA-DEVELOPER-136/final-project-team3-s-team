@@ -24,14 +24,15 @@ import com.itwill.steam.exception.UserNotFoundException;
 import com.itwill.steam.friend.Friend;
 import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameService;
+import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.ownedGame.OwnedGame;
 import com.itwill.steam.ownedGame.OwnedGameService;
-import com.itwill.steam.resources.Resources;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.wishList.WishList;
 import com.itwill.steam.wishList.WishListService;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -67,6 +68,25 @@ public class UserController {
 		}
 		
 		return forwardPath;
+	}
+	
+	@PostMapping("/user_pwChk_action")
+	public String user_pwChk_action(@ModelAttribute("fuser") User user, Model model, HttpServletRequest request){
+		
+		try {
+			
+			// 세션객체(아이디 가져오기)
+			User loginUser = (User) request.getSession().getAttribute("loginUser");
+			
+			userService.login(loginUser.getUId(), user.getUPassword());
+			model.addAttribute("pwSuccYn", "Y");
+			
+		}catch (PasswordMissmatchException e) {
+			model.addAttribute("pwMsg", e.getMessage());
+			model.addAttribute("pwSuccYn", "N");
+		}
+		
+		return "profile";
 	}
 	
 	@RequestMapping(value = "/common-sign-up")
@@ -114,11 +134,17 @@ public class UserController {
 		List<User> fUserList = new ArrayList<User>();
 		int fCnt = loginUser.getFriendList().size();	// 친구수
 		
-		for(Friend friend : loginUser.getFriendList()) {
-			fUser = userService.findUserByNo(friend.getUFNo());	// 친구 번호
-			fUserList.add(fUser);
+		if(loginUser.getFriendList().get(0).getUFNo() != 0) {
+			for(Friend friend : loginUser.getFriendList()) {
+				fUser = userService.findUserByNo(friend.getUFNo());	// 친구 번호
+				fUserList.add(fUser);
+			}
 		}
+		
+		
 		request.setAttribute("fUserList", fUserList);
+		
+		
 		request.setAttribute("onCnt", fCnt);	// 온라인 친구수
 		request.setAttribute("offCnt", fCnt);	// 오프라인 친구수
 		
@@ -126,13 +152,32 @@ public class UserController {
 //		List<Review> reviewList = loginUser.getReviewList();
 //		request.setAttribute("reviewList", reviewList);
 		List<Review> reviewList = reviewService.selectByUserNo(loginUser);
-		System.out.println("리뷰리스트 :::"+reviewList);
 		request.setAttribute("reviewList", reviewList);
-		//wishList
-		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
 		
-		System.out.println(wishListList);
+		//wishList
+//		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
+		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
+		System.out.println("wishListList:::"+wishListList.size()+", wishListList::"+wishListList);
+		
+		
 		request.setAttribute("wishListList", wishListList);
+		
+//		
+//		List<Game> gameList = new ArrayList<Game>();
+//		Game game = new Game();
+//		for(WishList wish : wishListList) {
+//			game = gameService.findGameByNo(wish.getGame().getGNo());
+//			gameList.add(game);
+//		}
+//		System.out.println("태그["+gameList.toString()+"]");
+//		request.setAttribute("gameList", gameList);
+//		
+//		List<GameTag> gameTagList = new ArrayList<GameTag>();
+//		for(Game game2 : gameList) {
+//			gameTagList = game2.getGameTagList();
+//		}
+//		
+		
 		// Comments 조회
 		
 		// game 조회

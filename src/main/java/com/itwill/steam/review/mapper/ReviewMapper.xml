@@ -24,7 +24,7 @@
 	</update>
 	
 	<!-- 회원번호로 리뷰 전체보기 -->
-	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review">
+	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review" >
 		select 
 			r.*
 			, (select res_name from resources where g_no = r.g_no and rownum=1) as res_name 

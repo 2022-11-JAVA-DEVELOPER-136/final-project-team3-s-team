@@ -6,19 +6,49 @@
 		</association>
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
 		</association>
+		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+			<result column="g_no1" property="gNo"/>
+		</collection>
 	</resultMap>
+	<resultMap type="com.itwill.steam.wishList.WishList" id="WishListUserGameTag" autoMapping="true">
+		<id column="wish_no" property="wishNo"/>
+		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
+		</association>
+		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
+		</association>
+		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+			<id column="gt_no" property="gtNo"/>
+			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
+			</association>
+		</collection>
+		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+			<result column="g_no1" property="gNo"/>
+		</collection>
+	</resultMap>	
 	
 	<insert id="insertWishList" parameterType="com.itwill.steam.wishList.WishList">
     	insert into wishList(wish_no, wish_date, u_no, g_no)
 		values(wishList_wish_no_seq.nextval, sysdate, #{user.uNo}, #{game.gNo})
 	</insert>
-	<select id="selectWishList" parameterType="java.lang.Integer" resultMap="WishListUserGame">
-		select *
+<!-- 	<select id="selectWishList" parameterType="java.lang.Integer" resultMap="WishListUserGame">
+		select 
+			g.*
+            , w.*
+            ,(select res_name from resources where g_no = g.g_no and rownum=1) as res_name
 		from game g 
 		join wishList w on w.g_no=g.g_no 
-		join resources r on r.g_no=g.g_no
 		where w.u_no=#{uNo}
-	</select>
+	</select> -->
+	<select id="selectWishList" parameterType="java.lang.Integer" resultMap="WishListUserGameTag">
+		select 
+			*
+		from wishList w
+		join game g on g.g_no=w.g_no 
+		join game_tag gt on w.g_no=gt.g_no 
+		join tag t on t.tag_no=gt.tag_no
+		join resources r on r.g_no = w.g_no
+		where w.u_no=#{uNo}
+	</select>	
 	<delete id="deleteWishList" parameterType="com.itwill.steam.wishList.WishList">
 		delete from wishList where wish_no = #{wishNo}
 	</delete>

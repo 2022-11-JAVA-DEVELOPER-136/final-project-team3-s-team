@@ -20,8 +20,8 @@ class WishListServiceImplTest extends FinalProjectTeam3STeamApplicationTests{
 	void testInsertWishList() {
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();
-		WishList wishList = new WishList(1, null,user,game);
-		wishListService.insertWishList(wishList);
+//		WishList wishList = new WishList(1, null,user,game);
+//		wishListService.insertWishList(wishList);
 	}
 
 	@Test

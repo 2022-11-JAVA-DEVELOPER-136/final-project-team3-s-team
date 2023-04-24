@@ -3,8 +3,8 @@
 <mapper namespace="com.itwill.steam.ownedGame.mapper.OwnedGameMapper">
 	<resultMap type="com.itwill.steam.ownedGame.OwnedGame" id="ownedGameWithGame" autoMapping="true">
 		<id column="og_no" property="ogNo"/>
-		<id column="g_no" property="game.gNo"/>
-		<id column="u_no" property="user.uNo"/>
+		<!-- <id column="g_no" property="game.gNo"/>
+		<id column="u_no" property="user.uNo"/> -->
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
 		</association>
 		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
@@ -16,18 +16,11 @@
 	</resultMap>
 	
 	<select id="ownedGameList" parameterType="com.itwill.steam.user.User" resultMap="ownedGameWithGame">
-	    SELECT 
-	    	og.g_no
-			, og.og_lastplay
-			, og.og_no
-			, og.og_playtime
-			, og.u_no
-			, g.g_name
-			, g.g_short_desc
-			, g.g_long_desc
-			, (select res_name from resources where g_no = og.g_no and rownum=1) as res_name
+	SELECT 
+	    	*
 	   FROM owned_game og 
 	    join game g on g.g_no=og.g_no
+        join resources r on r.g_no = og.g_no
 	    WHERE u_no = #{uNo}
 	    order by og_playtime desc
 	</select>
