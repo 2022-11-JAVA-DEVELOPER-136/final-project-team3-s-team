@@ -50,7 +50,8 @@
         <div class="release-subheader">
           <div class="release-container">
             <div class="pb-9 w-100 text-light text-center">
-              <div class="img-xl position-relative br-n bp-c bs-c article-image ar-1_1 mx-auto rounded-circle border border-secondary mb-6" style="background-image: url(assets/img/avatar/2.jpg)">
+              <div class="img-xl position-relative br-n bp-c bs-c article-image ar-1_1 mx-auto rounded-circle border border-secondary mb-6" style="background-image: url(assets/img/avatar/2.jpg)"
+              th:style="${'background-image:url(image/'} + ${session.loginUser.uImgProfile} + ');'">
                 <span class="position-absolute b-0 r-0 text-secondary lead-3 d-block bg-warning p-2 rounded-circle lh-1"><input type="file" class="custom-file-input position-absolute l-0 t-0 b-0 h-auto" id="customFile"><i class="far fa-image"></i></span>
               </div>
               <h3 th:text="${session.loginUser.uId}">Sakuras</h3>
