@@ -10,7 +10,7 @@
 			select review_review_no_seq.nextval from dual
 		</selectKey>
 			insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) 
-			values(#{reviewNo}, sysdate, sysdate, #{reviewComment}, #{reviewRecommend}, #{reviewLike}, #{reviewDisLike}, #{user.uNo}, #{game.gNo})
+			values(#{reviewNo}, sysdate, sysdate, #{reviewComment}, #{reviewRecommend}, 0, 0, #{user.uNo}, #{game.gNo})
 	</insert>
 		
 	<!-- 게임 리뷰 삭제 -->
