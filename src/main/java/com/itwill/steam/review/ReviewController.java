@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.steam.game.Game;
 import com.itwill.steam.user.LoginCheck;
@@ -27,21 +28,23 @@ public class ReviewController {
 	
 	//게임리뷰작성
 	@LoginCheck
-	@PostMapping("review_write")
-	public String review_write_action(@ModelAttribute Review review, HttpSession session) {
-		try {
-			int insertedRows = reviewService.insertGameReview(review);
-			if (insertedRows ==1) {
-				return "리뷰등록성공";
-			} else {
-				return "리뷰등록에 실패하였습니다.";
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-			return "리뷰등록에 실패하였습니다.";
-			
-		}
+	@PostMapping("review-write")
+	public String review_write_action(@RequestParam String uNo,
+									  @RequestParam String gNo,
+									  @RequestParam String rate,
+									  @RequestParam String comment,
+									  HttpSession session,
+									  RedirectAttributes redirectAttributes) {
 		
+		Review review = Review.builder().user(User.builder().uNo(Integer.parseInt(uNo)).build())
+										.game(Game.builder().gNo(Integer.parseInt(gNo)).build())
+										.reviewRecommend(Integer.parseInt(rate))
+										.reviewComment(comment)
+										.build();
+		reviewService.insertGameReview(review);
+		redirectAttributes.addAttribute("gNo", gNo);
+		
+		return "redirect:store-product";
 	}
 	
 	//리뷰수정

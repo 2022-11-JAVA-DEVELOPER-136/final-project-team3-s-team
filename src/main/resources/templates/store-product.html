@@ -42,6 +42,8 @@
   	  <input type="hidden" name="uNo" value="" th:value="${loginUser.uNo}">
   	  </th:block>
   	  <input type="hidden" name="gNo" value="" th:value="${game.gNo}">
+  	  <input type="hidden" name="rate" value="">
+  	  <textarea name="comment" style="display:none"></textarea>
   	  <input type="hidden" name="tab" value="">
   	</form>
 
@@ -565,10 +567,16 @@
 	          <!-- comment form -->
 		      <div class="col-12 mb-8">
 		        <form id="reviewForm" action="#" class="input-transparent pb-8 border-bottom border-secondary">
-		          <input type="hidden" name="rate" value="">
 		          <div class="form-row">
 		            <div class="form-group col-3 col-sm-2">
+		              <!-- 로그인한 경우 -->
+		              <th:block th:if="${isLogin} == 'true'">
+		              <img class="rounded" src="assets/img/avatar/2.jpg" alt="Avatar" th:src="|image/${loginUser.uImgProfile}|">
+		              </th:block>
+		              <!-- 로그인하지 않은 경우 -->
+		              <th:block th:if="${isLogin} == 'false'">
 		              <img class="rounded" src="assets/img/avatar/2.jpg" alt="Avatar">
+		              </th:block>
 		            </div>
 		            <div class="form-group col-9 col-sm-10">
 		              <textarea class="form-control form-control" rows="4" placeholder="Your Message" name="message" required=""></textarea>
@@ -576,18 +584,16 @@
 		          </div>
 		          <div class="d-flex align-items-center justify-content-end">
 		            <div class="dropdownSmile dropup mr-4">
-		              <a class="dropdown-toggle lead-2" href="#" id="dropdownSmile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-star"></i></a>
+		              <a class="dropdown-toggle lead-2 text-warning" href="#" id="dropdownSmile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-star"></i></a>
 		              <div id="reviewDiv" class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="dropdownSmile">
-		                <a class="dropdown-item" href="#">1</a>
-		                <a class="dropdown-item" href="#">2</a>
-		                <a class="dropdown-item" href="#">3</a>
-		                <a class="dropdown-item" href="#">4</a>
-		                <a class="dropdown-item" href="#">5</a>
-		                <a class="dropdown-item" href="#">6</a>
-		                <a class="dropdown-item" href="#">7</a>
-		                <a class="dropdown-item" href="#">8</a>
-		                <a class="dropdown-item" href="#">9</a>
-		                <a class="dropdown-item" href="#">10</a>
+		              	<th:block th:each="seq:${#numbers.sequence(1, 10)}">
+		              	<th:block th:if="${seqStat.odd}">
+		                <a class="dropdown-item" href="#" val="" th:val="${seq}"><i class="far fa-star-half" val="" th:val="${seq}"></i></a>
+		                </th:block>
+		                <th:block th:if=${seqStat.even}>
+		                <a class="dropdown-item" href="#" val="" th:val="${seq}"><i class="far fa-star" val="" th:val="${seq}"></i></a>
+		                </th:block>
+		                </th:block>
 		              </div>
 		            </div>
 		            <div><button id="reviewSend" class="btn btn-warning" type="button">Send</button></div>

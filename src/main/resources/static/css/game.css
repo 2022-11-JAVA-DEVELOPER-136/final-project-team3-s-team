@@ -3,3 +3,7 @@
 #isExistedLibraryC {
 	cursor:default;
 }
+
+#reviewDiv {
+	flex-wrap: nowrap;
+}

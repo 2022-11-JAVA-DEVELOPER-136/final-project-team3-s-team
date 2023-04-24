@@ -91,31 +91,60 @@ $(function(){
 		form.submit();
 	});
 	
-	
-	$('#reviewDiv>.dropdown-item').on('click', function(e) {
-		console.log($(e.target).text());
-		
+	//게임리뷰 별점등록 - 로그아웃한 경우
+	$('#reviewForm i').on('click', function() {
 		let form = $('#hiddenForm');
 		if(!form.children("input[name='uNo']").val()) $('#signin').click();
-		if(form.children("input[name='uNo']").val()) {
-			let reviewForm = $('#reviewForm');
-			reviewForm.children("input[name='rate']").val($(e.target).text());
-		}
+	});
+	
+	//게임리뷰 별점등록
+	$('#reviewDiv>a.dropdown-item').on('click', function(e) {
+		//console.log($(e.target).text());
 		
+		let form = $('#hiddenForm');
+		if(!form.children("input[name='uNo']").val()) {
+			//로그아웃한 경우
+			$('#signin').click();
+		}
+		if(form.children("input[name='uNo']").val()) {
+			//로그인한 경우
+			//console.log($(e.target));
+			//console.log($(e.target).attr('val'));
+			form.children("input[name='rate']").val($(e.target).attr('val'));
+		}
+		//e.stopPropagation();
 		e.preventDefault();
 	});
+	
+	//게임리뷰 코멘트등록
+	$('#reviewForm textarea').on('keyup', function(e) {
+		let form = $('#hiddenForm');
+		form.children("textarea[name='comment']").text($(e.target).val());
+	});
 		
-	//게임 리뷰 작성
+	//게임리뷰 작성 - 로그인, 별점, 코멘트 체크 후 전송
 	$('#reviewSend').on('click', function(e) {
 		let form = $('#hiddenForm');
-		if(!form.children("input[name='uNo']").val()) $('#signin').click();
+		if(!form.children("input[name='uNo']").val()) {
+			//로그아웃한 경우
+			$('#signin').click();
+		}
 		if(form.children("input[name='uNo']").val()) {
-			let reviewForm = $('#reviewForm');
-			if(!reviewForm.children("input[name='rate']").val()) alert('별점을 입력해주세요');
-			if(reviewForm.children("input[name='rate']").val()) {
-				reviewForm.attr('method', 'post');
-				reviewForm.attr('action', 'review_write');
-				reviewForm.submit();
+			//로그인한 경우
+			if(!form.children("textarea[name='comment']").val()) {
+				//코멘트를 입력하지 않은 경우
+				alert('메시지를 입력해주세요');
+				return;
+			}
+			if(!form.children("input[name='rate']").val()) {
+				//별점을 입력하지 않은 경우
+				alert('별점을 입력해주세요');
+				return;
+			}
+			if(form.children("input[name='rate']").val()) {
+				form.attr('method', 'post');
+				form.attr('action', 'review-write');
+				form.submit();
 			}
 		}
 	});
