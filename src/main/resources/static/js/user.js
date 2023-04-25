@@ -65,6 +65,8 @@ function pwChk() {
 			
 			if($(resDs).find("#pwSuccYn").val() == "Y") {
 				$("#settingChkDiv").modal('hide');	// 모달닫기
+				$("#settingPassword").val("");		// 초기화
+				$("#psMsgChk").val("");				// 초기화
 				location.href="/final-project-team3-s-team/profile#mp-2-04-c";
 			// 로그인 실패
 			} else {
