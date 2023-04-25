@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.review.mapper.ReviewMapper">
-	
+<resultMap type="com.itwill.steam.review.Review" id="review" autoMapping="true">
+	<id column="review_No" property="reviewNo"/>
+	<!--  <result column=" g_no" property="gNo"/>-->
+      <association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
+       <collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+      </collection> 
+		</association>
+</resultMap>	
 	
 		
 	<!-- 게임 리뷰 작성 -->
@@ -24,11 +31,12 @@
 	</update>
 	
 	<!-- 회원번호로 리뷰 전체보기 -->
-	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultType="com.itwill.steam.review.Review" >
+	<select id="selectByUserNo" parameterType="com.itwill.steam.user.User" resultMap="review">
 		select 
-			r.*
-			, (select res_name from resources where g_no = r.g_no and rownum=1) as res_name 
+			*
 		from review r
+		join resources rs
+		on r.g_no=rs.g_no
 		where r.u_no=#{uNo}
 	</select>
 	

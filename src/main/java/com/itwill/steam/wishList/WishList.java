@@ -24,10 +24,10 @@ public class WishList {
 	private int wishNo;
 	private Date wishDate;//찜 요일
 	
-	private List<Resources> resourcesList;
+	
 	
 	private User user;
 	private Game game;
 	
-	private List<GameTag> gameTagList;	// TODO 
+	
 }

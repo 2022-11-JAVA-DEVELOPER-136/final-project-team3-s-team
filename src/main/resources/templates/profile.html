@@ -161,7 +161,7 @@
 	                      <div class="row">
 	                        <div class="col-12">
 	                          <div class="profile-carousel owl-carousel" data-carousel-items="2, 3, 3, 4" data-carousel-margin="30" data-carousel-nav="true" data-carousel-navText="<span class='icon-cl-next pe-7s-angle-left'></span>, <span class='icon-cl-next pe-7s-angle-right'></span>">
-	                            item
+	                           
 	                             <div class="item" th:each="user:${fUserList}">
 	                             <div class="item-cont">
 	                               <figure class="owl_item_review">
@@ -179,7 +179,7 @@
 	                               </figure>
 	                             </div>
 	                           </div>
-	                            /.item
+	                            
 	                          </div>
 	                        </div>
 	                      </div>
@@ -211,9 +211,9 @@
 	                        <div class="col-12">
 	                          <div class="owl-carousel carousel_sm" data-carousel-items="1, 2, 3, 3" data-carousel-margin="10" data-carousel-nav="false" data-carousel-dots="true">
 	                            <div class="item" th:each="review:${reviewList}">
-	                              <a href="#">
+	                              <a href="#" th:href="@{/store-product(gNo=${review.game.gNo})}">
 	                                <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/img_01.jpg);"
-	                                	th:style="${'background-image:url(image/'} + ${review.resName} + ');'">
+	                                	th:style="${'background-image:url(image/'} + ${review.game.ResourcesList.get(0).resName} + ');'">
 	                                  <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
 	                                    <div class="px-4 py-3 lh-1">
 	                                      <h6 class="text-lt mb-1 small-1 text-light text-uppercase" th:text="${review?.reviewComment ?: '리뷰쓰셈'}">Phasellus</h6>
@@ -347,7 +347,8 @@
                        <div class="mb-6" th:each="ownedGame:${ownedGameLastTimeList}">
                           <div class="row no-gutters">
                             <div class="col-2 item_img d-none d-sm-flex align-items-center">
-                              <a href="store-product.html" class="product-item"><img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|"></a>
+                              <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
+                              <img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|"></a>
                             </div>
                             <div class="col-6 item_content flex-1 flex-grow pl-0 pl-sm-3 pr-3">
                               <a href="store-product.html" class="product-item"><h6 class="item_title text-lt ls-1 small-1 fw-600 text-uppercase mb-0" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
@@ -389,7 +390,7 @@
                               <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|">
                             </div>
                             <div>
-                              <h5 class="owl_item_title text-lt"><a href="" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Donec dignissim</a></h5>
+                              <h5 class="owl_item_title text-lt"><a href="" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Donec dignissim</a></h5>
                               <div class="relative small-1 fw-600 mb-1">
                                 <span>Last played</span>
                                 <span class="text-warning float-right" th:text="${#dates.format(ownedGame?.ogLastplay, 'yyyy-MM-dd') ?: '게임플레이 하셈'}">
@@ -423,14 +424,14 @@
                       <hr class="w-5 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                     </div>
                     <div class="col-2 col-lg-1 text-right">
-                      <a href="#" class="lead-1 text-warning"><i class="fas fa-plus"></i></a>
+                      <a href="#" class="lead-1 text-warning" ><i class="fas fa-plus"></i></a>
                     </div>
                   </div>
                 </header>
                 <div class="row">
                   <!-- item -->
                   <div class="col-md-12 mb-4" th:each="ownedGame:${ownedGameList}" >
-                    <a href="store-product.html" class="product-item">
+                    <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
                       <div class="border border-secondary" >
                         <div class="row align-items-center no-gutters">
                           <div class="item_img d-none d-md-block" >
@@ -837,6 +838,7 @@
 
             <!-- tab item -->
             <!-- 찜목록 -->
+            
             <div class="tab-pane fade" id="mp-2-05-c" role="tabpanel" aria-labelledby="mp-2-05-tab">
               <div class="position-relative" >
                 <header class="header mb-2">
@@ -851,7 +853,7 @@
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${wishList.resourcesList.get(0).resName}|"></a>
+                              <a href="store-product.html" th:href="@{/store-product(gNo=${wishList.game.gNo})}"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${wishList.game.resourcesList.get(0).resName}|"></a>
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
                               <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1"  th:text="${wishList?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
@@ -861,7 +863,7 @@
                                 <i class="fab fa-apple"></i>
                               </div>
                               <div class="position-relative">
-                                <span class="item_genre small fw-600" th:each="gameTag:${wishList.gameTagList}" th:text="|${gameTag.tag.tagName} |">
+                                <span class="item_genre small fw-600" th:each="gameTag:${wishList.game.gameTagList}" th:text="|${gameTag.tag.tagName} |">
                                   Action, Adventure
                                 </span>                         
                               </div>
@@ -873,7 +875,7 @@
                                   <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(wishList.game.gPrice, 3, 'COMMA')}원|">€144.99</span>
                                   <span class="fw-600 lead-1 text-warning"  th:text="|${#numbers.formatInteger(wishList.game.gPrice - wishList.game.gPrice * wishList.game.gDiscountRate * 0.01, 3, 'COMMA')}원|" >€44.99</span>
                                   <span class="small d-none d-sm-block fw-600">
-                                      Added on <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}"> 8/25/2019</span> ( <a href="#" class="text-dotted-warning">remove</a> )
+                                      Added on <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}"> 8/25/2019</span> ( <a href="" class="text-dotted-warning" id =remove>remove</a> )
                                   </span>
                                 </div>
                               </div>
