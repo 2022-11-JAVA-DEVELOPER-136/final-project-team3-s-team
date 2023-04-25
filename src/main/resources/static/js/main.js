@@ -39,7 +39,7 @@ $(function() {
 			    	progressBar.innerHTML = progressValue + "%";
 			    	progressBar.setAttribute("aria-valuenow", progressValue);
 				}
-			}, 100);//100ms마다 증가
+			}, 500);//100ms마다 증가
 		}
 		//설치 후
 		if($(e.target).text()==='시작') {
