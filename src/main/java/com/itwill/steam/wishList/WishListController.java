@@ -71,9 +71,10 @@ public class WishListController {
 	}
 	
 	// 리스트 번호로 리스트 삭제
-	@PostMapping("/delete")
-	public String deleteWishList(@RequestParam("wishNo") int wishNo, Model model) {
-		int result = wishListService.deleteWishList(wishNo);
+	@PostMapping("/delete_action")
+	public String deleteWishList(@RequestParam("wishNo") int wishNo, Model model,HttpSession session) {
+		User user =(User)session.getAttribute("longinUser");
+		int result = wishListService.deleteWishList(user.getUNo());
 		if (result > 0) {
 			model.addAttribute("success", true);
 		} else {

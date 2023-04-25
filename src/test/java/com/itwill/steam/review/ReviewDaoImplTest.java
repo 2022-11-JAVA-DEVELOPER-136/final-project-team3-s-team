@@ -26,7 +26,7 @@ class ReviewDaoImplTest extends FinalProjectTeam3STeamApplicationTests{
 	void InsertGameReview(){
 		User user = User.builder().uNo(1).build();
 		Game game = Game.builder().gNo(1).build();		
-		Review review = new Review(100,null,null,"테스트용리뷰1",1,1,1,"",user,game);
+		Review review = new Review(100,null,null,"테스트용리뷰1",1,1,1,user,game);
 		reviewDao.insertGameReview(review);
 	}
 	

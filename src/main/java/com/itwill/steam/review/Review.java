@@ -42,8 +42,8 @@ public class Review {
 	private int reviewLike; //좋아요
 	private int reviewDisLike; //싫어요
 	
-	private String resName; //TODO
 	private User user;
 	private Game game;
+	
 	
 }

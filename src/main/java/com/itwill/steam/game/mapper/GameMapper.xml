@@ -194,6 +194,9 @@
 				#{item.langNo}
 			</foreach>
 		</if>
+		<if test="isDiscount == 3">
+			and g.g_discount_start <![CDATA[<=]]> sysdate and sysdate <![CDATA[<=]]> g.g_discount_end
+		</if>
 		<choose>
 			<when test="orderBy == 1">
 				order by g.g_sell_count desc
