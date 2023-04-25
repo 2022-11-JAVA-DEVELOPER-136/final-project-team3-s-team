@@ -33,7 +33,7 @@ public class CartController {
 	private final GameService gameService;
 	
 	//checkout-order 페이지로 이동
-	@RequestMapping(value = "/checkout-order", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkout-order")
 	public String checkoutOrder(HttpSession session, Model model) {
 		
         User loginUser = (User)session.getAttribute("loginUser");

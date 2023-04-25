@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
 import com.itwill.steam.game.Game;
@@ -61,6 +62,9 @@ public class MainController {
 			model.addAttribute("loginUser", loginUser);
 			isLogin = "true";
 			
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+	        model.addAttribute("cartList", cartList);
+			
 			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
 			model.addAttribute("cartQuantity", cartQuantity);
 			
@@ -106,6 +110,8 @@ public class MainController {
 		model.addAttribute("categoryList", categoryList);
 		int cartQuantity = cartService.countCart(loginUser.getUNo());
 		model.addAttribute("cartQuantity", cartQuantity);
+		List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+        model.addAttribute("cartList", cartList);
 		/*************************************/
 		
 		Game game = gameService.findGameByNo(Integer.parseInt(gNo));
@@ -118,7 +124,7 @@ public class MainController {
 		model.addAttribute("ownedGame", ownedGame);
 		
 		List<Review> reviewList = reviewService.selectByDateDesc(game);
-		//model.addAttribute("reviewList", reviewList);//보낼거면 보내서 사용하자.
+		
 		//해당 게임의 리뷰 평균평점 구해서 보내기
 		double reviewSum = 0;
 		int reviewSize = reviewList.size();
@@ -156,22 +162,6 @@ public class MainController {
 	}
 	
 	/***************************** template test start *****************************/
-	//@RequestMapping("/about")
-	public String about() {
-		return "about";
-	}
-	//@RequestMapping("/checkout-address")
-	public String checkoutAddress() {
-		return "checkout-address";
-	}
-	//@RequestMapping("/checkout-order")
-	public String checkoutOrder() {
-		return "checkout-order";
-	}
-	//@RequestMapping("/checkout-payment")
-	public String checkoutPayment() {
-		return "checkout-payment";
-	}
 	@RequestMapping("/coming_soon")
 	public String comingSoon() {
 		return "coming_soon";
@@ -211,18 +201,6 @@ public class MainController {
 	@RequestMapping("/private-messaging")
 	public String privateMessaging() {
 		return "private-messaging";
-	}
-	//@RequestMapping("/profile")
-	public String profile() {
-		return "profile";
-	}
-	//@RequestMapping("/store")
-	public String store() {
-		return "store";
-	}
-	//@RequestMapping("/store-product")
-	public String storeProduct() {
-		return "store-product";
 	}
 	/****************************** template test end ******************************/
 }

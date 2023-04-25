@@ -38,7 +38,6 @@ public class OrderController {
 	
 	private final OrderService orderService;
 	private final CardService cardService;
-	private final UserService userService;
 	private final CartService cartService;
 	private final OwnedGameService ownedGameService;
 	private final GameService gameService;
@@ -61,6 +60,8 @@ public class OrderController {
 		
 		//orderitem summery
 		List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+		model.addAttribute("cartList", cartList);
+		
 		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
 		for(Cart cart:cartList) {
 			orderItemList.add(OrderItem.builder()

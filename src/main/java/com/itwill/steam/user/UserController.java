@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.steam.card.Card;
 import com.itwill.steam.card.CardService;
+import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
 import com.itwill.steam.exception.ExistedUserException;
@@ -127,6 +128,9 @@ public class UserController {
 			return "redirect:main";
 		}
 		System.out.println("로긴유저::"+loginUser);
+		
+		List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+        model.addAttribute("cartList", cartList);
 		
 		// 친구 리스트조회
 		User fUser = new User();

@@ -122,9 +122,14 @@ public class GameController {
 		/*****common-navbar.html에서 사용*****/
         List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
-		if(session.getAttribute("loginUser")!=null) {
+		
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser!=null) {
 			int cartQuantity = cartService.countCart(((User)session.getAttribute("loginUser")).getUNo());
 			model.addAttribute("cartQuantity", cartQuantity);
+			
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+	        model.addAttribute("cartList", cartList);
 		}
 		/*************************************/
 		
@@ -204,6 +209,8 @@ public class GameController {
 			for(WishList wishList:wishLists) {
 				if(game.getGNo()==wishList.getGame().getGNo()) isExistWishlist = "true";
 			}
+			
+			model.addAttribute("cartList", cartList);
 		}
 		model.addAttribute("isLogin", isLogin);
 		model.addAttribute("isExistLibrary", isExistLibrary);
