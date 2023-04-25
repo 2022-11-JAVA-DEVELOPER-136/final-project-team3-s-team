@@ -32,7 +32,25 @@ $(document).ready(function(){
 		location.reload();
 	});
 	
+	
 });
+
+// 삭제버튼 클릭이벤트
+function removeAction(param){
+	
+	var deleteForm = makeForm("deleteform");
+	addFormData(deleteForm,"wishNo",param);
+	doAction("delete_action", deleteForm, function(resDs){
+		
+		if($(resDs).find("#rChk").val() == "Y") {
+			$('#removeReloadDiv').load(location.href+' #removeReloadDiv');
+		} else  {
+			alert("오류");
+		}
+		
+	});
+	
+}
 
 function pwChk() {
 	

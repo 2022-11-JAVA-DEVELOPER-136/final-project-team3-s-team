@@ -19,6 +19,8 @@ import com.itwill.steam.game.Game;
 import com.itwill.steam.game.GameService;
 import com.itwill.steam.user.User;
 
+import ch.qos.logback.classic.Logger;
+
 @Controller
 public class WishListController {
 	
@@ -72,15 +74,23 @@ public class WishListController {
 	
 	// 리스트 번호로 리스트 삭제
 	@PostMapping("/delete_action")
-	public String deleteWishList(@RequestParam("wishNo") int wishNo, Model model,HttpSession session) {
-		User user =(User)session.getAttribute("longinUser");
-		int result = wishListService.deleteWishList(user.getUNo());
+	public String deleteWishList(@RequestParam("wishNo") int wishNo, Model model,HttpServletRequest request) {
+		
+		// 세션 객체 가져오기
+		User loginUser = (User)request.getSession().getAttribute("loginUser");
+		
+		int result = wishListService.deleteWishList(wishNo);
 		if (result > 0) {
-			model.addAttribute("success", true);
+			model.addAttribute("success", "Y");
 		} else {
-			model.addAttribute("success", false);
+			model.addAttribute("success", "N");
 		}
-		return "redirect:/wishlist";
+		System.out.println("삭제::"+model.getAttribute("success"));
+		
+		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
+		request.setAttribute("wishListList", wishListList);
+		
+		return "profile";
 	}
 	
 	// 회원번호로 리스트 전체 삭제
