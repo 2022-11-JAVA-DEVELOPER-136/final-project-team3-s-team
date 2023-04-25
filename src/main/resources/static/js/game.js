@@ -11,8 +11,8 @@ $(function(){
 	});
 	
 	//tab 파라미터가 있는 경우, 해당 탭에 클릭이벤트 발생
-	if(location.href.endsWith('&tab=2')) $('#mp-2-02-tab').click();
-	if(location.href.endsWith('&tab=3')) $('#mp-2-03-tab').click();
+	if(location.href.endsWith('tab=2')) $('#mp-2-02-tab').click();
+	if(location.href.endsWith('tab=3')) $('#mp-2-03-tab').click();
 	
 	//필터링검색 버튼 클릭시 실행할 function 등록
 	$('#filterButton').on('click', function(){
@@ -35,7 +35,7 @@ $(function(){
 	});
 	
 	//카트 담기 - 로그아웃한 경우
-	$('#addCartLogout').on('click', function() {
+	$('#addCartLogout').on('click', function() {-
 		$('#signin').click();
 	});
 	
