@@ -79,9 +79,12 @@ public class MainController {
 	}
 	
 	//라이브러리 - 파라미터 x
-	@LoginCheck
+	//@LoginCheck
 	@RequestMapping(value = "/library", params = "!gNo")
-	public String library(RedirectAttributes redirectAttributes) {
+	public String library(HttpSession session, RedirectAttributes redirectAttributes) {
+		
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser==null) return "redirect:main";
 		
 		redirectAttributes.addAttribute("tab", 2);
 		
@@ -89,12 +92,15 @@ public class MainController {
 	}
 	
 	//라이브러리 - 파라미터 o
-	@LoginCheck
+	//@LoginCheck
 	@RequestMapping(value = "/library", params = "gNo")//나중에 post로 바꾸자
 	public String library(@RequestParam String gNo, Model model, HttpSession session) {
 		
-		if(gNo.equals("")) return "redirect:library";
 		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser==null) return "redirect:main";
+		
+		if(gNo.equals("")) return "redirect:library";
+		
 		/*****common-navbar.html에서 사용*****/
         List<Category> categoryList = gameService.findAllCategory();
 		model.addAttribute("categoryList", categoryList);
