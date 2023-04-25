@@ -150,7 +150,7 @@ public class MainController {
 	}
 	
 	/***************************** template test start *****************************/
-	@RequestMapping("/about")
+	//@RequestMapping("/about")
 	public String about() {
 		return "about";
 	}
