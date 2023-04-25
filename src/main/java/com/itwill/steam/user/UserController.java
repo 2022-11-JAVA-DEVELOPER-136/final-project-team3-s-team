@@ -153,6 +153,7 @@ public class UserController {
 //		request.setAttribute("reviewList", reviewList);
 		List<Review> reviewList = reviewService.selectByUserNo(loginUser);
 		request.setAttribute("reviewList", reviewList);
+		System.out.println(reviewList);
 		
 		//wishList
 //		List<WishList> wishListList= wishListService.selectWishList(loginUser.getUNo());
@@ -188,7 +189,6 @@ public class UserController {
 		request.setAttribute("ownedGamePlayTimeList", ownedGamePlayTimeList);
 		request.setAttribute("ownedGameLastTimeList", ownedGameLastTimeList);
 		request.setAttribute("ownedGameList", ownedGameList);
-		
 		
 		
 		// 카드조회
