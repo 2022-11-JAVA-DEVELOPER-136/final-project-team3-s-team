@@ -3,7 +3,6 @@
 <mapper namespace="com.itwill.steam.review.mapper.ReviewMapper">
 <resultMap type="com.itwill.steam.review.Review" id="review" autoMapping="true">
 	<id column="review_No" property="reviewNo"/>
-	<!--  <result column=" g_no" property="gNo"/>-->
       <association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
        <collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
       </collection> 

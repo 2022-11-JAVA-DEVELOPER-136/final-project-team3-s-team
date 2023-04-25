@@ -196,10 +196,8 @@
 	                      </div>
 	                    </div>
 					</th:block>
-
-                    
-                    
-                    <th:block th:if="${!#lists.isEmpty(fUserList)}">
+					
+                    <th:block th:if="${!#lists.isEmpty(reviewList)}">
                     	<div id="reviews" class="mb-8">
 	                      <div class="row">
 	                        <div class="col-12">
@@ -219,7 +217,10 @@
 	                                      <h6 class="text-lt mb-1 small-1 text-light text-uppercase" th:text="${review?.reviewComment ?: '리뷰쓰셈'}">Phasellus</h6>
 	                                     
 	                                      <div class="price d-flex flex-wrap align-items-center">
-	                                        <span class="text-warning small-2"><i class="fas fa-eye mr-1"></i>241</span>
+	                                        <span class="text-warning small-2">
+	                                        	<i class="fas fa-eye mr-1"></i>
+	                                        	<span th:text="${review.reviewLike}">241</span>
+	                                        </span>
 	                                      </div>
 	                                    </div>
 	                                  </div>
@@ -231,7 +232,7 @@
 	                      </div>
 	                    </div>
                     </th:block>
-                    <th:block th:if="${#lists.isEmpty(fUserList)}">
+                    <th:block th:if="${#lists.isEmpty(reviewList)}">
 	                    <div id="reviews" class="mb-8">
 	                      <div class="row">
 	                        <div class="col-12">
@@ -255,7 +256,7 @@
                           <form action="#" class="input-transparent pb-8 border-bottom border-secondary">
                             <div class="form-row">
                               <div class="form-group col-3 col-sm-2">
-                                <img class="rounded" src="assets/img/avatar/2.jpg" alt="Avatar">
+                                <img class="rounded" src="assets/img/avatar/2.jpg" th:src="|image/${session.loginUser.uImgProfile}|" alt="Avatar">
                               </div>
                               <div class="form-group col-9 col-sm-10">
                                 <textarea class="form-control form-control" rows="4" placeholder="Your Message" name="message" required=""></textarea>
@@ -335,15 +336,24 @@
                               <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
                               <img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|"></a>
                             </div>
-                            <div class="col-6 item_content flex-1 flex-grow pl-0 pl-sm-3 pr-3">
+                            <div class="col-5 item_content flex-1 flex-grow pl-0 pl-sm-3 pr-3">
                               <a href="store-product.html" class="product-item"><h6 class="item_title text-lt ls-1 small-1 fw-600 text-uppercase mb-0" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
-                              <span class="small-3" ><span class="text-warning"><i class="far fa-clock mr-1"></i></span>21:41</span>
+                              <span class="small-3" >
+                              	<span class="text-warning"><i class="far fa-clock mr-1"></i></span>
+                              	<span th:text="${#dates.format(ownedGame.ogLastplay, 'HH:mm')}">21:41</span>
+                              </span>
                             </div>
-                            <div class="col-6 col-sm-4">
+                            <div class="col-5 col-sm-5">
                               <div class="row align-items-center justify-content-end h-100 no-gutters">
                                 <div class="text-right small-3">
-                                  <span class="fw-500"><span class="text-warning" th:text="${ownedGame?.ogPlaytime ?: '게임플레이 하셈'}">25</span> hrs total</span><br>
-                                  <span class="fw-500">Last played <span class="text-warning" th:text="${#dates.format(ownedGame?.ogLastplay, 'MM-dd') ?: '게임플레이 하셈'}">Jul 27</span></span>
+	                                <span class="fw-500">
+	                                	<span th:text="|플레이 시간|">25</span>
+	                                	<span class="text-warning fw-600" th:text="|${#numbers.formatDecimal(ownedGame.ogPlaytime, 1, 1)}시간|"></span>
+	                                </span><br>
+	                                <span class="fw-500">
+	                                	<span th:text="|마지막 플레이|"></span>
+	                                	<span class="text-warning fw-600" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">July 27</span>
+	                                </span>
                                 </div>
                               </div>
                             </div>
@@ -829,7 +839,7 @@
             <!-- 찜목록 -->
             
             <div class="tab-pane fade" id="mp-2-05-c" role="tabpanel" aria-labelledby="mp-2-05-tab">
-              <div class="position-relative" >
+              <div class="position-relative"  id="removeReloadDiv">
                 <header class="header mb-2">
                   <h3>Wishlist</h3>
                   <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
@@ -838,7 +848,8 @@
                   <div class="col-lg-12 mb-9 mb-lg-0">
                     <div class="row">
                       <!-- item -->
-                      <div class="col-md-12 mb-4" th:each="wishList:${wishListList}">
+                      <input type="hidden" id="rChk" th:value="${success}"/>
+                      <div class="col-md-12 mb-4" th:each="wishList:${wishListList}" >
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
@@ -864,7 +875,7 @@
                                   <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(wishList.game.gPrice, 3, 'COMMA')}원|">€144.99</span>
                                   <span class="fw-600 lead-1 text-warning"  th:text="|${#numbers.formatInteger(wishList.game.gPrice - wishList.game.gPrice * wishList.game.gDiscountRate * 0.01, 3, 'COMMA')}원|" >€44.99</span>
                                   <span class="small d-none d-sm-block fw-600">
-                                      Added on <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}"> 8/25/2019</span> ( <a href="" class="text-dotted-warning" id =remove>remove</a> )
+                                      Added on <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}"> 8/25/2019</span> ( <a href="javascript:void(0);" th:onclick="'removeAction('+ ${wishList.wishNo} + ')'" class="text-dotted-warning removeClass"  >remove</a> )
                                   </span>
                                 </div>
                               </div>

@@ -13,7 +13,7 @@
 				<id property="gtNo" column="gt_no"/>
 				<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 				</association>
-		</collection>
+			</collection>
 		</association>
 	</resultMap>
 	

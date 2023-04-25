@@ -32,7 +32,25 @@ $(document).ready(function(){
 		location.reload();
 	});
 	
+	
 });
+
+// 삭제버튼 클릭이벤트
+function removeAction(param){
+	
+	var deleteForm = makeForm("deleteform");
+	addFormData(deleteForm,"wishNo",param);
+	doAction("delete_action", deleteForm, function(resDs){
+		
+		if($(resDs).find("#rChk").val() == "Y") {
+			$('#removeReloadDiv').load(location.href+' #removeReloadDiv');
+		} else  {
+			alert("오류");
+		}
+		
+	});
+	
+}
 
 function pwChk() {
 	
@@ -47,6 +65,8 @@ function pwChk() {
 			
 			if($(resDs).find("#pwSuccYn").val() == "Y") {
 				$("#settingChkDiv").modal('hide');	// 모달닫기
+				$("#settingPassword").val("");		// 초기화
+				$("#psMsgChk").val("");				// 초기화
 				location.href="/final-project-team3-s-team/profile#mp-2-04-c";
 			// 로그인 실패
 			} else {

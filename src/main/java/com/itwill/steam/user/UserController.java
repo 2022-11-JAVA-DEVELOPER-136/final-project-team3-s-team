@@ -50,7 +50,6 @@ public class UserController {
 	private final WishListService wishListService;
 	private final ProfileCommentService profileCommentService;
 	
-	
 	@RequestMapping("/user_write")
 	public String user_write_form() {
 		String forward_path = "user_write";
@@ -187,6 +186,8 @@ public class UserController {
 //		
 		
 		// Comments 조회
+		List<ProfileComment> profileCommentList = profileCommentService.selectByProfileUserNo(loginUser);
+		request.setAttribute("profileCommentList", profileCommentList);
 		
 		// game 조회
 		List<OwnedGame> ownedGamePlayTimeList = ownedGameService.getTop4OwnedGamesByPlaytime(loginUser);	// 가장많이 플레이한 4개 게임
@@ -208,9 +209,6 @@ public class UserController {
 		int cartQuantity = cartService.countCart(loginUser.getUNo());
 		model.addAttribute("cartQuantity", cartQuantity);
 		/*************************************/
-		
-		List<ProfileComment> profileCommentList = profileCommentService.selectByProfileUserNo(loginUser);
-		model.addAttribute("profileCommentList", profileCommentList);
 		
 		return "profile";
 	}
