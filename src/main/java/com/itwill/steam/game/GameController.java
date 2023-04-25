@@ -229,7 +229,7 @@ public class GameController {
 		return "redirect:404";
 	}
 	
-	//게임이 없는 경우 store로 redirect
+	//GameNotFoundException 발생 시 store로 redirect
 	@ExceptionHandler(GameNotFoundException.class)
 	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
 		return "redirect:store";

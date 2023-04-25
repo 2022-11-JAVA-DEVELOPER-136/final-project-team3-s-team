@@ -43,26 +43,15 @@ public class OrderController {
 	private final OwnedGameService ownedGameService;
 	private final GameService gameService;
 	
-	//주소 불러오기
-	//@RequestMapping(value = "/checkout-address")
-	public String checkoutAddress(HttpServletRequest request) throws Exception{
-		User loginUser = (User)request.getSession().getAttribute("loginUser");
-		if(loginUser==null) {
-			return "redirect:main";
-		}
-		request.setAttribute("loginUser", loginUser);
-		return "checkout-address";
-	}
-	
 	//카드정보 불러오기
 	@RequestMapping(value = "/checkout-payment")
 	public String checkoutCard(HttpServletRequest request, Model model) throws Exception {
-		User loginUser =(User)request.getSession().getAttribute("loginUser");
-		if(loginUser==null) {
-			return "redirect:main";
-		}
+		
+		User loginUser = (User)request.getSession().getAttribute("loginUser");
+		if(loginUser==null) return "redirect:main";
+		
 		Card card=cardService.findCardByNo(loginUser.getUNo());
-		String[] exDateArray =  card.getCardExDate().split("/");//달,년도 분리
+		String[] exDateArray = card.getCardExDate().split("/");//달,년도 분리
 		String month = exDateArray[0];
 		String year = exDateArray[1];
 		
@@ -81,14 +70,14 @@ public class OrderController {
 								);
 		}
 		
-		// 총액 계산
+		//총액 계산
         int fullPrice = 0;
         int discountPrice = 0;
         int savedPrice = 0;
         int finalPrice = 0;
         for (OrderItem orderItem : orderItemList) {
             fullPrice += orderItem.getGame().getGPrice();
-            discountPrice=(int) (fullPrice*orderItem.getGame().getGDiscountRate()/100);
+            discountPrice = (int)(fullPrice*orderItem.getGame().getGDiscountRate()/100);
         }
         savedPrice=fullPrice-discountPrice;
         finalPrice=fullPrice-discountPrice;
@@ -121,6 +110,7 @@ public class OrderController {
 		
 		Order order = (Order)session.getAttribute("order");
 		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser==null) return "redirect:main";
 		
 		/*****트랜잭션 시작*****/
 		//주문 입력
@@ -139,6 +129,7 @@ public class OrderController {
 		return "redirect:main";
 	};
 	
+	//ExistedLibraryException 발생 시 main으로 redirect
 	@ExceptionHandler(ExistedLibraryException.class)
 	public String existedLibraryExceptionHandler(ExistedLibraryException e) {
 		return "redirect:main";
