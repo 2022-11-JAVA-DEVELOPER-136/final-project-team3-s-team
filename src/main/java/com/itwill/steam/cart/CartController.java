@@ -75,26 +75,7 @@ public class CartController {
 	        return "error";
 	    }
 	}
-	
-	//모든 페이지에서 카트 정보 뿌리기...기원
-	@RequestMapping(value = "/fas fa-shopping-cart", method = RequestMethod.GET)
-	public String offcanvasCart(HttpSession session, Model model) {
-		try {
-	        User loginUser = (User) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
-	            return "redirect:main";
-	        }
-			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
-	        model.addAttribute("cartList", cartList);
-	        return "fas fa-shopping-cart";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return "error";
-	    }
-	}
-	
-	
+
 	// checkout-address 페이지로 이동
 	@RequestMapping(value = "/checkout-address", method = RequestMethod.GET)
 	public String checkoutAddress(HttpSession session, Model model) {
