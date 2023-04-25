@@ -31,19 +31,19 @@ $(function() {
 			let progressBar = document.querySelector(".progress-bar");
 			let progressValue = 0;
 			setInterval(function() {
-				if (progressValue >= 100) {
-			    	//clearInterval(interval);
+				if(progressValue >= 100) {
 			    	$(e.target).text('시작');
 				} else {
 			    	progressValue++;
 			    	progressBar.style.width = progressValue + "%";
+			    	progressBar.innerHTML = progressValue + "%";
 			    	progressBar.setAttribute("aria-valuenow", progressValue);
 				}
 			}, 100);//100ms마다 증가
 		}
 		//설치 후
 		if($(e.target).text()==='시작') {
-			alert('시작');
+			alert('게임시작~');
 		}
 	});
 });
