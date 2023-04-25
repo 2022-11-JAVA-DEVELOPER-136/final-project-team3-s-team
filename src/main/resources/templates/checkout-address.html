@@ -108,37 +108,30 @@
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="billing_address_1">Street address *</label>
-                          <input name="billing_address_1" type="text" class="form-control" required="" value="" th:value="${loginUser.uStreet}"placeholder="House number and street name" id="billing_address_1">
+                          <input id="billing_address_1" name="billing_address_1" type="text" class="form-control" required="" value="" th:value="${loginUser.uStreet}"placeholder="House number and street name">
                         </div>
                         <div class="form-group">
-                          <input name="billing_address_2" type="text" class="form-control" required="" placeholder="Apartment, suite, unit etc. (optional)" id="billing_address_2">
+                          <input id="billing_address_2" name="billing_address_2" type="text" class="form-control" required="" placeholder="Apartment, suite, unit etc. (optional)">
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="billing_city">Town / City *</label>
-                          <input name="billing_city" type="text" class="form-control" required="" value="" th:value="${loginUser.uCity}"id="billing_city">
+                          <input id="billing_city" name="billing_city" type="text" class="form-control" required="" value="" th:value="${loginUser.uCity}">
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="state">State *</label>
-                          <select class="form-control" id="state">
-                            <option value="" th:value="Alabama">Alabama</option>
-                            <option>Colorado</option>
-                            <option>Louisiana</option>
-                            <option>New York</option>
-                            <option>Ohio</option>
-                            <option>Wyoming</option>
-                          </select>
+                          <input id="billing_state" name="billing_state" type="text" class="form-control" required="" value="" th:value="${loginUser.uStatefull}">
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="billing_postcode">ZIP *</label>
-                          <input name="billing_postcode" type="text" class="form-control" required="" value="" th:value="${loginUser.uZip}"id="billing_postcode">
+                          <input id="billing_postcode" name="billing_postcode" type="text" class="form-control" required="" value="" th:value="${loginUser.uZip}">
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="billing_phone">Phone *</label>
-                          <input name="billing_phone" type="text" class="form-control" required="" value="" th:value="${loginUser.uPhone}"id="billing_phone">
+                          <input id="billing_phone" name="billing_phone" type="text" class="form-control" required="" value="" th:value="${loginUser.uPhone}">
                         </div>
                         <div class="form-group">
                           <label class="small-1" for="billing_email">Email address *</label>
-                          <input name="billing_email" type="email" class="form-control" required="" value="" th:value="${loginUser.uEmail}"id="billing_email">
+                          <input id="billing_email" name="billing_email" type="email" class="form-control" required="" value="" th:value="${loginUser.uEmail}">
                         </div>
                       </form>
                     </div>
