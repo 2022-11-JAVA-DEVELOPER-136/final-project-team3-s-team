@@ -104,6 +104,15 @@ public class GameController {
 		List<Game> newGameList = gameService.findGames(searchDto);
 		model.addAttribute("newGameList", newGameList);
 		
+		/***** discount *****/
+//		searchDto.setOrderBy(GameCode.POPULAR);
+//		searchDto.setIsDiscount(GameCode.DISCOUNT);
+//		List<Game> discountPopularGameList = gameService.findGames(searchDto);
+//		model.addAttribute("discountPopularGameList", discountPopularGameList);
+//		PageMaker discountPageMaker = new PageMaker(discountPopularGameList.size(), Integer.parseInt(pageNo));
+//		model.addAttribute("discountPageMaker", discountPageMaker);
+		/********************/
+		
 		List<Tag> tagList = gameService.findAllTag();
 		model.addAttribute("tagList", tagList);
 		
