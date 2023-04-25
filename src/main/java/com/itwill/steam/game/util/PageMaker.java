@@ -2,7 +2,7 @@ package com.itwill.steam.game.util;
 
 public class PageMaker {
 	// 페이지당 게시물 수
-    public static final int PAGE_SCALE = 2;//페이지당 게임 수
+    public static final int PAGE_SCALE = 5;//페이지당 게임 수
     // 화면당 페이지 수
     public static final int BLOCK_SCALE = 10;
     private int totCount;	//전체 게시물 

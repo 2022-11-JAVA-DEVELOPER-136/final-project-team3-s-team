@@ -170,7 +170,9 @@
 		join tag t on gt.tag_no=t.tag_no 
 		join game_language gl on g.g_no=gl.g_no 
 		join language l on gl.lang_no=l.lang_no 
+		<!-- 
 		join news n on g.g_no=n.g_no 
+		 -->
 		join review rev on g.g_no=rev.g_no
 		where 1=1
 		<if test="keyword != null">
