@@ -35,7 +35,7 @@ $(function(){
 	});
 	
 	//카트 담기 - 로그아웃한 경우
-	$('#addCartLogout').on('click', function() {-
+	$('#addCartLogout').on('click', function() {
 		$('#signin').click();
 	});
 	
