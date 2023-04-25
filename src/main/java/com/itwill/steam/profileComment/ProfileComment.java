@@ -29,5 +29,5 @@ public class ProfileComment {
 	private String pcComment; //방명록 내용
 	
 	private User user;//코멘트 작성자
-	private User profileUser;//프로필 주인
+	private int uFno;//프로필 주인
 }

@@ -30,6 +30,7 @@
     <![endif]-->
     
     <!-- Custom CSS -->
+    <link href="css/custom-main.css" rel="stylesheet">
     
   </head>
   <body class="page-body">
@@ -95,10 +96,10 @@
       </div>
     </header>
     <!-- /.header -->
-
+	
     <!-- main content -->
     <main class="main-content position-relative">
-
+	  
       <!-- overlay -->
       <div class="overlay pe-n br-n bp-c bs-c o-30" style="background-image: url(assets/img/bg/bg_shape.png);"></div>
       <!-- /.overlay -->
@@ -112,6 +113,26 @@
 
                 <!-- post content -->
                 <div class="entry-content border border-secondary px-4 py-4">
+                  <!-- 게임 설치, 실행 버튼 놓을 자리 -->
+			    <div class='row' style="margin-bottom:50px">
+			    	<div class='col-lg-2'>
+			    		<th:block th:if="true">
+			    		<div>
+			    			<button id="install" type="button" class="btn btn-warning btn-xl">설치</button>
+			    		</div>
+			    		</th:block>
+			    		<th:block th:if="false">
+			    		<div>
+			    			<button id="start" type="button" class="btn btn-warning btn-xl">시작</button>
+			    		</div>
+			    		</th:block>
+			    	</div>
+			    	<div class='col-lg-10'>
+						<div class="progress" style="height: 50px">
+						  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="height:50px; width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+			    	</div>
+			    </div>
                   <div class="review d-flex mb-6 ml-md--6">
                     <div class="autor-post">
                       <div class="autor-btn-se">
@@ -145,7 +166,7 @@
                   </p>
                   <blockquote class="blockquote px-6 my-8 text-center">
                     <hr class="w-50 my-6 border-white o-10">
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                    <p class="mb-0" th:text="${game.gName}">Lorem ipsum dolor sit amet, consectetur.</p>
                     <hr class="w-50 my-6 border-white o-10">
                   </blockquote>
                   <p class="lead-1" th:text="${game.gLongDesc}">
@@ -165,7 +186,7 @@
                         <!-- each -->
                         <th:block th:each="seq:${#numbers.sequence(0, 4)}">
                         <th:block th:if="${seq} < ${#lists.size(game.gameTagList)}">
-                        <a href="#" class="badge badge-warning px-4 py-2">
+                        <a href="#" th:href="@{store(tagNo=${game.gameTagList.get(seq).tag.tagNo})}" class="badge badge-warning px-4 py-2">
                           <i class="fas fa-tags"></i>
                           <span th:text="${game.gameTagList.get(seq).tag.tagName}">News</span>
                         </a>
@@ -305,6 +326,7 @@
 
               </div>
               <div class="col-lg-4">
+                <!-- 타이핑 바
                 <div class="rounded mb-4">
                   <form class="input-group border-0 input-transparent bg-transparent">
                     <input class="form-control border border-secondary border-right-0" type="search" placeholder="Type something.." aria-label="Search">
@@ -313,6 +335,7 @@
                     </div>
                   </form>
                 </div>
+                 -->
                 <div class="archive border border-secondary rounded mb-4">
                   <div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase small" th:text="|Latest Update|">Latest Articles</span></div>
                   <div class="py-6 py-xl-5 px-4">
@@ -334,8 +357,10 @@
                             </div>
                             <div class="col-lg-7">
                               <div class="text-gray pl-lg-3">
-                                <div class="lh-1"><a href="news.html" class="badge badge-secondary mb-2" th:text="Updates">Articles</a></div>
-                                <h6 class="text-uppercase mb-0 small-2 fw-400"><a href="news-article.html" th:text="|${game.gName}-ver1.3.${4-seq}-realease!|">Lorem ipsum dolor sit amet, consectetur</a></h6>
+                                <div class="lh-1"><a href="news.html" th:href="@{library(gNo=${game.gNo})}" class="badge badge-secondary mb-2" th:text="Updates">Articles</a></div>
+                                <h6 class="text-uppercase mb-0 small-2 fw-400">
+                                	<a href="news-article.html" th:href="@{library(gNo=${game.gNo})}" th:text="|${game.gName}-ver1.3.${4-seq}-realease!|">Lorem ipsum dolor sit amet, consectetur</a>
+                                </h6>
                               </div>
                             </div>
                           </div>
@@ -500,6 +525,7 @@
     
     <!-- Custom JS -->
     <script src="js/user.js"></script>
+    <script src="js/main.js"></script>
     
   </body>
 </html>

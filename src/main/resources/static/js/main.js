@@ -22,4 +22,28 @@ $(function() {
 		}
 		e.preventDefault();
 	});
+	
+	//library progress bar
+	$('#install').on('click', function(e) {
+		
+		//설치 전
+		if($('#install').text()==='설치') {
+			let progressBar = document.querySelector(".progress-bar");
+			let progressValue = 0;
+			setInterval(function() {
+				if(progressValue >= 100) {
+			    	$(e.target).text('시작');
+				} else {
+			    	progressValue++;
+			    	progressBar.style.width = progressValue + "%";
+			    	progressBar.innerHTML = progressValue + "%";
+			    	progressBar.setAttribute("aria-valuenow", progressValue);
+				}
+			}, 100);//100ms마다 증가
+		}
+		//설치 후
+		if($(e.target).text()==='시작') {
+			alert('게임시작~');
+		}
+	});
 });

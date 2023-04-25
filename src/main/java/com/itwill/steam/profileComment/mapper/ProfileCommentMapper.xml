@@ -5,7 +5,7 @@
 	<!-- 방명록 작성 -->
 	<insert id="insertProfileComment" parameterType="com.itwill.steam.profileComment.ProfileComment">
 		<selectKey resultType="java.lang.Integer" keyProperty="pcNo" order="BEFORE">
-			select profileComment_pc_no_seq.nextval from dual
+			select profile_comment_pc_no_seq.nextval from dual
 		</selectKey>
 			insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(#{pcNo}, sysdate, #{pcComment}, #{user.uNo}, #{profileUser.uNo})
 	</insert>
@@ -22,31 +22,27 @@
 	
 	<!-- 유저번호로 해당유저 방명록 리스트 보기 -->
 	<select id="selectByProfileUserNo" parameterType="com.itwill.steam.user.User" resultMap="ProfileCommentResultMap">
-		select
-		    pc.pc_no as pcNo,
-		    pc.pc_created_at as pcCreatedAt,
-		    pc.pc_comment as pcComment,
-		    u.u_no as userinfo_uNo,
-		    u.u_nickname as userinfo_uNickname,
-		    u.u_img_profile as userinfo_uImgProfile
-		from
-		    profile_comment pc
+		select *
+		from profile_comment pc
 		join userinfo u on pc.u_no = u.u_no
-		where
-		    pc.u_fno = #{uFno};
+		where pc.u_fno = #{uNo}
 	</select>
-	
-	<resultMap id="ProfileCommentResultMap" type="com.itwill.steam.profileComment.ProfileComment">
-	    <id property="pcNo" column="pcNo" />
-	    <result property="pcCreatedAt" column="pcCreatedAt" />
-	    <result property="pcComment" column="pcComment" />
-	    <association property="user" resultMap="UserResultMap" />
-	</resultMap>
 	
 	<resultMap id="UserResultMap" type="com.itwill.steam.user.User">
 	    <id property="uNo" column="userinfo_uNo" />
 	    <result property="uNickname" column="userinfo_uNickname" />
 	    <result property="uImgProfile" column="userinfo_uImgProfile" />
+	</resultMap>
+
+	<resultMap id="ProfileUserResultMap" type="com.itwill.steam.user.User">
+	    <id property="uNo" column="profileUser_uNo" />
+	    <result property="uNickname" column="profileUser_uNickname" />
+	    <result property="uImgProfile" column="profileUser_uImgProfile" />
+	</resultMap>
+
+	<resultMap id="ProfileCommentResultMap" type="com.itwill.steam.profileComment.ProfileComment" autoMapping="true">
+	    <id property="pcNo" column="pc_no" />
+	    <association property="user" javaType="com.itwill.steam.user.User" autoMapping="true"/>
 	</resultMap>
 
 </mapper>
