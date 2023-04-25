@@ -23,6 +23,8 @@ import com.itwill.steam.game.GameService;
 import com.itwill.steam.game.SearchDto;
 import com.itwill.steam.ownedGame.OwnedGame;
 import com.itwill.steam.ownedGame.OwnedGameService;
+import com.itwill.steam.review.Review;
+import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.user.LoginCheck;
 import com.itwill.steam.user.User;
 
@@ -35,6 +37,7 @@ public class MainController {
 	private final GameService gameService;
 	private final CartService cartService;
 	private final OwnedGameService ownedGameService;
+	private final ReviewService reviewService;
 	
 	//메인 페이지
 	@RequestMapping("/main")
@@ -107,6 +110,17 @@ public class MainController {
 		map.put("gNo", Integer.parseInt(gNo));
 		OwnedGame ownedGame = ownedGameService.findOwnedGame(map);
 		model.addAttribute("ownedGame", ownedGame);
+		
+		List<Review> reviewList = reviewService.selectByDateDesc(game);
+		//model.addAttribute("reviewList", reviewList);//보낼거면 보내서 사용하자.
+		//해당 게임의 리뷰 평균평점 구해서 보내기
+		double reviewSum = 0;
+		int reviewSize = reviewList.size();
+		for(Review review:reviewList) {
+			reviewSum += review.getReviewRecommend();
+		}
+		double reviewAvg = reviewSum / reviewSize / 2;//reviewRecommend가 1~10점이어서 나누기 2 했음.
+		model.addAttribute("reviewAvg", reviewAvg);
 		
 		return "library";
 	}

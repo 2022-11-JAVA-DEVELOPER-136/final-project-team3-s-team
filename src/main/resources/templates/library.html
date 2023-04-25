@@ -55,9 +55,9 @@
                   <div class="badges badges-left badges-bottom text-white">
                     <div class="XL-rating_circle-wrapper"> 
                       <span class="XL-rating_circle-foreground">
-                          <span class="rating_circle-number">9.8</span>
+                          <span class="rating_circle-number" th:text="${#numbers.formatDecimal(reviewAvg, 1, 2)}">9.8</span>
                       </span> 
-                      <span class="XL-rating_circle" data-rating-total="9"></span>
+                      <span class="XL-rating_circle" data-rating-total="9" th:data-rating-total="${#numbers.formatInteger(reviewAvg*2, 1)}"></span>
                     </div>
                   </div>
                 </div>
@@ -115,33 +115,40 @@
                   <div class="review d-flex mb-6 ml-md--6">
                     <div class="autor-post">
                       <div class="autor-btn-se">
+                        <span class="autor-name-ft" th:text="|필요한 공간|">By AutorName</span>
+                      </div>
+                    </div>
+                    <div class="post-date-se small text-warning mr-4 mr-md-7">
+                      <span class="autor-date-ft" th:text="|${game.gDiskSpace}|">29th February 2020</span>
+                    </div>
+                    <div class="autor-post">
+                      <div class="autor-btn-se">
                         <span class="autor-name-ft" th:text="|마지막 플레이|">By AutorName</span>
                       </div>
                     </div>
                     <div class="post-date-se small text-warning mr-4 mr-md-7">
                       <span class="autor-date-ft" th:text="${#dates.format(ownedGame.ogLastplay, 'yyyy/MM/dd')}">29th February 2020</span>
                     </div>
+                    <!-- 라벨 -->
                     <div class="autor-post">
                       <div class="autor-btn-se">
-                        <span class="autor-name-ft" th:text="|플레이 시간|">By AutorName</span><!--  -->
+                        <span class="autor-name-ft" th:text="|플레이 시간|">By AutorName</span>
                       </div>
                     </div>
                     <div class="post-date-se small text-warning mr-4 mr-md-7">
-                      <span class="autor-date-ft" th:text="|${ownedGame.ogPlaytime}시간|">29th February 2020</span>
+                      <span class="autor-date-ft" th:text="|${#numbers.formatDecimal(ownedGame.ogPlaytime, 1, 1)}시간|">29th February 2020</span>
                     </div>
+                    <!-- /.라벨 -->
                   </div>
-                  <p class="lead-1">
+                  <p class="lead-1" th:text="${game.gShortDesc}">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla dui ac ex volutpat pulvinar eu sit amet mi. Maecenas dictum quam ac odio fermentum tincidunt.
-                  </p>
-                  <p class="lead-1">
-                    Fusce ante mi, consequat ut sapien eu, tempor lacinia elit. Sed ultricies non lectus ut molestie. Quisque tincidunt vitae ligula in pretium. Nulla euismod sagittis diam, vitae luctus turpis tristique quis.
                   </p>
                   <blockquote class="blockquote px-6 my-8 text-center">
                     <hr class="w-50 my-6 border-white o-10">
                     <p class="mb-0">Lorem ipsum dolor sit amet, consectetur.</p>
                     <hr class="w-50 my-6 border-white o-10">
                   </blockquote>
-                  <p class="lead-1">
+                  <p class="lead-1" th:text="${game.gLongDesc}">
                     Nullam pharetra blandit nisi, eu vehicula ipsum euismod id. Quisque eleifend aliquet neque et facilisis. Aenean in velit risus. Maecenas sollicitudin vitae magna vel molestie. Sed dapibus nisl erat, nec pharetra ligula finibus sit amet.Suspendisse fermentum, felis ut fringilla eleifend, odio enim malesuada enim, efficitur tempor arcu nisl a nibh. Morbi semper aliquam velit nec consectetur. Donec at aliquet risus, quis ullamcorper dolor. Nullam aliquam dapibus libero, id tincidunt arcu varius nec.
                   </p>
                   <div>
@@ -155,15 +162,16 @@
                         <a href="#" class="badge text-uppercase fw-600 pl-0 py-2">
                           Tags:
                         </a>
+                        <!-- each -->
+                        <th:block th:each="seq:${#numbers.sequence(0, 4)}">
+                        <th:block th:if="${seq} < ${#lists.size(game.gameTagList)}">
                         <a href="#" class="badge badge-warning px-4 py-2">
-                          <i class="fas fa-tags"></i> News
+                          <i class="fas fa-tags"></i>
+                          <span th:text="${game.gameTagList.get(seq).tag.tagName}">News</span>
                         </a>
-                        <a href="#" class="badge badge-warning px-4 py-2">
-                          <i class="fas fa-tags"></i> Game
-                        </a>
-                        <a href="#" class="badge badge-warning px-4 py-2">
-                          <i class="fas fa-tags"></i> Action
-                        </a>
+                        </th:block>
+                        </th:block>
+                        <!-- /.each -->
                       </div>
                     </div>
                   </div>
@@ -171,6 +179,7 @@
                 <!-- /.post content -->
 
                 <!-- prev/next article -->
+                <!-- 
                 <div class="entry-content border border-secondary px-4 py-4 mt-8">
                   <div class="row">
                     <div class="col-6">
@@ -187,11 +196,13 @@
                     </div>
                   </div>
                 </div>
+                 -->
                 <!-- /.prev/next article -->
 
                 <!-- comments -->
+                <!-- 
                 <div class="comments mt-8">
-                  <!-- comment-item -->
+                  
                   <div class="comment-item">
                     <div class="comment-img">
                       <img src="assets/img/avatar/1.jpg" class="rounded" alt="User">
@@ -215,11 +226,13 @@
                       </a>
                     </div>
                   </div>
-                  <!-- /.comment-item -->
+                  
                 </div>
+                 -->
                 <!-- /.comments -->
 
                 <!-- leave a comment -->
+                <!-- 
                 <div class="mt-8">
                   <div class="entry-content border px-4 py-6 border-secondary">
                     <h4 class="mb-4">Leave a Comment</h4>
@@ -246,9 +259,11 @@
                     </form>
                   </div>
                 </div>
+                 -->
                 <!-- /.leave a comment -->
 
                 <!-- related posts -->
+                <!-- 
                 <div class="mt-8">
                   <h4 class="mb-0">Related Posts</h4>
                   <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
@@ -285,6 +300,7 @@
                     </div>
                   </div>
                 </div>
+                 -->
                 <!-- /.related posts -->
 
               </div>
@@ -298,9 +314,11 @@
                   </form>
                 </div>
                 <div class="archive border border-secondary rounded mb-4">
-                  <div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase small">Latest Articles</span></div>
+                  <div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase small" th:text="|Latest Update|">Latest Articles</span></div>
                   <div class="py-6 py-xl-5 px-4">
                     <div class="row gutters-y">
+                      <!-- 업데이트 - DB에 자료 없어서 그냥 임의로 만들어서 돌렸음. -->
+                      <th:block th:each="seq:${#numbers.sequence(0, 3)}">
                       <div class="col-md-6 col-lg-12">
                         <!-- news-item -->
                         <div class="news-item">
@@ -308,43 +326,26 @@
                             <div class="col-lg-5 mb-5 mb-lg-0">
                               <div class="rounded overflow-h">
                                 <div>
-                                  <img src="assets/img/content/img_01.jpg" alt="News">
+                                  <th:block th:if="${seq} < ${#lists.size(game.resourcesList)}">
+                                  <img src="assets/img/content/img_01.jpg" alt="News" th:src="|image/${game.resourcesList.get(seq).resName}|">
+                                  </th:block>
                                 </div>
                               </div>
                             </div>
                             <div class="col-lg-7">
                               <div class="text-gray pl-lg-3">
-                                <div class="lh-1"><a href="news.html" class="badge badge-secondary mb-2">Articles</a></div>
-                                <h6 class="text-uppercase mb-0 small-2 fw-400"><a href="news-article.html">Lorem ipsum dolor sit amet, consectetur</a></h6>
+                                <div class="lh-1"><a href="news.html" class="badge badge-secondary mb-2" th:text="Updates">Articles</a></div>
+                                <h6 class="text-uppercase mb-0 small-2 fw-400"><a href="news-article.html" th:text="|${game.gName}-ver1.3.${4-seq}-realease!|">Lorem ipsum dolor sit amet, consectetur</a></h6>
                               </div>
                             </div>
                           </div>
                         </div>
                         <!-- /.news-item -->
                       </div>
+                      </th:block>
+                      <!-- /.업데이트 -->
+                      <!-- 
                       <div class="col-md-6 col-lg-12">
-                        <!-- news-item -->
-                        <div class="news-item">
-                          <div class="row no-gutters">
-                            <div class="col-lg-5 mb-5 mb-lg-0">
-                              <div class="rounded overflow-h">
-                                <div>
-                                  <img src="assets/img/content/img_01.jpg" alt="News">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-7">
-                              <div class="text-gray pl-lg-3">
-                                <div class="lh-1"><a href="news.html" class="badge badge-warning mb-2">News</a></div>
-                                <h6 class="text-uppercase mb-0 small-2 fw-400"><a href="news-article.html">Lorem ipsum dolor sit amet, consectetur</a></h6>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- /.news-item -->
-                      </div>
-                      <div class="col-md-6 col-lg-12">
-                        <!-- news-item -->
                         <div class="news-item">
                           <div class="row no-gutters">
                             <div class="col-lg-5 mb-5 mb-lg-0">
@@ -362,10 +363,27 @@
                             </div>
                           </div>
                         </div>
-                        <!-- /.news-item -->
                       </div>
                       <div class="col-md-6 col-lg-12">
-                        <!-- news-item -->
+                        <div class="news-item">
+                          <div class="row no-gutters">
+                            <div class="col-lg-5 mb-5 mb-lg-0">
+                              <div class="rounded overflow-h">
+                                <div>
+                                  <img src="assets/img/content/img_01.jpg" alt="News">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-7">
+                              <div class="text-gray pl-lg-3">
+                                <div class="lh-1"><a href="news.html" class="badge badge-warning mb-2">News</a></div>
+                                <h6 class="text-uppercase mb-0 small-2 fw-400"><a href="news-article.html">Lorem ipsum dolor sit amet, consectetur</a></h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-12">
                         <div class="news-item">
                           <div class="row no-gutters">
                             <div class="col-lg-5 mb-5 mb-lg-0">
@@ -383,40 +401,27 @@
                             </div>
                           </div>
                         </div>
-                        <!-- /.news-item -->
                       </div>
+                       -->
                     </div>
                   </div>
                 </div>
+                <!-- timeline
                 <div class="archive border border-secondary rounded mb-4">
                   <div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase small">Timeline</span></div>
                   <div class="pl-6 py-6">
-                    <!-- item -->
+                    
                     <div class="timeline-item" data-time="24 Mar 2020">
                       <span class="d-inline-block fw-500 text-warning mb-2">News</span>
                       <p class="small-1 lh-5 mb-0">
                         Nulla ullamcorper tempus ex commodo iaculis.
                       </p>
                     </div>
-                    <!-- /.item -->
-                    <!-- item -->
-                    <div class="timeline-item" data-time="28 Feb 2020">
-                      <span class="d-inline-block fw-500 text-warning mb-2">Articles</span>
-                      <p class="small-1 lh-5 mb-0">
-                        Nulla ullamcorper tempus ex commodo iaculis.
-                      </p>
-                    </div>
-                    <!-- /.item -->
-                    <!-- item -->
-                    <div class="timeline-item pb-0" data-time="19 Feb 2020">
-                      <span class="d-inline-block fw-500 text-warning mb-2">News</span>
-                      <p class="small-1 lh-5 mb-0">
-                        Nulla ullamcorper tempus ex commodo iaculis.
-                      </p>
-                    </div>
-                    <!-- /.item -->
+                    
                   </div>
                 </div>
+                 -->
+                <!-- 
                 <div class="filters border border-secondary rounded p-4 mb-4">
                   <ul class="sidebar-nav-light-hover list-unstyled mb-0 text-unset small-3 fw-600">
 
@@ -447,8 +452,11 @@
                     </li>
                   </ul>
                 </div>
+                 -->
                 <!-- archive -->
+                <!-- 
                 <div id="news-archive" th:include="news-archive::news-archive"></div>
+                 -->
                 <!-- /.archive -->
               </div>
             </div>

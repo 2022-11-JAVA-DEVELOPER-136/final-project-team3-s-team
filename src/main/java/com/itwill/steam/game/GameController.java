@@ -95,7 +95,6 @@ public class GameController {
 		
 		searchDto.setOrderBy(GameCode.POPULAR);
 		List<Game> popularGameList = gameService.findGames(searchDto);
-		System.out.println("야야야야:::"+popularGameList);
 		model.addAttribute("popularGameList", popularGameList);
 		
 		PageMaker pageMaker = new PageMaker(popularGameList.size(), Integer.parseInt(pageNo));//현재 검색하는 조건의 전체 게임 개수를 필요로 한다.
