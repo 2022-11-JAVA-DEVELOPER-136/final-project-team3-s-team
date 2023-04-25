@@ -28,6 +28,8 @@ import com.itwill.steam.game.GameService;
 import com.itwill.steam.gameTag.GameTag;
 import com.itwill.steam.ownedGame.OwnedGame;
 import com.itwill.steam.ownedGame.OwnedGameService;
+import com.itwill.steam.profileComment.ProfileComment;
+import com.itwill.steam.profileComment.ProfileCommentService;
 import com.itwill.steam.review.Review;
 import com.itwill.steam.review.ReviewService;
 import com.itwill.steam.wishList.WishList;
@@ -46,6 +48,7 @@ public class UserController {
 	private final CardService cardService;
 	private final OwnedGameService ownedGameService;
 	private final WishListService wishListService;
+	private final ProfileCommentService profileCommentService;
 	
 	
 	@RequestMapping("/user_write")
@@ -205,6 +208,9 @@ public class UserController {
 		int cartQuantity = cartService.countCart(loginUser.getUNo());
 		model.addAttribute("cartQuantity", cartQuantity);
 		/*************************************/
+		
+		List<ProfileComment> profileCommentList = profileCommentService.selectByProfileUserNo(loginUser);
+		model.addAttribute("profileCommentList", profileCommentList);
 		
 		return "profile";
 	}

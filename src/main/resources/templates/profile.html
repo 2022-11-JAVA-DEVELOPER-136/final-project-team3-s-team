@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wicodus - Profile</title>
+    <title>프로필</title>
 
     <!-- CSS -->
     <link href="assets/css/fonts/etline-font.min.css" rel="stylesheet">
@@ -246,7 +246,7 @@
                     <div id="comments" class="mb-0">
                       <div class="row">
                         <div class="col-12">
-                          <h4 class="mb-4">Comments</h4>
+                          <h4 class="mb-4" th:text="댓글">Comments</h4>
                           <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
                         </div>
                       </div>
@@ -283,56 +283,36 @@
                         <div class="col-12">
                           <div class="row">
                             <!-- comment-item -->
+                            <!-- each -->
+                            <th:block th:each="profileComment:${profileCommentList}">
                             <div class="col-12 comment-item mb-7">
                               <div class="form-row">
                                 <div class="col-3 col-sm-2">
                                   <div class="comment-img">
-                                    <img src="assets/img/avatar/1.jpg" class="rounded" alt="User">
+                                    <img src="assets/img/avatar/1.jpg" class="rounded" alt="User" th:src="|image/${profileComment.user.uImgProfile}|">
                                   </div>
                                 </div>
                                 <div class="col-9 col-sm-10">
                                   <div class="comment-main border border-secondary"> 
                                     <div class="d-md-flex comment-header border-bottom border-secondary px-4 py-3">
                                       <div class="d-flex align-items-center flex-1">
-                                        <h6 class="comment-username fw-500 mb-0"><a href="#">Dewei Tsou</a></h6>
+                                        <h6 class="comment-username fw-500 mb-0">
+                                        	<a href="#" th:text="${profileComment.user.uNickname}">Dewei Tsou</a>
+                                        </h6>
                                       </div>
                                       <div>
-                                        <a href="#" class="comment-metadata text-warning small">Aug 12, 2020 at 09:12 AM</a>
+                                        <a href="#" class="comment-metadata text-warning small" th:text="${#dates.format(profileComment.pcCreatedAt, 'yyyy년 MM월 dd일 HH시 mm분')}">Aug 12, 2020 at 09:12 AM</a>
                                       </div>
                                     </div>
                                     <div class="p-4">
-                                      <p class="small-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus lacus non tincidunt volutpat. Nullam volutpat mi nec nulla finibus tincidunt.</p>
+                                      <p class="small-2 mb-0" th:text="${profileComment.pcComment}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus lacus non tincidunt volutpat. Nullam volutpat mi nec nulla finibus tincidunt.</p>
                                     </div>
                                   </div>
                                 </div>  
                               </div>
                             </div>
-                            <!-- /.comment-item -->
-                            <!-- comment-item -->
-                            <div class="col-12 comment-item">
-                              <div class="form-row">
-                                <div class="col-3 col-sm-2">
-                                  <div class="comment-img">
-                                    <img src="assets/img/avatar/3.jpg" class="rounded" alt="User">
-                                  </div>
-                                </div>
-                                <div class="col-9 col-sm-10">
-                                  <div class="comment-main border border-secondary"> 
-                                    <div class="d-md-flex comment-header border-bottom border-secondary px-4 py-3">
-                                      <div class="d-flex align-items-center flex-1">
-                                        <h6 class="comment-username fw-500 mb-0"><a href="#">Sying Wei</a></h6>
-                                      </div>
-                                      <div>
-                                        <a href="#" class="comment-metadata text-warning small">Aug 18, 2020 at 09:12 AM</a>
-                                      </div>
-                                    </div>
-                                    <div class="p-4">
-                                      <p class="small-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus lacus non tincidunt volutpat. Nullam volutpat mi nec nulla finibus tincidunt.</p>
-                                    </div>
-                                  </div>
-                                </div>  
-                              </div>
-                            </div>
+                            </th:block>
+                            <!-- /.each -->
                             <!-- /.comment-item -->
                           </div>
                         </div>
@@ -342,13 +322,18 @@
                   </div>
                   <div class="col-lg-5">
                     <div class="card bg-dark_A-20 border border-secondary mb-6">
-                      <div class="px-4 pt-3"><span class="fw-600 ls-1 text-uppercase small-1"><span><i class="fas fa-history text-warning mr-2"></i></span>Recent activity</span></div>
+                      <div class="px-4 pt-3">
+                      	<span class="fw-600 ls-1 text-uppercase small-1">
+                      		<span><i class="fas fa-history text-warning mr-2"></i></span>
+                      		<span th:text="|최근 플레이한 게임|">Recent activity</span>
+                      	</span>
+                      </div>
                       <div class="px-5 py-6">
                        <div class="mb-6" th:each="ownedGame:${ownedGameLastTimeList}">
                           <div class="row no-gutters">
                             <div class="col-2 item_img d-none d-sm-flex align-items-center">
                               <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
-                              <img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|"></a>
+                              <img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|"></a>
                             </div>
                             <div class="col-6 item_content flex-1 flex-grow pl-0 pl-sm-3 pr-3">
                               <a href="store-product.html" class="product-item"><h6 class="item_title text-lt ls-1 small-1 fw-600 text-uppercase mb-0" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
@@ -376,36 +361,30 @@
             <div class="tab-pane fade" id="mp-2-02-c" role="tabpanel" aria-labelledby="mp-2-02-tab">
               <div class="mb-9">
                 <header class="header mb-4">
-                  <h3>Top Played Games</h3>
+                  <h3 th:text="|가장 많이 플레이한 게임|">Top Played Games</h3>
                   <hr class="w-5 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                 </header>
                 <div class="owl-carousel-spotlight carousel-spotlight ig-carousel">
                   <div class="owl-carousel gs-carousel" data-carousel-items="1, 3, 3, 4" data-carousel-margin="30" data-carousel-nav="true" data-carousel-navText="<span class='icon-cl-next pe-7s-angle-left'></span>, <span class='icon-cl-next pe-7s-angle-right'></span>">
                     <!-- item -->
-                    <div class="item"  th:each="ownedGame:${ownedGamePlayTimeList}">
+                    <div class="item" th:each="ownedGame:${ownedGamePlayTimeList}">
                       <div class="item-cont">
                         <figure class="owl_item_review">
                           <div>
                             <div class="position-relative overflow-hidden">
-                              <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|">
+                              <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|">
                             </div>
                             <div>
-                              <h5 class="owl_item_title text-lt"><a href="" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Donec dignissim</a></h5>
+                              <h5 class="owl_item_title text-lt">
+                              	<a href="" th:href="@{/library(gNo=${ownedGame.game.gNo})}" th:text="${ownedGame.game.gName}">Donec dignissim</a>
+                              </h5>
                               <div class="relative small-1 fw-600 mb-1">
-                                <span>Last played</span>
-                                <span class="text-warning float-right" th:text="${#dates.format(ownedGame?.ogLastplay, 'yyyy-MM-dd') ?: '게임플레이 하셈'}">
-                                  Jul 27
-                                </span>
-                                                                
+                                <span th:text="|마지막 플레이|">Last played</span>
+                                <span class="text-warning float-right" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">Jul 27</span>
                               </div>
-                              
                               <div class="relative small-1 fw-600 mb-1">
-                               <span>Time played</span>
-                                <span class="text-warning float-right" th:text="${ownedGame?.ogPlaytime ?: '게임플레이 하셈'}">
-                                  17 <span class="d-md-none">Hrs</span><span class="d-none d-md-inline">Hours</span>
-                                </span>
-                                
-                                                                
+                                <span th:text="|플레이 시간|">Time played</span>
+                                <span class="text-warning float-right" th:text="|${#numbers.formatDecimal(ownedGame.ogPlaytime, 1, 1)}시간|">5</span>
                               </div>
                             </div>
                           </div>
@@ -420,41 +399,49 @@
                 <header class="header mb-4">
                   <div class="row">
                     <div class="col-10 col-lg-11">
-                      <h3>Library</h3>
+                      <h3 th:text="라이브러리">Library</h3>
                       <hr class="w-5 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                     </div>
                     <div class="col-2 col-lg-1 text-right">
+                      <!-- 
                       <a href="#" class="lead-1 text-warning" ><i class="fas fa-plus"></i></a>
+                       -->
                     </div>
                   </div>
                 </header>
                 <div class="row">
                   <!-- item -->
-                  <div class="col-md-12 mb-4" th:each="ownedGame:${ownedGameList}" >
-                    <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
+                  <div class="col-md-12 mb-4" th:each="ownedGame:${ownedGameList}">
+                    <a href="store-product.html" class="product-item" th:href="@{/library(gNo=${ownedGame.game.gNo})}">
                       <div class="border border-secondary" >
                         <div class="row align-items-center no-gutters">
                           <div class="item_img d-none d-md-block" >
-                            <img class="profile-glib img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.resourcesList.get(0).resName}|">
+                            <img class="profile-glib img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|">
                           </div>
                           <div class="item_content flex-1 flex-grow pl-4 pl-sm-6 pr-6 py-4">
-                            <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-2" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6>
+                            <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-2" th:text="${ownedGame.game.gName}">Integer sagittis semper</h6>
                             <div class="mb-0">
                               <i class="mr-2 fab fa-windows"></i>
                               <i class="mr-2 fab fa-steam"></i>
                               <i class="fab fa-apple"></i>
                             </div>
                             <div class="position-relative">
-                              <span class="item_genre text-warning small fw-600">
-                                Action, Adventure
-                              </span>
+                              <th:block th:each="gameTag:${ownedGame.game.gameTagList}">
+                              	<span class="item_genre text-warning small fw-600" th:text="${gameTag.tag.tagName}">Action, Adventure</span>
+                              </th:block>
                             </div>
                           </div>
                           <div>
                             <div class="row align-items-center h-100 no-gutters">
                               <div class="text-right text-light small-2 pr-4 pr-sm-6">
-                                <span class="fw-500"><span class="text-warning fw-600" th:text="${ownedGame?.ogPlaytime ?: '게임플레이 하셈'}">25</span> hrs total</span><br>
-                                <span class="fw-500">Last played <span class="text-warning fw-600" th:text="${#dates.format(ownedGame?.ogLastplay, 'MM-dd') ?: '게임플레이 하셈'}">July 27</span></span>
+                                <span class="fw-500">
+                                	<span th:text="|플레이 시간|">25</span>
+                                	<span class="text-warning fw-600" th:text="|${#numbers.formatDecimal(ownedGame.ogPlaytime, 1, 1)}시간|"></span>
+                                </span><br>
+                                <span class="fw-500">
+                                	<span th:text="|마지막 플레이|"></span>
+                                	<span class="text-warning fw-600" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">July 27</span>
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -470,6 +457,7 @@
             <!-- /.tab item -->
 
             <!-- tab item -->
+            <!-- 
             <div class="tab-pane fade" id="mp-2-03-c" role="tabpanel" aria-labelledby="mp-2-03-tab">
               <div class="position-relative">
                 <div class="row">
@@ -527,6 +515,7 @@
                 </div>
               </div>
             </div>
+             -->
             <!-- /.tab item -->
 
             <!-- tab item -->
@@ -888,6 +877,7 @@
                      
                     </div>
                     <!-- pagination -->
+                    <!-- 
                     <nav class="mt-7 pt-4 border-top border-secondary" aria-label="Page navigation">
                       <ul class="pagination justify-content-end list-unstyled">
                         <li class="page-item">
@@ -907,6 +897,7 @@
                         </li>
                       </ul>
                     </nav>
+                     -->
                     <!-- /.pagination -->
                   </div>
                 </div>
@@ -915,6 +906,7 @@
             <!-- /.tab item -->
 
             <!-- tab item -->
+            <!-- 
             <div class="tab-pane fade" id="mp-2-06-c" role="tabpanel" aria-labelledby="mp-2-06-tab">
               <div class="position-relative">
                 
@@ -925,7 +917,7 @@
                         <h3>Your Groups</h3>
                         <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
                       </div>
-                      <!-- item -->
+                      
                       <div class="col-md-12 mb-6 mb-lg-4">
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
@@ -953,125 +945,9 @@
                           </div>
                         </div>
                       </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-6 mb-lg-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html">
-                                <div class="gr-img aspect-ratio-1_1 bs-c bp-c br-n border border-secondary" style="background: url(assets/img/content/img_01.jpg);"></div>
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-4 pr-4">
-                              <a href="store-product.html" class="d-flex flex-wrap align-items-center lh-6 mb-0 mb-md-2"><span class="ls-1 lead-1 fw-500 text-uppercase">Integer sagittis semper</span> <span class="small-3 fw-600 text-warning"><span class="mx-1">-</span>Public</span></a>
-                              <div class="d-none d-md-flex align-items-center lh-1 fw-500 small-3 mb-0">
-                                <a href="#" class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-user d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">25</span>Members</a>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-gamepad d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">0</span>In-Game</span>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-circle d-none d-md-inline d-lg-none d-xl-inline text-warning small-7 mr-2"></i><span class="fw-600 mr-1">4</span>Online</span>
-                                <a href="#" class="d-flex align-items-center"><i class="fas fa-comment d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i>0 In Group Chat</a>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <a href="#" class="fw-500">Leave group</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-6 mb-lg-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html">
-                                <div class="gr-img aspect-ratio-1_1 bs-c bp-c br-n border border-secondary" style="background: url(assets/img/content/img_01.jpg);"></div>
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-4 pr-4">
-                              <a href="store-product.html" class="d-flex flex-wrap align-items-center lh-6 mb-0 mb-md-2"><span class="ls-1 lead-1 fw-500 text-uppercase">Integer sagittis semper</span> <span class="small-3 fw-600 text-warning"><span class="mx-1">-</span>Public</span></a>
-                              <div class="d-none d-md-flex align-items-center lh-1 fw-500 small-3 mb-0">
-                                <a href="#" class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-user d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">25</span>Members</a>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-gamepad d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">0</span>In-Game</span>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-circle d-none d-md-inline d-lg-none d-xl-inline text-warning small-7 mr-2"></i><span class="fw-600 mr-1">4</span>Online</span>
-                                <a href="#" class="d-flex align-items-center"><i class="fas fa-comment d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i>0 In Group Chat</a>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <a href="#" class="fw-500">Leave group</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-6 mb-lg-4">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html">
-                                <div class="gr-img aspect-ratio-1_1 bs-c bp-c br-n border border-secondary" style="background: url(assets/img/content/img_01.jpg);"></div>
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-4 pr-4">
-                              <a href="store-product.html" class="d-flex flex-wrap align-items-center lh-6 mb-0 mb-md-2"><span class="ls-1 lead-1 fw-500 text-uppercase">Integer sagittis semper</span> <span class="small-3 fw-600 text-danger"><span class="mx-1">-</span>Private</span></a>
-                              <div class="d-none d-md-flex align-items-center lh-1 fw-500 small-3 mb-0">
-                                <a href="#" class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-user d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">25</span>Members</a>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-gamepad d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">0</span>In-Game</span>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-circle d-none d-md-inline d-lg-none d-xl-inline text-warning small-7 mr-2"></i><span class="fw-600 mr-1">4</span>Online</span>
-                                <a href="#" class="d-flex align-items-center"><i class="fas fa-comment d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i>0 In Group Chat</a>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <a href="#" class="fw-500">Leave group</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
-                      <!-- item -->
-                      <div class="col-md-12 mb-0">
-                        <div class="product-item">
-                          <div class="row align-items-center no-gutters">
-                            <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html">
-                                <div class="gr-img aspect-ratio-1_1 bs-c bp-c br-n border border-secondary" style="background: url(assets/img/content/img_01.jpg);"></div>
-                              </a>
-                            </div>
-                            <div class="item_content flex-1 flex-grow pl-0 pl-sm-4 pr-4">
-                              <a href="store-product.html" class="d-flex flex-wrap align-items-center lh-6 mb-0 mb-md-2"><span class="ls-1 lead-1 fw-500 text-uppercase">Integer sagittis semper</span> <span class="small-3 fw-600 text-warning"><span class="mx-1">-</span>Public</span></a>
-                              <div class="d-none d-md-flex align-items-center lh-1 fw-500 small-3 mb-0">
-                                <a href="#" class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-user d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">25</span>Members</a>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-gamepad d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i><span class="fw-600 mr-1">0</span>In-Game</span>
-                                <span class="d-flex align-items-center border-right border-secondary mr-3 pr-3"><i class="fas fa-circle d-none d-md-inline d-lg-none d-xl-inline text-warning small-7 mr-2"></i><span class="fw-600 mr-1">4</span>Online</span>
-                                <a href="#" class="d-flex align-items-center"><i class="fas fa-comment d-none d-md-inline d-lg-none d-xl-inline text-warning mr-2"></i>0 In Group Chat</a>
-                              </div>
-                            </div>
-                            <div class="item_price">
-                              <div class="row align-items-center h-100 no-gutters">
-                                <div class="text-right">
-                                  <a href="#" class="fw-500">Leave group</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.item -->
+                      
                     </div>
-                    <!-- pagination -->
+                    
                     <nav class="mt-7 pt-4 border-top border-secondary" aria-label="Page navigation">
                       <ul class="pagination justify-content-end list-unstyled">
                         <li class="page-item">
@@ -1091,7 +967,7 @@
                         </li>
                       </ul>
                     </nav>
-                    <!-- /.pagination -->
+                    
                   </div>
                   <div class="col-lg-4">
                     <div class="rounded mb-6">
@@ -1136,6 +1012,7 @@
                 </div>
               </div>
             </div>
+             -->
             <!-- /.tab item -->
           </div>
         </div>  

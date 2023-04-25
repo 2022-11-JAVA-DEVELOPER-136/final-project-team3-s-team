@@ -267,6 +267,12 @@ insert into news_comment(nc_no, nc_created_at, nc_comment, u_no, news_no) values
 
 
 --profile_comment
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 1번유저의 프로필에 쓴 코멘트1', 1, 1);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 1번유저의 프로필에 쓴 코멘트1', 2, 1);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 1번유저의 프로필에 쓴 코멘트1', 3, 1);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 2번유저의 프로필에 쓴 코멘트1', 1, 2);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 2번유저의 프로필에 쓴 코멘트1', 2, 2);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 2번유저의 프로필에 쓴 코멘트1', 3, 2);
 insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 3번유저의 프로필에 쓴 코멘트1', 1, 3);
 insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 3번유저의 프로필에 쓴 코멘트1', 2, 3);
 insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 3번유저의 프로필에 쓴 코멘트1', 3, 3);

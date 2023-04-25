@@ -2,17 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.ownedGame.mapper.OwnedGameMapper">
 	<resultMap type="com.itwill.steam.ownedGame.OwnedGame" id="ownedGameWithGame" autoMapping="true">
-		<id column="og_no" property="ogNo"/>
-		<!-- <id column="g_no" property="game.gNo"/>
-		<id column="u_no" property="user.uNo"/> -->
+		<id property="ogNo" column="og_no"/>
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
 		</association>
 		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
-			<result column="g_no2" property="gNo"/>
+			<id property="gNo" column="g_no"/>
+			<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
+			</collection>
+			<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
+				<id property="gtNo" column="gt_no"/>
+				<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
+				</association>
+		</collection>
 		</association>
-		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
-			<result column="g_no3" property="gNo"/>
-		</collection>		
 	</resultMap>
 	
 	<select id="ownedGameList" parameterType="com.itwill.steam.user.User" resultMap="ownedGameWithGame">
@@ -21,6 +23,8 @@
 	   FROM owned_game og 
 	    join game g on g.g_no=og.g_no
         join resources r on r.g_no = og.g_no
+        join game_tag gt on g.g_no=gt.g_no
+        join tag t on gt.tag_no=t.tag_no
 	    WHERE u_no = #{uNo}
 	    order by og_playtime desc
 	</select>
