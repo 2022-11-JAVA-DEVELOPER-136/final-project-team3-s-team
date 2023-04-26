@@ -60,12 +60,12 @@
 				 -->
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
-					<div class="d-flex small-1 fw-600">
+					<div class="d-flex text-warning small-1 fw-600">
 						<div th:text="총액">Total</div>
-						<th:block th:if="${finalPrice}!=0">
-						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">최종액</div>
+						<th:block th:if="${finalDiscountPrice}!=0">
+						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(fullPrice - finalDiscountPrice, 3, 'COMMA')}원|">최종액</div>
 						</th:block>
-						<th:block th:if="${finalPrice} == 0">
+						<th:block th:if="${finalDiscountPrice} == 0">
 						<div class="ml-auto" th:text="0원">최종액</div>
 						</th:block>
 					</div>

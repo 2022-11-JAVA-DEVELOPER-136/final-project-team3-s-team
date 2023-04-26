@@ -61,17 +61,17 @@
                 <div class="timeline-horizontal">
                   <div class="timeline-item flex-1 p-0" data-step="&#xe60d;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-left border-bottom border-secondary">
-                      <span class="text-uppercase small-3 fw-600">Your Cart</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|나의 장바구니|">Your Cart</span>
                     </div>
                   </div>
                   <div class="timeline-item flex-1 p-0" data-step="&#xe69b;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-bottom border-secondary">
-                      <span class="text-uppercase small-3 fw-600">Address</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|주소 입력|">Address</span>
                     </div>
                   </div>
                   <div class="timeline-item flex-1 p-0" data-step="&#xe721;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-bottom border-secondary border-right">
-                      <span class="text-uppercase small-3 fw-600">Payment</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|결제수단 선택|">Payment</span>
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
               <div class="col-lg-8 mb-8 mb-lg-0">
                 <div>
                   <div>
-                    <h4>Payment Options</h4>
+                    <h4 th:text="|결제수단 선택|">Payment Options</h4>
                     <hr class="border-secondary my-4">
                     <div>
                       <div id="accordion-5" class="accordion accordion-connected accordion-no-header">
@@ -91,8 +91,10 @@
                           <div class="card-header" id="Card">
                             <h5 class="mb-0">
                               <a data-toggle="collapse" href="#collapse-5-2" class="d-flex align-items-center">
-                                <span class="icon"><i class="fab fa-cc-visa text-warning lead-5"></i></span>
-                                Card
+                                <span class="icon">
+                                	<i class="fab fa-cc-visa text-warning lead-5"></i>
+                                </span>
+                                <span th:text="카드">Card</span>
                               </a>
                             </h5>
                           </div>
@@ -101,27 +103,27 @@
                               <form class="input-transparent">
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
-                                    <label class="small-1" for="cardNumber">Card Number *</label>
+                                    <label class="small-1" for="cardNumber" th:text="|카드번호 *|">Card Number *</label>
                                     <input class="form-control" id="cardNumber" type="text" name="cardNumber" required="" value="" th:value="${card?.cardNumber?:''}">
                                   </div>
                                   <div class="form-group col-md-3">
-                                    <label class="small-1" for="securityCode">Security Code *</label>
+                                    <label class="small-1" for="securityCode" th:text="|CVC코드 *|">Security Code *</label>
                                     <input class="form-control" id="securityCode" type="text" name="securityCode" required="" value="" th:value="${card?.cardCvc?:''}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <div class="d-flex align-items-center pt-md-7">
                                       <div class="lead-3 pl-1 pr-3"><i class="fas fa-credit-card text-warning"></i></div>
-                                      <div class="small lh-5">The 3 digit security code on the back of your card.</div>
+                                      <div class="small lh-5" th:text="|카드 뒷면의 3자리 보안 코드입니다.|">The 3 digit security code on the back of your card.</div>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
-                                    <label class="small-1" for="nameOnCard">Name on Card *</label>
+                                    <label class="small-1" for="nameOnCard" th:text="|카드명 *|">Name on Card *</label>
                                     <input class="form-control" id="nameOnCard" type="text" name="nameOnCard" required=""value="" th:value="${card?.cardName?:''}">
                                   </div>
                                   <div class="form-group col-md-3">
-                                    <label class="small-1" for="expiryDate">Expiry Date *</label>
+                                    <label class="small-1" for="expiryDate" th:text="|만료일 *|">Expiry Date *</label>
                                     <div class="form-row">
                                       <div class="form-group mb-md-0 col-md-6">
                                         <select class="form-control pl-2" id="expiryDate">
@@ -152,6 +154,7 @@
                                       </div>
                                     </div>
                                   </div>
+                                  <!-- 
                                   <div class="form-group col-md-4">
                                     <label class="small-1" for="expiryDate">Start Date <span class="small">(if applicable)</span></label>
                                     <div class="form-row">
@@ -186,6 +189,7 @@
                                       </div>
                                     </div>
                                   </div>
+                                   -->
                                 </div>
                               </form>
                             </div>
@@ -198,29 +202,33 @@
               </div>
               <!-- cart-summary -->
 	<div class="archive border border-secondary rounded" >
-		<div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase lead-1">Cart Summary</span></div>
+		<div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase lead-1" th:text="|결제정보 요약|">Cart Summary</span></div>
 		<div class="p-4">
 			<ul class="list-unstyled small mb-0">
-				<li class="small-2">Price Details</li>
+				<li class="small-2" th:text="결제금액">Price Details</li>
 				<li><hr class="my-3 border-secondary"></li>
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
-						<div>Full Price</div>
+						<div th:text="기본금액">Full Price</div>
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(fullPrice, 3, 'COMMA')}원|">₩210,000</div>
 					</div>
 				</li>
+				
 				<li class="my-1">
 					<div class="d-flex text-info small-2 fw-600">
-						<div>Your Discount</div>
-						<div class="ml-auto" th:text="|${#numbers.formatInteger(discountPrice, 3, 'COMMA')}원|">₩-105,000</div>
+						<div th:text="할인금액">Your Discount</div>
+						<div class="ml-auto" th:text="|-${#numbers.formatInteger(finalDiscountPrice, 3, 'COMMA')}원|">₩-105,000</div>
 					</div>
 				</li>
+				
+				<!-- 
 				<li class="my-1">
 					<div class="d-flex text-warning small-2 fw-600">
 						<div>You Save</div>
 						<div class="ml-auto" th:text="|-${#numbers.formatInteger(savedPrice, 3, 'COMMA')}원|">₩-84,000</div>
 					</div>
 				</li>
+				 -->
 				<!-- 
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
@@ -231,20 +239,20 @@
 				 -->
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
-					<div class="d-flex small-1 fw-600">
-						<div>Total</div>
-						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">₩126,000</div>
+					<div class="d-flex text-warning small-1 fw-600">
+						<div th:text="총액">Total</div>
+						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(fullPrice - finalDiscountPrice, 3, 'COMMA')}원|">₩126,000</div>
 					</div>
 				</li>
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
-				<!-- 
+					<!-- 
 					<form action="checkout-address" method="get">
     				<input type="hidden" name="orderNo" value="${order.orderNo}" />
     				<button class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</button>
 					</form>
 					 -->
-					<span id="orderBtn" class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</span>
+					<span id="orderBtn" class="btn btn-lg btn-block btn-warning mt-4" th:text="결제하기">PLACE ORDER</span>
 				</li>
 				<li class="lh-1">
 					<span class="small-4 text-lt w-100 mt-4 pb-1 d-inline-block">By clicking Place Order, you accept our <a href="#" target="_blank" class="text-rp text-primary text-underline">refund policy</a>.</span>

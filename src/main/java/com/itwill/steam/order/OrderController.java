@@ -73,17 +73,19 @@ public class OrderController {
 		
 		//총액 계산
         int fullPrice = 0;
-        int discountPrice = 0;
         int savedPrice = 0;
         int finalPrice = 0;
+        double fullDiscountPrice = 0;
         for (OrderItem orderItem : orderItemList) {
             fullPrice += orderItem.getGame().getGPrice();
-            discountPrice = (int)(fullPrice*orderItem.getGame().getGDiscountRate()/100);
+            fullDiscountPrice += orderItem.getGame().getGPrice() * orderItem.getGame().getGDiscountRate() / 100;
         }
-        savedPrice=fullPrice-discountPrice;
-        finalPrice=fullPrice-discountPrice;
+        int finalDiscountPrice = (int)fullDiscountPrice;
+        
+        savedPrice = finalDiscountPrice;
+        finalPrice = fullPrice - finalDiscountPrice;
         request.setAttribute("fullPrice", fullPrice);
-        request.setAttribute("discountPrice", discountPrice);
+        request.setAttribute("finalDiscountPrice", finalDiscountPrice);
         request.setAttribute("savedPrice", savedPrice);
         request.setAttribute("finalPrice", finalPrice);
         

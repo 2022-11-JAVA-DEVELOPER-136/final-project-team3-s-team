@@ -51,7 +51,6 @@ public class CartController {
             fullPrice += cart.getGame().getGPrice();
             fullDiscountPrice += cart.getGame().getGPrice() * cart.getGame().getGDiscountRate() / 100;
         }
-        
         int finalDiscountPrice = (int)fullDiscountPrice;
         
         savedPrice = finalDiscountPrice;

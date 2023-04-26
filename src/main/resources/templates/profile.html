@@ -368,10 +368,10 @@
 	                                </span><br>
 	                                <span class="fw-500">
 	                                	<span th:text="|마지막 플레이|"></span>
-	                                	<th:block th:if="${ownedGame.ogLastplay != null}">
+	                                	<th:block th:if="${ownedGame.ogLastplay} != null">
 	                                	<span class="text-warning fw-600" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">July 27</span>
 	                                	</th:block>
-	                                	<th:block th:if="${ownedGame.ogLastplay == null}">
+	                                	<th:block th:if="${ownedGame.ogLastplay} == null">
 	                                	<span class="text-warning fw-600" th:text="없음">July 27</span>
 	                                	</th:block>
 	                                </span>
@@ -472,7 +472,12 @@
                                 </span><br>
                                 <span class="fw-500">
                                 	<span th:text="|마지막 플레이|"></span>
+                                	<th:block th:if="ownedGame != null">
                                 	<span class="text-warning fw-600" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">July 27</span>
+                                	</th:block>
+                                	<th:block th:if="ownedGame == null">
+                                	<span class="text-warning fw-600" th:text="없음">July 27</span>
+                                	</th:block>
                                 </span>
                               </div>
                             </div>
