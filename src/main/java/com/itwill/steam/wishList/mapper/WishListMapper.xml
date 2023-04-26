@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.steam.wishList.mapper.WishListMapper">
-	<resultMap type="com.itwill.steam.wishList.WishList" id="WishListUserGame" autoMapping="true">
+	<!-- <resultMap type="com.itwill.steam.wishList.WishList" id="WishListUserGame" autoMapping="true">
 		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
 		</association>
 		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
@@ -9,21 +9,22 @@
 		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
 			<result column="g_no1" property="gNo"/>
 		</collection>
-	</resultMap>
+	</resultMap> -->
+	
 	<resultMap type="com.itwill.steam.wishList.WishList" id="WishListUserGameTag" autoMapping="true">
 		<id column="wish_no" property="wishNo"/>
 		<association property="game" javaType="com.itwill.steam.game.Game" autoMapping="true">
-		</association>
-		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
-		</association>
+		<id column="g_no" property="gNo"/>
 		<collection property="gameTagList" ofType="com.itwill.steam.gameTag.GameTag" autoMapping="true">
-			<id column="gt_no" property="gtNo"/>
+		<id column="gt_no" property="gtNo"/>
 			<association property="tag" javaType="com.itwill.steam.tag.Tag" autoMapping="true">
 			</association>
 		</collection>
 		<collection property="resourcesList" ofType="com.itwill.steam.resources.Resources" autoMapping="true">
-			<result column="g_no1" property="gNo"/>
 		</collection>
+		</association>
+		<association property="user" javaType="com.itwill.steam.user.User" autoMapping="true">
+		</association>
 	</resultMap>	
 	
 	<insert id="insertWishList" parameterType="com.itwill.steam.wishList.WishList">
