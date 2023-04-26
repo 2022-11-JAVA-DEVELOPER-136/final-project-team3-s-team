@@ -535,6 +535,250 @@ null,
 3356,
 2);
 
+--15
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'마력 척결관: 리그 오브 레전드 이야기™',
+'문라이터 개발사 Digital Sun에서 제작한 마력 척결관은 리그 오브 레전드 세계관을 배경으로 펼쳐지는 액션 RPG 게임입니다. 수년간의 감금 생활을 견딘 끝에 자유를 쟁취한 마법사, 사일러스가 되어 보세요. 구속의 상징이었던 사슬로 마력 척결단의 폭정 아래 신음하는 데마시아를 해방하세요.',
+'문라이터 개발사 Digital Sun에서 제작한 마력 척결관: 리그 오브 레전드 이야기™는 리그 오브 레전드 세계관을 배경으로 펼쳐지는 액션 RPG 게임입니다. 데마시아 왕국의 마력 척결단은 공공질서라는 명목 아래 마법을 사용할 줄 아는 시민을 탄압하고 있습니다. 강제로 마력 척결단에 입단시킨 뒤 세뇌하고, 감옥에 감금하고, 음지로 내쫓는 등 횡포를 부리고 있죠.
+
+마력 척결단에 의해 부당한 감옥살이를 했던 사일러스가 되어보세요. 마법을 훔치는 마법사의 힘을 마음껏 발휘할 기회입니다. 한때는 구속의 상징이었던 사슬. 이젠 이 사슬로 고향을 마력 척결단의 손아귀에서 조금씩 해방해야 합니다.
+
+마법을 해방할 순간이 왔습니다.
+
+마법의 지배자
+마법은 어디에나 있습니다. 전장이라고 예외는 아니죠. 이글거리는 불꽃부터 치명적인 얼음까지, 다양한 주문을 습득해 나가며 나만의 방식으로 플레이할 수 있습니다. 사슬을 휘두르고, 적의 마법을 역이용하세요. 주먹으로 정면 승부를 펼쳐도 좋습니다. 선택은 여러분의 몫입니다.
+
+혁명의 시작
+데마시아에 혁명의 전운이 감돌고 있습니다. 혁명의 선봉에서 시련을 마주할 각오가 되셨습니까? 왕국 전역에서 마법사를 찾아 아군으로 포섭하세요. 성장하는 반군의 힘을 바탕으로 기본 능력을 업그레이드하고, 독특한 능력을 해제하세요.
+
+직접 써 내려가는 전설
+마력 척결단이 범죄자 집단처럼 보일지도 모릅니다. 물론 그렇다 해서 마력 척결단 모두 진실을 마주할 준비가 되어 있는 것은 아닙니다. 강대한 적에게 맞서고 잊지 못할 동료와 힘을 합치세요. 새로운 인연과 오랜 인연을 모두 만나볼 수 있습니다. 오직 여러분만이 데마시아의 과거에 얽힌 비밀을 밝혀내고, 미래의 향방을 바꿀 수 있습니다.',
+9,
+to_date('2023/4/19'),
+'Digital Sun',
+'Riot Forge',
+32000,
+0,
+null,
+null,
+'Windows 10',
+'Intel Core2 Quad Q6600 / AMD Phenom II X4 965',
+'8 GB RAM',
+'GeForce GTX 550 Ti 1 GB / Intel Iris Plus / AMD HD 6770',
+'4 GB',
+'Windows 10',
+'Intel Core2 Quad Q6600 / AMD Phenom II X4 965',
+'8 GB RAM',
+'GeForce GTX 550 Ti 1 GB / Intel Iris Plus / AMD HD 6770',
+'4 GB',
+2448,
+2);
+
+--16
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'ELDEN RING',
+'본 게임은 본격적인 다크 판타지 세계를 무대로 한 액션 RPG입니다. 드넓은 필드와 던전 탐험을 통해 미지의 것들을 발견해 보세요. 앞길을 막아서는 난관과 그것을 극복했을 때의 달성감, 그리고 등장인물들의 의도가 교착하는 군상극도 즐기실 수 있습니다.',
+'자극으로 가득한 드넓은 세계
+다채로운 시추에이션을 지닌 탁 트인 필드와 복잡하면서 입체적으로 짜인 거대한 던전이 경계선 없이 이어지는 드넓은 세계. 탐색 끝에는 미지의 것들을 발견했다는 기쁨과 높은 성취감으로 이어지는 압도적인 위협이 플레이어를 기다립니다.
+
+나만의 캐릭터
+플레이어 캐릭터는 겉모습의 커스터마이즈뿐만 아니라 지니는 무기와 방어구, 마법을 자유롭게 조합할 수 있습니다. 근력을 높여 강인한 전사가 되거나 마술의 극치에 다다르는 등, 각자의 플레이 스타일에 맞춰 캐릭터를 성장시킬 수 있습니다.
+
+신화에서 태어나는 군상극
+단편적으로 이야기되는 중층적인 구조의 이야기. 「틈새의 땅」을 무대로 등장인물들의 다양한 의도가 교착하는 군상극이 전개됩니다.
+
+다른 플레이어와 느슨하게 연결되는 독자적인 온라인 플레이
+다른 플레이어와 직접적으로 연결되어 함께 여행하는 멀티플레이에 더해, 다른 플레이어의 존재를 느낄 수 있는 독자적인 비동기 온라인 요소도 지원합니다.',
+9,
+to_date('2022/2/25'),
+'FromSoftware Inc.',
+'FromSoftware Inc.',
+64800,
+0,
+null,
+null,
+'Windows 10',
+'INTEL CORE I5-8400 or AMD RYZEN 3 3300X',
+'12 GB RAM',
+'NVIDIA GEFORCE GTX 1060 3 GB or AMD RADEON RX 580 4 GB',
+'60 GB',
+'Windows 10',
+'INTEL CORE I5-8400 or AMD RYZEN 3 3300X',
+'12 GB RAM',
+'NVIDIA GEFORCE GTX 1060 3 GB or AMD RADEON RX 580 4 GB',
+'60 GB',
+9833,
+2);
+
+--17
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'알비온 온라인',
+'알비온 온라인은 높은 자유도를 가진 판타지 MMORPG 게임으로, 플레이어가 직접 경제, 직업, 전투방식을 만들어가고 스릴 넘치는 PvP 전투를 경험할 수 있습니다. 위험과 기회가 가득한 방대한 세계를 탐험해 보세요. 부를 쌓고, 연합군을 결성하며 알비온 세계에 당신의 역사를 기록해 보세요.',
+'알비온 온라인은 중세 판타지 세계를 배경으로 하는 높은 플레이 자유도를 가진 MMORPG입니다. 알비온 온라인은 거의 모든 아이템을 플레이어가 직접 제작하며 경제 시장을 플레이어들이 직접 구축해나가는 특이한 세계로, 플레이어가 직접 캐릭터를 위한 방어구와 무기의 조각을 모아 고유의 플레이스타일을 만들 수 있으며, “자신이 입고 있는 장비”가 바로 자신의 직업이 됩니다. 세계를 탐험하고, 다른 여행자들과 스릴 넘치는 전투를 벌이고, 땅을 정복하고, 당신의 집을 건설해보세요.',
+9,
+to_date('2017/7/17'),
+'Sandbox Interactive GmbH',
+'Sandbox Interactive GmbH',
+0,
+0,
+null,
+null,
+'Windows 10',
+'SSE2 명령어를 지원하는 인텔/AMD CPU',
+'4 GB RAM',
+'DirectX10 혹은 그 이상을 지원하는 그래픽카드',
+'2 GB',
+'Windows 10',
+'SSE2 명령어를 지원하는 인텔/AMD CPU',
+'4 GB RAM',
+'DirectX10 혹은 그 이상을 지원하는 그래픽카드',
+'2 GB',
+1123,
+2);
+
+--18
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Stardew Valley',
+'Youve inherited your grandfathers old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?',
+'Youve inherited your grandfathers old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home? It wont be easy. Ever since Joja Corporation came to town, the old ways of life have all but disappeared. The community center, once the towns most vibrant hub of activity, now lies in shambles. But the valley seems full of opportunity. With a little dedication, you might just be the one to restore Stardew Valley to greatness!',
+9,
+to_date('2016/2/27'),
+'ConcernedApe',
+'ConcernedApe',
+16000,
+0,
+null,
+null,
+'Windows Vistar',
+'2 Ghz',
+'2 GB RAM',
+'256 mb video memory, shader model 3.0+',
+'0.5 GB',
+'Windows Vistar',
+'2 Ghz',
+'2 GB RAM',
+'256 mb video memory, shader model 3.0+',
+'0.5 GB',
+3688,
+2);
+
+--19
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Assassins Creed Valhalla',
+'전설적인 바이킹 습격자로 명성을 위해 싸우십시오. 적들을 습격하고, 정착지를 개척하고, 정치적인 역량을 키워나가야 합니다.',
+'에이보르가 되어, 전설적인 바이킹 습격자로 영광을 위해 나아가십시오.
+
+- 색슨족 부대와 요새들을 습격하여 바이킹의 힘을 보여주십시오.
+- 강력한 쌍수 무기를 휘두르며 바이킹의 원초적인 전투 스타일을 체험해보십시오.
+- 어쌔신 크리드 사상 가장 다양한 적들을 상대하십시오.
+- 선택에 따라 다양한 방식으로 캐릭터와 클랜의 정착지를 성장시키십시오.
+- 노르웨이의 거친 해안부터 잉글랜드의 아름다운 왕국들까지, 암흑시대의 오픈 월드를 탐험하십시오.
+
+어쌔신 크리드 발할라 플레이어에게 무료로 제공되는 로그라이트 게임 모드, 잊힌 전설도 포함됩니다.',
+9,
+to_date('2022/12/7'),
+'Ubisoft Montreal',
+'Ubisoft Montreal',
+65000,
+67,
+to_date('2023/4/17'),
+to_date('2023/5/17'),
+'Windows 10',
+'AMD Ryzen 3 1200 3.1 GHz / Intel Core i5-4460 3.2 GHz',
+'8 GB RAM',
+'AMD R9 380 /NVIDIA GeForce GTX 960',
+'160 GB',
+'Windows 10',
+'AMD Ryzen 3 1200 3.1 GHz / Intel Core i5-4460 3.2 GHz',
+'8 GB RAM',
+'AMD R9 380 /NVIDIA GeForce GTX 960',
+'160 GB',
+6477,
+2);
+
+--20
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Project Zomboid',
+'Project Zomboid is the ultimate in zombie survival. Alone or in MP: you loot, build, craft, fight, farm and fish in a struggle to survive. A hardcore RPG skillset, a vast map, massively customisable sandbox and a cute tutorial raccoon await the unwary. So how will you die? All it takes is a bite..',
+'Project Zomboid is an open-ended zombie-infested sandbox. It asks one simple question – how will you die? 
+
+In the towns of Muldraugh and West Point, survivors must loot houses, build defences and do their utmost to delay their inevitable death day by day. No help is coming – their continued survival relies on their own cunning, luck and ability to evade a relentless horde.',
+9,
+to_date('2013/11/8'),
+'The Indie Stone',
+'The Indie Stone',
+21500,
+0,
+null,
+null,
+'Windows 10',
+'Intel 2.77GHz Quad-core',
+'8 GB RAM',
+'Dedicated graphics card with 2 GB of RAM minimum, OpenGL 2.1 and GLSL 1.2 support (generally 2012 or newer)',
+'15 GB',
+'Windows 10',
+'Intel 2.77GHz Quad-core',
+'8 GB RAM',
+'Dedicated graphics card with 2 GB of RAM minimum, OpenGL 2.1 and GLSL 1.2 support (generally 2012 or newer)',
+'15 GB',
+3781,
+2);
+
+--전략 : 3
+--21
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'PUBG: BATTLEGROUNDS',
+'PUBG: BATTLEGROUNDS를 무료로 플레이 하세요. 다양한 전장에서 전략적 위치를 선점하고 무기와 장비를 확보해 최후의 1인이 되기 위한 생존의 사투를 펼칩니다.',
+'PUBG: BATTLEGROUNDS를 무료로 플레이 하세요. 다양한 전장에서 전략적 위치를 선점하고 무기와 장비를 확보해 최후의 1인이 되기 위한 생존의 사투를 펼칩니다. 친구들과 함께 팀을 만들어 배틀로얄 건플레이 장르의 선구자인 PUBG: BATTLEGROUNDS만이 선사하는 긴장감 넘치는 경험을 위해 도전하세요.',
+9,
+to_date('2017/12/21'),
+'KRAFTON, Inc',
+'KRAFTON, Inc',
+0,
+0,
+null,
+null,
+'Windows 10',
+'Intel Core i5-6600K / AMD Ryzen 5 1600',
+'16 GB RAM',
+'NVIDIA GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB',
+'50 GB',
+'Windows 10',
+' Intel Core i5-4430 / AMD FX-6300',
+'8 GB RAM',
+'NVIDIA GeForce GTX 960 2GB / AMD Radeon R7 370 2GB',
+'40 GB',
+18653,
+2);
+
 
 
 
@@ -601,11 +845,41 @@ insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.n
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 13, 5);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 13, 6);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 13, 7);
-insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 1);
-insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 2);
-insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 5);
-insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 6);
-insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 14, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 14, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 14, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 14, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 14, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 15, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 15, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 15, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 15, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 15, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 16, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 16, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 16, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 16, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 16, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 17, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 17, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 17, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 17, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 17, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 18, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 18, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 18, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 18, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 18, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 19, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 19, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 19, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 19, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 19, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 7);
 
 
 
@@ -645,7 +919,22 @@ insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '픽셀그래�
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '마법');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '판타지');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'MMORPG');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');--35
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '턴제RPG');--35
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'GRPG');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '2.5D');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '파티기반RPG');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '2D');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '소울라이크');--40
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '다크판타지');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'MMO');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '농장시뮬레이션');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '생활시뮬레이션');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');--45
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');--50
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
@@ -717,6 +1006,41 @@ insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11,
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 34, 13);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 13, 13);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 24, 13);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 14);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 35, 14);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 36, 14);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 37, 14);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 38, 14);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 15);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 31, 15);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 39, 15);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 24, 15);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 33, 15);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 40, 16);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 41, 16);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 16);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 16);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 16);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 42, 17);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 21, 17);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 34, 17);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 17);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 17);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 43, 18);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 44, 18);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 30, 18);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 31, 18);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 25, 18);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 19);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 19);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 19);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 3, 19);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 26, 19);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 28, 20);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 29, 20);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 20);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 39, 20);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 25, 20);
 
 
 
@@ -730,6 +1054,7 @@ insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 24,
 
 
 --resources
+--액션
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-1.jpg', 1);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-2.jpg', 1);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action1-3.jpg', 1);
@@ -770,6 +1095,215 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action10-2.jpg', 10);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action10-3.jpg', 10);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'action10-4.jpg', 10);
+--RPG
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG1-1.jpg', 11);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG1-2.jpg', 11);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG1-3.jpg', 11);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG1-4.jpg', 11);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG2-1.jpg', 12);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG2-2.jpg', 12);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG2-3.jpg', 12);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG2-4.jpg', 12);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG3-1.jpg', 13);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG3-2.jpg', 13);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG3-3.jpg', 13);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG3-4.jpg', 13);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG4-1.jpg', 14);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG4-2.jpg', 14);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG4-3.jpg', 14);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG4-4.jpg', 14);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG5-1.jpg', 15);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG5-2.jpg', 15);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG5-3.jpg', 15);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG5-4.jpg', 15);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG6-1.jpg', 16);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG6-2.jpg', 16);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG6-3.jpg', 16);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG6-4.jpg', 16);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG7-1.jpg', 17);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG7-2.jpg', 17);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG7-3.jpg', 17);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG7-4.jpg', 17);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG8-1.jpg', 18);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG8-2.jpg', 18);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG8-3.jpg', 18);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG8-4.jpg', 18);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG9-1.jpg', 19);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG9-2.jpg', 19);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG9-3.jpg', 19);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG9-4.jpg', 19);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG10-1.jpg', 20);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG10-2.jpg', 20);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG10-3.jpg', 20);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'RPG10-4.jpg', 20);
+--전략
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul1-1.jpg', 21);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul1-2.jpg', 21);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul1-3.jpg', 21);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul1-4.jpg', 21);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul2-1.jpg', 22);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul2-2.jpg', 22);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul2-3.jpg', 22);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul2-4.jpg', 22);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul3-1.jpg', 23);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul3-2.jpg', 23);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul3-3.jpg', 23);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul3-4.jpg', 23);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul4-1.jpg', 24);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul4-2.jpg', 24);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul4-3.jpg', 24);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul4-4.jpg', 24);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul5-1.jpg', 25);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul5-2.jpg', 25);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul5-3.jpg', 25);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul5-4.jpg', 25);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul6-1.jpg', 26);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul6-2.jpg', 26);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul6-3.jpg', 26);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul6-4.jpg', 26);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul7-1.jpg', 27);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul7-2.jpg', 27);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul7-3.jpg', 27);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul7-4.jpg', 27);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul8-1.jpg', 28);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul8-2.jpg', 28);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul8-3.jpg', 28);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul8-4.jpg', 28);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul9-1.jpg', 29);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul9-2.jpg', 29);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul9-3.jpg', 29);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul9-4.jpg', 29);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-1.jpg', 30);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-2.jpg', 30);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-3.jpg', 30);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-4.jpg', 30);
+--어드벤쳐
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-1.jpg', 31);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-2.jpg', 31);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-3.jpg', 31);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-4.jpg', 31);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv2-1.jpg', 32);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv2-2.jpg', 32);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv2-3.jpg', 32);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv2-4.jpg', 32);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv3-1.jpg', 33);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv3-2.jpg', 33);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv3-3.jpg', 33);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv3-4.jpg', 33);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv4-1.jpg', 34);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv4-2.jpg', 34);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv4-3.jpg', 34);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv4-4.jpg', 34);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv5-1.jpg', 35);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv5-2.jpg', 35);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv5-3.jpg', 35);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv5-4.jpg', 35);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv6-1.jpg', 36);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv6-2.jpg', 36);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv6-3.jpg', 36);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv6-4.jpg', 36);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv7-1.jpg', 37);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv7-2.jpg', 37);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv7-3.jpg', 37);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv7-4.jpg', 37);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv8-1.jpg', 38);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv8-2.jpg', 38);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv8-3.jpg', 38);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv8-4.jpg', 38);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv9-1.jpg', 39);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv9-2.jpg', 39);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv9-3.jpg', 39);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv9-4.jpg', 39);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv10-1.jpg', 40);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv10-2.jpg', 40);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv10-3.jpg', 40);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv10-4.jpg', 40);
+--스포츠
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport1-1.jpg', 41);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport1-2.jpg', 41);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport1-3.jpg', 41);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport1-4.jpg', 41);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport2-1.jpg', 42);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport2-2.jpg', 42);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport2-3.jpg', 42);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport2-4.jpg', 42);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport3-1.jpg', 43);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport3-2.jpg', 43);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport3-3.jpg', 43);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport3-4.jpg', 43);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport4-1.jpg', 44);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport4-2.jpg', 44);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport4-3.jpg', 44);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport4-4.jpg', 44);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport5-1.jpg', 45);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport5-2.jpg', 45);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport5-3.jpg', 45);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport5-4.jpg', 45);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport6-1.jpg', 46);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport6-2.jpg', 46);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport6-3.jpg', 46);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport6-4.jpg', 46);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport7-1.jpg', 47);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport7-2.jpg', 47);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport7-3.jpg', 47);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport7-4.jpg', 47);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport8-1.jpg', 48);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport8-2.jpg', 48);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport8-3.jpg', 48);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport8-4.jpg', 48);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport9-1.jpg', 49);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport9-2.jpg', 49);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport9-3.jpg', 49);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport9-4.jpg', 49);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport10-1.jpg', 50);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport10-2.jpg', 50);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport10-3.jpg', 50);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'sport10-4.jpg', 50);
+--인디
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie1-1.jpg', 51);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie1-2.jpg', 51);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie1-3.jpg', 51);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie1-4.jpg', 51);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie2-1.jpg', 52);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie2-2.jpg', 52);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie2-3.jpg', 52);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie2-4.jpg', 52);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie3-1.jpg', 53);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie3-2.jpg', 53);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie3-3.jpg', 53);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie3-4.jpg', 53);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie4-1.jpg', 54);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie4-2.jpg', 54);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie4-3.jpg', 54);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie4-4.jpg', 54);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie5-1.jpg', 55);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie5-2.jpg', 55);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie5-3.jpg', 55);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie5-4.jpg', 55);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie6-1.jpg', 56);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie6-2.jpg', 56);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie6-3.jpg', 56);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie6-4.jpg', 56);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie7-1.jpg', 57);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie7-2.jpg', 57);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie7-3.jpg', 57);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie7-4.jpg', 57);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie8-1.jpg', 58);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie8-2.jpg', 58);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie8-3.jpg', 58);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie8-4.jpg', 58);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie9-1.jpg', 59);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie9-2.jpg', 59);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie9-3.jpg', 59);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie9-4.jpg', 59);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-1.jpg', 60);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-2.jpg', 60);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-3.jpg', 60);
+insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-4.jpg', 60);
+
+
+
+
 
 
 

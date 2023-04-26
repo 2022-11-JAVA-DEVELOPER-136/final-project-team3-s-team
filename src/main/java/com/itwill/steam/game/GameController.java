@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwill.steam.cart.Cart;
 import com.itwill.steam.cart.CartService;
 import com.itwill.steam.category.Category;
+import com.itwill.steam.exception.ExistedWishListException;
 import com.itwill.steam.exception.GameNotFoundException;
 import com.itwill.steam.game.util.PageMaker;
 import com.itwill.steam.gameTag.GameTag;
@@ -239,6 +240,12 @@ public class GameController {
 	//GameNotFoundException 발생 시 store로 redirect
 	@ExceptionHandler(GameNotFoundException.class)
 	public String gameNotFoundExceptionHandler(GameNotFoundException e) {
+		return "redirect:store";
+	}
+	
+	//ExistedWishListException 발생 시 store로 redirect
+	@ExceptionHandler(ExistedWishListException.class)
+	public String existedWishListExceptionHandler(ExistedWishListException e) {
 		return "redirect:store";
 	}
 }
