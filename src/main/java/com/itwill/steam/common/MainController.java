@@ -121,6 +121,8 @@ public class MainController {
 		map.put("uNo", loginUser.getUNo());
 		map.put("gNo", Integer.parseInt(gNo));
 		OwnedGame ownedGame = ownedGameService.findOwnedGame(map);
+		if(ownedGame==null) return "redirect:library";//라이브러리에 없는 게임에 접근하려고 하면 프로필의 게임탭으로 redirect
+		
 		model.addAttribute("ownedGame", ownedGame);
 		
 		List<Review> reviewList = reviewService.selectByDateDesc(game);

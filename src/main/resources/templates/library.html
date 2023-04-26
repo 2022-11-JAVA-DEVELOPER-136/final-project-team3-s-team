@@ -148,7 +148,12 @@
                       </div>
                     </div>
                     <div class="post-date-se small text-warning mr-4 mr-md-7">
+                      <th:block th:if="${ownedGame.ogLastplay} != null">
                       <span class="autor-date-ft" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">29th February 2020</span>
+                      </th:block>
+                      <th:block th:if="${ownedGame.ogLastplay} == null">
+                      <span class="autor-date-ft" th:text="|플레이 기록 없음|">29th February 2020</span>
+                      </th:block>
                     </div>
                     <!-- 라벨 -->
                     <div class="autor-post">
@@ -176,8 +181,15 @@
                     <hr class="mb-4 border-light o-10">
                     <div class="d-flex flex-column flex-md-row">
                       <div class="order-md-2 mb-4 mb-md-0">
-                          <span class="mr-2"><i class="fas fa-thumbs-up text-warning mr-1"></i>25</span>
-                          <span><i class="fas fa-comments text-warning mr-1"></i>18</span>
+                          <span class="mr-2">
+                          	<i class="fas fa-thumbs-up text-warning mr-1"></i>
+                          	<span th:text="${game.gSellCount}">25</span>
+                          </span>
+                          <span>
+                          	<i class="fas fa-comments text-warning mr-1"></i>
+                          	<span th:if="!${#lists.isEmpty(game.reviewList)}" th:text="${#lists.size(game.reviewList)}">18</span>
+                          	<span th:if="${#lists.isEmpty(game.reviewList)}" th:text="0">18</span>
+                          </span>
                       </div>
                       <div class="tags_cloud order-md-1 flex-1">
                         <a href="#" class="badge text-uppercase fw-600 pl-0 py-2">
