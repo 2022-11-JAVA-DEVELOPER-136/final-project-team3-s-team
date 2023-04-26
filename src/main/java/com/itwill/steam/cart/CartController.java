@@ -44,17 +44,20 @@ public class CartController {
         
         //총액 계산
         int fullPrice = 0;
-        int discountPrice = 0;
         int savedPrice = 0;
         int finalPrice = 0;
+        double fullDiscountPrice = 0;
         for (Cart cart : cartList) {
             fullPrice += cart.getGame().getGPrice();
-            discountPrice = (int)(fullPrice*cart.getGame().getGDiscountRate()/100);
+            fullDiscountPrice += cart.getGame().getGPrice() * cart.getGame().getGDiscountRate() / 100;
         }
-        savedPrice=fullPrice-discountPrice;
-        finalPrice=fullPrice-discountPrice;
+        
+        int finalDiscountPrice = (int)fullDiscountPrice;
+        
+        savedPrice = finalDiscountPrice;
+        finalPrice = fullPrice - finalDiscountPrice;
         model.addAttribute("fullPrice", fullPrice);
-        model.addAttribute("discountPrice", discountPrice);
+        model.addAttribute("finalDiscountPrice", finalDiscountPrice);
         model.addAttribute("savedPrice", savedPrice);
         model.addAttribute("finalPrice", finalPrice);
         

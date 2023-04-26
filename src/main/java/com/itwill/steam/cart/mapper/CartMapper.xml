@@ -16,10 +16,10 @@
     	insert into cart(c_no, u_no, g_no)
 		values(cart_c_no_seq.nextval, #{user.uNo}, #{game.gNo})
 	</insert>
-	<select id="selectCart" resultMap="CartUserGame" resultType="java.lang.Integer">
+	<select id="selectCart" resultMap="CartUserGame" parameterType="java.lang.Integer">
 		select *
-		from game g 
-		join cart c on c.g_no=g.g_no 
+		from cart c 
+		join game g on c.g_no=g.g_no 
 		join resources res on res.g_no=g.g_no
 		where c.u_no=#{uNo}
 	</select>

@@ -62,17 +62,17 @@
                 <div class="timeline-horizontal">
                   <div class="timeline-item flex-1 p-0" data-step="&#xe60d;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-left border-bottom border-secondary">
-                      <span class="text-uppercase small-3 fw-600">Your Cart</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|나의 장바구니|">Your Cart</span>
                     </div>
                   </div>
                   <div class="timeline-item flex-1 border-secondary p-0" data-step="&#xe69b;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-bottom border-secondary">
-                      <span class="text-uppercase small-3 fw-600">Address</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|주소 입력|">Address</span>
                     </div>
                   </div>
                   <div class="timeline-item flex-1 border-secondary p-0" data-step="&#xe721;">
                     <div class="pt-8 pb-7 px-2 px-sm-4 border-bottom border-secondary border-right">
-                      <span class="text-uppercase small-3 fw-600">Payment</span>
+                      <span class="text-uppercase small-3 fw-600" th:text="|결제수단 선택|">Payment</span>
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@
               <div class="col-lg-8 mb-8 mb-lg-0">
                 <div>
                   <div class="mb-7">
-                    <h4>YOUR CART</h4>
+                    <h4 th:text="|나의 장바구니|">YOUR CART</h4>
                     <hr class="border-secondary my-4">
                     <div class="row">
                       <!-- item -->
@@ -118,15 +118,24 @@
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
+                                  <th:block th:if="${cart.game.gDiscountRate != 0}">
                                   <span class="fw-600 btn bg-warning" th:text="${#numbers.formatPercent(0 - cart.game.gDiscountRate * 0.01, 2, 1)}">할인율</span>
+                                  </th:block>
                                 </div>
                               </div>
                             </div>
                             <div class="item_price d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
+                                  <th:block th:if="${cart.game.gDiscountRate != 0}">
                                   <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(cart.game.gPrice, 3, 'COMMA')}원|">정가</span><br>
+                                  </th:block>
+                                  <th:block th:if="${cart.game.gPrice != 0}">
                                   <span class="fw-600" th:text="|${#numbers.formatInteger(cart.game.gPrice - cart.game.gPrice * cart.game.gDiscountRate * 0.01, 3, 'COMMA')}원|">할인가</span>
+                                  </th:block>
+                                  <th:block th:if="${cart.game.gPrice == 0}">
+                                  <span class="fw-600" th:text="|무료 게임|">할인가</span>
+                                  </th:block>
                                 </div>
                               </div>
                             </div>
