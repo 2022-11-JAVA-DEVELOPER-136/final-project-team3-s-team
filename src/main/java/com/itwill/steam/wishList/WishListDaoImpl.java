@@ -1,6 +1,7 @@
 package com.itwill.steam.wishList;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,12 @@ public class WishListDaoImpl implements WishListDao {
 	@Override
 	public int insertWishList(WishList wishList) {
 		return WishListMapper.insertWishList(wishList);
+	}
+	
+	//위시리스트에 해당 게임이 있는지 확인여부
+	@Override
+	public int existWishList(Map<String, Object> map) {
+		return WishListMapper.existWishList(map);
 	}
 	
 	//상품 선택

@@ -1,6 +1,7 @@
 package com.itwill.steam.wishList;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WishListService {
 	

@@ -27,7 +27,6 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	//게임리뷰작성
-	@LoginCheck
 	@PostMapping("review-write")
 	public String review_write_action(@RequestParam String uNo,
 									  @RequestParam String gNo,
@@ -35,6 +34,11 @@ public class ReviewController {
 									  @RequestParam String comment,
 									  HttpSession session,
 									  RedirectAttributes redirectAttributes) {
+		// 로그인 체크
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:main";
+		}
 		
 		Review review = Review.builder().user(User.builder().uNo(Integer.parseInt(uNo)).build())
 										.game(Game.builder().gNo(Integer.parseInt(gNo)).build())
@@ -48,18 +52,20 @@ public class ReviewController {
 	}
 	
 	//리뷰수정
-	@LoginCheck
 	@RequestMapping(value = "/review_update", method = RequestMethod.POST)
 	public String review_modify_action(@ModelAttribute("review") Review review, Model model, HttpSession session) {
 		
-		//로그인된 사용자 정보 가져오기 
-		User loginUser = (User) session.getAttribute("user");
+		// 로그인 체크
+	    User user = (User) session.getAttribute("loginUser");
+	    if (user == null) {
+	        return "redirect:main";
+	    }
 		
 		//해당 리뷰의 사용자 정보 가져오기
 		User reviewUser = review.getUser();
 		
 		//로그인한 사용자와 해당 리뷰의 사용자 정보가 동일여부 확인
-		if(loginUser.getUNo() != reviewUser.getUNo()) {
+		if(user.getUNo() != reviewUser.getUNo()) {
 			model.addAttribute("msg", "수정 권한이 없습니다.");
 			return "";
 		}
@@ -75,11 +81,16 @@ public class ReviewController {
 	}
 	
 	//리뷰삭제
-	@LoginCheck
 	@PostMapping("/review_delete")
 	public String review_delete_action(@RequestParam("reviewNo") int reviewNo, HttpSession session, Model model) {
-		//현재 세션에 저장된 유저 정보를 가져오기
-		User user = (User) session.getAttribute("user");
+		
+		// 로그인 체크
+	    User user = (User) session.getAttribute("loginUser");
+	    if (user == null) {
+	        return "redirect:main";
+	    }
+		
+
 		Review review = new Review();
 		review.setReviewNo(reviewNo);
 		review.setUser(user);
@@ -103,12 +114,17 @@ public class ReviewController {
 	}
 	
 	//회원번호로 리뷰 찾기
-	@LoginCheck
 	//userNo는 path variable로 받아옴
 	@GetMapping("/review/user/{uNo}")
 	//userNo를 변수로 받고 리뷰 조회 결과를 담은 모델을 반환
-	public String review_find_user_no(@PathVariable("uNo") int uNo, Model model) {
-				
+	public String review_find_user_no(@PathVariable("uNo") int uNo, Model model, HttpSession session) {
+		
+		// 로그인 체크
+		User checkUser = (User) session.getAttribute("loginUser");
+	    if (checkUser == null) {
+	        return "redirect:main";
+	    }
+		
 	    User user = new User();
 	    user.setUNo(uNo);
 	    
