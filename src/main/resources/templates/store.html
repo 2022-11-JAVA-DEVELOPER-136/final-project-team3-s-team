@@ -49,7 +49,7 @@
       <section class="content-section text-light br-n bs-c bp-c" style="background-image: url(assets/img/bg/bg-5.jpg);">
         <div class="container">
           <div class="header text-left">
-            <h2 th:text="|오늘의 게임|">Best Deals</h2>
+            <h2 th:text="|추천 게임|">Best Deals</h2>
           </div>
           <div id="storeCarousel" class="carousel-spotlight carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -61,7 +61,7 @@
                   <div class="col-lg-8 pr-lg-1">
                     <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
                       <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);"
-                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(0).resName} + ');'">
+                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(3).resName} + ');'">
                       </div>
                     </a>
                   </div>
@@ -72,7 +72,7 @@
                       <div class="col-12 pb-1">
                         <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
                           <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"
-                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(1).resName} + ');'">
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(2).resName} + ');'">
                           </div>
                         </a>
                       </div>
@@ -81,7 +81,7 @@
                       <div class="col-12 pt-1">
                         <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(0).gNo})}">
                           <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"
-                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(2).resName} + ');'">
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(1).resName} + ');'">
                           </div>
                         </a>
                       </div>
@@ -130,7 +130,7 @@
                   <div class="col-lg-8 pr-lg-1">
                     <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
                       <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/store/01.jpg);"
-                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(0).resName} + ');'">
+                      	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(3).resName} + ');'">
                       </div>
                     </a>
                   </div>
@@ -141,7 +141,7 @@
                       <div class="col-12 pb-1">
                         <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
                           <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-1.jpg);"
-                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(1).resName} + ');'">
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(2).resName} + ');'">
                           </div>
                         </a>
                       </div>
@@ -150,7 +150,7 @@
                       <div class="col-12 pt-1">
                         <a href="#" th:href="@{/store-product(gNo=${popularGameList.get(seq).gNo})}">
                           <div class="d-flex h-100 bs-c br-n bp-c position-relative" style="background-image: url(assets/img/content/store/01-2.jpg);"
-                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(2).resName} + ');'">
+                          	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(1).resName} + ');'">
                           </div>
                         </a>
                       </div>
@@ -206,6 +206,8 @@
               <li data-target="#storeCarousel" data-slide-to="0" class="active"></li>
               <li data-target="#storeCarousel" data-slide-to="1"></li>
               <li data-target="#storeCarousel" data-slide-to="2"></li>
+              <li data-target="#storeCarousel" data-slide-to="3"></li>
+              <li data-target="#storeCarousel" data-slide-to="4"></li>
             </ul>
             <!-- /.indicators -->
 
@@ -223,7 +225,9 @@
       <section class="content-section top_sellers carousel-spotlight ig-carousel pt-0 text-light">
         <div class="container">
           <header class="header">
-            <h2 th:text="|최고 인기 게임|">Most popular products</h2>
+            
+            <h2 th:text="|인기 게임|">Most popular products</h2>
+            
           </header>
           <div class="position-relative">
             <div class="row">
@@ -231,10 +235,10 @@
                 <!-- nav tabs -->
                 <ul class="spotlight-tabs spotlight-tabs-dark nav nav-tabs border-0 mb-5 position-relative flex-nowrap" id="most_popular_products-carousel-01" role="tablist">
                   <li class="nav-item text-fnwp position-relative">
-                    <a class="nav-link active show" id="mp-2-01-tab" data-toggle="tab" href="#mp-2-01-c" role="tab" aria-controls="mp-2-01-c" aria-selected="true">인기 게임</a>
+                    <a class="nav-link active show" id="mp-2-01-tab" data-toggle="tab" href="#mp-2-01-c" role="tab" aria-controls="mp-2-01-c" aria-selected="true" th:text="|최고 인기 제품|">인기 게임</a>
                   </li>
                   <li class="nav-item text-fnwp position-relative"> 
-                    <a class="nav-link" id="mp-2-02-tab" data-toggle="tab" href="#mp-2-02-c" role="tab" aria-controls="mp-2-02-c" aria-selected="false">새로운 게임</a>
+                    <a class="nav-link" id="mp-2-02-tab" data-toggle="tab" href="#mp-2-02-c" role="tab" aria-controls="mp-2-02-c" aria-selected="false" th:text="|인기 및 신제품|">새로운 게임</a>
                   </li>
                   <!-- 
                   <li class="nav-item text-fnwp position-relative"> 
@@ -256,7 +260,8 @@
                         <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${game.resourcesList.get(1).resName}|">
+                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" style=""
+                              	th:src="|image/${game.resourcesList.get(3).resName}|" th:style="${'width:135px; height:100px'}">
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
                               <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1" th:text="${game.gName}">Integer sagittis semper</h6>
@@ -319,7 +324,8 @@
                         <a href="store-product.html" class="product-item" th:href="|store-product?gNo=${game.gNo}|">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
-                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${game.resourcesList.get(0).resName}|">
+                              <img class="img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" style=""
+                              	th:src="|image/${game.resourcesList.get(3).resName}|" th:style="${'width:135px; height:100px'}">
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
                               <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1" th:text="${game.gName}">Integer sagittis semper</h6>

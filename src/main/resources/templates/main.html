@@ -55,9 +55,10 @@
         <!-- Indicators -->
         <div class="po_carousel__wrapper">
             <ol class="list-unstyled carousel-indicators def po_carousel-indicators">
-              <li data-target="#carousel_main" data-slide-to="0" class=""></li>
+              <li data-target="#carousel_main" data-slide-to="0" class="active"></li>
               <li data-target="#carousel_main" data-slide-to="1" class=""></li>
-              <li data-target="#carousel_main" data-slide-to="2" class="active"></li>
+              <li data-target="#carousel_main" data-slide-to="2" class=""></li>
+              <li data-target="#carousel_main" data-slide-to="3" class=""></li>
             </ol>
         </div>
         <!-- Carousel items -->
@@ -66,7 +67,7 @@
           <!-- carousel-item (active) -->
           <div class="carousel-item active">
             <div class="h-fullscreen__page bs-c br-n ow-h" style="background-image: url(assets/img/content/carousel/slide_01.jpg);"
-            	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(0).resName} + ');'">
+            	th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(3).resName} + ');'">
               <div class="w-100 d-flex jc-c overlay">
                 <!-- sm-overlay -->
                 <div class="overlay bg-light_A-20 d-lg-none"></div>
@@ -85,8 +86,15 @@
                         <div class="d-flex fadeInLeft ad-900ms">
                         <a class="disabled btn btn-lg bg-dark_A-50 o-1 text-light br-round-0tr br-round-0br parallelogram un_text mb-0">
                         	<span class="d-block text-warning">
+                        		<th:block th:if="${popularGameList.get(0).gDiscountRate != 0}">
                         		<span class="carousel__discount td-lt text-light" th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice, 3, 'COMMA')}원|">349$</span>
+                        		</th:block>
+                        		<th:block th:if="${popularGameList.get(0).gPrice} != 0">
                         		<span th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice - popularGameList.get(0).gPrice * popularGameList.get(0).gDiscountRate * 0.01, 3, 'COMMA')}원|"> 299$</span>
+                        		</th:block>
+                        		<th:block th:if="${popularGameList.get(0).gPrice} == 0">
+                        		<span th:text="|무료 게임|"> 299$</span>
+                        		</th:block>
                         	</span>
                         </a>
                         <a href="#" class="btn btn-lg btn-light parallelogram br-round-0tl br-round-0bl un_text mb-0" th:href="@{store-product(gNo=${popularGameList.get(0).gNo})}">
@@ -104,12 +112,12 @@
           </th:block>
           
 		  <!-- each -->
-		  <th:block th:each="seq:${#numbers.sequence(1, 2)}">
+		  <th:block th:each="seq:${#numbers.sequence(1, 3)}">
 		  <th:block th:if="${!#lists.isEmpty(popularGameList)} and ${#lists.size(popularGameList) >= seq + 1}">
           <!-- carousel-item -->
           <div class="carousel-item">
             <div class="h-fullscreen__page bs-c br-n ow-h" style="background-image: url(assets/img/content/carousel/slide_02.jpg);"
-            	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(0).resName} + ');'">
+            	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(3).resName} + ');'">
               <div class="w-100 d-flex jc-c overlay">
                 <!-- sm-overlay -->
                 <div class="overlay bg-light_A-20 d-lg-none"></div>
@@ -128,8 +136,15 @@
                         <div class="d-flex fadeInLeft ad-900ms">
                         <a class="disabled btn btn-lg bg-dark_A-50 o-1 text-light br-round-0tr br-round-0br parallelogram un_text mb-0">
                         	<span class="d-block text-warning">
+                        		<th:block th:if="${popularGameList.get(seq).gDiscountRate != 0}">
                         		<span class="carousel__discount td-lt text-light" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice, 3, 'COMMA')}원|">349$</span>
+                        		</th:block>
+                        		<th:block th:if="${popularGameList.get(seq).gPrice} != 0">
                         		<span th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice - popularGameList.get(seq).gPrice * popularGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|"> 299$</span>
+                        		</th:block>
+                        		<th:block th:if="${popularGameList.get(seq).gPrice} == 0">
+                        		<span th:text="|무료 게임|"> 299$</span>
+                        		</th:block>
                         	</span>
                         </a>
                         <a href="#" class="btn btn-lg btn-light parallelogram br-round-0tl br-round-0bl un_text mb-0" th:href="@{store-product(gNo=${popularGameList.get(seq).gNo})}">
@@ -163,20 +178,22 @@
       <section class="content-section owl-carousel-spotlight carousel-spotlight ig-carousel text-light" style="background-image: url(assets/img/bg/bg_shape.png);">
         <div class="container">
           <header class="header">
-            <h2>Most popular products</h2>
+            <h2 th:text="|인기 게임|">Most popular products</h2>
           </header>
           <div class="position-relative">
             <!-- nav tabs -->
             <ul class="spotlight-tabs spotlight-tabs-dark nav nav-tabs border-0 mb-5 position-relative flex-nowrap" id="most_popular_products-carousel" role="tablist">
               <li class="nav-item text-fnwp pg-none relative">
-                <a class="nav-link active" id="mp-01-tab" data-toggle="tab" href="#mp-01-c" role="tab" aria-controls="mp-01-c" aria-selected="true" th:text="|인기 게임|">New</a>
+                <a class="nav-link active" id="mp-01-tab" data-toggle="tab" href="#mp-01-c" role="tab" aria-controls="mp-01-c" aria-selected="true" th:text="|최고 인기 제품|">New</a>
               </li>
               <li class="nav-item text-fnwp relative">
-                <a class="nav-link" id="mp-02-tab" data-toggle="tab" href="#mp-02-c" role="tab" aria-controls="mp-02-c" aria-selected="false" th:text="|새로운 게임|">Highlights</a>
+                <a class="nav-link" id="mp-02-tab" data-toggle="tab" href="#mp-02-c" role="tab" aria-controls="mp-02-c" aria-selected="false" th:text="|인기 및 신제품|">Highlights</a>
               </li>
+              <!-- 
               <li class="nav-item text-fnwp relative">
                 <a class="nav-link" id="mp-03-tab" data-toggle="tab" href="#mp-03-c" role="tab" aria-controls="mp-03-c" aria-selected="false">Coming Soon</a>
               </li>
+               -->
             </ul>
             <!-- /.nav tabs -->
             <!-- tab panes -->
@@ -194,7 +211,7 @@
                       <figure class="owl_item_review">
                         <div>
                           <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${popularGameList.get(seq).resourcesList.get(0).resName}|">
+                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${popularGameList.get(seq).resourcesList.get(3).resName}|">
                             <div class="review_h text-light">
                               <!-- 로그인한 경우 -->
                               <th:block th:if="${!#lists.isEmpty(ogameList)}">
@@ -227,7 +244,12 @@
                             	<a href="" th:href=@{/store-product(gNo=${popularGameList.get(seq).gNo})} th:text="${popularGameList.get(seq).gName}">Donec dignissim ...</a>
                             </h5>
                             <div class="relative small-1">
+                              <th:block th:if="${popularGameList.get(seq).gPrice} != 0">
                               <span class="owl_item_price" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice - popularGameList.get(seq).gPrice * popularGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                              </th:block>
+                              <th:block th:if="${popularGameList.get(seq).gPrice} == 0">
+                              <span class="owl_item_price" th:text="|무료 게임|">€44.99</span>
+                              </th:block>
                               <th:block th:each="seq2:${#numbers.sequence(0, 1)}">
                               <span class="owl_item_genre" th:text="${popularGameList.get(seq).gameTagList.get(seq2).tag.tagName}">Action, Adventure</span>
                               <th:block th:if="${seq2} == 0">
@@ -260,7 +282,7 @@
                       <figure class="owl_item_review">
                         <div>
                           <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${newGameList.get(seq).resourcesList.get(0).resName}|">
+                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store" th:src="|image/${newGameList.get(seq).resourcesList.get(3).resName}|">
                             <div class="review_h text-light">
                               <!-- 로그인한 경우 -->
                               <th:block th:if="${!#lists.isEmpty(ogameList)}">
@@ -293,7 +315,12 @@
                             	<a href="" th:href=@{/store-product(gNo=${newGameList.get(seq).gNo})} th:text="${newGameList.get(seq).gName}">Donec dignissim ...</a>
                             </h5>
                             <div class="relative small-1">
+                              <th:block th:if="${newGameList.get(seq).gPrice != 0}">
                               <span class="owl_item_price" th:text="|${#numbers.formatInteger(newGameList.get(seq).gPrice - newGameList.get(seq).gPrice * newGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                              </th:block>
+                              <th:block th:if="${newGameList.get(seq).gPrice == 0}">
+                              <span class="owl_item_price" th:text="|무료 게임|">€44.99</span>
+                              </th:block>
                               <th:block th:each="seq2:${#numbers.sequence(0, 1)}">
                               <span class="owl_item_genre" th:text="${newGameList.get(seq).gameTagList.get(seq2).tag.tagName}">Action, Adventure</span>
                               <th:block th:if="${seq2} == 0">
@@ -315,9 +342,10 @@
               <!-- /.tab item -->
 
               <!-- tab item -->
+              <!-- 
               <div class="tab-pane fade" id="mp-03-c" role="tabpanel" aria-labelledby="mp-03-tab">
                 <div class="owl-carousel gs-carousel" data-carousel-margin="30" data-carousel-nav="true" data-carousel-navText="<span class='icon-cl-next pe-7s-angle-left'></span>, <span class='icon-cl-next pe-7s-angle-right'></span>">
-                  <!-- item -->
+                  
                   <div class="item">
                     <div class="item-cont">
                       <figure class="owl_item_review">
@@ -344,121 +372,10 @@
                       </figure>
                     </div>
                   </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
-                  <!-- item -->
-                  <div class="item">
-                    <div class="item-cont">
-                      <figure class="owl_item_review">
-                        <div>
-                          <div class="position-relative overflow-hidden">
-                            <img class="m-0-auto" src="assets/img/content/cont/cg_01.jpg" alt="Games Store">
-                            <div class="review_h text-light">
-                              <a href="#">
-                                <i class="item_icon_cart fas fa-shopping-cart"></i>
-                                <span class="item_atc_text">Add to cart</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div>
-                            <h5 class="owl_item_title text-lt"><a href="">Donec dignissim ...</a></h5>
-                            <div class="relative small-1">
-                              <span class="owl_item_price">€44.99</span>
-                              <span class="owl_item_genre">
-                                Action, Adventure
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </figure>
-                    </div>
-                  </div>
-                  <!-- /.item -->
+                  
                 </div>
               </div>
+               -->
               <!-- /.tab item -->
 
             </div>
