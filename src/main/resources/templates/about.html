@@ -96,7 +96,7 @@
               <p class="lead-1" th:text=${popularGameList.get(0).gShortDesc}>Morbi aliquet felis nec nisl congue interdum. Quisque vitae sapien ullamcorper, tincidunt nibh et, finibus dui. Nunc et ex faucibus, molestie lacus id, interdum lectus. Sed tincidunt purus vel porttitor sagittis. Fusce at ligula felis.</p>
               <div class="text-right"><p class="text-warning mt-0" th:text=${popularGameList.get(0).gDistributor}>Aenean ac.</p></div>
               <a href="#" class="btn btn-outline-light"
-               th:href="|store-product?gNo=3|" th:text="|구매하기|">See More</a>
+               th:href="@{store-product(gNo=${popularGameList.get(0).gNo})}" th:text="|구매하기|">See More</a>
             </div>
           </div>
         </div>
