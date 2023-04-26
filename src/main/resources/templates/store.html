@@ -49,7 +49,7 @@
       <section class="content-section text-light br-n bs-c bp-c" style="background-image: url(assets/img/bg/bg-5.jpg);">
         <div class="container">
           <div class="header text-left">
-            <h2>Best Deals</h2>
+            <h2 th:text="|오늘의 게임|">Best Deals</h2>
           </div>
           <div id="storeCarousel" class="carousel-spotlight carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -96,12 +96,21 @@
                         </h5>
                       </div>
                       <div class="price d-none d-md-flex flex-wrap align-items-center">
+                      	<th:block th:if="${popularGameList.get(0).gDiscountRate != 0}">
                         <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded">
                         	<span class="fw-600" th:text="${#numbers.formatPercent(0 - popularGameList.get(0).gDiscountRate * 0.01, 2, 1)}">-30%</span>
                         </div>
+                        </th:block>
                         <div class="pl-3 d-flex flex-column my-md-3 my-lg-0 lh-1">
+                          <th:block th:if="${popularGameList.get(0).gDiscountRate != 0}">
                           <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice, 3, 'COMMA')}원|">€144.99</span>
+                          </th:block>
+                          <th:block th:if="${popularGameList.get(0).gPrice != 0}">
                           <span class="discount_final lead-2" th:text="|${#numbers.formatInteger(popularGameList.get(0).gPrice - popularGameList.get(0).gPrice * popularGameList.get(0).gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
+                          </th:block>
+                          <th:block th:if="${popularGameList.get(0).gPrice == 0}">
+                          <span class="discount_final lead-2" th:text="|무료 게임|">€99.99</span>
+                          </th:block>
                         </div>
                       </div>
                     </div>
@@ -156,12 +165,21 @@
                         </h5>
                       </div>
                       <div class="price d-none d-md-flex flex-wrap align-items-center">
+                        <th:block th:if="${popularGameList.get(seq).gDiscountRate != 0}">
                         <div class="px-3 py-1 my-md-3 my-lg-0 bg-warning text-secondary rounded">
                         	<span class="fw-600" th:text="${#numbers.formatPercent(0 - popularGameList.get(seq).gDiscountRate * 0.01, 2, 1)}">-30%</span>
                         </div>
+                        </th:block>
                         <div class="pl-3 d-flex flex-column my-md-3 my-lg-0 lh-1">
+                          <th:block th:if="${popularGameList.get(seq).gDiscountRate != 0}">
                           <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice, 3, 'COMMA')}원|">€144.99</span>
+                          </th:block>
+                          <th:block th:if="${popularGameList.get(seq).gPrice != 0}">
                           <span class="discount_final lead-2" th:text="|${#numbers.formatInteger(popularGameList.get(seq).gPrice - popularGameList.get(seq).gPrice * popularGameList.get(seq).gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
+                          </th:block>
+                          <th:block th:if="${popularGameList.get(seq).gPrice == 0}">
+                          <span class="discount_final lead-2" th:text="|무료 게임|">€99.99</span>
+                          </th:block>
                         </div>
                       </div>
                     </div>
@@ -205,7 +223,7 @@
       <section class="content-section top_sellers carousel-spotlight ig-carousel pt-0 text-light">
         <div class="container">
           <header class="header">
-            <h2>Most popular products</h2>
+            <h2 th:text="|최고 인기 게임|">Most popular products</h2>
           </header>
           <div class="position-relative">
             <div class="row">
@@ -255,6 +273,7 @@
                                 <!-- /.each -->
                               </div>
                             </div>
+                            <th:block th:if="${game.gDiscountRate != 0}">
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
@@ -262,11 +281,19 @@
                                 </div>
                               </div>
                             </div>
+                            </th:block>
                             <div class="item_price">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
+                                  <th:block th:if="${game.gDiscountRate != 0}">
                                   <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(game.gPrice, 3, 'COMMA')}원|">€144.99</span><br>
+                                  </th:block>
+                                  <th:block th:if="${game.gPrice} != 0">
                                   <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                                  </th:block>
+                                  <th:block th:if="${game.gPrice} == 0">
+                                  <span class="fw-600" th:text="|무료 게임|">€44.99</span>
+                                  </th:block>
                                 </div>
                               </div>
                             </div>
@@ -309,6 +336,7 @@
                                 <!-- /.each -->
                               </div>
                             </div>
+                            <th:block th:if="${game.gDiscountRate != 0}">
                             <div class="item_discount d-none d-sm-block">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right text-secondary px-6">
@@ -316,11 +344,19 @@
                                 </div>
                               </div>
                             </div>
+                            </th:block>
                             <div class="item_price">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
+                                  <th:block th:if="${game.gDiscountRate != 0}">
                                   <span class="fw-600 td-lt" th:text="|${#numbers.formatInteger(game.gPrice, 3, 'COMMA')}원|">€144.99</span><br>
+                                  </th:block>
+                                  <th:block th:if="${game.gPrice} != 0">
                                   <span class="fw-600" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">€44.99</span>
+                                  </th:block>
+                                  <th:block th:if="${game.gPrice} == 0">
+                                  <span class="fw-600" th:text="|무료 게임|">€44.99</span>
+                                  </th:block>
                                 </div>
                               </div>
                             </div>

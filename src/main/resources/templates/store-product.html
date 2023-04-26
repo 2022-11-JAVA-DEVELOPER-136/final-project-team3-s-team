@@ -411,12 +411,21 @@
                 <div class="price-wrapper">
                   <div class="mb-3">
                     <div class="price">
+                        <th:block th:if="${game.gDiscountRate != 0}">
                         <div class="price-prev" th:text="|${#numbers.formatInteger(game.gPrice, 3, 'COMMA')}원|">300$</div>
+                        </th:block>
+                        <th:block th:if="${game.gPrice} != 0">
                         <div class="price-current" th:text="|${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원|">224$</div>
-                      </div>
-                    <div class="discount" th:text="|Save: ${#numbers.formatInteger(game.gPrice - game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원 (${#numbers.formatPercent(1 - game.gDiscountRate * 0.01, 2, 2)})|">
+                        </th:block>
+                        <th:block th:if="${game.gPrice} == 0">
+                        <div class="price-current" th:text="|무료 게임|">224$</div>
+                        </th:block>
+                    </div>
+                    <th:block th:if="${game.gPrice} != 0 and ${game.gDiscountRate} != 0">
+                    <div class="discount" th:text="|Save: ${#numbers.formatInteger(game.gPrice * game.gDiscountRate * 0.01, 3, 'COMMA')}원 (${#numbers.formatPercent(game.gDiscountRate * 0.01, 2, 2)})|">
                         Save: $20.00 (33%)
                     </div>
+                    </th:block>
                   </div>
                   <div class="price-box mb-4">
                       <!-- cart quantity
