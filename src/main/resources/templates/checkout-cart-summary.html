@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="checkout-cart-summary">
 	<div class="archive border border-secondary rounded">
-		<div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase lead-1">Cart Summary</span></div>
+		<div class="bg-secondary px-4 py-1"><span class="fw-600 ls-1 text-uppercase lead-1" th:text="|주문정보 요약|">Cart Summary</span></div>
 		<div class="p-4">
 			<ul class="list-unstyled small mb-0">
-				<li class="small-2">Price Details</li>
+				<li class="small-2" th:text="주문금액">Price Details</li>
 				<li><hr class="my-3 border-secondary"></li>
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
-						<div>Full Price</div>
+						<div th:text="기본금액">Full Price</div>
 						<th:block th:if="${fullPrice} != 0">
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(fullPrice, 3, 'COMMA')}원|">총액</div>
 						</th:block>
@@ -20,7 +20,7 @@
 				</li>
 				<li class="my-1">
 					<div class="d-flex text-info small-2 fw-600">
-						<div>Your Discount</div>
+						<div th:text="할인금액">Your Discount</div>
 						<th:block th:if="${finalDiscountPrice} != 0">
 						<div class="ml-auto" th:text="|-${#numbers.formatInteger(finalDiscountPrice, 3, 'COMMA')}원|">할인액</div>
 						</th:block>
@@ -37,9 +37,10 @@
 					</div>
 				</li>
 				 -->
+				<!-- 
 				<li class="my-1">
 					<div class="d-flex text-warning small-2 fw-600">
-						<div>You Save</div>
+						<div th:text="">You Save</div>
 						<th:block th:if="${savedPrice}!=0">
 						<div class="ml-auto" th:text="|${#numbers.formatInteger(savedPrice, 3, 'COMMA')}원|">감면액</div>
 						</th:block>
@@ -48,6 +49,7 @@
 						</th:block>
 					</div>
 				</li>
+				 -->
 				<!-- 
 				<li class="my-1">
 					<div class="d-flex small-2 fw-600">
@@ -59,7 +61,7 @@
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
 					<div class="d-flex small-1 fw-600">
-						<div>Total</div>
+						<div th:text="총액">Total</div>
 						<th:block th:if="${finalPrice}!=0">
 						<div class="ml-auto text-warning" th:text="|${#numbers.formatInteger(finalPrice, 3, 'COMMA')}원|">최종액</div>
 						</th:block>
@@ -70,11 +72,13 @@
 				</li>
 				<li><hr class="my-3 border-secondary"></li>
 				<li>
-					<a href="checkout-address" class="btn btn-lg btn-block btn-warning mt-4">PLACE ORDER</a>
+					<a href="checkout-address" class="btn btn-lg btn-block btn-warning mt-4" th:text="|주문 계속하기|">PLACE ORDER</a>
 				</li>
+				<!-- 
 				<li class="lh-1">
 					<span class="small-4 text-lt w-100 mt-4 pb-1 d-inline-block">By clicking Place Order, you accept our <a href="#" target="_blank" class="text-rp text-primary text-underline">refund policy</a>.</span>
 				</li>
+				 -->
 			</ul>
 		</div>
 	</div>
