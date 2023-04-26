@@ -54,8 +54,11 @@
               th:style="${'background-image:url(image/'} + ${session.loginUser.uImgProfile} + ');'">
                 <span class="position-absolute b-0 r-0 text-secondary lead-3 d-block bg-warning p-2 rounded-circle lh-1"><input type="file" class="custom-file-input position-absolute l-0 t-0 b-0 h-auto" id="customFile"><i class="far fa-image"></i></span>
               </div>
-              <h3 th:text="${session.loginUser.uId}">Sakuras</h3>
-              <span class="d-flex align-items-center justify-content-center fw-500 text-shadow"><i class="fas fa-circle text-warning small-6 mr-1"></i>Online</span>
+              <h3 th:text="${session.loginUser.uNickname}">Sakuras</h3>
+              <span class="d-flex align-items-center justify-content-center fw-500 text-shadow">
+              	<i class="fas fa-circle text-warning small-6 mr-1"></i>
+              	<span th:text="온라인">Online</span>
+              </span>
             </div>
           </div>
         </div>
@@ -71,13 +74,13 @@
                   <li class="py-2 py-lg-0">
                     <a id="mp-2-01-tab" data-toggle="tab" href="#mp-2-01-c" role="tab" aria-controls="mp-2-01-c" aria-selected="true" class="profile-nav-link text-uppercase text-center active show">
                       <span class="pr-icon-nav ti-layout-cta-left lead-4 d-block mb-3"></span>
-                      <span class="small-2 fw-400 ls-1">About</span>
+                      <span class="small-2 fw-400 ls-1" th:text="프로필">About</span>
                     </a>
                   </li>
                   <li class="py-2 py-lg-0">
                     <a id="mp-2-02-tab" data-toggle="tab" href="#mp-2-02-c" role="tab" aria-controls="mp-2-02-c" aria-selected="false" class="profile-nav-link text-uppercase text-center">
                       <span class="pr-icon-nav ti-game lead-4 d-block mb-3"></span>
-                      <span class="small-2 fw-400 ls-1">Games</span>
+                      <span class="small-2 fw-400 ls-1" th:text="라이브러리">Games</span>
                     </a>
                   </li>
                   <!--  
@@ -90,13 +93,13 @@
                   <li class="py-2 py-lg-0">
                     <a id="mp-2-04-tab" data-toggle="tab" role="tab" href="#mp-2-04-c" aria-controls="mp-2-04-c" aria-selected="false" class="profile-nav-link text-uppercase text-center" >
                       <span class="pr-icon-nav ti-settings lead-4 d-block mb-3"></span>
-                      <span class="small-2 fw-400 ls-1">Settings</span>
+                      <span class="small-2 fw-400 ls-1" th:text="설정">Settings</span>
                     </a>
                   </li>
                   <li class="py-2 py-lg-0">
                     <a id="mp-2-05-tab" data-toggle="tab" href="#mp-2-05-c" role="tab" aria-controls="mp-2-05-c" aria-selected="false" class="profile-nav-link text-uppercase text-center">
                       <span class="pr-icon-nav ti-heart lead-4 d-block mb-3"></span>
-                      <span class="small-2 fw-400 ls-1">Wishlist</span>
+                      <span class="small-2 fw-400 ls-1" th:text="위시리스트">Wishlist</span>
                     </a>
                   </li>
                   <!--  
@@ -136,7 +139,7 @@
                   <div class="col-lg-7 mb-9 mb-lg-0">
     
                     <div id="about" class="mb-8">
-                      <h4>About</h4>
+                      <h4 th:text="프로필">About</h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                       <div class="row">
                         <div class="col-10 col-lg-11">
@@ -150,9 +153,12 @@
 					    <div id="friends" class="mb-8">
 	                      <div class="row">
 	                        <div class="col-10 col-lg-11">
-	                          <h4 class="mb-1 lh-1">Friends</h4>
+	                          <h4 class="mb-1 lh-1" th:text="|친구 목록|">Friends</h4>
 	                          <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
-	                          <span class="d-block mb-4">Offline<span class="text-warning lead-1 ml-1" th:text="${onCnt}">(8)</span></span>
+	                          <span class="d-block mb-4">
+	                          	<span th:text="온라인">Offline</span>
+	                          	<span class="text-warning lead-1 ml-1" th:text="${onCnt}">(8)</span>
+	                          </span>
 	                        </div>
 	                        <div class="col-2 col-lg-1 text-right">
 	                          <a href="#" class="lead-1 text-warning"><i class="fas fa-search"></i></a>
@@ -172,7 +178,10 @@
 	                                       <a href="#" class="d-block" th:text="${user?.uName ?: '친구 사귀셈'}">
 	                                         Dewei Tsou
 	                                       </a>
-	                                       <span class="d-flex align-items-center small-3 text-warning"><i class="fas fa-circle small-7 mr-1"></i>Online</span>
+	                                       <span class="d-flex align-items-center small-3 text-warning">
+	                                       	<i class="fas fa-circle small-7 mr-1"></i>
+	                                       	<span th:text="온라인">Online</span>
+	                                       </span>
 	                                     </div>
 	                                   </div>
 	                                 </div>
@@ -201,7 +210,7 @@
                     	<div id="reviews" class="mb-8">
 	                      <div class="row">
 	                        <div class="col-12">
-	                          <h4 class="mb-4">Reviews</h4>
+	                          <h4 class="mb-4" th:text="리뷰">Reviews</h4>
 	                          <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
 	                        </div>
 	                      </div>
@@ -332,18 +341,25 @@
                       <div class="px-5 py-6">
                        <div class="mb-6" th:each="ownedGame:${ownedGameLastTimeList}">
                           <div class="row no-gutters">
-                            <div class="col-2 item_img d-none d-sm-flex align-items-center">
+                            <div class="col-3 item_img d-none d-sm-flex align-items-center">
                               <a href="store-product.html" class="product-item" th:href="@{/store-product(gNo=${ownedGame.game.gNo})}">
                               <img class="img img-lg bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|"></a>
                             </div>
                             <div class="col-5 item_content flex-1 flex-grow pl-0 pl-sm-3 pr-3">
-                              <a href="store-product.html" class="product-item"><h6 class="item_title text-lt ls-1 small-1 fw-600 text-uppercase mb-0" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
+                              <a href="store-product.html" class="product-item">
+                              	<h6 class="item_title text-lt ls-1 small-1 fw-600 text-uppercase mb-0" th:text="${ownedGame?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6>
+                              </a>
                               <span class="small-3" >
                               	<span class="text-warning"><i class="far fa-clock mr-1"></i></span>
+                              	<th:block th:if="${ownedGame.ogLastplay != null}">
                               	<span th:text="${#dates.format(ownedGame.ogLastplay, 'HH:mm')}">21:41</span>
+                              	</th:block>
+                              	<th:block th:if="${ownedGame.ogLastplay == null}">
+                              	<span th:text="|플레이 없음|">21:41</span>
+                              	</th:block>
                               </span>
                             </div>
-                            <div class="col-5 col-sm-5">
+                            <div class="col-4 col-sm-4">
                               <div class="row align-items-center justify-content-end h-100 no-gutters">
                                 <div class="text-right small-3">
 	                                <span class="fw-500">
@@ -352,7 +368,12 @@
 	                                </span><br>
 	                                <span class="fw-500">
 	                                	<span th:text="|마지막 플레이|"></span>
+	                                	<th:block th:if="${ownedGame.ogLastplay != null}">
 	                                	<span class="text-warning fw-600" th:text="${#dates.format(ownedGame.ogLastplay, 'MM월 dd일')}">July 27</span>
+	                                	</th:block>
+	                                	<th:block th:if="${ownedGame.ogLastplay == null}">
+	                                	<span class="text-warning fw-600" th:text="없음">July 27</span>
+	                                	</th:block>
 	                                </span>
                                 </div>
                               </div>
@@ -426,7 +447,8 @@
                       <div class="border border-secondary" >
                         <div class="row align-items-center no-gutters">
                           <div class="item_img d-none d-md-block" >
-                            <img class="profile-glib img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${ownedGame.game.resourcesList.get(0).resName}|">
+                            <img class="profile-glib img bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" style=""
+                            	th:src="|image/${ownedGame.game.resourcesList.get(3).resName}|" th:style="${'width:250px; height:100px'}">
                           </div>
                           <div class="item_content flex-1 flex-grow pl-4 pl-sm-6 pr-6 py-4">
                             <h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-2" th:text="${ownedGame.game.gName}">Integer sagittis semper</h6>
@@ -535,7 +557,10 @@
                   <div class="col-lg-12 mb-9 mb-lg-0">
                   
                     <div class="mb-8 srch">
-                      <h4><i class="ti-shopping-cart text-warning mr-2"></i>My Profile</h4>
+                      <h4>
+                      	<i class="ti-shopping-cart text-warning mr-2"></i>
+                      	<span th:text="|내 정보|">My Profile</span>
+                      </h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                       <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4" id="updtForm" name="updtForm">
                         <div class="form-group custom-control mb-1">
@@ -571,7 +596,10 @@
                     </div>
                     
                     <div class="mb-8">
-                      <h4><i class="ti-shopping-cart text-warning mr-2"></i>주소</h4>
+                      <h4>
+                      	<i class="ti-shopping-cart text-warning mr-2"></i>
+                      	<span th:text="주소">address</span>
+                      </h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                       <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4" id="addrForm" name="addrForm">
 	                      <div class="form-group custom-control mb-1">
@@ -594,7 +622,10 @@
                     </div>
                     
                     <div class="mb-8">
-                      <h4><i class="ti-truck text-warning mr-2"></i>Payment Details</h4>
+                      <h4>
+                      	<i class="ti-shopping-cart text-warning mr-2"></i>
+                      	<span th:text="카드">Payment Details</span>
+                      </h4>
                       <hr class="w-10 border-top-2 mt-5 mb-5 ml-0 mr-auto border-warning">
                       <form class="input-transparent d-flex align-items-start flex-column bg-dark_A-20 border border-secondary px-5 py-4" id="cardForm" name="cardForm">
                         <div class="form-group custom-control mb-1">
@@ -841,7 +872,7 @@
             <div class="tab-pane fade" id="mp-2-05-c" role="tabpanel" aria-labelledby="mp-2-05-tab">
               <div class="position-relative"  id="removeReloadDiv">
                 <header class="header mb-2">
-                  <h3>Wishlist</h3>
+                  <h3 th:text="위시리스트">Wishlist</h3>
                   <hr class="w-10 border-top-2 mt-5 mb-7 ml-0 mr-auto border-warning">
                 </header>
                 <div class="row">
@@ -853,10 +884,14 @@
                         <div class="product-item">
                           <div class="row align-items-center no-gutters">
                             <div class="item_img d-none d-sm-block">
-                              <a href="store-product.html" th:href="@{/store-product(gNo=${wishList.game.gNo})}"><img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${wishList.game.resourcesList.get(0).resName}|"></a>
+                              <a href="store-product.html" th:href="@{/store-product(gNo=${wishList.game.gNo})}">
+                              	<img class="img img-xl bl-3 text-primary" src="assets/img/content/cont/cg-h_01.jpg" alt="Games Store" th:src="|image/${wishList.game.resourcesList.get(3).resName}|">
+                              </a>
                             </div>
                             <div class="item_content flex-1 flex-grow pl-0 pl-sm-6 pr-6">
-                              <a href="store-product.html"><h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1"  th:text="${wishList?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6></a>
+                              <a href="store-product.html" th:href="@{store-product(gNo=${wishList.game.gNo})}">
+                              	<h6 class="item_title ls-1 small-1 fw-600 text-uppercase mb-1"  th:text="${wishList?.game.gName ?: '게임플레이 하셈'}">Integer sagittis semper</h6>
+                              </a>
                               <div class="mb-0">
                                 <i class="mr-2 fab fa-windows"></i>
                                 <i class="mr-2 fab fa-steam"></i>
@@ -871,11 +906,21 @@
                             <div class="item_price">
                               <div class="row align-items-center h-100 no-gutters">
                                 <div class="text-right">
-                                  <span class="fw-600 small-3 td-lt" th:text="${#numbers.formatPercent(0 - wishList.game.gDiscountRate * 0.01, 2, 1)}">€144.99</span><br>
-                                  <span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(wishList.game.gPrice, 3, 'COMMA')}원|">€144.99</span>
-                                  <span class="fw-600 lead-1 text-warning"  th:text="|${#numbers.formatInteger(wishList.game.gPrice - wishList.game.gPrice * wishList.game.gDiscountRate * 0.01, 3, 'COMMA')}원|" >€44.99</span>
+                                  <th:block th:if="${wishList.game.gDiscountRate != 0}">
+                                  	<span class="small discount fw-600 td-lt mb-1" th:text="|${#numbers.formatInteger(wishList.game.gPrice, 3, 'COMMA')}원|">€144.99</span>
+                                  	<br>
+                                  	<span class="fw-600 small-3 td-lt" th:text="${#numbers.formatPercent(0 - wishList.game.gDiscountRate * 0.01, 2, 1)}">€144.99</span>
+                                  </th:block>
+                                  <th:block th:if="${wishList.game.gPrice} != 0">
+                                  	<span class="fw-600 lead-1 text-warning"  th:text="|${#numbers.formatInteger(wishList.game.gPrice - wishList.game.gPrice * wishList.game.gDiscountRate * 0.01, 3, 'COMMA')}원|" >€44.99</span>
+                                  </th:block>
+                                  <th:block th:if="${wishList.game.gPrice} == 0">
+                                  	<span class="fw-600 lead-1 text-warning"  th:text="|무료 게임|" >€44.99</span>
+                                  </th:block>
                                   <span class="small d-none d-sm-block fw-600">
-                                      Added on <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}"> 8/25/2019</span> ( <a href="javascript:void(0);" th:onclick="'removeAction('+ ${wishList.wishNo} + ')'" class="text-dotted-warning removeClass"  >remove</a> )
+                                  	<span th:text="|찜한 날짜:|">Added on</span>
+                                    <span class="d-none d-lg-inline" th:text="${#dates.format(wishList.wishDate, 'yyyy-MM-dd')}">8/25/2019</span>
+                                    <a href="javascript:void(0);" th:onclick="'removeAction('+ ${wishList.wishNo} + ')'" class="ti-trash text-warning text-dotted-warning removeClass"></a>
                                   </span>
                                 </div>
                               </div>
