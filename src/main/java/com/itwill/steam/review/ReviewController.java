@@ -35,10 +35,12 @@ public class ReviewController {
 									  HttpSession session,
 									  RedirectAttributes redirectAttributes) {
 		// 로그인 체크
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("loginUser");//????????문제 생겼었음
 		if (user == null) {
 			return "redirect:main";
 		}
+		
+		System.out.println(">>>>>>>>review-write>>>>>>>>>>>>>>>>");
 		
 		Review review = Review.builder().user(User.builder().uNo(Integer.parseInt(uNo)).build())
 										.game(Game.builder().gNo(Integer.parseInt(gNo)).build())

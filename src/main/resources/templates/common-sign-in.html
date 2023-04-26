@@ -11,14 +11,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <div>
+             <div>
               <div class="text-center my-6"> 
                 <a class="btn btn-circle btn-sm btn-google mr-2" href=""><i class="fab fa-google"></i></a>
                 <a class="btn btn-circle btn-sm btn-facebook mr-2" href=""><i class="fab fa-facebook-f"></i></a>
                 <a class="btn btn-circle btn-sm btn-twitter" href=""><i class="fab fa-twitter"></i></a>
-              </div>
+              </div> 
               <span class="hr-text small my-6">Or</span>
-            </div>
+            </div> 
             <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name ="f" id="f" class="input-transparent">
             <input type="hidden" th:value="${loginSuccYn}" id="loginSuccYn" />
               <div class="form-group">
@@ -33,15 +33,15 @@
               <div class="form-group d-flex justify-content-between">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" checked="" id="rememberMeCheck">
-                  <label class="custom-control-label" for="rememberMeCheck">Remember me</label> 
+                  <!-- <label class="custom-control-label" for="rememberMeCheck">Remember me</label>  -->
                 </div>
-                <a class="small-3" href="#">Forgot password?</a>
+                <!-- <a class="small-3" href="#">Forgot password?</a> -->
               </div>
               <div class="form-group mt-6">
                 <button type="button" class="btn btn-block btn-warning" onclick="login();return false;">login</button>
               </div>
             </form>
-            <span class="small">Don't have an account? <a href="#">Create an account</a></span>
+            <!-- <span class="small">Don't have an account? <a href="#">Create an account</a></span> -->
           </div>
         </div>
       </div>
