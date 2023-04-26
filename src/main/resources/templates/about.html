@@ -55,7 +55,7 @@
               <div class="fadeIn ad-500ms">
                 <h1 class="mb-6" th:text="|S-TEAM 소개|">Our Store</h1>
                 <p class="lead-lg mb-7" th:text="|게임을 플레이하고, 게임에 대해 토론하고, 게임을 창작하는 최고의 공간입니다.|">Sed sed nisi ac tellus ultricies finibus sit amet nec eros. Aliquam eget iaculis eros. Nam blandit augue sed tellus scelerisque, eget viverra tellus blandit. Sed purus risus, tempus vel nisi non, sagittis rutrum nisi. Nunc sed nunc lacinia, tempor nulla ut, elementum justo. Etiam metus ante, eleifend elementum mi a, malesuada porttitor mauris.</p>
-                <a href="" class="btn btn-lg btn-round btn-outline-light" th:text="|더 알아보기|">Read More</a>
+                <!-- <a href="" class="btn btn-lg btn-round btn-outline-light" th:text="|더 알아보기|">Read More</a> -->
               </div>
             </div>
           </div>
@@ -88,12 +88,12 @@
           <div class="row gutters-y align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0 ml-auto">
               <div class="ar-4_3 bs-c bp-c br-n rounded" style="background-image: url(assets/img/bg/bg-3.jpg)"
-              th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(0).resName} + ');'"></div>
+              th:style="${'background-image:url(image/'} + ${popularGameList.get(0).resourcesList.get(2).resName} + ');'"></div>
             </div>
             <div class="col-lg-6 ml-lg--8 rounded bg-dark text-light shadow-lg-3 py-7 px-lg-7 py-lg-6">
               <h3 class="mb-4" th:text="|4월 최고의 인기작|">Our Mission.</h3>
               <hr class="w-10 border-top-2 my-6 my-xl-7 ml-0 border-warning">
-              <p class="lead-1" th:text=${popularGameList.get(0).gLongDesc}>Morbi aliquet felis nec nisl congue interdum. Quisque vitae sapien ullamcorper, tincidunt nibh et, finibus dui. Nunc et ex faucibus, molestie lacus id, interdum lectus. Sed tincidunt purus vel porttitor sagittis. Fusce at ligula felis.</p>
+              <p class="lead-1" th:text=${popularGameList.get(0).gShortDesc}>Morbi aliquet felis nec nisl congue interdum. Quisque vitae sapien ullamcorper, tincidunt nibh et, finibus dui. Nunc et ex faucibus, molestie lacus id, interdum lectus. Sed tincidunt purus vel porttitor sagittis. Fusce at ligula felis.</p>
               <div class="text-right"><p class="text-warning mt-0" th:text=${popularGameList.get(0).gDistributor}>Aenean ac.</p></div>
               <a href="#" class="btn btn-outline-light"
                th:href="|store-product?gNo=3|" th:text="|구매하기|">See More</a>
@@ -191,6 +191,71 @@
                 </figure>     
               </article>
             </div>
+            <div class="col-md-4 mb-9 mb-md-0">
+              <article class="card article-post">
+                <div class="position-relative overflow-hidden br-n bp-c bs-c article-image ar-1_1 w-50 mx-auto rounded-circle mb-4" style="background-image: url(image/sy.png)"></div>
+                <figure>
+                  <figcaption>
+                    <h5 class="text-light mt-1 mb-0"><a href="#" class="text-light" th:text="|팀원4|">Sollicitudin</a></h5>
+                    <hr class="w-10 border-top-2 my-6 my-xl-7 border-warning">
+                    <p th:text="|설명|">Mauris tempus enim lorem, nec egestas est fringilla ut. Quisque iaculis dui egestas mi blandit viverra. Nulla luctus vulputate iaculis. Nulla facilisi.</p>
+                    <span class="small d-inline-block py-2 px-4 bg-dark_A-20 text-warning" th:text="|팀원|">Marketing Ops</span>
+                  </figcaption>
+                </figure>     
+              </article>
+            </div>
+            <div class="col-md-4 mb-9 mb-md-0">
+              <article class="card article-post">
+                <div class="position-relative overflow-hidden br-n bp-c bs-c article-image ar-1_1 w-50 mx-auto rounded-circle mb-4" style="background-image: url(image/sy.png)"></div>
+                <figure>
+                  <figcaption>
+                    <h5 class="text-light mt-1 mb-0"><a href="#" class="text-light" th:text="|팀원5|">Sollicitudin</a></h5>
+                    <hr class="w-10 border-top-2 my-6 my-xl-7 border-warning">
+                    <p th:text="|설명|">Mauris tempus enim lorem, nec egestas est fringilla ut. Quisque iaculis dui egestas mi blandit viverra. Nulla luctus vulputate iaculis. Nulla facilisi.</p>
+                    <span class="small d-inline-block py-2 px-4 bg-dark_A-20 text-warning" th:text="|팀원|">Marketing Ops</span>
+                  </figcaption>
+                </figure>     
+              </article>
+            </div>
+            <div class="col-md-4 mb-9 mb-md-0">
+              <article class="card article-post">
+                <div class="position-relative overflow-hidden br-n bp-c bs-c article-image ar-1_1 w-50 mx-auto rounded-circle mb-4" style="background-image: url(image/sy.png)"></div>
+                <figure>
+                  <figcaption>
+                    <h5 class="text-light mt-1 mb-0"><a href="#" class="text-light" th:text="|팀원6|">Sollicitudin</a></h5>
+                    <hr class="w-10 border-top-2 my-6 my-xl-7 border-warning">
+                    <p th:text="|설명|">Mauris tempus enim lorem, nec egestas est fringilla ut. Quisque iaculis dui egestas mi blandit viverra. Nulla luctus vulputate iaculis. Nulla facilisi.</p>
+                    <span class="small d-inline-block py-2 px-4 bg-dark_A-20 text-warning" th:text="|팀원|">Marketing Ops</span>
+                  </figcaption>
+                </figure>     
+              </article>
+            </div>
+            <div class="col-md-4 mb-9 mb-md-0">
+              <article class="card article-post">
+                <div class="position-relative overflow-hidden br-n bp-c bs-c article-image ar-1_1 w-50 mx-auto rounded-circle mb-4" style="background-image: url(image/sy.png)"></div>
+                <figure>
+                  <figcaption>
+                    <h5 class="text-light mt-1 mb-0"><a href="#" class="text-light" th:text="|팀원7|">Sollicitudin</a></h5>
+                    <hr class="w-10 border-top-2 my-6 my-xl-7 border-warning">
+                    <p th:text="|설명|">Mauris tempus enim lorem, nec egestas est fringilla ut. Quisque iaculis dui egestas mi blandit viverra. Nulla luctus vulputate iaculis. Nulla facilisi.</p>
+                    <span class="small d-inline-block py-2 px-4 bg-dark_A-20 text-warning" th:text="|팀원|">Marketing Ops</span>
+                  </figcaption>
+                </figure>     
+              </article>
+            </div>
+            <div class="col-md-4 mb-9 mb-md-0">
+              <article class="card article-post">
+                <div class="position-relative overflow-hidden br-n bp-c bs-c article-image ar-1_1 w-50 mx-auto rounded-circle mb-4" style="background-image: url(image/sy.png)"></div>
+                <figure>
+                  <figcaption>
+                    <h5 class="text-light mt-1 mb-0"><a href="#" class="text-light" th:text="|팀원8|">Sollicitudin</a></h5>
+                    <hr class="w-10 border-top-2 my-6 my-xl-7 border-warning">
+                    <p th:text="|설명|">Mauris tempus enim lorem, nec egestas est fringilla ut. Quisque iaculis dui egestas mi blandit viverra. Nulla luctus vulputate iaculis. Nulla facilisi.</p>
+                    <span class="small d-inline-block py-2 px-4 bg-dark_A-20 text-warning" th:text="|팀원|">Marketing Ops</span>
+                  </figcaption>
+                </figure>     
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -236,7 +301,7 @@
           </th:block>
           </th:block>
           <div class="row py-2 py-lg-1">
-          <th:block th:each="seq:${#numbers.sequence(2, 4)}">
+          <th:block th:each="seq:${#numbers.sequence(5, 7)}">
              <div class="col-md mb-4 mb-md-0 d-flex pr-lg-1 pl-lg-0">
               <div class="tile d-flex px-0">
                 <div class="tile">
@@ -267,7 +332,7 @@
       <!-- /.screenshots area -->
 
       <!-- content area -->
-      <section class="content-section latest-articles text-center text-light bs-c bp-c br-n position-relative" data-overlay="7" style="background-image: url(image/value.jpg)">
+      <!-- <section class="content-section latest-articles text-center text-light bs-c bp-c br-n position-relative" data-overlay="7" style="background-image: url(image/value.jpg)">
         <div class="container position-relative">
           <header class="section-header">
             <h2 th:text="|제목|">Our Values</h2>
@@ -281,7 +346,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
       <!-- /.content area -->
 
       <!-- content area -->
