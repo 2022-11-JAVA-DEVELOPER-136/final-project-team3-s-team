@@ -122,8 +122,8 @@
 		join tag t on gt.tag_no=t.tag_no 
 		join game_language gl on g.g_no=gl.g_no 
 		join language l on gl.lang_no=l.lang_no 
-		join news n on g.g_no=n.g_no 
-		join review rev on g.g_no=rev.g_no
+		left outer join news n on g.g_no=n.g_no 
+		left outer join review rev on g.g_no=rev.g_no
 		where g.g_no=#{gNo}
 	</select>
 	<update id="increaseSellCountByNo" parameterType="java.lang.Integer">
@@ -170,10 +170,9 @@
 		join tag t on gt.tag_no=t.tag_no 
 		join game_language gl on g.g_no=gl.g_no 
 		join language l on gl.lang_no=l.lang_no 
-		<!-- 
-		join news n on g.g_no=n.g_no 
-		 -->
-		join review rev on g.g_no=rev.g_no
+		left outer join news n on g.g_no=n.g_no 
+		left outer join review rev on g.g_no=rev.g_no
+		
 		where 1=1
 		<if test="keyword != null">
 			and g.g_name like '%'||#{keyword}||'%'

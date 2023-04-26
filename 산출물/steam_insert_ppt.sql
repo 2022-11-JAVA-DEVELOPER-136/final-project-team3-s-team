@@ -35,9 +35,11 @@ insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no)
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, '액션', 'action.jpg');
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, 'RPG', 'rpg.jpg');
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, '전략', 'strategy.jpg');
+/*
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, '어드벤쳐', 'adventure.jpg');
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, '스포츠', 'sports.jpg');
 insert into category(ct_no, ct_name, ct_img) values(CATEGORY_CT_NO_SEQ.nextval, '인디', 'indie.jpg');
+*/
 
 
 --game
@@ -468,7 +470,7 @@ values
 지금 바로 “소울워커”가 되어 세상을 구하라!
 
 게임 소개
-영혼을 뒤흔드는 감성 액션의 '새로운' 시작!
+영혼을 뒤흔드는 감성 액션의 새로운 시작!
 어느날 갑자기 나타난 세상의 모든 것을 집어삼키는 정체불명의 블랙홀, 공백. 공백으로부터 세상을 지키기 위한 9명의 소울워커가 되어 직접 세상을 구원으로 이끌어주세요.',
 9,
 to_date('2023/3/17'),
@@ -772,28 +774,349 @@ null,
 'NVIDIA GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB',
 '50 GB',
 'Windows 10',
-' Intel Core i5-4430 / AMD FX-6300',
+'Intel Core i5-4430 / AMD FX-6300',
 '8 GB RAM',
 'NVIDIA GeForce GTX 960 2GB / AMD Radeon R7 370 2GB',
 '40 GB',
 18653,
-2);
+3);
 
+--22
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Wartales',
+'Wartales is an open world RPG in which you lead a group of mercenaries in their search for wealth across a massive medieval universe. Explore the world, recruit companions, collect bounties and unravel the secrets of the tombs of the ancients!',
+'A century has passed since the fall of the Edoran Empire at the hands of an unprecedented plague that swept the nation. Now, the land is rife with mercenary work, banditry and thievery, with honor having become an almost entirely forgotten virtue.
 
+Now, prepare to lead a group of unscrupulous characters in a massive open world where combat, death and a thirst for riches will dictate your day to day life. You are not the hero of this story, destined to usher in a new era of peace. Your goal is solely to survive and thrive in this harsh and hostile world, by any means necessary…
 
+Only the bravest and most ambitious can hope to see their story written in the Wartales!',
+9,
+to_date('2023/4/12'),
+'Shiro Games',
+'Shiro Unlimited',
+36000,
+25,
+to_date('2023/4/12'),
+to_date('2023/5/12'),
+'Windows 10',
+'Intel Core i7 2.8 GHz / AMD Ryzen 7',
+'16 GB RAM',
+'NVidia GTX 1080 / AMD RX 5600',
+'30 GB',
+'Windows 7',
+'Intel Core i5 2.5 GHz / AMD Ryzen 5',
+'8 GB RAM',
+'NVidia GTX 1050 / AMD RX550',
+'30 GB',
+1735,
+3);
 
+--23
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Yu-Gi-Oh! Master Duel',
+'사상 최고봉의 디지털 카드 게임으로!',
+'Yu-Gi-Oh! Master Duel이란
+대 인기 카드 게임 유희왕OCG를 온라인으로 즐길 수 있는 디지털 카드 게임
+호화로운 그래픽, 매력적인 사운드, 경쾌한 템포로 듀얼이 펼쳐진다!
+전 세계의 듀얼리스트들과 유희왕을 본격적으로 플레이 해 보자!
 
+일단 듀얼로 실전이다!
+처음 받는 덱으로 일단 듀얼을 시작해보자!
+물론, 오랜만에 플레이 하는 사람이나 처음 시작하는 사람도 안심하고 플레이 할 수 있게 충실한 튜토리얼 요소도 준비되어 있다.
+게임을 진행하여 다양한 카드를 모아보자!
 
+다양한 규칙의 이벤트와 대회 실시!
+듀얼리스트 라이프를 풍족하게! 누구든 즐길 수 있는 다양한 이벤트와 대회를 준비!
+10,000종류가 넘게 수록된 카드로, 다양한 덱과 다양한 듀얼을 즐겨보자!
+당신이 자신 있는 규칙의 대회에서 최고를 노려보자!
 
+카드 일러스트에 담겨있는 이야기!
+혼자서도 느긋하게 꼼꼼한 플레이가 가능한 솔로 모드 탑재!
+카드에 얽힌 다양한 이야기와 세계를 따라가며 게임을 클리어 하면, 듀얼 실력도 착실하게 스텝 업!
+유희왕의 세계를 보다 깊이 알고 싶은 사람은 물론, 처음 플레이 하는 사람이나 오랜만에 플레이 하는 사람에게도 추천!',
+9,
+to_date('2022/1/19'),
+'Konami Digital Entertainment',
+'Konami Digital Entertainment',
+0,
+0,
+null,
+null,
+'Windows 10',
+'Intel Core i5-7300U',
+'8 GB RAM',
+'Intel(R) HD Graphics 620',
+'16 GB',
+'Windows 10',
+'Intel Core i5-7300U',
+'8 GB RAM',
+'Intel(R) HD Graphics 620',
+'16 GB',
+6878,
+3);
 
+--24
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Age of Empires IV: Anniversary Edition',
+'수백만 명의 글로벌 플레이어를 기쁘게하는 첫 해를 축하하는 수상 경력에 빛나는 베스트셀러 전략 프랜차이즈는 에이지 오브 엠파이어 IV: 기념일 에디션으로 계속되어 세계를 형성 한 더욱 서사시적인 역사적 전투의 중심에 서게합니다.',
+'수백만 명의 글로벌 플레이어를 기쁘게하는 첫 해를 축하하는 수상 경력에 빛나는 베스트셀러 전략 프랜차이즈 게임, Age of Empires IV: Anniversary Edition으로 계속되어 세계를 형성 한 더욱 서사시적인 역사적 전투의 중심에 서게합니다.
 
+놀라운 4K 시각적 충실도로 광대한 풍경에서 제국을 확장하는 친숙하고 혁신적인 새로운 방법을 특징으로하는 Age of Empires IV: Anniversary Edition은 새로운 문명, 새로운지도, 추가 게임 내 업데이트 및 언어와 같은 무료 새로운 콘텐츠를 포함하는 새 버전의 실시간 전략 게임은 새 단계에 도달했습니다. 그리고 새로운 마스터리, 도전, 도발 및 속임수 - 그 어느 때보 다 더 많은 역사를 포장하는 놀라운 가치로!
 
+두 개의 새로운 문명, 8개의 새로운지도 - 광업과 금 투자에 대한 강력한 경제적 능력에 초점을 맞추면서 서아프리카의 강력한 말리안을 사상 최고의 무역 국가 중 하나로 인도하십시오.
 
+또는 오스만 문명과 잘 훈련 된 군대와 함께 역사상 가장 오래 지속되는 제국 중 하나를 조립하십시오.이 군대는 사용 가능한 가장 큰 화약 포위 무기 인 그레이트 폭격기 - 당신의 길에 서있는 모든 상대를 쓰러 뜨릴 수있는 강력한 대포를 특징으로합니다.
 
+개조로 게임 사용자 정의(베타) - 모드 편집기의 최신 베타 릴리스에서 강력한 크리에이터 도구로 자신의 코스를 차트. 나만의 전투와 멀티플레이어 맵을 조각하고, 독특한 미션 시나리오를 만들고, 데이터 기반 튜닝 팩을 만들고, Age of Empires IV를 위한 새로운 플레이 모드를 구상하세요.
 
+역사로 돌아가기 - 과거는 영어에서 중국인, 델리 술탄에 이르기까지 전 세계의 10가지 다양한 문명의 풍부한 역사적 배경에 몰두하여 승리를 추구하면서 프롤로그입니다. 도시를 건설하고, 자원을 관리하고, 암흑 시대부터 르네상스에 이르기까지 500년의 역사에 걸쳐 35개의 임무를 수행하는 4가지 캠페인으로 육지와 바다에서 전투를 벌이도록 군대를 인도하십시오.
 
+모든 플레이어를위한 시대 - Age of Empires IV는 실시간 전략의 본질을 가르치는 튜토리얼 시스템과 처음 플레이어가 쉽게 설정하고 성공할 수 있도록 설계된 캠페인 스토리 모드를 통해 새로운 플레이어에게 매력적인 경험이지만 새로운 게임 메커니즘, 진화 된 전략을 가진 베테랑 플레이어에게는 충분히 도전적입니다. 그리고 전투 기술.
 
+세계에 도전하십시오 - 온라인으로 점프하여 순위가 매겨진 시즌 등을 포함하는 PVP 및 PVE 멀티 플레이어 모드에서 최대 7명의 친구와 경쟁, 협력 또는 관전하십시오!
 
+역사적인 인물과 함께 위대함으로 향하는 길을 선택하십시오 - 영국을 물리 치기 위해 Joan of Arc의 모험을 살거나 징기스칸으로 강력한 몽골 군대를 지휘하여 아시아 전역을 정복하십시오. 선택은 여러분의 것이며, 여러분이 내리는 모든 결정은 역사의 결과를 결정할 것입니다.',
+9,
+to_date('2021/10/28'),
+'Relic Entertainment',
+'Xbox Game Studios',
+39900,
+40,
+to_date('2023/4/12'),
+to_date('2023/5/12'),
+'Windows 10',
+'Intel Core i5-6300U or AMD Ryzen 5 2400G | CPU with AVX support required',
+'8 GB RAM',
+'Intel HD 520 or AMD Radeon RX Vega 11',
+'50 GB',
+'Windows 10',
+'Intel Core i5-6300U or AMD Ryzen 5 2400G | CPU with AVX support required',
+'8 GB RAM',
+'Intel HD 520 or AMD Radeon RX Vega 11',
+'50 GB',
+5799,
+3);
+
+--25
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Frostpunk',
+'프로스트펑크는 최초의 사회 생존 게임입니다. 당신은 지구상 마지막 도시의 지도자로서, 시민과 기반 시설을 관리해야 합니다. 사회의 생존을 위해, 어떤 결정을 내리시겠습니까? 한계까지 내몰렸을 때, 어떻게 하시겠습니까? 그 동안, 당신은 어떻게 변해갈까요?',
+'프로스트펑크(Frostpunk)는 첫 발매 이후 여러 DLC를 거치며 업데이트를 거듭해 왔습니다. 이제 여러분은 새로운 무한 모드(3가지 방법으로 플레이할 수 있습니다)를 플레이할 수 있습니다. 또한 더욱 확장된 게임 세계 및 이야기가 가득한 새 시나리오 - The Fall of Winterhome(윈터홈의 몰락)도 준비되었습니다. 또한 추가로 캐릭터 및 자동기계 이름 지정 기능 및 포토 모드 등을 추가했습니다. 모든 콘텐츠는 게임을 보유한 사람들이라면 무료로 이용할 수 있습니다. 이 유료 시즌 패스에는 함께 이용할 수 있는 세 가지 확장팩도 포함되어 있습니다. 동시에 저희는 더 이상 프로스트펑크에 더 이상의 콘텐츠를 제작할 계획이 없음을 알려드리고자 합니다. 우리의 여정은 여기서 끝나지만 앞으로 더 많은 것을 준비할 예정이므로 앞으로도 저희가 만들 게임을 주목해주시기 바랍니다. 당연히 이 게임은 앞으로도 패치와 수정 사항, 그리고 기술지원을 제공할 예정입니다.',
+9,
+to_date('2018/4/24'),
+'11 bit studios',
+'11 bit studios',
+32000,
+80,
+to_date('2023/4/12'),
+to_date('2023/5/12'),
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+7482,
+3);
+
+--26
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'컨커러스 블레이드',
+'컨커러스 블레이드에서는 누구든지 위대한 장군이 될 수 있습니다. 부대를 이끌고 전 세계 장군님들과 함께 15 대 15공성전에 참여해 성과 영토를 정복하세요. 장군님의 명성을 지금 바로 전 세계에 알리세요!',
+'컨커러스 블레이드는 중세 시대를 배경으로 하는 온라인 PC 액션전략게임 입니다. 자신의 부대를 직접 이끌어 전쟁에 참여하고, 15VS15의 대규모 전쟁을 몸으로 체험할 수 있으며, 월드로 나아가 유라시아 월드에 도시를 공격하여, 장군님만의 새로운 역사를 만들어 갈 수 있습니다.',
+9,
+to_date('2020/4/6'),
+'Booming Tech',
+'Poros Interactive',
+0,
+0,
+null,
+null,
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+6635,
+3);
+
+--27
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Hearts of Iron IV',
+'Victory is at your fingertips! Your ability to lead your nation is your supreme weapon, the strategy game Hearts of Iron IV lets you take command of any nation in World War II; the most engaging conflict in world history.',
+'Hearts of Iron 4 wields complexity like a swift armor division during the blitzkrieg, allowing it to serve the idea of layered, cerebral, strategic warfare instead of letting it needlessly bog down the experience.
+9/10 – IGN
+
+It captivates me because—imperfectly, impressionistically, and perhaps a little amorally—it lets me orchestrate the most titanic armed struggles in history, from the fussy economic details to the cut-and-thrust of mechanized warfare. There are other great strategic-level wargames out there. But I have never played anything like Hearts of Iron 4
+8.8/10 – PC Gamer
+
+For now, after many dozens of hours, Im taking a break from Hearts of Iron 4. Not because Im sick of it; quite the contrary, in fact. What I need to do is some serious reading, some careful planning on what my vision for the United States should be in 1936. And when Ive done that planning — when Ive formulated my character sheet, as it were — I have the utmost confidence that Hearts of Iron 4 will be ready for me to play a role in world affairs.
+8/10 – Polygon',
+9,
+to_date('2016/6/7'),
+'Paradox Development Studio',
+'Paradox Development Studio',
+43000,
+0,
+null,
+null,
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+'Windows 10',
+'3.2 GHz Dual Core Processor',
+'4 GB RAM',
+'GeForce GTX 660, Radeon R7 370 or equivalent with 2 GB of video RAM',
+'8 GB',
+9832,
+3);
+
+--28
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Total War: WARHAMMER III - Forge of the Chaos Dwarfs',
+'플레이하려면 Steam 버전인 Total War: WARHAMMER III 기본 게임이 필요합니다.',
+'Forge of the Chaos Dwarfs 캠페인 팩에서는 Total War: WARHAMMER III 카오스의 영역과 불멸의 제국들 캠페인에서 사용할 수 있는 악명 높은 진영, 카오스 드워프를 소개합니다.
+
+아스트라고스 아이언핸드, 잿빛 드라조스, 시커먼 자탄 중 한 명이 되어 올드 월드에서 영토를 확장하고, 개발하고, 지배해 보세요. 세 군주는 모두 고유한 캠페인 메커니즘과 목표, 그리고 오직 카오스 드워프처럼 뒤틀린 지성으로만 생산할 수 있을 부대를 갖추고 있습니다. 카오스 드워프는 자신들만의 무시무시한 목표에 전념하면서 카오스의 영역 캠페인의 우르선 관련 스토리라인에 관여하지 않습니다.',
+9,
+to_date('2023/4/13'),
+'CREATIVE ASSEMBLY',
+'SEGA',
+25000,
+0,
+null,
+null,
+'Windows 7',
+'Intel i3/Ryzen 3 series',
+'6 GB RAM',
+'Nvidia GTX 900/AMD RX 400 series | Intel Iris Xe Graphics',
+'120 GB',
+'Windows 7',
+'Intel i3/Ryzen 3 series',
+'6 GB RAM',
+'Nvidia GTX 900/AMD RX 400 series | Intel Iris Xe Graphics',
+'120 GB',
+4687,
+3);
+
+--29
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'RimWorld - Biotech',
+'플레이하려면 Steam 버전인 RimWorld 기본 게임이 필요합니다.',
+'아이를 낳아 가정을 꾸리고, 유전자를 편집하고, 자신만의 메카노이드 군대를 이끄세요.
+가정을 꾸리기
+자연적으로, 또는 인공적인 방법으로 아이를 갖고 가족을 만드세요. 정착민들은 스스로 아이를 낳을 수도 있지만 대리모를 두거나, 고아를 입양하거나, 기계에 배아를 넣어서 아이로 길러낼 수도 있습니다. 정착민들의 관계에 개입해 짝을 지어주거나, 자연스럽게 관계가 발달하도록 지켜보세요. 출산과 육아를 대비하고, 새 생명을 축하할 준비를 끝내세요!
+아기 돌보기
+아기들의 배를 든든하게 유지하고, 즐거운 놀이 시간을 위해 사랑스러운 보육원을 만드세요. 아기 침대를 제작해 편안하게 재워주세요. 행복한 아기들이 행복한 정착민으로 자라납니다.
+어린이 보살피기
+일과 놀이의 적절한 균형으로 풍성하고 행복한 어린 시절을 만들어 주세요. 자연 탐험, 라디오 통신, 교실에서의 수업, 공상, 낙서, 어른들이 하는 일 관찰을 통해 어린이들의 학습 욕구를 채워주세요. 아이들이 특정 나이로 접어들면 각자 특성과 열정을 선택해 줄 수 있습니다. 만족스러운 삶을 살아왔으면, 고를 수 있는 특성과 열정 선택지도 다양해집니다.
+
+성장 배양기는 육아의 저렴한 대체 수단입니다. 아이들을 배양기에 넣어서 빠르게, 하지만 멍청한 병사들과 일꾼들을 길러내세요.
+유전자 편집
+정착민의 유전자를 편집해 이종족으로 만드세요. 거래, 임무, 아니면 이종족 수감자에게서 추출한 색다른 유전자들을 서로 조합해 이상하지만 유용한 특성으로 만들고, 정착민들을 모두 이종족으로 바꿔버리세요!',
+9,
+to_date('2022/10/21'),
+'Ludeon Studios',
+'Ludeon Studios',
+27000,
+0,
+null,
+null,
+'Windows 7',
+'Intel i3/Ryzen 3 series',
+'6 GB RAM',
+'Nvidia GTX 900/AMD RX 400 series | Intel Iris Xe Graphics',
+'120 GB',
+'Windows 7',
+'Intel i3/Ryzen 3 series',
+'6 GB RAM',
+'Nvidia GTX 900/AMD RX 400 series | Intel Iris Xe Graphics',
+'120 GB',
+4982,
+3);
+
+--30
+insert into game
+(g_no, g_name, g_short_desc, g_long_desc, g_grade, g_release_date, g_developer, g_distributor, g_price, g_discount_rate, g_discount_start, g_discount_end,
+g_os, g_prosessor, g_memory, g_graphic, g_disk_space, g_min_os, g_min_prosessor, g_min_memory, g_min_graphic, g_min_disk_space, g_sell_count, ct_no)
+values
+(GAME_G_NO_SEQ.nextval,
+'Minecraft Legends',
+'새로운 액션 전략 게임 Minecraft Legends의 비밀을 밝혀내세요. 풍부한 자원과 울창한 생태계를 자랑하는 이곳에 멸망이 코앞까지 다가왔습니다. 약탈자 피글린이 모습을 드러냈습니다. 동맹의 사기를 높이고 전략적인 전투로 이끌어 지상을 구하는 책무는 오로지 당신에게 달렸습니다!',
+'비밀을 밝혀내세요
+Minecraft Legends의 스토리를 파악하면서, 새로우면서도 어딘가 익숙한 세계를 탐험해보세요. 이 최신 액션 전략 게임을 통해 Minecraft 유니버스를 새롭고 흥미진진한 방식으로 즐길 수 있습니다.
+
+역동적인 세계
+친숙함과 신비함을 모두 갖춘 이 아름다운 세상을 탐험하세요. 다양한 생명체와 울창한 생태계, 그리고 방어선을 세워 피글린 침략을 물리치는 데 필요한 자원까지 풍부하게 갖추어져 있습니다.
+
+흥미진진한 전투
+의외의 친구들을 설득하여 소중한 동맹을 형성하세요. 전략적인 전투에서 이들을 지휘하며 각자의 본거지를 보호하세요. 네더의 타락이 지상까지 뒤덮기 전에 피글린과 맞서 싸우세요!
+
+PvP
+흥미진진한 전투에서 친구들과 대결하거나 팀을 이루세요. 마을을 방어하고 동맹을 이끌어 상대를 물리쳐보세요.',
+9,
+to_date('2023/4/19'),
+'Mojang Studios',
+'Xbox Game Studios',
+39900,
+0,
+null,
+null,
+'Windows 10',
+'Core i5 2.8GHz or equivalent',
+'8 GB RAM',
+'NVIDIA GeForce GTX 780 or AMD Radeon 285 or Intel HD 520 or equivalent DX12 GPU',
+'24 GB',
+'Windows 10',
+'Core i5 2.8GHz or equivalent',
+'8 GB RAM',
+'NVIDIA GeForce GTX 780 or AMD Radeon 285 or Intel HD 520 or equivalent DX12 GPU',
+'24 GB',
+8863,
+3);
 
 
 
@@ -811,6 +1134,7 @@ insert into language(lang_no, lang_name) values(LANGUAGE_LANG_NO_SEQ.nextval, '�
 
 
 --game_language
+--액션
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 1);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 1, 2);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 2, 2);
@@ -830,6 +1154,7 @@ insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.n
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 9, 2);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 10, 1);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 10, 2);
+--RPG
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 11, 1);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 11, 2);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 11, 5);
@@ -880,6 +1205,48 @@ insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.n
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 5);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 6);
 insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 20, 7);
+--전략
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 21, 1);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 21, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 21, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 21, 6);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 21, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 22, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 22, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 22, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 22, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 23, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 23, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 23, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 23, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 24, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 24, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 24, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 24, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 25, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 25, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 25, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 25, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 26, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 26, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 26, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 26, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 27, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 27, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 27, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 27, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 28, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 28, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 28, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 28, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 29, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 29, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 29, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 29, 7);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 30, 2);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 30, 3);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 30, 5);
+insert into game_language(gl_no, g_no, lang_no) values(GAME_LANGUAGE_GL_NO_SEQ.nextval, 30, 7);
 
 
 
@@ -929,18 +1296,27 @@ insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '다크판타�
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'MMO');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '농장시뮬레이션');
 insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '생활시뮬레이션');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');--45
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');--50
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
-insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, 'PVP');--45
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '카드게임');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '전략');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '트레이딩카드게임');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '실시간전략');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '전쟁');--50
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '중세');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '도시건설');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '자원관리');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '스팀펑크');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '세계대전');--55
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '대전략');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '역사');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '폭력');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '개척시뮬레이션');
+insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '전체이용가');--60
+--insert into tag(tag_no, tag_name) values(TAG_TAG_NO_SEQ.nextval, '');
 
 
 --game_tag
+--액션
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 1);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 2, 1);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 3, 1);
@@ -991,6 +1367,7 @@ insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 9, 
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 27, 10);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 28, 10);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 29, 10);
+--RPG
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 30, 11);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 31, 11);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 11);
@@ -1041,6 +1418,57 @@ insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 29,
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 20);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 39, 20);
 insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 25, 20);
+--전략
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 45, 21);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 28, 21);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 14, 21);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 22, 21);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 13, 21);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 11, 22);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 1, 22);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 19, 22);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 38, 22);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 35, 22);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 45, 23);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 46, 23);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 23);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 48, 23);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 21, 23);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 24);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 49, 24);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 50, 24);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 51, 24);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 13, 24);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 52, 25);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 53, 25);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 54, 25);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 28, 25);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 25);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 26);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 42, 26);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 21, 26);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 26);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 51, 26);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 55, 27);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 56, 27);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 57, 27);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 27);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 50, 27);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 58, 28);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 28);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 28);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 33, 28);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 32, 28);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 59, 29);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 29);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 30, 29);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 25, 29);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 26, 29);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 47, 30);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 6, 30);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 13, 30);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 33, 30);
+insert into game_tag(gt_no, tag_no, g_no) values(GAME_TAG_GT_NO_SEQ.nextval, 60, 30);
 
 
 
@@ -1178,6 +1606,7 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-3.jpg', 30);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'simul10-4.jpg', 30);
 --어드벤쳐
+/*
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-1.jpg', 31);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-2.jpg', 31);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'adv1-3.jpg', 31);
@@ -1300,7 +1729,7 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-2.jpg', 60);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-3.jpg', 60);
 insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextval, 'indie10-4.jpg', 60);
-
+*/
 
 
 

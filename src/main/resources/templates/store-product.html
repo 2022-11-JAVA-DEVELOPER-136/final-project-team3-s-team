@@ -80,11 +80,16 @@
                 <div class="d-flex flex-wrap align-items-center">
                   <div class="review d-flex">
                     <div class="review_score">
+                      <th:block th:if="${reviewAvg} != 0">
                       <div class="review_score-btn" th:text="${#numbers.formatDecimal(reviewAvg, 1, 2)}">9.7</div>
+                      </th:block>
+                      <th:block th:if="${reviewAvg} == 0">
+                      <div class="review_score-btn" th:text="|평점 없음|">9.7</div>
+                      </th:block>
                     </div>
                     <!-- star -->
                     <div class="star_rating-se text-warning mr-7">
-                      <th:block th:if="${reviewAvg} >= 1" th:each="seq:${#numbers.sequence(1, reviewAvg)}">
+                      <th:block th:if="${reviewAvg} != 0 and ${reviewAvg} >= 1" th:each="seq:${#numbers.sequence(1, reviewAvg)}">
                       <i class="fas fa-star"></i>
                       </th:block>
                       <th:block th:if="${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == 0.5 or ${reviewAvg} - ${#numbers.formatInteger(reviewAvg, 1)} == -0.5"><!-- or 이하는 문제 생기면 지우고 개선점 찾을 것 -->

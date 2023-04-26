@@ -186,6 +186,7 @@ public class GameController {
 		}
 		double reviewAvg = reviewSum / reviewSize / 2;//reviewRecommend가 1~10점이어서 나누기 2 했음.
 		model.addAttribute("reviewAvg", reviewAvg);
+		if(reviewSize==0) model.addAttribute("reviewAvg", 0);
 		
 		//로그인한 경우, 유저의 OwnedGame 검색
 		User loginUser = (User)session.getAttribute("loginUser");
