@@ -265,13 +265,13 @@
       <div class="screenshots_box">
         <div class="container-fluid">
           <div class="row py-2 py-lg-1">
-          <th:block th:each="seq:${#numbers.sequence(1, 4)}">
+          <th:block th:each="seq:${#numbers.sequence(0, 3)}">
           <th:block th:if="${#lists.size(popularGameList) >= seq + 1}">
             <div class="col-md-6 col-lg d-flex pl-lg-0 pr-lg-1 mb-4 mb-lg-0">
               <div class="tile d-flex px-0">
                 <div class="tile">
                   <figure class="h-100 ar-8_5 bs-c br-n bp-c" style="background-image: url(assets/img/thumb/3.jpg);" 
-                  th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(0).resName} + ');'">
+                  th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(3).resName} + ');'">
                   </figure>
                 </div>
               </div>
@@ -301,12 +301,12 @@
           </th:block>
           </th:block>
           <div class="row py-2 py-lg-1">
-          <th:block th:each="seq:${#numbers.sequence(5, 7)}">
+          <th:block th:each="seq:${#numbers.sequence(4, 6)}">
              <div class="col-md mb-4 mb-md-0 d-flex pr-lg-1 pl-lg-0">
               <div class="tile d-flex px-0">
                 <div class="tile">
                   <figure class="h-100 ar-8_5 bs-c br-n bp-c" style="background-image: url(assets/img/thumb/4.jpg);"
-                  	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(0).resName} + ');'">
+                  	th:style="${'background-image:url(image/'} + ${popularGameList.get(seq).resourcesList.get(3).resName} + ');'">
                   </figure>
                 </div>
               </div>
