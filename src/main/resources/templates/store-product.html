@@ -60,7 +60,9 @@
     <main class="main-content">
 
       <!-- overlay -->
-      <div class="overlay overflow-hidden pe-n"><img src="assets/img/bg/bg_shape.png" alt="background shape"></div>
+      <div class="overlay overflow-hidden pe-n">
+      	<img src="assets/img/bg/bg_shape.png" alt="background shape">
+      </div>
       <!-- /.overlay -->
 
       <!-- content area -->
@@ -122,23 +124,16 @@
                     <div class="carousel-product">
                       <div class="slider text-secondary" data-slick="product-body">
                       	<th:block th:each="resources:${game.resourcesList}">
-                        <img src="assets/img/content/product/01.jpg" alt="Game" th:src="|image/${resources.resName}|">
+                        <img src="assets/img/content/product/01.jpg" alt="Game" style="" th:src="|image/${resources.resName}|" th:style="${'width:100px; height:400px'}">
                         </th:block>
-                        <!-- 
-                        <img src="assets/img/content/product/02.jpg" alt="Game">
-                        <img src="assets/img/content/product/01.jpg" alt="Game">
-                        <img src="assets/img/content/product/01.jpg" alt="Game">
-                         -->
                       </div>
                       <div class="slider product-slider-nav text-secondary">
                       	<th:block th:each="resources:${game.resourcesList}">
-                        <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game" th:src="|image/${resources.resName}|"></div>
+                        <div class="slide-item px-1">
+                        	<img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game" style=""
+                        		th:src="|image/${resources.resName}|" th:style="${'width:300px; height:110px'}">
+                        </div>
                         </th:block>
-                        <!-- 
-                        <div class="slide-item px-1"><img src="assets/img/content/product/02.jpg" class="screenshot" alt="Game"></div>
-                        <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game"></div>
-                        <div class="slide-item px-1"><img src="assets/img/content/product/01.jpg" class="screenshot" alt="Game"></div>
-                         -->
                       </div>
                     </div>
                     <!-- /.carousel wrapper -->
@@ -518,7 +513,7 @@
             <th:block th:each="cgame:${gameListByCategory}">
             <!-- item -->
             <div class="item mx-3">
-              <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3" th:src="|image/${cgame.resourcesList.get(0).resName}|">
+              <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3" th:src="|image/${cgame.resourcesList.get(3).resName}|">
               <th:block th:if="${#strings.length(cgame.gName)} <= 30">
               <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:href="@{/store-product(gNo=${cgame.gNo})}" th:text="${cgame.gName}">Nunc consectetur</a>
               </th:block>
