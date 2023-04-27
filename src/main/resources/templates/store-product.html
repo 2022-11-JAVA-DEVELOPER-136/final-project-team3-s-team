@@ -337,7 +337,12 @@
                                   <div class="px-4 py-3 lh-1">
                                     <h6 class="mb-1 small-1 text-light text-uppercase" th:text="${tgame.gName}">Phasellus</h6>
                                     <div class="price d-flex flex-wrap align-items-center">
+                                      <th:block th:if="${tgame.gPrice != 0}">
                                       <span class="discount_final text-warning small-2" th:text="|${#numbers.formatInteger(tgame.gPrice - tgame.gPrice * tgame.gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
+                                      </th:block>
+                                      <th:block th:if="${tgame.gPrice == 0}">
+                                      <span class="discount_final text-warning small-2" th:text="|무료 게임|">€99.99</span>
+                                      </th:block>
                                     </div>
                                   </div>
                                 </div>
@@ -346,50 +351,6 @@
                           </div>
                           </th:block>
                           <!-- /.each -->
-                          <!-- 
-                          <div class="item">
-                            <a href="#">
-                              <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
-                                <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
-                                  <div class="px-4 py-3 lh-1">
-                                    <h6 class="mb-1 small-1 text-light text-uppercase">Phasellus</h6>
-                                    <div class="price d-flex flex-wrap align-items-center">
-                                      <span class="discount_final text-warning small-2">€99.99</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                          <div class="item">
-                            <a href="#">
-                              <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
-                                <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
-                                  <div class="px-4 py-3 lh-1">
-                                    <h6 class="mb-1 small-1 text-light text-uppercase">Phasellus</h6>
-                                    <div class="price d-flex flex-wrap align-items-center">
-                                      <span class="discount_final text-warning small-2">€99.99</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                          <div class="item">
-                            <a href="#">
-                              <div class="d-flex h-100 bs-c br-n bp-c ar-8_5 position-relative" style="background-image: url(assets/img/content/cont/cg-c_02.jpg);">
-                                <div class="position-absolute w-100 l-0 b-0 bg-dark_A-80 text-light">
-                                  <div class="px-4 py-3 lh-1">
-                                    <h6 class="mb-1 small-1 text-light text-uppercase">Phasellus</h6>
-                                    <div class="price d-flex flex-wrap align-items-center">
-                                      <span class="discount_final text-warning small-2">€99.99</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                           -->
                         </div>
                       </div>
                     </div>
@@ -558,10 +519,22 @@
             <!-- item -->
             <div class="item mx-3">
               <img src="assets/img/content/img_01.jpg" alt="Game" class="mb-3" th:src="|image/${cgame.resourcesList.get(0).resName}|">
+              <th:block th:if="${#strings.length(cgame.gName)} <= 30">
               <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:href="@{/store-product(gNo=${cgame.gNo})}" th:text="${cgame.gName}">Nunc consectetur</a>
-              <span class="time d-block small-4" th:text="${#dates.format(cgame.gReleaseDate, 'yyyy-MM-dd')}">05/08/2020</span>
+              </th:block>
+              <th:block th:if="${#strings.length(cgame.gName)} > 30">
+              <a href="#" class="text-uppercase fw-500 small-2 mb-0" th:href="@{/store-product(gNo=${cgame.gNo})}" th:text="${#strings.substring(cgame.gName, 0, 30)}">Nunc consectetur</a>
+              </th:block>
+              <span class="time small-4 float-right" th:text="${#dates.format(cgame.gReleaseDate, 'yyyy-MM-dd')}">05/08/2020</span>
+              <br>
+              <th:block th:if="${cgame.gPrice != 0}">
+              <span class="discount_final text-warning small-2" th:text="|${#numbers.formatInteger(cgame.gPrice - cgame.gPrice * cgame.gDiscountRate * 0.01, 3, 'COMMA')}원|">€99.99</span>
+              </th:block>
+              <th:block th:if="${cgame.gPrice == 0}">
+              <span class="discount_final text-warning small-2" th:text="|무료 게임|">€99.99</span>
+              </th:block>
               <!-- 게임 판매량을 하트로 보여주기. 게임테이블에 좋아요 기능을 담을 컬럼을 만들었어도 좋았을 것 같다. -->
-              <span class="d-block small text-warning">
+              <span class="small text-warning float-right">
               	<i class="far fa-heart"></i>
               	<span th:text="${cgame.gSellCount}"></span>
               </span>
