@@ -139,6 +139,31 @@ public class MainController {
 		return "library";
 	}
 	
+	@RequestMapping("/about")
+	public String about(Model model, HttpSession session) {
+		
+		SearchDto searchDto = new SearchDto();
+		
+		List<Game> popularGameList = gameService.findGames(searchDto);
+		model.addAttribute("popularGameList", popularGameList);
+		
+		/*****common-navbar.html에서 사용*****/
+        List<Category> categoryList = gameService.findAllCategory();
+		model.addAttribute("categoryList", categoryList);
+		
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(loginUser!=null) {
+			int cartQuantity = cartService.countCart(loginUser.getUNo());
+			model.addAttribute("cartQuantity", cartQuantity);
+			
+			List<Cart> cartList = cartService.selectCart(loginUser.getUNo());
+	        model.addAttribute("cartList", cartList);
+		}
+		/*************************************/
+		
+		return "about";
+	}
+	
 	//root
 	@GetMapping("/")
 	public String welcome() {

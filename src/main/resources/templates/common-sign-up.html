@@ -5,17 +5,17 @@
       <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content bg-dark text-light">
           <div class="modal-header border-secondary">
-            <h5 class="modal-title" id="userWriteTitle">sign-up</h5>
+            <h5 class="modal-title" id="userWriteTitle" th:text="회원가입">sign-up</h5>
             <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}"  name ="upForm" id="upForm" class="input-transparent">
+            <form th:object="${fuser!=null? fuser : new com.itwill.steam.user.User()}" name ="upForm" id="upForm" class="input-transparent">
               <input type="hidden" th:value="${succYn}" id="succYn" />
               <div class="form-group">
               	<label>ID</label>
-                <input type="text" class="form-control border-secondary" name="uId" id="uId" placeholder="UserId">
+                <input type="text" class="form-control border-secondary" name="uId" id="uId" placeholder="Id">
                 <font color="red" th:text="${msg}" id="checked"></font>
               </div>
               
@@ -26,7 +26,7 @@
               
               <div class="form-group">
               	<label>Confirm password</label>  
-                <input type="password" class="form-control border-secondary" name="uPassword2" id="uPassword2" placeholder="Password2">
+                <input type="password" class="form-control border-secondary" name="uPassword2" id="uPassword2" placeholder="Password">
               </div>
               
               <div class="form-group">
@@ -45,10 +45,12 @@
               </div>
               
               <div class="form-group mt-6">
-                <button type="button" class="btn btn-block btn-warning" onclick="userCreate();return false;">sign-up</button>
+                <button type="button" class="btn btn-block btn-warning" onclick="userCreate();return false;" th:text="회원가입">sign-up</button>
               </div>
             </form>
+            <!-- 
             <span class="small">Don't have an account? <a href="#">Create an account</a></span>
+             -->
           </div>
         </div>
       </div>

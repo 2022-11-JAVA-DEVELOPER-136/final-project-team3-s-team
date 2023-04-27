@@ -5,7 +5,7 @@
       <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content bg-dark text-light">
           <div class="modal-header border-secondary">
-            <h5 class="modal-title" id="userLoginTitle">Log in</h5>
+            <h5 class="modal-title" id="userLoginTitle" th:text="로그인">Log in</h5>
             <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -38,7 +38,7 @@
                 <!-- <a class="small-3" href="#">Forgot password?</a> -->
               </div>
               <div class="form-group mt-6">
-                <button type="button" class="btn btn-block btn-warning" onclick="login();return false;">login</button>
+                <button type="button" class="btn btn-block btn-warning" onclick="login();return false;" th:text="로그인">login</button>
               </div>
             </form>
             <!-- <span class="small">Don't have an account? <a href="#">Create an account</a></span> -->
