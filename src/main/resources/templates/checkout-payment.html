@@ -217,7 +217,12 @@
 				<li class="my-1">
 					<div class="d-flex text-info small-2 fw-600">
 						<div th:text="할인금액">Your Discount</div>
+						<th:block th:if="${finalDiscountPrice} != 0">
 						<div class="ml-auto" th:text="|-${#numbers.formatInteger(finalDiscountPrice, 3, 'COMMA')}원|">₩-105,000</div>
+						</th:block>
+						<th:block th:if="${finalDiscountPrice} == 0">
+						<div class="ml-auto" th:text="0원">₩-105,000</div>
+						</th:block>
 					</div>
 				</li>
 				
