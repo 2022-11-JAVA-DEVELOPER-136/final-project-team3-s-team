@@ -362,7 +362,7 @@
                               <div class="rounded overflow-h">
                                 <div>
                                   <th:block th:if="${seq} < ${#lists.size(game.resourcesList)}">
-                                  <img src="assets/img/content/img_01.jpg" alt="News" th:src="|image/${game.resourcesList.get(seq).resName}|">
+                                  <img src="assets/img/content/img_01.jpg" alt="News" style="" th:src="|image/${game.resourcesList.get(seq).resName}|" th:style="${'width:150px; height:85px'}">
                                   </th:block>
                                 </div>
                               </div>
