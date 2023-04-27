@@ -232,7 +232,7 @@
 	                              </th:block>
                               </th:block>
                               <!-- 로그인하지 않은 경우 -->
-                              <th:block th:if="${isLogin} == 'false'">
+                              <th:block th:if="${#lists.isEmpty(ogameList)}">
                               <a href="#">
                                 <i class="item_icon_cart fas fa-shopping-cart"></i>
                                 <span class="item_atc_text" th:text="|카트담기|" gno="" th:gno=${popularGameList.get(seq).gNo}>Add to cart</span>

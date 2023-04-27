@@ -23,6 +23,11 @@ $(function() {
 		e.preventDefault();
 	});
 	
+	//
+	$('i.item_icon_cart').on('click', function(e) {
+		e.preventDefault();
+	});
+	
 	//library progress bar
 	$('#install').on('click', function(e) {
 		
