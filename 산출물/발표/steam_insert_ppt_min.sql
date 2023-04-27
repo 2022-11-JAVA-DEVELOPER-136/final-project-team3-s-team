@@ -7,7 +7,7 @@ insert
 u_state는 상태를 표시. (0: 로그아웃, 1:로그인)
 */
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-0000-0000', 'sy0_닉네임', '서울시', '송파구', '성내천로', '13445', 1, 'profile.jpg', 'background.jpg', 'sy0의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-1256-4521', '커밋더프로그', '서울시', '송파구', '성내천로', '13445', 1, 'profile.jpg', 'background.jpg', '개구리 중 최고, 그저 GOAT');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
 values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', 'street_1', 'city_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
@@ -26,7 +26,7 @@ insert into friend(f_no, u_no, u_fno) values(FRIEND_F_NO_SEQ.nextval, 2, 3);
 
 
 --card
-insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy0_카드_1', '1111-1111-1111-1111', '02/24', 111, 1);
+insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, '신한체크카드', '1346-4885-6824-7785', '02/24', 333, 1);
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy1_카드_1', '1234-1234-1234-1234', '03/26', 123, 2);
 insert into card(card_seq, card_name, card_number, card_ex_date, card_cvc, u_no) values(CARD_CARD_SEQ_SEQ.nextval, 'sy2_카드_1', '2222-2222-2222-2222', '05/25', 222, 3);
 
@@ -1733,21 +1733,11 @@ insert into resources(res_no, res_name, g_no) values(RESOURCES_RES_NO_SEQ.nextva
 
 
 
-
-
-
-
-
-
 --cart
 --sy0
 insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 2);
 insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 4);
 insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 1, 6);
---sy1
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 1);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 3);
-insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 5);
 
 
 --wishlist
@@ -1755,10 +1745,6 @@ insert into cart(c_no, u_no, g_no) values(CART_C_NO_SEQ.nextval, 2, 5);
 insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 2);
 insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 4);
 insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 1, 6);
---sy1
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 1);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 3);
-insert into wishlist(wish_no, wish_date, u_no, g_no) values(WISHLIST_WISH_NO_SEQ.nextval, sysdate, 2, 5);
 
 
 --orders, order_item
@@ -1769,13 +1755,7 @@ insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, O
 insert into orders(o_no, o_date, o_total_price, u_no) values(ORDERS_O_NO_SEQ.nextval, sysdate, 55000, 1);
 insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, 3);
 insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, 5);
---sy1
-insert into orders(o_no, o_date, o_total_price, u_no) values(ORDERS_O_NO_SEQ.nextval, sysdate, 30000, 2);
-insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, 2);
 
-insert into orders(o_no, o_date, o_total_price, u_no) values(ORDERS_O_NO_SEQ.nextval, sysdate, 40000, 2);
-insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, 4);
-insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, ORDERS_O_NO_SEQ.currval, 6);
 
 
 --review
@@ -1783,18 +1763,22 @@ insert into order_item(oi_no, o_no, g_no) values(ORDER_ITEM_OI_NO_SEQ.nextval, O
 review_recommend는 평점을 의미. (1~10)
 u_no는 작성자를 의미.
 */
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰1', 1, 0, 0, 1, 1);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰2', 2, 0, 0, 1, 2);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰3', 3, 0, 0, 1, 3);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰4', 4, 0, 0, 1, 4);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰5', 5, 0, 0, 1, 5);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰6', 6, 0, 0, 1, 6);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰7', 7, 1, 1, 2, 1);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰8', 8, 1, 1, 2, 2);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰9', 9, 1, 1, 2, 3);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰10', 10, 1, 1, 2, 4);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰11', 9, 1, 1, 2, 5);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '리뷰12', 8, 1, 1, 2, 6);
+--sy0
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '깊이 있는 스토리, 엄청난 자유도.', 1, 0, 0, 1, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '재미있는 액션, 스토리는 그닥.', 2, 0, 0, 1, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '긴 기대와 큰 실망, 보완 필요.', 3, 0, 0, 1, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '모던 워페어 II: FPS의 최고봉, 워존 2.0: 대규모 전투의 새로운 기준', 4, 0, 0, 1, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화끈한 액션, 몬스터의 매력.', 5, 0, 0, 1, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화려한 전투, 적절한 스킬 선택.', 6, 0, 0, 1, 6);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '배틀로얄의 대명사, 중독성 짱.', 6, 0, 0, 1, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '카드게임의 거장, 전략의 대명사.', 6, 0, 0, 1, 23);
+--sy1
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '전설적인 카드게임, 끊임없는 승부욕.', 8, 1, 1, 2, 23);
+--sy2
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 23);
+
 
 
 --owned_game
