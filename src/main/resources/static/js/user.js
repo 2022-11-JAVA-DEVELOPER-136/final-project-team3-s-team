@@ -162,10 +162,10 @@ function pwChk() {
 			return false;
 		}
 
-		/*if (!regEmail.test(document.upForm.uEmail.value)) {
+		if (!regEmail.test(document.upForm.uEmail.value)) {
 			alert("이메일형식을 맞춰주세요.");
 			return false;
-		}*/ 		
+		} 		
 		
 		
 		/*document.upForm.action = "user_write_action";
