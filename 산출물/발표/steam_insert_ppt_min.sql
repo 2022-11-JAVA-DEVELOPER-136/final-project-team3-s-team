@@ -7,11 +7,11 @@ insert
 u_state는 상태를 표시. (0: 로그아웃, 1:로그인)
 */
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-1256-4521', '커밋더프로그', '서울시', '송파구', '성내천로', '13445', 1, 'profile.jpg', 'background.jpg', '개구리 중 최고, 그저 GOAT');
+values(USERINFO_U_NO_SEQ.nextval, 'sy0', '0000', '김세영', 'sy0@gmail.com', '010-1256-4521', '김멀록', '서울시', '송파구', '성내천로', '13445', 1, 'profile.jpg', 'background.jpg', '개구리 중 최고, 그저 GOAT');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', 'sy1_닉네임', 'street_1', 'city_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy1', '1111', '김세일', 'sy1@gmail.com', '010-1111-1111', '최커밋', 'street_1', 'city_1', 'statefull_1', '11111', 1, 'profile.jpg', 'background.jpg', 'sy1의 프로필입니다.');
 insert into userinfo(u_no, u_id, u_password, u_name, u_email, u_phone, u_nickname, u_street, u_city, u_statefull, u_zip, u_state, u_img_profile, u_img_background, u_about) 
-values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', 'sy2_닉네임', 'street_2', 'city_2', 'statefull_2', '22222', 1, 'profile.jpg', 'background.jpg', 'sy2의 프로필입니다.');
+values(USERINFO_U_NO_SEQ.nextval, 'sy2', '2222', '김세이', 'sy2@gmail.com', '010-2222-2222', '박페페', 'street_2', 'city_2', 'statefull_2', '22222', 1, 'profile.jpg', 'background.jpg', 'sy2의 프로필입니다.');
 
 
 --friend
@@ -1764,43 +1764,38 @@ review_recommend는 평점을 의미. (1~10)
 u_no는 작성자를 의미.
 */
 --sy0
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '깊이 있는 스토리, 엄청난 자유도.', 1, 0, 0, 1, 1);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '재미있는 액션, 스토리는 그닥.', 2, 0, 0, 1, 2);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '긴 기대와 큰 실망, 보완 필요.', 3, 0, 0, 1, 3);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '모던 워페어 II: FPS의 최고봉, 워존 2.0: 대규모 전투의 새로운 기준', 4, 0, 0, 1, 4);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화끈한 액션, 몬스터의 매력.', 5, 0, 0, 1, 5);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화려한 전투, 적절한 스킬 선택.', 6, 0, 0, 1, 6);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '배틀로얄의 대명사, 중독성 짱.', 6, 0, 0, 1, 21);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '카드게임의 거장, 전략의 대명사.', 6, 0, 0, 1, 23);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '깊이 있는 스토리, 엄청난 자유도.', 10, 0, 0, 1, 1);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '재미있는 액션, 스토리는 그닥.', 5, 0, 0, 1, 2);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '긴 기대와 큰 실망, 보완 필요.', 1, 0, 0, 1, 3);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '모던 워페어 II: FPS의 최고봉, 워존 2.0: 대규모 전투의 새로운 기준', 9, 0, 0, 1, 4);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화끈한 액션, 몬스터의 매력.', 8, 0, 0, 1, 5);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '화려한 전투, 적절한 스킬 선택.', 8, 0, 0, 1, 6);
+
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '배틀로얄의 대명사, 중독성 짱.', 9, 5, 1, 1, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '카드게임의 거장, 전략의 대명사.', 9, 4, 0, 1, 23);
 --sy1
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 21);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '전설적인 카드게임, 끊임없는 승부욕.', 8, 1, 1, 2, 23);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 3, 0, 2, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '전설적인 카드게임, 끊임없는 승부욕.', 8, 5, 2, 2, 23);
 --sy2
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 21);
-insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '극적인 서바이벌, 방어수단은 당신!', 7, 1, 1, 2, 23);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '고요한 시작, 치열한 전투.', 7, 4, 1, 3, 21);
+insert into review(review_no, review_created_at, review_updated_at, review_comment, review_recommend, review_like, review_dislike, u_no, g_no) values(REVIEW_REVIEW_NO_SEQ.nextval, sysdate, sysdate, '고전의 위상을 잇는 강력한 전략성.', 7, 8, 1, 3, 23);
 
 
 
 --owned_game
 --og_playtime은 소유게임별 플레이시간을 의미. 숫자 1은 1시간을 의미. (ex. 10 -> 10시간)
-insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 1, 1);
-insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 1, 3);
-insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 1, 5);
+insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 11, sysdate, 1, 1);
+insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 24, sysdate, 1, 3);
+insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 17, sysdate, 1, 5);
 insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 2, 2);
 insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 2, 4);
 insert into owned_game(og_no, og_playtime, og_lastplay, u_no, g_no) values(OWNED_GAME_OG_NO_SEQ.nextval, 10, sysdate, 2, 6);
 
 
 --profile_comment
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 1번유저의 프로필에 쓴 코멘트1', 1, 1);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 1번유저의 프로필에 쓴 코멘트1', 2, 1);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 1번유저의 프로필에 쓴 코멘트1', 3, 1);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 2번유저의 프로필에 쓴 코멘트1', 1, 2);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 2번유저의 프로필에 쓴 코멘트1', 2, 2);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 2번유저의 프로필에 쓴 코멘트1', 3, 2);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '1번유저가 3번유저의 프로필에 쓴 코멘트1', 1, 3);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '2번유저가 3번유저의 프로필에 쓴 코멘트1', 2, 3);
-insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '3번유저가 3번유저의 프로필에 쓴 코멘트1', 3, 3);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '반가워요.', 2, 1);
+insert into profile_comment(pc_no, pc_created_at, pc_comment, u_no, u_fno) values(PROFILE_COMMENT_PC_NO_SEQ.nextval, sysdate, '잘 지내나요.', 3, 1);
+
 
 
 commit;
