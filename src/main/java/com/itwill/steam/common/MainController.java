@@ -139,31 +139,26 @@ public class MainController {
 		return "library";
 	}
 	
-	//steam_main
-	@RequestMapping("/steam_main")
-	public String steamMain() {
-		return "steam_main";
-	}
-	
 	//root
 	@GetMapping("/")
 	public String welcome() {
-		return "redirect:steam_main";
+		return "redirect:main";
 	}
 	
-	//404 페이지
+	//404 page
 	@RequestMapping("/404")
 	public String fileNotFoundError() {
 		return "404";
 	}
 	
-	//POST방식으로 요청해야 하는 method에 GET방식으로 요청하는 경우, steam_main으로 redirect
-	//@GetMapping({})
-	public String steamGet() {
-		return "redirect:steam_main";
+	//steam_main
+	//@RequestMapping("/steam_main")
+	public String steamMain() {
+		return "steam_main";
 	}
 	
 	/***************************** template test start *****************************/
+	/*
 	@RequestMapping("/coming_soon")
 	public String comingSoon() {
 		return "coming_soon";
@@ -204,5 +199,6 @@ public class MainController {
 	public String privateMessaging() {
 		return "private-messaging";
 	}
+	*/
 	/****************************** template test end ******************************/
 }
